@@ -1,0 +1,940 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhwa">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結Author Z-hwA  github連結 點這裡  (一)	概要在第二款遊戲中，我的預計是要完成一款真的可以玩的遊戲，而非單單一個試驗品。因此，我決定採用無線波數這一個概念。遊戲中僅有一個場景，但在擊敗一波怪物後下一波便會出現，無限制的重複下去。而為了使這樣的遊戲充滿隨機性，以及不使人快速地感到無趣。我添加了隨機Buff系統，以及隨機怪物生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2021/10/06/program-develope/%E5%AE%8C%E6%95%B4%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC%E5%8F%8A%E8%87%AA%E8%A3%BD%E7%B0%A1%E6%98%93Buff%E7%B3%BB%E7%B5%B1-%E7%84%A1%E9%99%90%E7%B9%BC%E6%89%BF-%E9%96%8B%E7%99%BC%E7%B8%BD%E7%B5%90/">
+<meta property="og:site_name" content="inf-journey shoka">
+<meta property="og:description" content="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結Author Z-hwA  github連結 點這裡  (一)	概要在第二款遊戲中，我的預計是要完成一款真的可以玩的遊戲，而非單單一個試驗品。因此，我決定採用無線波數這一個概念。遊戲中僅有一個場景，但在擊敗一波怪物後下一波便會出現，無限制的重複下去。而為了使這樣的遊戲充滿隨機性，以及不使人快速地感到無趣。我添加了隨機Buff系統，以及隨機怪物生">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/whole%20game%20develope&simply%20buff%20system.PNG">
+<meta property="article:published_time" content="2021-10-06T08:19:58.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:27:40.823Z">
+<meta property="article:author" content="zhwa">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/whole%20game%20develope&simply%20buff%20system.PNG">
+  
+  
+  
+  <title>完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結 - inf-journey shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>inf-journey shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-06 16:19" pubdate>
+          2021年10月6日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          54 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結"><a href="#完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結" class="headerlink" title="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結"></a>完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結</h1><h2 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h2><ul>
+<li>Z-hwA</li>
+</ul>
+<h2 id="github連結"><a href="#github連結" class="headerlink" title="github連結"></a>github連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/z-hwa/Unity_Game_About">點這裡</a></li>
+</ul>
+<h2 id="一-概要"><a href="#一-概要" class="headerlink" title="(一)	概要"></a>(一)	概要</h2><p>在第二款遊戲中，我的預計是要完成一款真的可以玩的遊戲，而非單單一個試驗品。因此，我決定採用無線波數這一個概念。遊戲中僅有一個場景，但在擊敗一波怪物後下一波便會出現，無限制的重複下去。而為了使這樣的遊戲充滿隨機性，以及不使人快速地感到無趣。我添加了隨機Buff系統，以及隨機怪物生成點等隨機要素。且透過這些Buff的組合，還能誕生出不同的玩法。</p>
+<p>不過，可惜之處在於，並未曾查詢過相關於遊戲數據的書籍，以及上過相關遊戲設計課程，導致我在設計遊戲數值時，產生難度不一的情形。此外遊戲中的Buff也並未將機率有計畫性的分布，導致某些強力的Buff不斷出現，玩家強度超出預期。但這一點，也在下個遊戲中得到了改善。</p>
+<h2 id="二-遊戲玩法"><a href="#二-遊戲玩法" class="headerlink" title="(二)	遊戲玩法"></a>(二)	遊戲玩法</h2><p>透過上下左右進行移動，滑鼠左鍵攻擊、右鍵進行衝鋒，S鍵存檔、P鍵暫停。每次擊敗一波後，會得到選擇Buff的機會。每十關Boss會出現一次。普通的小怪僅會透過撞擊造成傷害，但Boss有不同的攻擊模式。</p>
+<p>Boss攻擊模式，每五秒發起一次攻擊，瞬移至玩家身邊，揮刀斬擊，命中一次後，會馬上揮出第二刀，如果第二刀揮中，會再揮出第三刀。第一刀無特殊效果，第二刀命中會回復大量生命，第三刀命中會造成超強擊退。且Boss會召喚小怪，小怪不會發起攻擊，但每隻小怪，會為Boss提供強化。</p>
+<h2 id="三-腳色操作-攻擊、衝鋒-腳色池"><a href="#三-腳色操作-攻擊、衝鋒-腳色池" class="headerlink" title="(三)	腳色操作_攻擊、衝鋒(腳色池)"></a>(三)	腳色操作_攻擊、衝鋒(腳色池)</h2><p>在這一款遊戲中，為了達成擊敗敵人的效果，我為玩家添加了更實用的攻擊方式，斬擊。透過點擊鼠標左鍵，使斬擊的動畫出現，並在斬擊的動畫上添加Istrigger，使斬擊在接觸已放置碰撞體的敵人時，會出發，從而進行扣除敵人生命的程式。</p>
+<p>相對的，一旦敵人的攻擊方式接觸到玩家，也會觸發玩家身上的碰撞器，從而啟動玩家身上扣除生命值的程式。</p>
+<p>至於衝鋒的技能，事實上就是在短暫的時間內，提升玩家的移動速度，但為了造成玩家的回饋心理，因此設計了殘影這一要素，使玩家感受的到，「我衝鋒了」這一反饋。至於殘影，則使用對象池來實現，透過對象池得好處是能省下很多的運行浪費，且生成的物件可以重複利用。在不足以應付當前需要的數量時，則能再動態添加。</p>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>()</span>  
+    &#123;  
+        instance = <span class="hljs-keyword">this</span>;  
+  
+        <span class="hljs-comment">//初始化對象池  </span>
+        FillPool();  
+    &#125;  
+  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">FillPool</span>()</span>  
+    &#123;  
+        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; shadowCount; i++)  
+        &#123;  
+            <span class="hljs-keyword">var</span> newShadow = Instantiate(shadowPrefab);  
+               newShadow.transform.SetParent(transform);  
+  
+            <span class="hljs-comment">//取消啟用，返回對象池  	                                     </span>
+            ReturnPool(newShadow);  
+        &#125;  
+    &#125;  
+  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ReturnPool</span>(<span class="hljs-params">GameObject gameObject</span>)</span>  
+    &#123;  
+        gameObject.SetActive(<span class="hljs-literal">false</span>);  
+        availableObjects.Enqueue(gameObject);  
+    &#125;  
+  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> GameObject <span class="hljs-title">GetFromPool</span>()</span>  
+    &#123;  
+        <span class="hljs-keyword">if</span>(availableObjects.Count == <span class="hljs-number">0</span>)  
+        &#123;  
+            FillPool();  
+        &#125;  
+        <span class="hljs-keyword">var</span> outShadow = availableObjects.Dequeue();  	  
+        outShadow.SetActive(<span class="hljs-literal">true</span>);  
+        
+        <span class="hljs-keyword">return</span> outShadow;  
+    &#125;</code></pre></div>
+<p>(圖十一) 腳色池程式碼(New RPG game\Assets\Scripts\ShadowPool.cs)。<br>腳色池作為殘影只是它的一個應用，用來作為射擊遊戲中的子彈，應該是較常見的用法。</p>
+<p> <img src="https://i.imgur.com/6JC4oyx.png" srcset="/webHome/img/loading.gif" lazyload><br>(圖十二)腳色衝鋒示意圖。</p>
+<h2 id="四-敵人AI"><a href="#四-敵人AI" class="headerlink" title="(四)	敵人AI"></a>(四)	敵人AI</h2><p>而敵人AI也在這款遊戲中被進一步強化，雖然不具備自動尋路的能力，但也能朝著玩家的座標不斷靠近。此外，也為敵人添加了隨關卡數增加，數值隨之增加的程式。</p>
+<p>而Boss則是這一次我嘗試著挑戰的項目，我在Boss的腳本中，設計了三段式的攻擊、瞬移的移動方式以及召喚小怪的能力。</p>
+<p>也在Boss的頭上增加了一個倒數計時器，以方便玩家觀察Boss的攻擊模式，隨著計時器數字減少，顯示的數字顏色也會更加具有危險性。</p>
+<p> <img src="https://i.imgur.com/4MCxOsc.png" srcset="/webHome/img/loading.gif" lazyload><br>(圖十三)Boss示意圖。</p>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function">IEnumerator <span class="hljs-title">Ad</span>()</span>  
+    &#123;  
+        PlayerHealth player = other.gameObject.GetComponent&lt;PlayerHealth&gt;();  
+  
+        <span class="hljs-keyword">if</span> (attack == <span class="hljs-number">0</span>)  
+        &#123;  
+            <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">WaitForSeconds</span>(<span class="hljs-params"><span class="hljs-number">0.1f</span></span>)</span>;  
+            Attack();  
+            <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">WaitForSeconds</span>(<span class="hljs-params"><span class="hljs-number">0.4f</span></span>)</span>;  
+            <span class="hljs-keyword">if</span> (attack == <span class="hljs-number">1</span>)  
+            &#123;  
+                <span class="hljs-keyword">if</span>(hit==<span class="hljs-number">1</span>)  
+                &#123;  
+                    PlayerHealth.hp -= atk;  
+  
+                    bossDamage = atk;  
+                    GameObject.Find(<span class="hljs-string">&quot;Player&quot;</span>).SendMessage(<span class="hljs-string">&quot;BossAttack&quot;</span>);                     
+                      
+                    <span class="hljs-keyword">set</span> = <span class="hljs-number">1</span>;  
+                    StartCoroutine(Set());  
+                    Attack();  
+                    <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">WaitForSeconds</span>(<span class="hljs-params"><span class="hljs-number">0.4f</span></span>)</span>;  
+                    <span class="hljs-keyword">if</span>(hit==<span class="hljs-number">2</span>)  
+                    &#123;  
+                        PlayerHealth.hp -= atk + <span class="hljs-number">5</span>;  
+  
+                        bossDamage = atk + <span class="hljs-number">5</span>;  
+                        GameObject.Find(<span class="hljs-string">&quot;Player&quot;</span>).SendMessage(<span class="hljs-string">&quot;BossAttack&quot;</span>);  
+  
+                        Boss10.hp += (atk + <span class="hljs-number">5</span>) * <span class="hljs-number">35</span> * (ClassManager.levelNum % <span class="hljs-number">10</span>) * <span class="hljs-number">6</span>;  
+ 	                        DamageNum damagable = Instantiate(damageCanvas, transform.position,       Quaternion.identity).GetComponent&lt;DamageNum&gt;();  
+                        damagable.ShowUIDamage(Mathf.RoundToInt((atk + <span class="hljs-number">5</span>) * <span class="hljs-number">10000</span>), <span class="hljs-number">0</span>);  
+  
+                        Attack();  
+                        <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">WaitForSeconds</span>(<span class="hljs-params"><span class="hljs-number">0.4f</span></span>)</span>;  
+                        <span class="hljs-keyword">if</span>(hit==<span class="hljs-number">3</span>)  
+                        &#123;  
+                               PlayerHealth.hp -= Boss10_Rank1.atk + <span class="hljs-number">10</span>;  	  
+                            bossDamage = atk + <span class="hljs-number">10</span>;  
+                            GameObject.Find(<span class="hljs-string">&quot;Player&quot;</span>).SendMessage(<span class="hljs-string">&quot;BossAttack&quot;</span>);  
+                              
+                            hitAfter = <span class="hljs-number">1</span>;  
+                        &#125;  
+                    &#125;  
+                &#125;  
+            &#125;  
+        &#125;</code></pre></div>
+<p>(圖十四)Boss攻擊模式程式碼<br>(New RPG game\Assets\Scripts\Boss10_Rank1.cs)。</p>
+<h2 id="五-UI介面"><a href="#五-UI介面" class="headerlink" title="(五)	UI介面"></a>(五)	UI介面</h2><p>遊戲介面同樣有暫停，除此之外，更添加了buff的顯示區塊，關卡的提示等。而玩家身上的血條UI，則是透過三張不同顏色的圖片，設置成填充模式以達成。至於扣血效果的UI則製成了預製體，需要時調用。最後則是分數計算的顯示，跟上一款遊戲的收集櫻桃是類似的。</p>
+<p> <img src="https://i.imgur.com/srS8pZ6.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://i.imgur.com/NdThXkD.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://i.imgur.com/01PofLb.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖十五、十六、十七)UI介面。<br>此外，也於遊戲中製作了預製體的扣血效果，並於怪物或玩家受到傷害時，生成於玩家或是怪物的身旁。而Boss身上則有額外的綠色效果，作為回血的數值。<br> <img src="https://i.imgur.com/FMtNUT8.png" srcset="/webHome/img/loading.gif" lazyload><br>(圖十八)回復以及扣血效果。</p>
+<h2 id="六-程式碼-無限波數、Buff系統、存檔系統"><a href="#六-程式碼-無限波數、Buff系統、存檔系統" class="headerlink" title="(六)	程式碼_無限波數、Buff系統、存檔系統"></a>(六)	程式碼_無限波數、Buff系統、存檔系統</h2><p>為了提升遊戲的可玩性，以及使遊戲的紀錄可被儲存，我上網查詢有關於這方面的教學影片以及文章。三者之中，最容易達成的是無限波數的部分，透過程式碼中的變數調控，以檢測場上敵人的數目來決定是否進入下一波。</p>
+<p>一旦進入下一波，再透過隨機生成的方式，隨機生成敵人到場上，每十關出現一次Boss。</p>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span>  
+    &#123;        
+        <span class="hljs-keyword">if</span> (enemy == <span class="hljs-number">0</span>) <span class="hljs-comment">//召喚怪物  </span>
+        &#123;  
+            enemyCount = (ClassManager.levelNum<span class="hljs-number">-1</span>) * <span class="hljs-number">1</span> % <span class="hljs-number">5</span>;  
+            <span class="hljs-keyword">if</span>(enemyCount==<span class="hljs-number">0</span>)  
+            &#123;  
+                Appear();  
+            &#125;  
+  
+            <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; enemyCount; i++)  
+                Appear();  
+            &#125;  
+            enemy = <span class="hljs-number">1</span>;  
+        &#125;  
+          
+        Record();  
+    &#125;  
+  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Appear</span>() <span class="hljs-comment">//隨機出現位置  </span></span>
+    &#123;  
+        <span class="hljs-built_in">float</span> x = Random.Range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>);  
+        <span class="hljs-built_in">float</span> y = Random.Range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>);  
+  
+        <span class="hljs-keyword">if</span> ((ClassManager.levelNum % <span class="hljs-number">10</span>) != <span class="hljs-number">1</span>)  
+        &#123;  
+            point.transform.position = <span class="hljs-keyword">new</span> Vector2(point.transform.position.x + x, point.transform.position.y + y);  
+            Instantiate(enemyBat, point.transform.position, enemyBat.transform.rotation);  
+            point.transform.position = <span class="hljs-keyword">new</span> Vector2(point.transform.position.x - x, point.transform.position.y - y);  
+            Instantiate(enemyBeast, point.transform.position, enemyBeast.transform.rotation);  
+  
+            nowEnemyCount += <span class="hljs-number">2</span>;  
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>((ClassManager.levelNum%<span class="hljs-number">10</span>)==<span class="hljs-number">1</span>)  
+        &#123;  
+            point.transform.position = <span class="hljs-keyword">new</span> Vector2(point.transform.position.x - x, point.transform.position.y - y);  
+            Instantiate(boss10, point.transform.position, boss10.transform.rotation);  
+              
+            nowEnemyCount += <span class="hljs-number">1</span>;  
+        &#125;  
+    &#125;  
+  
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Record</span>() <span class="hljs-comment">//重新激活  </span></span>
+    &#123;  
+        <span class="hljs-keyword">if</span> (nowEnemyCount == <span class="hljs-number">0</span> &amp;&amp; run == <span class="hljs-number">0</span>)  
+        &#123;  
+            <span class="hljs-keyword">if</span>(score==<span class="hljs-number">1</span>)  
+            &#123;  
+                ScoreInformation.scorePower += timeScore * <span class="hljs-number">10</span> * ((ClassManager.levelNum / <span class="hljs-number">2</span>) + <span class="hljs-number">1</span>);  
+                timeScore = <span class="hljs-number">50</span>;  
+            &#125;  
+  
+            GameObject.Find(<span class="hljs-string">&quot;GameStartCanvas&quot;</span>).SendMessage(<span class="hljs-string">&quot;Run&quot;</span>);  
+            run = <span class="hljs-number">1</span>;  
+            score = <span class="hljs-number">1</span>;  
+        &#125;  
+    &#125;</code></pre></div>
+<p>(圖十九)敵人生成及波數程式碼<br>(New RPG game\Assets\Scripts\EnemyAppearManager.cs)。</p>
+<p>至於存檔機制則是因為網路上有種類繁多的教程，因此在實作過程中，沒有遇到特別多的困難。最後我選擇PlayerPrefs作為存檔的方式，但在下一款遊戲中，我將PlayerPrefs、序列化:二進制、序列化:JSON、序列化:XML都學習過了，後邊會提到。</p>
+<div class="code-wrapper"><pre><code class="hljs csharp">maxHp = PlayerHealth.maxNowHp;  
+PlayerPrefs.SetFloat(<span class="hljs-string">&quot;maxHp&quot;</span>, maxHp);  
+  
+maxHp = PlayerPrefs.GetFloat(<span class="hljs-string">&quot;maxHp&quot;</span>);</code></pre></div>
+<p>(圖二十)PlayerPrefs存檔方式(New RPG game\Assets\Scripts\Load01.cs)。</p>
+<p>最後的Buff系統則是困擾了我數天，其原因在於網路上並沒有相關的教程。因此，我開始構思一個能隨機產生Buff並給予玩家選擇的機制。</p>
+<p>在我看來，Buff系統的核心有三個，資料庫、管道、生成。</p>
+<p>資料庫中儲存有關於這個Buff的資料，玩家在選擇時，資料便會出現，提供玩家有關於這個Buff的能力。管道則是將程式裡的Buff系統實際顯示在遊戲屏幕上的方式，這裡我使用了UI以及隨機取數來完成，隨機生成三個可供選擇的Buff。最後的生成，則是使效果生成，只需要在程式碼中修改相關的變數即可。</p>
+<p>Buff系統本體:<br>(New RPG game\Assets\Scripts\Buff.cs)。<br>Buff系統資料庫:<br>(New RPG game\Assets\Scripts\BuffData.cs)。<br>在實作Buff機制時，遇到了十分大的挫折，光是Buff系統的構思，便出錯了數次，導致出現奇怪的結果。但更多的是沒有任何反應，時間也一分一秒的在減少，那時候每天都是早上8點起床，坐在電腦前實作到晚上12點。</p>
+<p>雖然實際上的程式碼不多，似乎不需要那麼久的時間，但浪費最多時間的是重覆的試驗。</p>
+<p>除此之外，也不斷查詢是否有相關的資料能幫助我完成這項任務，儘管最後是靠著靈光一閃解決了這個問題，但如果沒有那些天累積的知識，這個點子也不會出現。</p>
+<p>也是在這次的Buff系統過後，我開始真正掌握到編寫遊戲程式的感覺，以及真正開發著一款遊戲。</p>
+<h2 id="七-子彈功能-追蹤彈"><a href="#七-子彈功能-追蹤彈" class="headerlink" title="(七)	子彈功能_追蹤彈"></a>(七)	子彈功能_追蹤彈</h2><p>這款遊戲最後要提到的就是追蹤彈的功能。在實作遊戲時，我常會到各個影片網站尋找對開發有幫助的影片，也是因此，意外的發現了有關於子彈追蹤的影片。實際上，如果要做出簡單的追蹤子彈效果，使用Trail就能完成。</p>
+<p>但僅僅是子彈朝著敵人直線射擊過去，就少了一點味道，原先是不打算製作的。只是，那部影片與子彈軌跡有關，因此，在看到那個影片後，我才決定製作這一功能。</p>
+<p>不過，這項功能的開發只算是作為研究的目的，並沒有將其實裝在遊戲中的想法，因此，實際的遊戲中需要啟動隱藏的測試按鈕，才能使用。</p>
+<p>之所以不實裝的原因之一，是因為Buff系統的協調出了點問題，調適需要一段時間。其次，則是我當時對於這個功能的想法並不多，所以沒有下手大改這款遊戲，畢竟，本來這款遊戲的目的是設計為一款近戰遊戲。</p>
+<p>以下是開啟射擊模式的方法:進入暫停介面，需要將鼠標移到黑塊的相應位置處，黑塊才會顯示。<br><img src="https://i.imgur.com/wZ2qkEx.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖二十一)射擊模式開啟方法。</p>
+<p><img src="https://i.imgur.com/BEag6UW.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖二十二)射擊模式示意圖。</p>
+<p>在這個系統中，可以透過調整角度的係數，從而實現不同的子彈軌跡，以下是另一種不同的軌跡示範。<br><img src="https://i.imgur.com/8r4Bcpz.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖二十三)類似閃電的子彈軌跡示意圖。</p>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Chase</span>()</span>  
+    &#123;  
+        Vector3 direction = target.transform.position - <span class="hljs-keyword">this</span>.transform.position; <span class="hljs-comment">//朝向目標  </span>
+        <span class="hljs-built_in">float</span> ang = <span class="hljs-number">360</span> - Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg; <span class="hljs-comment">//方向向量轉角度  </span>
+        transform.eulerAngles = <span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ang); <span class="hljs-comment">//角度設為對應角度  </span>
+  
+        <span class="hljs-keyword">this</span>.transform.rotation = <span class="hljs-keyword">this</span>.transform.rotation * Quaternion.Euler(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, rotationAngle);  
+        transform.Translate(Vector3.up * bulletSpeed * Time.deltaTime);  
+    &#125;</code></pre></div>
+<p>(圖二十四)實現子彈軌跡的程式碼<br>(New RPG game\Assets\Scripts\NormalBullet.cs)。</p>
+<p>透過在這個程式碼中調整係數，便能做到不同的子彈軌跡效果。雖然這個功能在這款遊戲裡並沒有正式加入，但也多虧這個功能的啟發，讓我有了製作下一款遊戲的念頭，製作一款射擊類遊戲。</p>
+<h2 id="八-參考資料"><a href="#八-參考資料" class="headerlink" title="(八)參考資料"></a>(八)參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qt4y1U7aS">無限繼承_基礎教學影片1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VT4y1G7Vq">無限繼承_基礎教學影片2</a></li>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/hX9qFnjg7zw">無限繼承_衝鋒效果教學影片1</a></li>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/osdxOLz6_wc">無限繼承_衝鋒效果教學影片2</a></li>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/ZsvCNpvwPSc">無限繼承_衝鋒效果教學影片3</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WJ411778C">無限繼承_腳色血條UI教學影片</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1u4411T7jZ">無限繼承_子彈軌跡追蹤教學影片</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Game-develope/" class="category-chain-item">Game-develope</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2021/10/06/program-develope/完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhwa</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年10月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/11/program-develope/%E5%9F%BA%E7%A4%8EUnity-%E7%8B%90%E7%8B%B8%E5%B3%B6/" title="基礎Unity-狐狸島">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">基礎Unity-狐狸島</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/04/security/AIS3-projext-Stuxnet/" title="AIS3_projext-Stuxnet">
+                        <span class="hidden-mobile">AIS3_projext-Stuxnet</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","appKey":"X9AfJKTBolm7x2TvBdDqCIfV","path":"window.location.pathname","placeholder":null,"avatar":"hide","meta":["nick","mail"],"requiredFields":["nick"],"pageSize":10,"lang":"zh-TW","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

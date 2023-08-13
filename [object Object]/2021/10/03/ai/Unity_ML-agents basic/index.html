@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhwa">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="#科展環境準備及基礎 Author Z-hwA  ch1環境設置在使用Unity之前，我們必須先到官網下載Unity的hub，透過Unity hub我們能夠簡單的安裝各種版本的Unity，以及使用。 A部分 Untiy安裝:第一步 安裝Unity Hub:前往Unity download頁面。連結:https:&#x2F;&#x2F;unity3d.com&#x2F;get-unity&#x2F;download 點擊Download">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity_ML-agents basic">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2021/10/03/ai/Unity_ML-agents%20basic/">
+<meta property="og:site_name" content="inf-journey shoka">
+<meta property="og:description" content="#科展環境準備及基礎 Author Z-hwA  ch1環境設置在使用Unity之前，我們必須先到官網下載Unity的hub，透過Unity hub我們能夠簡單的安裝各種版本的Unity，以及使用。 A部分 Untiy安裝:第一步 安裝Unity Hub:前往Unity download頁面。連結:https:&#x2F;&#x2F;unity3d.com&#x2F;get-unity&#x2F;download 點擊Download">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/unity%20ml-agent%20basic.PNG">
+<meta property="article:published_time" content="2021-10-03T13:37:39.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:20:07.105Z">
+<meta property="article:author" content="zhwa">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/unity%20ml-agent%20basic.PNG">
+  
+  
+  
+  <title>Unity_ML-agents basic - inf-journey shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>inf-journey shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Unity_ML-agents basic"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-03 21:37" pubdate>
+          2021年10月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Unity_ML-agents basic</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>#科展環境準備及基礎</p>
+<h2 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h2><ul>
+<li>Z-hwA</li>
+</ul>
+<h2 id="ch1環境設置"><a href="#ch1環境設置" class="headerlink" title="ch1環境設置"></a>ch1環境設置</h2><p>在使用Unity之前，我們必須先到官網下載Unity的hub，透過Unity hub我們能夠簡單的安裝各種版本的Unity，以及使用。</p>
+<h3 id="A部分-Untiy安裝"><a href="#A部分-Untiy安裝" class="headerlink" title="A部分 Untiy安裝:"></a>A部分 Untiy安裝:</h3><h4 id="第一步-安裝Unity-Hub"><a href="#第一步-安裝Unity-Hub" class="headerlink" title="第一步 安裝Unity Hub:"></a>第一步 安裝Unity Hub:</h4><p>前往Unity download頁面。<br>連結:<a target="_blank" rel="noopener" href="https://unity3d.com/get-unity/download">https://unity3d.com/get-unity/download</a></p>
+<p><img src="https://i.imgur.com/UDXyvL9.png" srcset="/webHome/img/loading.gif" lazyload><br>點擊Download Unity Hub，下載完後直接安裝即可。接下來，我們暫時不需要去使用，因此先不用開啟。</p>
+<h4 id="第二步-註冊一個Unity帳號"><a href="#第二步-註冊一個Unity帳號" class="headerlink" title="第二步 註冊一個Unity帳號:"></a>第二步 註冊一個Unity帳號:</h4><p>前往Unity ID介面。</p>
+<p>連結:<a target="_blank" rel="noopener" href="https://id.unity.com/en/conversations/2f5fc0c0-6945-4320-922e-f2bac8fefc2801cf?view=register">https://id.unity.com/en/conversations/2f5fc0c0-6945-4320-922e-f2bac8fefc2801cf?view=register</a><br><img src="https://i.imgur.com/2Zxy8hc.png" srcset="/webHome/img/loading.gif" lazyload><br>在這個頁面註冊一個Unity帳號，這個Unity帳號，能讓我們在Unity Hub中激活我們的授權，從而能夠使用Unity。</p>
+<h4 id="第三步-授權"><a href="#第三步-授權" class="headerlink" title="第三步 授權:"></a>第三步 授權:</h4><p>開啟Unity Hub，點擊右上方的紅色框登入後。在下方會出現訊息，此訊息應該為「Unity尚未授權」等提示。這裡我因為已經授權過了，所以提示授權即將到期。(授權期很短，因此打開經常會收到這樣的訊息，提示授權即將到期。不須去理會，只需要等授權時間到再次授權即可)。</p>
+<p>點擊管理授權，進入授權介面，之後如果需要重新授權也是參照以下步驟。</p>
+<p><img src="https://i.imgur.com/4h7gWPt.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p><img src="https://i.imgur.com/4AZs2Y2.png" srcset="/webHome/img/loading.gif" lazyload><br>登入後即可選擇啟用新的授權，如果沒有登入的話，就會是灰色的。按下它!!!</p>
+<p><img src="https://i.imgur.com/23laxoi.png" srcset="/webHome/img/loading.gif" lazyload><br>接下來，參照我的設定激活授權。按下完成。</p>
+<p>完成授權。</p>
+<h4 id="第四步-安裝對應版本的Untiy"><a href="#第四步-安裝對應版本的Untiy" class="headerlink" title="第四步 安裝對應版本的Untiy:"></a>第四步 安裝對應版本的Untiy:</h4><p>接下來，退出喜好設定。</p>
+<p>打開Unity Hub左邊的清單上選擇安裝，進入安裝介面，點選新增。並選擇你需要的Unity版本，本教程的建議版本為2020.3.0f1(LTS)。</p>
+<p><img src="https://i.imgur.com/LlafkWf.png" srcset="/webHome/img/loading.gif" lazyload><br>建議在選擇版本時，選擇帶有(LTS)字樣的版本，這意味著，Unity官方將對這個版本做出長期的維護，而不會閒置它。</p>
+<p><img src="https://i.imgur.com/qFyA6t0.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://i.imgur.com/enaLptF.png" srcset="/webHome/img/loading.gif" lazyload><br>請注意，如果你的電腦中沒有裝Visual Studio那麼在第一款Unity安裝時，會多出一個下載Visual Studio的選項，請勾上它。下一節，我們將說到如何安裝Visual Studio</p>
+<p>選擇好版本後，按下一步。對我們的Untiy需要用的的環境做配置，這裡我的配置能夠開發(IOS、Android、Windows)的應用。在本次ML-agents的教程中，只需要用到Windows即可。</p>
+<p>選擇完成後，便會自動開始下載以及安裝，如果有勾取下載Android Studio的同學們，請到B部分，學習如何配置Android Studio。</p>
+<h3 id="B部分-Visual-Studio安裝"><a href="#B部分-Visual-Studio安裝" class="headerlink" title="B部分 Visual Studio安裝"></a>B部分 Visual Studio安裝</h3><p>等到你的Untiy自動安裝到最後的時候，會跳出visual studio的安裝引導，就跟著他做，並選擇下方的配置即可。</p>
+<p>如果沒有跳出來，就在開始搜尋visual studio installer點開他，根據他的要求操作。</p>
+<p>應該是重開機之後，就會在跳出來，這個時候選擇修改，照著下面的步驟做下去。</p>
+<h4 id="第一步-開發環境"><a href="#第一步-開發環境" class="headerlink" title="第一步 開發環境:"></a>第一步 開發環境:</h4><p>在這裡我們選擇Unity即可。如果有其他的程式語言開發需求，再安裝其他的環境即可。</p>
+<p><img src="https://i.imgur.com/ClD4kc1.png" srcset="/webHome/img/loading.gif" lazyload><br>選好之後，點擊右下角的按鍵即可，因為我的已經安裝好了，所以字樣是修改，你們的應該會不一樣。</p>
+<p>接下來，等待Unity以及Visual Studio完成安裝。</p>
+<h3 id="C部分-確認以上兩項的安裝都已確實完成，以及腳本代碼補全功能存在"><a href="#C部分-確認以上兩項的安裝都已確實完成，以及腳本代碼補全功能存在" class="headerlink" title="C部分 確認以上兩項的安裝都已確實完成，以及腳本代碼補全功能存在"></a>C部分 確認以上兩項的安裝都已確實完成，以及腳本代碼補全功能存在</h3><h4 id="第一步-檢測"><a href="#第一步-檢測" class="headerlink" title="第一步 檢測:"></a>第一步 檢測:</h4><p>最後的設定，請讓我們打開你下載的Unity，選擇新專案，選擇3D專案，命名，建立。</p>
+<p><img src="https://i.imgur.com/TiX33wF.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://i.imgur.com/OCPDdrw.png" srcset="/webHome/img/loading.gif" lazyload><br>接下來，會自動進入Unity的基礎介面，在後面的章節會介紹如何使用，</p>
+<p><img src="https://i.imgur.com/wGwhnnR.png" srcset="/webHome/img/loading.gif" lazyload><br>然後，點擊上方的Edit，Preferences，進入Preferences介面。</p>
+<p><img src="https://i.imgur.com/7VKx3Xu.png" srcset="/webHome/img/loading.gif" lazyload><br>然後，點擊Extemal Tools，將External Scripts Edito中的預設選項，修改為你的Visual Studio版本，我這裡選擇2019。完成後即可關閉Preferences介面。</p>
+<p><img src="https://i.imgur.com/8WC8hZG.png" srcset="/webHome/img/loading.gif" lazyload><br>現在請讓我們建立一個腳本在Assets中。</p>
+<p>在Assets區域中按下滑鼠右鍵，Create，C#Script。雙擊它，會自動打開Visual Studio並可以看見以下預設腳本。</p>
+<p><img src="https://i.imgur.com/GM8mjr6.png" srcset="/webHome/img/loading.gif" lazyload><br>請跟著我打上public ga的字，如果在你輸入的過程中，有跑出我框住的字樣(GameObject)，那麼就完成設定了。</p>
+<p>如果有其他問題，可以向我提問，或是到以下參考影片中，重新設定一次。<br>參考影片:<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Wns-DZbMyIw">https://www.youtube.com/watch?v=Wns-DZbMyIw</a></p>
+<p>恭喜你，完成Unity基礎環境設定，完成了以上步驟的你，現在已經踏上做為一名開發者的第一步階梯了。</p>
+<h3 id="D部分-ML-agents環境設置-請在本次範例的專案中進行，優先完成ch2的A部分，開啟一個專案，再回來做這裡"><a href="#D部分-ML-agents環境設置-請在本次範例的專案中進行，優先完成ch2的A部分，開啟一個專案，再回來做這裡" class="headerlink" title="D部分 ML-agents環境設置(請在本次範例的專案中進行，優先完成ch2的A部分，開啟一個專案，再回來做這裡)"></a>D部分 ML-agents環境設置(請在本次範例的專案中進行，優先完成ch2的A部分，開啟一個專案，再回來做這裡)</h3><h4 id="第零步-簡述"><a href="#第零步-簡述" class="headerlink" title="第零步 簡述:"></a>第零步 簡述:</h4><p>該部分內容參考了Unity官方英文文檔以及Code Monkey大神在Youtube的”How to use Machine Learning AI in Unity! (ML-Agents)”影片，因此，如果你的英文還不錯，那麼我建議你自己去看英文文檔以及原影片，以防有翻譯上的問題。</p>
+<h4 id="第一步-打開終端機"><a href="#第一步-打開終端機" class="headerlink" title="第一步 打開終端機:"></a>第一步 打開終端機:</h4><p><img src="https://i.imgur.com/d2IP1xg.png" srcset="/webHome/img/loading.gif" lazyload><br>在開始頁面中，搜尋CMD，並選擇命令提示字元(CMD)。</p>
+<p>接下來的指令輸入，部分暫時沒有圖片支援，建議搭配影片食用01:22~10:10。</p>
+<h4 id="第二步-進入我們的專案中"><a href="#第二步-進入我們的專案中" class="headerlink" title="第二步 進入我們的專案中:"></a>第二步 進入我們的專案中:</h4><p>讓終端機，移動到想要用來訓練AI的Unity專案。</p>
+<p><img src="https://i.imgur.com/nJdUKdg.png" srcset="/webHome/img/loading.gif" lazyload><br>在”&gt;”之前的是我們的終端機現在的路徑，請將它移動到你的Unity專案的位置，我的Unity專案名字是AITrain_set。因此，使用cd (路徑)，進入。</p>
+<div class="code-wrapper"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span> <span class="hljs-params">(路徑)</span> <span class="hljs-string">//cd</span> C:\Users\Lenovo\AITrain_<span class="hljs-keyword">set</span>
+<span class="hljs-keyword">cd</span> <span class="hljs-string">..</span> <span class="hljs-string">//</span>可以回到上一層位置
+
+使用時記得目前所在那個位置開始
+上方案例中，我們的初位置是C:\Users\Lenovo，因此用<span class="hljs-keyword">cd</span> AITrain_<span class="hljs-keyword">set</span>，否則會報錯。</code></pre></div>
+
+<h4 id="第三步-python下載"><a href="#第三步-python下載" class="headerlink" title="第三步 python下載:"></a>第三步 python下載:</h4><p>接著輸入python</p>
+<p><img src="https://i.imgur.com/VvisJQh.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>如果已經有安裝python，那麼就</p>
+<div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-keyword">exit</span>()</code></pre></div>
+<p>出python就行了。</p>
+<p>如果沒有會彈出Microsoft Store的頁面，在那裏下載python3.7就行了<br><img src="https://i.imgur.com/ILHp8KE.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<h4 id="第四步-增加虛擬環境"><a href="#第四步-增加虛擬環境" class="headerlink" title="第四步 增加虛擬環境:"></a>第四步 增加虛擬環境:</h4><div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">python -m venv venv</span></code></pre></div>
+
+<p><img src="https://i.imgur.com/PbHjj70.png" srcset="/webHome/img/loading.gif" lazyload><br>如果你現在打開你的Unity專案會發現有一個叫做venv的資料夾已經出現了，那就是我們的虛擬環境。</p>
+<p>之後，我們所以的環境都是裝在這個虛擬環境中，以防它影響到我們電腦本身其他程式的運作。</p>
+<h4 id="第五步-啟動虛擬環境"><a href="#第五步-啟動虛擬環境" class="headerlink" title="第五步 啟動虛擬環境:"></a>第五步 啟動虛擬環境:</h4><div class="code-wrapper"><pre><code class="hljs applescript">venv\Scripts\<span class="hljs-built_in">activate</span></code></pre></div>
+
+<p>輸入後，你會看到我們的路徑最前方出現(venv)，這樣就完成了。</p>
+<h4 id="第六步-升級pip"><a href="#第六步-升級pip" class="headerlink" title="第六步 升級pip:"></a>第六步 升級pip:</h4><p>pip能幫助我們下載一些額外的功能或模組，在使用之前，我們必須先幫他升級。</p>
+<div class="code-wrapper"><pre><code class="hljs ada">python -m pip install <span class="hljs-comment">--upgrade pip</span></code></pre></div>
+
+<h4 id="第七步-下載Torch"><a href="#第七步-下載Torch" class="headerlink" title="第七步 下載Torch:"></a>第七步 下載Torch:</h4><p>Torch提供給我們運算機器學習的科學框架，或稱之為基本算式等等，我是這麼理解的。</p>
+<div class="code-wrapper"><pre><code class="hljs awk">pip install torch==<span class="hljs-number">1.7</span>.<span class="hljs-number">0</span> -f https:<span class="hljs-regexp">//</span>download.pytorch.org<span class="hljs-regexp">/whl/</span>torch_stable.html</code></pre></div>
+
+<h4 id="第八步-下載ML-agents"><a href="#第八步-下載ML-agents" class="headerlink" title="第八步 下載ML-agents:"></a>第八步 下載ML-agents:</h4><p>這就是我們在Unity中使用的AI訓練相關的模組。</p>
+<div class="code-wrapper"><pre><code class="hljs actionscript">pip install mlagents <span class="hljs-comment">//如果出現錯誤訊息的話，請使用下面這一條</span>
+pip install mlagents --<span class="hljs-keyword">use</span>-feature=<span class="hljs-number">2020</span>-resolver</code></pre></div>
+
+<h4 id="第九步-測試是否成功下載"><a href="#第九步-測試是否成功下載" class="headerlink" title="第九步 測試是否成功下載:"></a>第九步 測試是否成功下載:</h4><div class="code-wrapper"><pre><code class="hljs ada">mlagents-learn <span class="hljs-comment">--help</span></code></pre></div>
+
+<p>如果有很多用法提示出現，且沒有出現ERROR或是不同顏色的錯誤訊息，那就完成了。</p>
+<p>出錯解決辦法，我有時間再補上…</p>
+<h4 id="第十步-Unity-package載入"><a href="#第十步-Unity-package載入" class="headerlink" title="第十步 Unity package載入:"></a>第十步 Unity package載入:</h4><p>打開Unity，在上方的選項中選擇window&gt;package manager，進入該頁面後，選擇右上己的齒輪，選擇advanced project setting，打開該頁面後，勾選enable preview package，回到package manager頁面，找到mlagents 1.6下載。</p>
+<p>如果沒有找到1.6版本，可前往下面頁面，照做。</p>
+<p>教程(完成安裝com.unity.ml-agentsUnity軟件包就好):<br><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Installation.md?fbclid=IwAR3vqQH-y09iYqEEVAPS8IVaND4my-L-nHpXx9X4cCJtr1yxuSFjaHKSxck#advanced-local-installation-for-development">https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Installation.md?fbclid=IwAR3vqQH-y09iYqEEVAPS8IVaND4my-L-nHpXx9X4cCJtr1yxuSFjaHKSxck#advanced-local-installation-for-development</a></p>
+<p>下載點:<br><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/ml-agents?fbclid=IwAR2Y0NqIYha2ThImYoEw81TU8LraFs_l539MqB05tGlhhEBMvRLoN8m8-_w">https://github.com/Unity-Technologies/ml-agents?fbclid=IwAR2Y0NqIYha2ThImYoEw81TU8LraFs_l539MqB05tGlhhEBMvRLoN8m8-_w</a></p>
+<h2 id="ch2專案建立"><a href="#ch2專案建立" class="headerlink" title="ch2專案建立"></a>ch2專案建立</h2><p>現在完成了A、B、C部分的環境配置後，我們可以正式開始建立我們的ml-agents專案，在這裡，我將建立一個最簡單的範例，”追蹤小球”。</p>
+<p>如果你的英文能力不錯的話，那麼也可以前往Code Monkey大神在Youtube的”How to use Machine Learning AI in Unity! (ML-Agents)”觀看完整版影片。</p>
+<p>影片連結:<a target="_blank" rel="noopener" href="https://youtu.be/zPFU30tbyKs">https://youtu.be/zPFU30tbyKs</a></p>
+<h3 id="A部分-建立3D專案"><a href="#A部分-建立3D專案" class="headerlink" title="A部分 建立3D專案"></a>A部分 建立3D專案</h3><p>看我做的影片吧!!!<br>影片連結(高畫質，字樣很清楚，沒字幕):<a target="_blank" rel="noopener" href="https://youtu.be/hYrYo-u4los">https://youtu.be/hYrYo-u4los</a></p>
+<h3 id="B部分-開始訓練"><a href="#B部分-開始訓練" class="headerlink" title="B部分 開始訓練"></a>B部分 開始訓練</h3><h4 id="第一步-開啟專案"><a href="#第一步-開啟專案" class="headerlink" title="第一步 開啟專案:"></a>第一步 開啟專案:</h4><p>打開我們建好的Unity專案</p>
+<h4 id="第二步-打開CMD"><a href="#第二步-打開CMD" class="headerlink" title="第二步 打開CMD:"></a>第二步 打開CMD:</h4><p>打開CMD，進入專案底下。</p>
+<h4 id="第三步-啟動虛擬環境"><a href="#第三步-啟動虛擬環境" class="headerlink" title="第三步 啟動虛擬環境:"></a>第三步 啟動虛擬環境:</h4><div class="code-wrapper"><pre><code class="hljs applescript">venv\Scripts\<span class="hljs-built_in">activate</span></code></pre></div>
+
+<h4 id="第四步-開始訓練"><a href="#第四步-開始訓練" class="headerlink" title="第四步 開始訓練:"></a>第四步 開始訓練:</h4><h5 id=""><a href="#" class="headerlink" title=""></a></h5><div class="code-wrapper"><pre><code class="hljs">注意:訓練之前請確保你的Behavior Name和.yaml檔中的名字一樣。
+    訓練模式為Default
+    
+預設訓練檔下載連結:https://drive.google.com/file/d/1AuOIvefzJO_kFDcfKNLIJELsVSeiXtAD/view?usp=sharing
+</code></pre></div>
+<p>如果你沒有預設的訓練檔(告訴AI怎麼訓練)，那麼就會用預設的訓練檔去做</p>
+<div class="code-wrapper"><pre><code class="hljs dockerfile">mlagents-learn --<span class="hljs-keyword">run</span><span class="language-bash">-<span class="hljs-built_in">id</span>=(生成的檔案名字) //mlagents-learn --run-id=Goal</span></code></pre></div>
+
+<p>如果你有的話，就使用下面這行</p>
+<div class="code-wrapper"><pre><code class="hljs dockerfile">mlagents-learn (yaml檔的路徑) --<span class="hljs-keyword">run</span><span class="language-bash">-<span class="hljs-built_in">id</span>=(生成的檔案名字) //mlagents-learn config/MoveToGoal.yaml --run-id=Goal</span></code></pre></div>
+
+<p>輸入完後，回到Unity按下開始鍵，便會開始訓練了(記得AI的模式要改為Default)</p>
+<h4 id="第五步-打開訓練資料面板"><a href="#第五步-打開訓練資料面板" class="headerlink" title="第五步 打開訓練資料面板"></a>第五步 打開訓練資料面板</h4><p>再開啟一個CMD，進入虛擬環境後，輸入。</p>
+<div class="code-wrapper"><pre><code class="hljs ada">tensorboard <span class="hljs-comment">--logdir results</span></code></pre></div>
+
+<p>再返回的資料中會出現一段網址，複製，打開你的瀏覽器，貼上，就會進入獲取資料的介面了。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/AI-about/" class="category-chain-item">AI-about</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Unity_ML-agents basic</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2021/10/03/ai/Unity_ML-agents basic/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhwa</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年10月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/04/ai/Unity-ML-agents%20material/" title="Unity-ML-agents material">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Unity-ML-agents material</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","appKey":"X9AfJKTBolm7x2TvBdDqCIfV","path":"window.location.pathname","placeholder":null,"avatar":"hide","meta":["nick","mail"],"requiredFields":["nick"],"pageSize":10,"lang":"zh-TW","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
