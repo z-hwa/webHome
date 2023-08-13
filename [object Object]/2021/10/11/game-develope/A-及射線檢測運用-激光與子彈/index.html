@@ -16,24 +16,24 @@
   <meta name="author" content="zhwa">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="基礎Unity-狐狸島:Author Z-hwA  github連結 點這裡  (一)	概要:剛學習Unity時的作品，是一款2D遊戲，主要實現的內容包括:腳色操作、Tilemap、敵人簡易AI、UI介面、音效、燈光以及場景。在實作的過程中，了解如何使用Unity，並且輸出遊戲檔。   (圖一)狐狸島遊戲截圖。 (二)	遊戲玩法透過WASD來操控腳色移動，收集場上的櫻桃。唯一的難點在於最高處的那顆">
+    <meta name="description" content="A*及射線檢測運用-激光與子彈:Author: Z-hwA  github連結 點這裡  (一)	概要在開發這款遊戲前，我心想要製作一款射擊類遊戲，因此我研究了有關於射線的內容。此外，由於射擊類遊戲，我在地圖上新增了一些地形。因為這個原因，像是無限繼承中的簡單敵人AI就沒辦法做到追蹤玩家，而是會被地形卡住。所以，我搜尋了有關於敵人AI尋路的功能，最後決定使用A*來實作。 同樣的，為了使遊戲具有可玩">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基礎Unity-狐狸島">
-<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2021/10/11/program-develope/%E5%9F%BA%E7%A4%8EUnity-%E7%8B%90%E7%8B%B8%E5%B3%B6/">
+<meta property="og:title" content="A*及射線檢測運用-激光與子彈">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2021/10/11/game-develope/A-%E5%8F%8A%E5%B0%84%E7%B7%9A%E6%AA%A2%E6%B8%AC%E9%81%8B%E7%94%A8-%E6%BF%80%E5%85%89%E8%88%87%E5%AD%90%E5%BD%88/">
 <meta property="og:site_name" content="inf-journey shoka">
-<meta property="og:description" content="基礎Unity-狐狸島:Author Z-hwA  github連結 點這裡  (一)	概要:剛學習Unity時的作品，是一款2D遊戲，主要實現的內容包括:腳色操作、Tilemap、敵人簡易AI、UI介面、音效、燈光以及場景。在實作的過程中，了解如何使用Unity，並且輸出遊戲檔。   (圖一)狐狸島遊戲截圖。 (二)	遊戲玩法透過WASD來操控腳色移動，收集場上的櫻桃。唯一的難點在於最高處的那顆">
+<meta property="og:description" content="A*及射線檢測運用-激光與子彈:Author: Z-hwA  github連結 點這裡  (一)	概要在開發這款遊戲前，我心想要製作一款射擊類遊戲，因此我研究了有關於射線的內容。此外，由於射擊類遊戲，我在地圖上新增了一些地形。因為這個原因，像是無限繼承中的簡單敵人AI就沒辦法做到追蹤玩家，而是會被地形卡住。所以，我搜尋了有關於敵人AI尋路的功能，最後決定使用A*來實作。 同樣的，為了使遊戲具有可玩">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/basic%20unity%20fox%20island.PNG">
-<meta property="article:published_time" content="2021-10-11T11:00:35.000Z">
-<meta property="article:modified_time" content="2023-08-09T05:24:58.761Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/A%20star%E5%8F%8A%E5%B0%84%E7%B7%9A%E6%AA%A2%E6%B8%AC%E9%81%8B%E7%94%A8..PNG">
+<meta property="article:published_time" content="2021-10-11T11:23:44.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:22:04.537Z">
 <meta property="article:author" content="zhwa">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/basic%20unity%20fox%20island.PNG">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/A%20star%E5%8F%8A%E5%B0%84%E7%B7%9A%E6%AA%A2%E6%B8%AC%E9%81%8B%E7%94%A8..PNG">
   
   
   
-  <title>基礎Unity-狐狸島 - inf-journey shoka</title>
+  <title>A*及射線檢測運用-激光與子彈 - inf-journey shoka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -232,7 +232,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基礎Unity-狐狸島"></span>
+            <span id="subtitle" data-typed-text="A*及射線檢測運用-激光與子彈"></span>
           
         </div>
 
@@ -243,7 +243,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-10-11 19:00" pubdate>
+        <time datetime="2021-10-11 19:23" pubdate>
           2021年10月11日 晚上
         </time>
       </span>
@@ -255,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          3.2k 字
         
       </span>
     
@@ -266,7 +266,7 @@
         
         
         
-          14 分鐘
+          27 分鐘
         
       </span>
     
@@ -303,54 +303,75 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基礎Unity-狐狸島</h1>
+            <h1 id="seo-header">A*及射線檢測運用-激光與子彈</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="基礎Unity-狐狸島"><a href="#基礎Unity-狐狸島" class="headerlink" title="基礎Unity-狐狸島:"></a>基礎Unity-狐狸島:</h1><h2 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h2><ul>
+                <h1 id="A-及射線檢測運用-激光與子彈"><a href="#A-及射線檢測運用-激光與子彈" class="headerlink" title="A*及射線檢測運用-激光與子彈:"></a>A*及射線檢測運用-激光與子彈:</h1><h2 id="Author"><a href="#Author" class="headerlink" title="Author:"></a>Author:</h2><ul>
 <li>Z-hwA</li>
 </ul>
 <h2 id="github連結"><a href="#github連結" class="headerlink" title="github連結"></a>github連結</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/z-hwa/Unity_Game_About">點這裡</a></li>
 </ul>
-<h2 id="一-概要"><a href="#一-概要" class="headerlink" title="(一)	概要:"></a>(一)	概要:</h2><p>剛學習Unity時的作品，是一款2D遊戲，主要實現的內容包括:腳色操作、Tilemap、敵人簡易AI、UI介面、音效、燈光以及場景。在實作的過程中，了解如何使用Unity，並且輸出遊戲檔。</p>
-<p> <img src="https://i.imgur.com/Xg4hWa0.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<p>(圖一)狐狸島遊戲截圖。</p>
-<h2 id="二-遊戲玩法"><a href="#二-遊戲玩法" class="headerlink" title="(二)	遊戲玩法"></a>(二)	遊戲玩法</h2><p>透過WASD來操控腳色移動，收集場上的櫻桃。唯一的難點在於最高處的那顆櫻桃，僅有一次機會可以得到它，最終目標是，走到最後的門，進入下一關。第二關並未製作完成。</p>
-<h2 id="三-腳色操作"><a href="#三-腳色操作" class="headerlink" title="(三)	腳色操作"></a>(三)	腳色操作</h2><p>透過給予剛體，提供力量，給予玩家的物件移動的力，從而達到移動的目的。此外，也撰寫一個動畫控制的方法，作為玩家物件面朝哪個方向、跳躍、趴下時的動畫控制。</p>
-<p>在跳躍上，設置一個檢測器，以確保玩家在地面，才可以進行跳躍，並限制為二段跳。而在碰觸到敵人時，設置一個擊退效果，以及受傷的動畫。此外，玩家死亡時，將場景重設，重新開始遊戲。</p>
-<p>而如果目前玩家動畫為跳躍完的下落，且碰觸到敵人時，則透過OnTriggerEnter2D，將敵人消滅。</p>
-<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-number">1.</span>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Movement</span>()  </span>
+<h2 id="一-概要"><a href="#一-概要" class="headerlink" title="(一)	概要"></a>(一)	概要</h2><p>在開發這款遊戲前，我心想要製作一款射擊類遊戲，因此我研究了有關於射線的內容。此外，由於射擊類遊戲，我在地圖上新增了一些地形。因為這個原因，像是無限繼承中的簡單敵人AI就沒辦法做到追蹤玩家，而是會被地形卡住。所以，我搜尋了有關於敵人AI尋路的功能，最後決定使用A*來實作。</p>
+<p>同樣的，為了使遊戲具有可玩性，我依舊添加了無限波數的系統。只是這次我想在強化方式上，做出一些改變，從隨機的強化，進入到有規則、有策略性的強化。以及加入更多RPG元素。</p>
+<p>因此，我選擇了升級系統，透過擊敗敵人來獲得經驗值，從而升級。升級後，獲得技能點，進行天賦加點。透過這樣的方式來強化玩家。</p>
+<p>不同於上一款遊戲的部分則是，我將Buff系統安裝到了敵人的身上，在每次敵人生成時，隨機給予特定數量的特定Buff，以此提升遊戲的隨機性，以及挑戰性。其中包含:普通武器免疫、能量武器免疫、巨大化等。</p>
+<p>至於這款遊戲的核心，槍戰系統。我採用子彈數的方式來實現，總共有數種不同的槍可供使用，這些槍都有子彈數限制，子彈則可透過擊殺敵人隨機掉落。用意除了限制玩家的火力外，也是想使遊戲更有難度。可是不同於普通槍戰遊戲的點是，我添加了使用能量的武器，這種武器的能量用光後會自動回復。以及次元武器，這種武器消耗的是儲備的次數，但也會隨著時間回復。</p>
+<h2 id="二-遊戲玩法"><a href="#二-遊戲玩法" class="headerlink" title="(二)	遊戲玩法"></a>(二)	遊戲玩法</h2><p>透過WASD移動腳色，鼠標瞄準，鼠標左鍵射擊、鼠標右鍵手刀。並透過E、R、T、Y、G、H可進行武器切換，按下P鍵可暫停遊戲。</p>
+<p>在天賦樹頁面，可以將現有天賦點進行分配，只是目前只有啟動武器的幾個天賦，以及一些強化而已。</p>
+<p>敵人則有危險度分級，從低到高分別是:白、綠、藍、紅、金、黑，分別代表敵人身上持有的Buff數量，從零到五。</p>
+<h2 id="三-子彈功能實裝"><a href="#三-子彈功能實裝" class="headerlink" title="(三)	子彈功能實裝"></a>(三)	子彈功能實裝</h2><p>在這款遊戲中，我實裝了無限繼承中提到的追蹤彈功能。此外，也設計了四種不同的槍械，透過調整子彈的發射時間，以及速度、顏色、傷害等，分成了四種:步槍、加特林(機槍)、散彈槍、狙擊槍。</p>
+<p>以及作為次元武器的次元跳躍，只要鎖定某個定點後，便能在數秒後，出現在那個位置。可以透過連續使用，做到花式操作的感覺。只是因為這個功能而出現了能出現在牆中以及場地外的BUG。目前暫時未處理。</p>
+<p> <img src="https://i.imgur.com/V82eYJ6.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖二十五)遊戲畫面以及武器欄</p>
+<p>實際的代碼部分，則可在底下的路徑中找到。<br>槍械設計相關代碼:<br>(Ray Game\Assets\Scripts\Weapon.cs)</p>
+<h2 id="四-射線檢測-激光"><a href="#四-射線檢測-激光" class="headerlink" title="(四)	射線檢測_激光"></a>(四)	射線檢測_激光</h2><p>在開發之前，我便決定要學習的功能其實是射線檢測。不論是作為平台類遊戲中，玩家跳躍時是否落到地面的判斷，或是檢測玩家是否接觸到可拾取物體的判斷。都能用射線檢測完成。</p>
+<p>透過教學影片，我簡單的了解了有關射線檢測的內容。在教學影片中，將射線檢測放置在怪物身上，並讓怪物在定點來回移動。因為我覺得這樣的話難度太低，所以改造了一下，將怪物的激光實時對準玩家的所在地，並讓怪物追蹤玩家。<br> <img src="https://i.imgur.com/46wNTP7.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖二十六)怪物激光效果</p>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-number">1.</span>	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Detect</span>()  </span>
 <span class="hljs-function">2.</span>	    &#123;  
-<span class="hljs-number">3.</span>	        <span class="hljs-built_in">float</span> horizontalMove = Input.GetAxisRaw(<span class="hljs-string">&quot;Horizontal&quot;</span>);  
-<span class="hljs-number">4.</span>	        <span class="hljs-built_in">float</span> facedircetion = Input.GetAxisRaw(<span class="hljs-string">&quot;Horizontal&quot;</span>);  
-<span class="hljs-number">5.</span>	        rb.velocity = <span class="hljs-keyword">new</span> Vector2(horizontalMove*speed, rb.velocity.y);  
-<span class="hljs-number">6.</span>	        anim.SetFloat(<span class="hljs-string">&quot;running&quot;</span>, Mathf.Abs(facedircetion));  
-<span class="hljs-number">7.</span>	  
-<span class="hljs-number">8.</span>	        <span class="hljs-comment">//腳色移動  </span>
-<span class="hljs-number">9.</span>	        <span class="hljs-keyword">if</span> (horizontalMove != <span class="hljs-number">0</span>)  
-<span class="hljs-number">10.</span>	        &#123;  
-<span class="hljs-number">11.</span>	            transform.localScale = <span class="hljs-keyword">new</span> Vector3(horizontalMove, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);  
-<span class="hljs-number">12.</span>	        &#125;  
-<span class="hljs-number">13.</span>	  
-<span class="hljs-number">14.</span>	        <span class="hljs-comment">//腳色跳躍    </span>
-<span class="hljs-number">15.</span>	        Crouch();  
-<span class="hljs-number">16.</span>	    &#125;</code></pre></div>
-<p>(圖二)基本腳色移動程式碼 ( Sunnyland\Assets\Scripts\Player_Controller.cs) (完整程式碼可在附錄的遊戲檔中取得。以下省略，僅保留程式碼路徑)。</p>
-<h2 id="四-Tilemap"><a href="#四-Tilemap" class="headerlink" title="(四)	Tilemap"></a>(四)	Tilemap</h2><p>透過Unity內建的Tilemap功能，可以輕鬆地建立一個2D像素化地圖，對於獨立遊戲開發者而言是非常有效益的選擇，因此我也使用了這樣的方式來創建我的地圖。此外，我亦給背景添加了不同的圖層，以達到豐富遊戲介面的效果。</p>
-<p> <img src="https://i.imgur.com/QLAdc7n.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<p>(圖三)使用Tilemap繪製地圖。</p>
-<h2 id="五-敵人AI"><a href="#五-敵人AI" class="headerlink" title="(五)	敵人AI"></a>(五)	敵人AI</h2><p>在遊戲中，我給兩種敵人添加了不同的簡易AI。老鷹單純的添加上下移動的指令，至於青蛙則是透過動畫以及代碼的配合，做出了青蛙跳躍的感覺。兩種敵人身上都放有碰撞器，以作為實體，阻擋玩家的前進。而為了將這兩隻敵人限制在一定範圍內，我也放置了兩個空物件，作為他們移動的邊緣。<br> <img src="https://i.imgur.com/tBlNM16.png" srcset="/webHome/img/loading.gif" lazyload><br>(圖四)青蛙跳躍的效果。</p>
-<h2 id="六-UI介面"><a href="#六-UI介面" class="headerlink" title="(六)	UI介面"></a>(六)	UI介面</h2><p>在UI介面上，我添加了左上角的收集數量，以及暫停介面，按鈕的實作。此外，還有對話框的實現。其中的收集數量，則是透過代碼實現實時同步。至於暫停介面，亦添加了調整音效的滑桿。</p>
-<p> <img src="https://i.imgur.com/Ar6SCZK.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<p>(圖五、六、七)UI介面展示。</p>
-<h2 id="七-音效系統"><a href="#七-音效系統" class="headerlink" title="(七)	音效系統"></a>(七)	音效系統</h2><p>透過掛載Audio Source在玩家物件上，並在程式碼中引用，可以視情況撥放不同的音效。例如:被擊中的音效、背景音樂等<br><img src="https://i.imgur.com/PcqzivW.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<p> (圖八)Audio Source。</p>
-<h2 id="八-燈光效果"><a href="#八-燈光效果" class="headerlink" title="(八)	燈光效果"></a>(八)	燈光效果</h2><p>第二個關卡中，加入光的要素，在Unity中可以使用不同的光源，來為場景提供想要的光影效果，在這個遊戲中，我簡單的添加了幾個點光源，並學習如何在遊戲中使用光源，來增添遊戲的美感。<br> <img src="https://i.imgur.com/uiSKGYO.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<p>(圖九)在玩家和火焰物件上的點光源。</p>
-<h2 id="九-場景"><a href="#九-場景" class="headerlink" title="(九)	場景"></a>(九)	場景</h2><p>一款遊戲中必須得有不同的場景，作為分別關卡的依據或介面等。在這款遊戲中，簡易的使用了三個場景，一個是遊戲開始介面，透過按鈕，使用已經編寫好的程式，進入第一關。而在第一關最後，則可以透過接觸到門，按下E從而進入第二關。其中包括場景的轉換等。<br><img src="https://i.imgur.com/Jx6e1OY.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<p> (圖十)場景設定介面。</p>
+<span class="hljs-number">3.</span>	        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, target.position - <span class="hljs-keyword">this</span>.transform.GetChild(<span class="hljs-number">0</span>).position, maxDist); <span class="hljs-comment">//獲取射線命中物  </span>
+<span class="hljs-number">4.</span>	             
+<span class="hljs-number">5.</span>	        <span class="hljs-keyword">if</span>(hitInfo.collider != <span class="hljs-literal">null</span> &amp;&amp; shoot == <span class="hljs-literal">true</span>) <span class="hljs-comment">//開啟射擊模式，且目標不為空  </span>
+<span class="hljs-number">6.</span>	        &#123;  
+<span class="hljs-number">7.</span>	            <span class="hljs-keyword">if</span>(hitInfo.collider.tag == <span class="hljs-string">&quot;Wall&quot;</span>)  
+<span class="hljs-number">8.</span>	            &#123;  
+<span class="hljs-number">9.</span>	                <span class="hljs-comment">//Debug.DrawLine(firePoint.position, hitInfo.point, Color.green);  </span>
+<span class="hljs-number">10.</span>	  
+<span class="hljs-number">11.</span>	                lineRenderer.SetPosition(<span class="hljs-number">1</span>, hitInfo.point);  
+<span class="hljs-number">12.</span>	                lineRenderer.colorGradient = greenColor;  
+<span class="hljs-number">13.</span>	            &#125;  
+<span class="hljs-number">14.</span>	            <span class="hljs-keyword">if</span> (hitInfo.collider.tag == <span class="hljs-string">&quot;Player&quot;</span>)  
+<span class="hljs-number">15.</span>	            &#123;  
+<span class="hljs-number">16.</span>	                <span class="hljs-comment">//Debug.DrawLine(firePoint.position, hitInfo.point, Color.red);  </span>
+<span class="hljs-number">17.</span>	  
+<span class="hljs-number">18.</span>	                lineRenderer.SetPosition(<span class="hljs-number">1</span>, hitInfo.point);  
+<span class="hljs-number">19.</span>	                lineRenderer.colorGradient = redColor;  
+<span class="hljs-number">20.</span>	  
+<span class="hljs-number">21.</span>	                GameObject.Find(<span class="hljs-string">&quot;Player&quot;</span>).SendMessage(<span class="hljs-string">&quot;Hurt&quot;</span>); <span class="hljs-comment">//命中玩家  </span>
+<span class="hljs-number">22.</span>	            &#125;  
+<span class="hljs-number">23.</span>	  
+<span class="hljs-number">24.</span>	            <span class="hljs-comment">//Instantiate(hitEffect, hitInfo.point, Quaternion.identity); //生成爆炸效果  </span>
+<span class="hljs-number">25.</span>	            lineRenderer.SetPosition(<span class="hljs-number">0</span>, firePoint.position);  
+<span class="hljs-number">26.</span>	        &#125;  
+<span class="hljs-number">27.</span>	    &#125;</code></pre></div>
+<p>(圖二十七)射線檢測部分代碼(Ray Game\Assets\Scripts\FireElement.cs)</p>
+<p>在完成怪物部分的激光後，我開始嘗試在玩家身上增加激光武器，但不知道為何，機光束總是不能鎖定在玩家和鼠標之間，有時會偏移，有時會隨機旋轉。當時，我查了許多教學，只能大概知道是座標(世界座標或本地座標)轉換之間的問題，卻沒辦法解決這個問題。最後只能放棄。</p>
+<h2 id="五-敵人AI升級-A-尋路"><a href="#五-敵人AI升級-A-尋路" class="headerlink" title="(五)	敵人AI升級_A*尋路"></a>(五)	敵人AI升級_A*尋路</h2><p>我這次將敵人的AI升級，其原因是場地上出現了障礙物，因此簡單的追蹤玩家無法成功。在查找一些資料後，我選擇使用A*提供的尋路功能，能透過簡單的設定，完成地圖的配置，使敵人依著設定，走在沒有障礙物的路上，並朝著玩家前進。</p>
+<p> <img src="https://i.imgur.com/Sn0HtTC.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖二十八)A*底下的地圖設定</p>
+<h2 id="六-存檔機制"><a href="#六-存檔機制" class="headerlink" title="(六)	存檔機制"></a>(六)	存檔機制</h2><p>在無限繼承中提到過PlayerPrefs的儲存方式，但在這款遊戲中，我使用了其他的存檔方式。最一開始我嘗試著使用的是JSON的序列化方式，但因為存在BUG始終無法解決，我最終改用二進制的方式儲存。</p>
+<p>從實作來看，二進制和JSON的實作較為相似，但XML有明顯的不同，至於PlayerPrefs則完全不一樣。值得一提的是，因為我的天賦樹是透過scriptableObject來儲存，因此當我想在遊戲中，儲存升級後的技能點，並在天賦樹介面同步時，會出現問題。在查詢完相關資料後，似乎是因為沒有激活的原因。於是在存檔機制上，我後來設計為不同的場景使用不同的存檔區塊。</p>
+<p>在修正過程中，其實也有犯過蠢，比如說在數據改變時，重新儲存一次檔案。只是在那個時候，遊戲中的數據已經被初始化了，導致那份存檔除了修改過的數據外，其他全都是初始化的結果。當時卡了蠻久的。</p>
+<p>存檔機制實作:<br>(Ray Game\Assets\Scripts\PlayerUI.cs)</p>
+<h2 id="七-天賦樹系統"><a href="#七-天賦樹系統" class="headerlink" title="(七)	天賦樹系統"></a>(七)	天賦樹系統</h2><p>最後，是這款遊戲的核心之一，天賦樹系統，主要的設計是根據教學影片得來的，從建立scriptableObject做到在Unity中便可以直接設計天賦，簡單化天賦的管理相當於將資料庫實體化。</p>
+<p>如果在製作無限繼承時，我便知道這個功能的話，我應該不會在程式碼中建立資料庫，而是改用scriptableObject來做。過程的確是較輕鬆，不論是資料處理還是應用，都能透過圖形化來處理。唯一的問題就是在存檔機制中提到的，未激活導致兩個場景之中，無法直接調用變數。</p>
+<p>天賦模板:<br>(Ray Game\Assets\Scripts\SkillData.cs)</p>
+<p>天賦樹系統:<br>(Ray Game\Assets\Scripts\SkillManager.cs)</p>
+<p> <img src="https://i.imgur.com/wDNPZkQ.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖二十九)天賦樹系統</p>
 
                 
               </div>
@@ -389,8 +410,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基礎Unity-狐狸島</div>
-      <div>https://z-hwa.github.io/webHome/[object Object]/2021/10/11/program-develope/基礎Unity-狐狸島/</div>
+      <div>A*及射線檢測運用-激光與子彈</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2021/10/11/game-develope/A-及射線檢測運用-激光與子彈/</div>
     </div>
     <div class="license-meta">
       
@@ -434,9 +455,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/11/program-develope/A-%E5%8F%8A%E5%B0%84%E7%B7%9A%E6%AA%A2%E6%B8%AC%E9%81%8B%E7%94%A8-%E6%BF%80%E5%85%89%E8%88%87%E5%AD%90%E5%BD%88/" title="A*及射線檢測運用-激光與子彈">
+                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/17/game-develope/UI%E8%A8%AD%E8%A8%88%E5%8F%8A%E5%8D%B3%E6%99%82%E7%94%9F%E6%88%90%E7%80%8F%E8%A6%BD%E6%95%88%E6%9E%9C-%E8%AA%9E%E8%A8%80%E8%A8%98%E6%86%B6/" title="UI設計及即時生成瀏覽效果-語言記憶">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">A*及射線檢測運用-激光與子彈</span>
+                        <span class="hidden-mobile">UI設計及即時生成瀏覽效果-語言記憶</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -444,8 +465,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/06/program-develope/%E5%AE%8C%E6%95%B4%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC%E5%8F%8A%E8%87%AA%E8%A3%BD%E7%B0%A1%E6%98%93Buff%E7%B3%BB%E7%B5%B1-%E7%84%A1%E9%99%90%E7%B9%BC%E6%89%BF-%E9%96%8B%E7%99%BC%E7%B8%BD%E7%B5%90/" title="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結">
-                        <span class="hidden-mobile">完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結</span>
+                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/11/game-develope/%E5%9F%BA%E7%A4%8EUnity-%E7%8B%90%E7%8B%B8%E5%B3%B6/" title="基礎Unity-狐狸島">
+                        <span class="hidden-mobile">基礎Unity-狐狸島</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

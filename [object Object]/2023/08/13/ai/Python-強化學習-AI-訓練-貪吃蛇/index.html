@@ -1,0 +1,846 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhwa">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Python 強化學習 AI 訓練-貪吃蛇  資料 計算機概論 期末專題作者：王冠章學號：C14116132Github 連結：https:&#x2F;&#x2F;github.com&#x2F;z-hwa&#x2F;AITraining  目錄 一、摘要 二、開發環境 三、主要套件 四、遊戲本體 五、AI 實現 六、模型訓練成效 七、操作與介面說明 八、專案總結 九、未來規劃 十、參考資料  一、摘要：利用 python 中的 pyg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 強化學習 AI 訓練-貪吃蛇">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2023/08/13/ai/Python-%E5%BC%B7%E5%8C%96%E5%AD%B8%E7%BF%92-AI-%E8%A8%93%E7%B7%B4-%E8%B2%AA%E5%90%83%E8%9B%87/">
+<meta property="og:site_name" content="inf-journey shoka">
+<meta property="og:description" content="Python 強化學習 AI 訓練-貪吃蛇  資料 計算機概論 期末專題作者：王冠章學號：C14116132Github 連結：https:&#x2F;&#x2F;github.com&#x2F;z-hwa&#x2F;AITraining  目錄 一、摘要 二、開發環境 三、主要套件 四、遊戲本體 五、AI 實現 六、模型訓練成效 七、操作與介面說明 八、專案總結 九、未來規劃 十、參考資料  一、摘要：利用 python 中的 pyg">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/snake%20game.PNG">
+<meta property="article:published_time" content="2023-08-13T05:34:18.000Z">
+<meta property="article:modified_time" content="2023-08-13T05:38:48.793Z">
+<meta property="article:author" content="zhwa">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Pygame">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/snake%20game.PNG">
+  
+  
+  
+  <title>Python 強化學習 AI 訓練-貪吃蛇 - inf-journey shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>inf-journey shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python 強化學習 AI 訓練-貪吃蛇"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-13 13:34" pubdate>
+          2023年8月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Python 強化學習 AI 訓練-貪吃蛇</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Python-強化學習-AI-訓練-貪吃蛇"><a href="#Python-強化學習-AI-訓練-貪吃蛇" class="headerlink" title="Python 強化學習 AI 訓練-貪吃蛇"></a>Python 強化學習 AI 訓練-貪吃蛇</h1><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/snake%20game.PNG" srcset="/webHome/img/loading.gif" lazyload/>
+
+<h2 id="資料"><a href="#資料" class="headerlink" title="資料"></a>資料</h2><blockquote>
+<p>計算機概論 期末專題<br>作者：王冠章<br>學號：C14116132<br>Github 連結：<a target="_blank" rel="noopener" href="https://github.com/z-hwa/AITraining">https://github.com/z-hwa/AITraining</a></p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs">目錄
+一、摘要
+二、開發環境
+三、主要套件
+四、遊戲本體
+五、AI 實現
+六、模型訓練成效
+七、操作與介面說明
+八、專案總結
+九、未來規劃
+十、參考資料</code></pre></div>
+
+<h2 id="一、摘要："><a href="#一、摘要：" class="headerlink" title="一、摘要："></a>一、摘要：</h2><p>利用 python 中的 pygame 套件，先實作貪吃蛇遊戲，完成玩家操控的部分。接著完成 AI 的 agent 對於遊戲操控、收集遊戲中資料的程式碼。最後，透過 pytorch 中的 Linear 實現模型的訓練框架，以及 optim 來優化 AI訓練對於獎勵獲取的算法。也實作了操作介面，方便 AI 訓練的操作以及實際測試。</p>
+<h2 id="二、開發環境："><a href="#二、開發環境：" class="headerlink" title="二、開發環境："></a>二、開發環境：</h2><p>Pycharm<br>Powewshell 7.6<br>github<br>Python3.7<br>Pytorch with cpu<br>Conda</p>
+<h2 id="三、主要套件："><a href="#三、主要套件：" class="headerlink" title="三、主要套件："></a>三、主要套件：</h2><p>Pygame<br>matplotlib ipython<br>numpy</p>
+<h2 id="四、遊戲本體："><a href="#四、遊戲本體：" class="headerlink" title="四、遊戲本體："></a>四、遊戲本體：</h2><p>貪吃蛇遊戲本體的實現，是由數個函數來完成，以下說明與 AI 較為相關的數個。</p>
+<h4 id="一-Reset"><a href="#一-Reset" class="headerlink" title="(一) Reset"></a>(一) Reset</h4><blockquote>
+<p>用於初始化遊戲的資料設定，如蛇的數據、食物、分數等等資訊。<br>之所以不寫在 init 中的原因是，AI 訓練時會需要反覆開啟遊戲的<br>新局，因此可以直接呼叫此函數。</p>
+</blockquote>
+<h4 id="二-play-step"><a href="#二-play-step" class="headerlink" title="(二) _play_step"></a>(二) _play_step</h4><blockquote>
+<p>除了作為玩家輸入之外，在 AI 訓練中，將改為從模型中取得輸<br>出。而因為遊戲的進行是基於玩家的操控，在此函數中，同時呼叫<br>是否發生碰種、移動、ui 更新的函數。</p>
+</blockquote>
+<h4 id="三-move"><a href="#三-move" class="headerlink" title="(三) _move"></a>(三) _move</h4><blockquote>
+<p>移動的實現是透過計算蛇頭的下一個位置，並在 list 中插入。而<br>原先的尾巴則會被清掉。在更新 UI 時，透過 pygame 根據 list 中<br>的座標去繪製方塊，形成蛇的移動。</p>
+</blockquote>
+<h2 id="五、AI-實現："><a href="#五、AI-實現：" class="headerlink" title="五、AI 實現："></a>五、AI 實現：</h2><p>關於參考資料中的模型，包含 11 個輸入層、256 個隱藏層、3 個輸出層。11 個輸入層的資料分別為</p>
+<blockquote>
+<p>(一) 轉向是否會產生碰種，包含左轉、右轉、不轉。<br>(二) 頭部相鄰的四個方格，是否存在障礙物。<br>(三) 食物的位置是在上下左右哪個方位。</p>
+</blockquote>
+<p>這些資料都是 0 或 1 的整數型資料。而輸出層則會輸出 3 個浮點數，並從這三個浮點數中，取出最大值，作為貪吃蛇行動的根據，包括：左轉、右轉、不轉。</p>
+<p>而模型則透過 Q learning 來訓練，第一步會透過現在的狀態去預測 Q值，執行動作，計算獎勵，最後計算出新的 Q 值。從代碼實現的角度來看，我們最終會得到一個動作回數*3 行動可能的 Q 值表，並利用 pytorch寫好的優化函數，來幫我們更新模型的參數。如下</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 1. 透過現在的狀態去預測Q值</span>
+pred = self.model(state)
+
+<span class="hljs-comment"># 2. Q_new = r + y * max(next_predicted Q value)    -&gt;  only do this if not done</span>
+<span class="hljs-comment"># pred.clone()</span>
+<span class="hljs-comment"># preds[argmax(action)] = Q_new</span>
+target = pred.clone()  <span class="hljs-comment"># 複製前面的預測</span>
+<span class="hljs-keyword">for</span> idx <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(done)):
+    Q_new = reward[idx]  <span class="hljs-comment"># 預設新的Q值為當前編號的reward</span>
+
+    <span class="hljs-comment"># 如果done為false(遊戲還沒結束，可以預測下一個行動)</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> done[idx]:
+        Q_new = reward[idx] + self.gamma * torch.<span class="hljs-built_in">max</span>(self.model(next_state[idx]))  <span class="hljs-comment"># 藉由公式計算新的Q值</span>
+
+    target[idx][torch.argmax(action).item()] = Q_new  <span class="hljs-comment"># 將運測中行動可能性最高的設為新的Q值</span></code></pre></div>
+
+<p>代碼中有一個數值叫做 gamma，實際上代表的是折扣率，介於 0~1 之間。用於讓 AI 能夠判斷是要更關注未來(數值高)還是現在的獎勵(數值低)。</p>
+<p>而在 AI 訓練時，最終的行動決策上，則取決於 epsilon 以及 random 的比較，來決定這一次的行動是隨機發生，或著是由 AI 模型的預測結果去進行。隨著訓練局數的增加，將降低隨機選擇動作的機率，來優化 AI 模型的精準度。</p>
+<h2 id="六、模型訓練成效："><a href="#六、模型訓練成效：" class="headerlink" title="六、模型訓練成效："></a>六、模型訓練成效：</h2><p>可以在recode_model_train中查看訓練的模型紀錄，並在model中找到對應的AI模型；figure中找到對應的訓練圖表。在更新舊模型訓練後，進行訓練的AI模型，可以在data中找到當時的訓練資料。</p>
+<h5 id="一-參考資料模型配置："><a href="#一-參考資料模型配置：" class="headerlink" title="(一)參考資料模型配置："></a>(一)參考資料模型配置：</h5> <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/250AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload/>
+ 
+<p>圖二、訓練250回左右的AI得分圖表</p>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/500AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload/>
+ 
+<p>圖三、訓練500回左右的AI得分圖表</p>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/1300AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload/>
+ 
+<p>圖四、訓練1300回左右的AI得分圖表</p>
+<p>以參考資料的訓練配置來看，比較訓練250回和500回之間的平均分(紅色曲線)，貪吃蛇AI在達到平均分22左右時，進步速度就不大明顯了。在經過更長時間(1300回)的訓練後，發現平均分有收斂於31左右的趨勢。推測原因是會出現身體長度過長，而將自己給圈住，導致遊戲失敗的情況。</p>
+<h5 id="二-10節-30節身體座標配置："><a href="#二-10節-30節身體座標配置：" class="headerlink" title="(二)10節 &#x2F; 30節身體座標配置："></a>(二)10節 &#x2F; 30節身體座標配置：</h5><p>由於上述失敗原因，我預期能夠透過輸入每節身體的位置，來使AI能夠知道自己的頭部不應該出現被身體圈住的情況。</p>
+<p>在這裡的模型配置，以添加了10節身體的xy座標模型為例。因為前11個參數的大小介於0<del>1之間，這裡我也將xy座標除以遊戲視窗長寬，以確保所有參數都介於0</del>1之間。因此，這個模型的輸入有31層。</p>
+<p>而因為輸入層的增加，有必要提升epsilon的大小以確保，AI有足夠的時間從亂數中，學習到正確的行為模式。而新的epsilon設為7*輸入層數，目的是確保所有模型的epsilon和輸入層之間是接近正比。</p>
+<p>除此之外，我也設置了每個移動-0.01的懲罰，以避免AI在理解不能碰撞身體後，選擇不斷原地繞圈的行為。(根據訓練日誌中b~f的最終訓練成果)</p>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/10%20body%20train.png" srcset="/webHome/img/loading.gif" lazyload/>
+ 
+<p>圖五、10節身體位置的訓練配置</p>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/30body%20train.png" srcset="/webHome/img/loading.gif" lazyload/>
+ 
+<p>圖六、30節身體位置的訓練配置</p>
+<p>在經過更大量的訓練回數後，觀察到訓練圖表的平均分數收斂在20以及25左右。根據對AI實際行為的觀察，可以發現AI似乎沒有理解身體位置的數據。主要原因可能為AI的主要行為模式基於參考配置的11種輸入，都是一種方向上的相對概念。同時，AI所能做出的行動(轉動蛇頭方向)，也是方向相對概念的一種。因此要理解座標上的數據，相對困難。</p>
+<h5 id="三-射線檢測器"><a href="#三-射線檢測器" class="headerlink" title="(三)射線檢測器"></a>(三)射線檢測器</h5><p>基於上個訓練配置最終的推測，這次我在蛇頭放置射線檢測器，功能是延伸向四個方向，偵測是否有撞到自己的身體，以及這個距離是多長。預期的效果仍是，避免AI撞到自己的身體。<br>模型的輸入層增加8個，前四個代表是否偵測到身體；後四個為這個距離是多少個格子。Epsilon則依舊以正比增加。但這次不給予步數懲罰，原因是有的時候為了不把自己困住，可能會出現需要繞路的情況。(根據訓練日誌中f10, f30的訓練結果)</p>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/line%20detector.png" srcset="/webHome/img/loading.gif" lazyload/>
+ 
+<p>圖七、加入射線檢測器</p>
+<p>最終成果上，平均分數落在35左右，說明藉由射線檢測器的加入。的確能降低蛇被自己的身體困住的部分情況。而之所以無法得到更好的效果，可能因素為，存在部分情況是四面都有自己的身體，但死路是最長的情況。(假定蛇在該環境的行為模式為，選擇最長的方向走。原因是前期訓練中最長的方向，是死路的可能性低)。</p>
+<h2 id="七、操作與介面說明："><a href="#七、操作與介面說明：" class="headerlink" title="七、操作與介面說明："></a>七、操作與介面說明：</h2><p>在專案中，撰寫了一份使用者介面的程式，可以選擇四種不同的模式，包含：1玩家遊玩、2模型AI遊玩、3模型AI訓練、4舊模型訓練。</p>
+<p>相比起參考資料中的專案，透過這個介面可以快速操作模型的訓練以及測試。也能夠自動儲存訓練後的模型、數據資料以及訓練圖表。並在使用舊模型進行重複訓練時，重新載入環境以及訓練過的數據。有效提高生產力。</p>
+<blockquote>
+<p>專案下載步驟<br>(一)	在github上clone整個資料夾下來，打開cmd進入snack-pygame的資料夾中。<br>(二)	確保環境中裝有python、pytorch with cpu。以及pygame、matplotlib、numpy套件<br>(三)	在終端機執行userinterface.py進入操作介面</p>
+</blockquote>
+<h2 id="八、專案總結："><a href="#八、專案總結：" class="headerlink" title="八、專案總結："></a>八、專案總結：</h2><blockquote>
+<p>(一)	具備使用python完成AI訓練的能力<br>(二)	配置並使用不同的訓練資料以及參數進行訓練<br>(三)	了解Q_Learning算法<br>(四)	透過matplotlib套件，幫助訓練資料的可視化<br>(五)	訓練模型以及資料的儲存、載入</p>
+</blockquote>
+<p>根據參考資料實作了AI訓練的一個小專題，理解每一行代碼的功能，並了解模型的創建，包括輸入層、隱藏層、輸出層。以及輸入資料應該如何去挑選，才能讓AI最終訓練的成果更好。並嘗試改進在參考資料中，訓練出來的AI模型會出現的問題。過程中，熟悉如何從遊戲擷取輸入資料，並載入到訓練模型。</p>
+<p>這次的專案在最初改進時，存在一個廢案，為了降低輸入層的複雜度，透過記錄每一節身體的前一節位置來做訓練。但這種抽象資料卻會造成AI需要更大量的訓練才能明白數據的意義，後續捨棄。(根據訓練日誌中b~e的結果)</p>
+<p>學習到關於Q_Learning算法中，如何計算新的Q值，並利用該值，來實現agent的操作。包含折扣率對於AI的影響、隨機行動的必要等等。</p>
+<p>了解了如何去利用matplot，來幫助繪製AI訓練時的資料圖，以幫助分析AI訓練的獎勵值變化。而為了處理舊模型訓練的問題，也實現了關於資料之間的型態轉換、讀檔、存檔的功能。以方便後續訓練中，保證訓練資料的連續、訓練圖表的完整性。</p>
+<h2 id="九、未來規劃："><a href="#九、未來規劃：" class="headerlink" title="九、未來規劃："></a>九、未來規劃：</h2><p>(一)	嘗試不同以及更龐大的輸入資料，了解輸入資料和貪吃蛇AI成效之間的差異。並訓練出效果更好的貪吃蛇</p>
+<p>(二)	學習deep q learning用於改進AI訓練的成果</p>
+<p>(三)	學習生成對抗網路，並應用在此次專案中，訓練AI之間的競爭，以了解該種神經網路的實作。</p>
+<h2 id="十、參考資料："><a href="#十、參考資料：" class="headerlink" title="十、參考資料："></a>十、參考資料：</h2><p>Teach AI To Play Snake - Reinforcement Learning Tutorial With PyTorch And Pygame, from <a target="_blank" rel="noopener" href="https://youtu.be/5Vy5Dxu7vDs">https://youtu.be/5Vy5Dxu7vDs</a></p>
+<p>pygame官方文檔，取自 <a target="_blank" rel="noopener" href="https://www.pygame.org/docs/tut/PygameIntro.html">https://www.pygame.org/docs/tut/PygameIntro.html</a></p>
+<p>机器学习9:关于pytorch中的zero_grad（）函數，取自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39504171/article/details/103179067">https://blog.csdn.net/weixin_39504171/article/details/103179067</a></p>
+<p>PyTorch使用GPU训练的两种方法实例，取自 <a target="_blank" rel="noopener" href="https://www.jb51.net/article/248324.htm">https://www.jb51.net/article/248324.htm</a></p>
+<p>PyTorch的nn.Linear（）详解，取自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42079689/article/details/102873766">https://blog.csdn.net/qq_42079689/article/details/102873766</a></p>
+<p>【Day 23】 Google ML - Lesson 9 - 加速ML模型訓練的兩大方法(如何設定batch&#x2F;檢查loss頻率)、batch size, iteration, epoch的概念和比較，取自 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10219945">https://ithelp.ithome.com.tw/articles/10219945</a></p>
+<p>30 天在 Colab 嘗試的 30 個影像分類訓練實驗，取自 <a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/users/20107299/ironman/4809">https://ithelp.ithome.com.tw/users/20107299/ironman/4809</a></p>
+<p>并行化强化学习 —— 初探 —— 并行reinforce算法的尝试 （上篇：强化学习在多仿真环境下单步交互并行化设计的可行性），取自 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/devilmaycry812839668/p/14221576.html">https://www.cnblogs.com/devilmaycry812839668/p/14221576.html</a></p>
+<p>手把手教你做一个强化学习的环境，用pygame搭建一个可视化训练游戏环境(一)，取自 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48174100/article/details/119242038">https://blog.csdn.net/weixin_48174100/article/details/119242038</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/AI-about/" class="category-chain-item">AI-about</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/webHome/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/webHome/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/webHome/tags/Pygame/" class="print-no-link">#Pygame</a>
+      
+        <a href="/webHome/tags/Reinforcement-Learning/" class="print-no-link">#Reinforcement Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python 強化學習 AI 訓練-貪吃蛇</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2023/08/13/ai/Python-強化學習-AI-訓練-貪吃蛇/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhwa</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2023年8月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/2023/08/08/testPage/" title="testPage">
+                        <span class="hidden-mobile">testPage</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","appKey":"X9AfJKTBolm7x2TvBdDqCIfV","path":"window.location.pathname","placeholder":null,"avatar":"hide","meta":["nick","mail"],"requiredFields":["nick"],"pageSize":10,"lang":"zh-TW","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
