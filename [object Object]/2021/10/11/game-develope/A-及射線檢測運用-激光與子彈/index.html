@@ -493,27 +493,24 @@
   
     <article id="comments" lazyload>
       
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","appKey":"X9AfJKTBolm7x2TvBdDqCIfV","path":"window.location.pathname","placeholder":null,"avatar":"hide","meta":["nick","mail"],"requiredFields":["nick"],"pageSize":10,"lang":"zh-TW","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/2021/10/11/game-develope/A-%E5%8F%8A%E5%B0%84%E7%B7%9A%E6%AA%A2%E6%B8%AC%E9%81%8B%E7%94%A8-%E6%BF%80%E5%85%89%E8%88%87%E5%AD%90%E5%BD%88/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/2021/10/11/game-develope/A-%E5%8F%8A%E5%B0%84%E7%B7%9A%E6%AA%A2%E6%B8%AC%E9%81%8B%E7%94%A8-%E6%BF%80%E5%85%89%E8%88%87%E5%AD%90%E5%BD%88/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
 
 
     </article>
