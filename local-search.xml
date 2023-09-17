@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Stable Diffusion web UI</title>
+    <link href="/webHome/%5Bobject%20Object%5D/2023/09/17/ai/Stable-Diffusion-web-UI/"/>
+    <url>/webHome/%5Bobject%20Object%5D/2023/09/17/ai/Stable-Diffusion-web-UI/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Stable-Diffusion-web-UI"><a href="#Stable-Diffusion-web-UI" class="headerlink" title="Stable Diffusion web UI"></a>Stable Diffusion web UI</h1><p>�Ω󥻦a��AIø�ϥͦ����ج[<br>�i�U�������W���ҫ��ӮM��<br>�i�����O�ڪ����q�W�u�]�o��1GB, 2GB���ҫ�</p><p>�]�i�X�R�U��extension<br>�Ҧp�G�h�Q�B�Ϥ���j��k����</p><p>�o�g�D�n�O���p��w�˦b���a+�X�R���M��+�@�ǰ��D���L�{</p><h2 id="github"><a href="#github" class="headerlink" title="github"></a>github</h2><p>from <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">https://github.com/AUTOMATIC1111/stable-diffusion-webui</a>, by AUTOMATIC1111</p><h2 id="�w�˦bwin10�W"><a href="#�w�˦bwin10�W" class="headerlink" title="�w�˦bwin10�W"></a>�w�˦bwin10�W</h2><ol><li>�����T�O���@�������Ϫ���d(�i�ϥΪŶ��W�L2GB)<br> a. �i�H�z�L�u�@�޲z���d�ݡA��L��Jctrl + Shift + Esc(���}�u�@�޲z��)�A�į�B�i�H�ݨ����eCPU���ϥβv<br> b. �ϥβ׺ݾ��A���}�׺ݾ��A��Jnvidia-smi�i�H�ݨ��ϥβv</li><li>�U��python3.10.6<br> a. ���n�U���O������<br> b. �A�t�W�i��|�����D</li><li>�U��git</li><li>�b�׺ݾ��W��M��git�U�� <div class="code-wrapper"><pre><code class="hljs awk">git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/AUTOMATIC1111/</span>stable-diffusion-webui.git</code></pre></div></li><li>�]�wwebui-user.bat���H�U���e <div class="code-wrapper"><pre><code class="hljs gams">@echo off<span class="hljs-keyword">set</span> PYTHON=<span class="hljs-string">&quot;C:\Users\Lenovo\AppData\Local\Programs\Python\Python310\python.exe&quot;</span>    <span class="hljs-comment">//Python3.10.6����m</span><span class="hljs-keyword">set</span> <span class="hljs-comment">GIT=</span><span class="hljs-keyword">set</span> <span class="hljs-comment">VENV_DIR=</span><span class="hljs-keyword">set</span> <span class="hljs-comment">COMMANDLINE_ARGS=--xformers --lowvram --opt-split-attention</span>    //����ɪ��ѼƳ<span class="hljs-comment">]</span>�<span class="hljs-comment">m</span>git <span class="hljs-comment">pull</span>    //�<span class="hljs-comment">C</span>������ ��<span class="hljs-comment">s</span>�ܮ<span class="hljs-comment">w</span>call <span class="hljs-comment">webui.bat</span>    //�<span class="hljs-comment">I</span>�<span class="hljs-comment">s</span>�<span class="hljs-comment">D</span>�<span class="hljs-comment">&#123;</span>��</code></pre></div> a.�@–xformers�G�[�t���<br> b. –lowvram�G�]�p�ҫ�(�j��2GB�A�]�����B�j�ҫ����Ѽ�)(�p�G��W�LGPU�j�p���A�Фήɲפ�{��ctrl + c)(�_�h�q���|crash)<br> c. –opt-split-attention�G�u��<br> d. �ԲӡB��L�Ѽƥi�H��wiki(<a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki">https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki</a>)</li></ol><p>6.����n�ΡA�N�O���}�׺ݡA��{���b����m�A����webui-user.bat</p><h2 id="�K�-�ҫ�"><a href="#�K�-�ҫ�" class="headerlink" title="�K�[�ҫ�"></a>�K�[�ҫ�</h2><p>�i�H�b�Ӻ�����ҫ�<br><a href="https://civitai.com/">https://civitai.com/</a></p><p>�U�����ҫ��H��A���stable-diffusion-webui\models\Stable-diffusion���U�N�i�H�F</p><h2 id="�K�-Lora"><a href="#�K�-Lora" class="headerlink" title="�K�[Lora"></a>�K�[Lora</h2><p>�ҿת�Lora�A��������������Ӥ����o��<br>���μҫ���X�ϫ�A�A�z�L�o��h�ץ�</p><p>�@�˥i�H�b<br><a href="https://civitai.com/">https://civitai.com/</a><br>���lora</p><p>�U����lora�H��A��bstable-diffusion-webui\models\Lora���U</p><p>���ᥴ�}�{���A�b��ϫe�K�[Lora�N�i�H�F</p><h2 id="�K�-extension"><a href="#�K�-extension" class="headerlink" title="�K�[extension"></a>�K�[extension</h2><p>�@���B�~���\��A�i�H���U�ڭ̧�n�B�󦳮Ĳv���ϥ�AIø��<br>�ѦҦۡG<a href="https://vocus.cc/article/64868acbfd8978000122b077">https://vocus.cc/article/64868acbfd8978000122b077</a></p><p>����{����A�i�H�I��extension�����A�j�M�椤��J�Q�䪺extension����A�I���U���N�i�H�F</p><p>����extension�G</p><p>sd-webui-controlnet(���[�]�w�B�ʧ@�]�w�����M�~�\��)<br><a href="https://github.com/Mikubill/sd-webui-controlnet">https://github.com/Mikubill/sd-webui-controlnet</a></p><p>stable-diffusion-webui-rembg(�h�I)<br><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg">https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg</a></p><h2 id="���g��L����"><a href="#���g��L����" class="headerlink" title="���g��L����"></a>���g��L����</h2><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/00000-10040972.png"/><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/00001-423817845.png"/>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI-about</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AI</tag>
+      
+      <tag>Drawing</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>回合式類寶可夢精靈對戰系統</title>
     <link href="/webHome/%5Bobject%20Object%5D/2023/08/16/game-develope/%E5%9B%9E%E5%90%88%E5%BC%8F%E9%A1%9E%E5%AF%B6%E5%8F%AF%E5%A4%A2%E7%B2%BE%E9%9D%88%E5%B0%8D%E6%88%B0%E7%B3%BB%E7%B5%B1/"/>
     <url>/webHome/%5Bobject%20Object%5D/2023/08/16/game-develope/%E5%9B%9E%E5%90%88%E5%BC%8F%E9%A1%9E%E5%AF%B6%E5%8F%AF%E5%A4%A2%E7%B2%BE%E9%9D%88%E5%B0%8D%E6%88%B0%E7%B3%BB%E7%B5%B1/</url>
