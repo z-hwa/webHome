@@ -16,20 +16,24 @@
   <meta name="author" content="zhwa">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="learning record for my life">
+    <meta name="description" content="TWMA重製by AndoidStudio with kotlin主要架構Android Studio推薦使用kotlin做為開發語言因此在本專案中，以kotlin為主 整體框架上  透過Compose來描述整個app的UI(目前是把一個頁面的UI寫在一個.kt檔中) 並利用類別來處理資料，整體資料的操作方法都被存放在WordList中 在資料儲存的方面，透過SQL lite來做處理，專門去紀錄W">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TWMA重製by AndoidStudio with kotlin">
 <meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2023/10/22/app-develope/TWMA%E9%87%8D%E8%A3%BDby-AndoidStudio-with-kotlin/">
 <meta property="og:site_name" content="inf-journey shoka">
-<meta property="og:description" content="learning record for my life">
+<meta property="og:description" content="TWMA重製by AndoidStudio with kotlin主要架構Android Studio推薦使用kotlin做為開發語言因此在本專案中，以kotlin為主 整體框架上  透過Compose來描述整個app的UI(目前是把一個頁面的UI寫在一個.kt檔中) 並利用類別來處理資料，整體資料的操作方法都被存放在WordList中 在資料儲存的方面，透過SQL lite來做處理，專門去紀錄W">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/Row.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/column.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/box.png">
 <meta property="article:published_time" content="2023-10-22T12:20:42.000Z">
-<meta property="article:modified_time" content="2023-10-22T12:22:36.265Z">
+<meta property="article:modified_time" content="2024-04-06T12:52:48.979Z">
 <meta property="article:author" content="zhwa">
 <meta property="article:tag" content="Android Studio">
 <meta property="article:tag" content="kotlin">
 <meta property="article:tag" content="compose">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/Row.png">
   
   
   
@@ -255,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          6.1k 字
         
       </span>
     
@@ -266,7 +270,7 @@
         
         
         
-          1 分鐘
+          52 分鐘
         
       </span>
     
@@ -308,7 +312,264 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="TWMA重製by-AndoidStudio-with-kotlin"><a href="#TWMA重製by-AndoidStudio-with-kotlin" class="headerlink" title="TWMA重製by AndoidStudio with kotlin"></a>TWMA重製by AndoidStudio with kotlin</h1><h2 id="主要架構"><a href="#主要架構" class="headerlink" title="主要架構"></a>主要架構</h2><p>Android Studio推薦使用kotlin做為開發語言<br>因此在本專案中，以kotlin為主</p>
+<p>整體框架上</p>
+<ul>
+<li>透過Compose來描述整個app的UI(目前是把一個頁面的UI寫在一個.kt檔中)</li>
+<li>並利用類別來處理資料，整體資料的操作方法都被存放在WordList中</li>
+<li>在資料儲存的方面，透過SQL lite來做處理，專門去紀錄WordList的變動語資料</li>
+</ul>
+<h2 id="預計實現效果"><a href="#預計實現效果" class="headerlink" title="預計實現效果"></a>預計實現效果</h2><p><strong>介面相關</strong><br>頁面切換<br>背景切換<br>布局切換</p>
+<p><strong>資料相關</strong><br>單字的新增、刪除<br>單字的顯示<br>單字測試</p>
+<p><strong>系統相關</strong><br>等級紀錄<br>金幣紀錄<br>抽獎系統</p>
+<h2 id="Compose系統"><a href="#Compose系統" class="headerlink" title="Compose系統"></a>Compose系統</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Compose的使用就是在函數前面加上@compose標籤<br>每當一個Compose發生改動的時候，會自動摧毀並重建，達成刷新UI的效果</p>
+<p>而最初的Compose會被放置在主函數下的setContent中啟用</p>
+<blockquote>
+<p>tips 每當螢幕旋轉時，整個android app的生命週期會將UI給摧毀掉<br>因此若要保存Compose下的數據，需要使用by remember的方式</p>
+</blockquote>
+<h3 id="各種可組合項"><a href="#各種可組合項" class="headerlink" title="各種可組合項"></a>各種可組合項</h3><p>實現UI介面效果上<br>在Compose中，可以利用下面列出的可組合項</p>
+<h4 id="Surface"><a href="#Surface" class="headerlink" title="Surface:"></a>Surface:</h4><p>簡單來說，會將所有的元件放在這個平面上，且透過這個平面來處理modifier可以不用再單個元件上，添加太繁瑣的修飾</p>
+<blockquote>
+<p>從字面上來理解，是一個平面，在 Material Design 設計準則中也同樣如此，我們可以將很多的元件擺放在這個平面之上，我們可以設定這個平面的邊框，圓角，顏色等等。 接下來，我們來用 Surface 組件做出一些不同的效果。</p>
+<p>而 Surface 主要負責整個組件的形狀，陰影，背景等等，Surface 可以幫助我們更好的解耦一些程式碼，而不必在單一元件上添加很多的 Modifier 修飾符方法。<br>by <a target="_blank" rel="noopener" href="https://jetpackcompose.cn/docs/layout/surface/">https://jetpackcompose.cn/docs/layout/surface/</a></p>
+</blockquote>
+<h4 id="Row"><a href="#Row" class="headerlink" title="Row:"></a>Row:</h4><p>一種水平排列的組件<br>並且可以透過Arrangement來調整排列的方式<br><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/Row.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<blockquote>
+<p>組件能夠將裡面的子項依照從左到右的方向水平排列。<br>by <a target="_blank" rel="noopener" href="https://jetpackcompose.cn/docs/layout/row">https://jetpackcompose.cn/docs/layout/row</a></p>
+</blockquote>
+<h4 id="Column"><a href="#Column" class="headerlink" title="Column:"></a>Column:</h4><p>一種垂直排列的組件<br>同樣可以透過Arrangement來調整排列的方式<br><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/column.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<h5 id="example"><a href="#example" class="headerlink" title="example"></a>example</h5><p>column的模板程式，關於一個column的實現</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-meta">@Composable</span>
+<span class="hljs-keyword">inline</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">Column</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">    modifier: <span class="hljs-type">Modifier</span>? = Modifier,    <span class="hljs-comment">//modifier 可以修改這個column的一些顯示上的參數</span></span></span>
+<span class="hljs-params"><span class="hljs-function">    verticalArrangement: <span class="hljs-type">Arrangement</span>.<span class="hljs-type">Vertical</span>? = Arrangement.Top,    <span class="hljs-comment">//垂直上的對齊方式 靠上</span></span></span>
+<span class="hljs-params"><span class="hljs-function">    horizontalAlignment: <span class="hljs-type">Alignment</span>.<span class="hljs-type">Horizontal</span>? = Alignment.Start,    <span class="hljs-comment">//水平上的對齊方式 靠右</span></span></span>
+<span class="hljs-params"><span class="hljs-function">    content: (@<span class="hljs-type">Composable</span> @<span class="hljs-type">ExtensionFunctionType</span> <span class="hljs-type">ColumnScope</span>.() -&gt; <span class="hljs-type">Unit</span>)?</span></span>
+<span class="hljs-params"><span class="hljs-function">)</span></span>: <span class="hljs-built_in">Unit</span></code></pre></div>
+
+<blockquote>
+<p>tips Lazy Column<br>是一種類似Column的元件，但自帶懶加載功能<br>對於需要滑動列表，來檢視大量資料的地方可以使用<br>ref <a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/compose/lists?hl=zh-tw">https://developer.android.com/jetpack/compose/lists?hl=zh-tw</a></p>
+</blockquote>
+<h4 id="Box"><a href="#Box" class="headerlink" title="Box"></a>Box</h4><p>布局方式為九官格的定位方法<br>也可依次按照順序推疊<br><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/box.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<h4 id="有用的子元件"><a href="#有用的子元件" class="headerlink" title="有用的子元件"></a>有用的子元件</h4><p>Text 用來顯示字串<br>Icon 用來顯示圖標<br>Button 用於按鍵</p>
+<h3 id="Compose靜態預覽"><a href="#Compose靜態預覽" class="headerlink" title="Compose靜態預覽"></a>Compose靜態預覽</h3><p>在compose中可以透過在函式前面加上@preview關鍵字，並在函數內呼叫其他可組合項，來查看實際上的呈現結果</p>
+<p>能夠節省每次都開虛擬機確認UI布局的時間，缺點是不能夠進行互動<br>因此如果是用代碼操控了可組合項的顯示、動畫，就沒辦法用這招預覽</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">//預覽 關燈模式</span>
+<span class="hljs-comment">/*@Preview(</span>
+<span class="hljs-comment">    showBackground = true,</span>
+<span class="hljs-comment">    uiMode = Configuration.UI_MODE_NIGHT_YES,</span>
+<span class="hljs-comment">    name = &quot;Dark&quot;</span>
+<span class="hljs-comment">)*/</span>
+<span class="hljs-meta">@Preview(    //開燈模式</span>
+<span class="hljs-meta">    showBackground = true,    //是否顯示背景</span>
+<span class="hljs-meta">    uiMode = Configuration.UI_MODE_NIGHT_NO,    //設定當前的模式</span>
+<span class="hljs-meta">    name = <span class="hljs-string">&quot;light&quot;</span>,    //該預覽的名稱</span>
+<span class="hljs-meta">)</span>
+<span class="hljs-meta">@Composable</span>    <span class="hljs-comment">//就算是預覽也要記得添加可組合向的修飾符</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">PreviewWordInput</span><span class="hljs-params">()</span></span> &#123;
+    TWMATheme &#123;
+        WordInput(goToWordPage = &#123;&#125;, wordList = WordList())
+    &#125;
+&#125;</code></pre></div>
+
+<h3 id="通用參數描述"><a href="#通用參數描述" class="headerlink" title="通用參數描述"></a>通用參數描述</h3><h4 id="modifier修飾符"><a href="#modifier修飾符" class="headerlink" title="modifier修飾符"></a>modifier修飾符</h4><p>可以添加用於修飾元件的描述，添加順序將會對效果造成影響</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">//語法範例</span>
+<span class="hljs-meta">@compose</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">Show</span><span class="hljs-params">()</span></span> &#123;
+    <span class="hljs-comment">//在modifier後面可以用.來銜接不同的修飾</span>
+    Row(modifier = Modifier.fillMaxHeight()
+       .alpha(<span class="hljs-number">0.75f</span>)
+       )
+&#125;</code></pre></div>
+
+<p>常見的修飾符包括</p>
+<ul>
+<li>fillMaxHeight() 填充到父元件的高度</li>
+<li>fillMaxWidth() 填充到父元件的寬度</li>
+<li>fillMaxSize() 填充到父元件的大小</li>
+<li>alpha(float) 調整透明度</li>
+<li>setSize(int, int) 設定大小</li>
+<li>padding(int) 留下特定寬度的邊框</li>
+</ul>
+<p>針對於不同的命名空間，會有額外的修飾符選項<br>例如在RowSpace、ColumnSpace中<br>存在 <strong>weight(float)</strong> 的修飾符，可以定義該子元件在該row 或是 column下佔的空間權重</p>
+<blockquote>
+<p>tips 使用weight後 setSize會失效</p>
+</blockquote>
+<blockquote>
+<p>tips 各元件詳細的參數<br>請查詢jetpack compose的手冊<br>或是你好 Compose<br>ref1 <a target="_blank" rel="noopener" href="https://developer.android.com/jetpack?hl=zh-tw">https://developer.android.com/jetpack?hl=zh-tw</a><br>ref2 <a target="_blank" rel="noopener" href="https://jetpackcompose.cn/docs/">https://jetpackcompose.cn/docs/</a></p>
+</blockquote>
+<h3 id="狀態提升"><a href="#狀態提升" class="headerlink" title="狀態提升"></a>狀態提升</h3><p>將當前這個Compose存儲的狀態變數，拉到他的父組件上<br>並統一由最上層的父組件來管理狀態變數</p>
+<p>當子組件需要改動父組件紀錄狀態的變數時，使用呼叫子組件時傳入的函數，以call back的方法來改動父組件的狀態變數</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-meta">@compose</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">farther</span><span class="hljs-params">()</span></span> &#123;
+    <span class="hljs-keyword">var</span> state <span class="hljs-keyword">by</span> remember&#123;
+        mutableStateOf(<span class="hljs-literal">false</span>)
+    &#125;
+    
+    child(()-&gt;&#123;state = !state&#125;)
+&#125;
+
+<span class="hljs-comment">//將需要使用的狀態變數state提升到farther</span>
+<span class="hljs-comment">//子組件利用changeState函數call back改變state</span>
+<span class="hljs-meta">@compose</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">child</span><span class="hljs-params">(changeState: ()-&gt;<span class="hljs-type">Unit</span>)</span></span> &#123;
+    changeState()
+&#125;</code></pre></div>
+
+<blockquote>
+<p>tips 在compose中處理變數，每當compose重組，變數的資料就會被清掉<br>因此我們需要用by remember的方式來讓app保留這個變數<br>而添加mutableStateOf則是讓compose能夠監聽這個變數<br>一旦變數發生變化，該compose變化重組</p>
+</blockquote>
+<h3 id="Navigation導航"><a href="#Navigation導航" class="headerlink" title="Navigation導航"></a>Navigation導航</h3><p>透過navigation導航，可以實現android app中，當按下手機返回鍵，會回到上個頁面的效果</p>
+<p>返回的感覺上類似stack(我自己覺得啦<br>整個navigation的設計上，也遵循著狀態提升的原則，如下</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-meta">@Composable</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">AppNaviGation</span><span class="hljs-params">()</span></span> &#123;
+    <span class="hljs-comment">//透過navController</span>
+    <span class="hljs-comment">//可以處理compose之間的切換</span>
+    <span class="hljs-comment">//用於指定可以在可組合項之間切換的目的地</span>
+    
+    <span class="hljs-keyword">val</span> navController = rememberNavController()
+
+    <span class="hljs-comment">//而切換的時候</span>
+    <span class="hljs-comment">//則會由navHost在目的地重組</span>
+    NavHost(navController = navController,
+        startDestination = <span class="hljs-string">&quot;WordInput&quot;</span>) &#123;
+        <span class="hljs-comment">//startDestination為最初始的位置</span>
+
+        <span class="hljs-comment">//導航的地址註冊為一個String</span>
+        composable(<span class="hljs-string">&quot;WordInput&quot;</span>) &#123;
+            WordInput(goToWordPage = &#123;navController.navigate(route = <span class="hljs-string">&quot;WordPage&quot;</span>)&#125;,
+                wordList = wordList)  <span class="hljs-comment">//前往單字倉庫</span>
+        &#125;
+        composable(<span class="hljs-string">&quot;WordPage&quot;</span>) &#123;
+            WordPage(rebackToWordInput = &#123;navController.navigate(route = <span class="hljs-string">&quot;WordInput&quot;</span>)&#125;, wordList = wordList) <span class="hljs-comment">//回到單字輸入頁</span>
+        &#125;
+
+    &#125;
+&#125;</code></pre></div>
+
+<h2 id="kotlin的簡單語法"><a href="#kotlin的簡單語法" class="headerlink" title="kotlin的簡單語法"></a>kotlin的簡單語法</h2><h3 id="基礎語法-變數"><a href="#基礎語法-變數" class="headerlink" title="基礎語法-變數"></a>基礎語法-變數</h3><div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">//變數賦值</span>
+<span class="hljs-keyword">var</span> variable: String    <span class="hljs-comment">//var代表這個變數可以改動</span>
+<span class="hljs-keyword">val</span> variable1: String    <span class="hljs-comment">//val代表這個變數不能改動</span>
+
+<span class="hljs-keyword">var</span> variable2: String? <span class="hljs-comment">//?代表這個變數可能為空</span>
+    <span class="hljs-comment">//切換回來的方法是</span>
+    <span class="hljs-comment">//在使用前判斷if(variable2 != Unit)</span>
+
+<span class="hljs-keyword">var</span> variable2: String = <span class="hljs-string">&quot;This is a String&quot;</span>    <span class="hljs-comment">//可以這樣初始化</span>
+<span class="hljs-keyword">var</span> variable3 = <span class="hljs-string">&quot;This is easy way&quot;</span>    <span class="hljs-comment">//簡化 推薦使用該方法</span></code></pre></div>
+
+<h3 id="函數"><a href="#函數" class="headerlink" title="函數"></a>函數</h3><div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">//函數宣告</span>
+<span class="hljs-comment">//fun functionName(paraName: paraType): returnType&#123;&#125;</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">Fun1</span><span class="hljs-params">(parameter1: <span class="hljs-type">Int</span>, para2: <span class="hljs-type">Int</span>)</span></span>:<span class="hljs-built_in">Int</span> &#123;
+    
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">     * function body</span>
+<span class="hljs-comment">     */</span>
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+&#125;
+
+<span class="hljs-comment">//可以設定預設值</span>
+<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">Fun2</span><span class="hljs-params">(parameter1 = <span class="hljs-number">1</span>, para2 = <span class="hljs-number">2</span>)</span></span>:<span class="hljs-built_in">Int</span> &#123;&#125;
+
+<span class="hljs-comment">//呼叫Fun1</span>
+<span class="hljs-keyword">var</span> ans = Fun1(<span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+
+<span class="hljs-comment">//指定parameter1參數接收的值，並讓para2用預設的值</span>
+ans = Fun2(parameter1 = <span class="hljs-number">5</span>)</code></pre></div>
+
+<h3 id="OOP-類別"><a href="#OOP-類別" class="headerlink" title="OOP-類別"></a>OOP-類別</h3><p>在kotlin中，類別有主建構子以及次建構子</p>
+<p>執行順序是:</p>
+<ul>
+<li>主 constructor</li>
+<li>變數</li>
+<li>init block 們</li>
+<li>最後才是第二個 constructor block 內的內容，第三個 constructor block 內的內容…依此類推</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs kotlin">
+<span class="hljs-comment">//使用主建構函數 直接在類別名稱後面加上contructor</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Word</span> <span class="hljs-keyword">constructor</span>(_data:String, _id:<span class="hljs-built_in">Int</span>) &#123;
+    <span class="hljs-keyword">var</span> word:String
+    <span class="hljs-keyword">var</span> id:<span class="hljs-built_in">Int</span>
+    
+    <span class="hljs-comment">//初始化block</span>
+    <span class="hljs-comment">//可以有多個</span>
+    <span class="hljs-keyword">init</span> &#123;
+        <span class="hljs-keyword">this</span>.word = _data
+        <span class="hljs-keyword">this</span>.id = _id
+    &#125;
+    
+    <span class="hljs-comment">//次建構函數 這裡的回傳是this(即主建構函數)</span>
+    <span class="hljs-comment">//可以有多個存在</span>
+    <span class="hljs-keyword">constructor</span>(): <span class="hljs-keyword">this</span>(_data:String, _id:<span class="hljs-built_in">Int</span>) &#123;
+        <span class="hljs-keyword">this</span>.word = _data + <span class="hljs-string">&quot;contrsucted by 1&quot;</span>
+    &#125;
+    
+    <span class="hljs-comment">//利用傳入的參數defaultID 創建這個類別實體</span>
+    <span class="hljs-keyword">constructor</span>(defaultID: <span class="hljs-built_in">Int</span>): <span class="hljs-keyword">this</span>(_data:String, _id:<span class="hljs-built_in">Int</span>) &#123;
+        <span class="hljs-keyword">this</span>.word = <span class="hljs-string">&quot;&quot;</span>
+        <span class="hljs-keyword">this</span>.id = defaultID
+    &#125;
+&#125;</code></pre></div>
+
+<h2 id="資料庫"><a href="#資料庫" class="headerlink" title="資料庫"></a>資料庫</h2><p>利用SQL lite來實現輕量化的資料庫，需要</p>
+<ul>
+<li>Database:資料庫</li>
+<li>Dao:定義可以執行的操作</li>
+<li>Entity:定義資料實體</li>
+</ul>
+<h3 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h3><p>資料庫，透過@Database標籤</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">//資料庫</span>
+<span class="hljs-comment">//entities定義的列表 表示當前資料庫中有幾個不同的資料實體(每個用一張表去紀錄</span>
+<span class="hljs-meta">@Database(entities = [WordE::class], version = 1)</span>
+<span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppDatabase</span> : <span class="hljs-type">RoomDatabase</span>() &#123;
+    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">userDao</span><span class="hljs-params">()</span></span>: UserDao    <span class="hljs-comment">//把DAO添加在這裡</span>
+&#125;</code></pre></div>
+
+<h3 id="Dao"><a href="#Dao" class="headerlink" title="Dao"></a>Dao</h3><p>參考SQL的語法，by <a target="_blank" rel="noopener" href="https://www.fooish.com/sql/syntax.html">https://www.fooish.com/sql/syntax.html</a><br>具體定義可以在表中進行的操作</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-meta">@Dao</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserDao</span> &#123;
+
+    <span class="hljs-comment">//插入單字</span>
+    <span class="hljs-meta">@Insert</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">insertWord</span><span class="hljs-params">(wordE: <span class="hljs-type">WordE</span>?)</span></span>: <span class="hljs-built_in">Long</span>?    <span class="hljs-comment">//回傳插入位置的id(類似第幾列的感覺)</span>
+
+    <span class="hljs-comment">//查詢特定單字</span>
+    <span class="hljs-meta">@Query(<span class="hljs-string">&quot;SELECT * FROM wordE WHERE id = :wordID&quot;</span>)</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">queryWord</span><span class="hljs-params">(wordID: <span class="hljs-type">Long</span>)</span></span>: WordE?    <span class="hljs-comment">//根據傳入的wordID在id的欄位中，找到特定的資料並取出</span>
+
+    <span class="hljs-comment">//取出全部資料</span>
+    <span class="hljs-meta">@Query(<span class="hljs-string">&quot;SELECT * FROM wordE&quot;</span>)</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">queryAll</span><span class="hljs-params">()</span></span>: List&lt;WordE&gt;    <span class="hljs-comment">//取出全部的資料，回傳一個資料實體形成的表格</span>
+
+    <span class="hljs-comment">//example沒有實際作用</span>
+    <span class="hljs-meta">@Delete</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">delete</span><span class="hljs-params">(wordE: <span class="hljs-type">WordE</span>?)</span></span>: <span class="hljs-built_in">Int</span>
+
+    <span class="hljs-comment">//從id的欄位找到wordID並將其刪除</span>
+    <span class="hljs-meta">@Query(<span class="hljs-string">&quot;DELETE FROM wordE WHERE id = :wordId&quot;</span>)</span>
+    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">delete</span><span class="hljs-params">(wordId: <span class="hljs-type">Long</span>)</span></span>: <span class="hljs-built_in">Int</span>
+&#125;</code></pre></div>
+
+<h3 id="Entity"><a href="#Entity" class="headerlink" title="Entity"></a>Entity</h3><p>資料實體，定義了存放在資料庫中的資料長相<br>類似於定義了一張表中，單個行存放的資料型態、名稱</p>
+<p>必須有一個PrimaryKey，功能類似列的編號(第一列、第二列、第三…)</p>
+<div class="code-wrapper"><pre><code class="hljs kotlin"><span class="hljs-comment">//每個entity相當於一張表</span>
+<span class="hljs-comment">//類似定義一個表格中 一整列中每一行的欄位(名稱、儲存型態)</span>
+<span class="hljs-meta">@Entity(tableName = <span class="hljs-string">&quot;wordE&quot;</span>)</span>
+<span class="hljs-keyword">data</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WordE</span>(
+    <span class="hljs-comment">//主鍵 用於在資料庫中識別不同的資料列</span>
+    <span class="hljs-meta">@PrimaryKey(autoGenerate = true)</span>    <span class="hljs-comment">//自動分配key值 初始為1</span>
+    <span class="hljs-keyword">val</span> id: <span class="hljs-built_in">Long</span>?,
+
+    <span class="hljs-comment">//定義該行的名稱 以及儲存的類別型態</span>
+    <span class="hljs-meta">@ColumnInfo(name = <span class="hljs-string">&quot;foreignData&quot;</span>)</span> <span class="hljs-keyword">val</span> foreignData: String?,
+    <span class="hljs-meta">@ColumnInfo(name = <span class="hljs-string">&quot;localData&quot;</span>)</span> <span class="hljs-keyword">val</span> localData: String?,
+    <span class="hljs-meta">@ColumnInfo(name = <span class="hljs-string">&quot;extraInf&quot;</span>)</span> <span class="hljs-keyword">val</span> extraInf: String?,
+    <span class="hljs-meta">@ColumnInfo(name = <span class="hljs-string">&quot;correctRate&quot;</span>)</span> <span class="hljs-keyword">val</span> correctRate: <span class="hljs-built_in">Double</span>?
+)</code></pre></div>
+
+<h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/75735792/how-to-view-compose-preview-in-landscape-mode">How to view compose preview in landscape mode</a></p>
+
                 
               </div>
             
