@@ -1,0 +1,925 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhwa">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Algorithm Ch8 Sort in linear timeLower bounds for sorting $\Omega(n)$ to examine all the input All sort lower bound are $\Omega(n,lg,n)$ $\Omega(n,lg,n)$ is lower bound for comparison test  Decision T">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm Ch8 Sort in linear time">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2024/04/07/Algorithm/Algorithm-Ch8-Sort-in-linear-time/">
+<meta property="og:site_name" content="inf-journey shoka">
+<meta property="og:description" content="Algorithm Ch8 Sort in linear timeLower bounds for sorting $\Omega(n)$ to examine all the input All sort lower bound are $\Omega(n,lg,n)$ $\Omega(n,lg,n)$ is lower bound for comparison test  Decision T">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://hackmd.io/_uploads/H1FmpFJgR.png">
+<meta property="article:published_time" content="2024-04-07T07:36:32.000Z">
+<meta property="article:modified_time" content="2024-04-07T07:38:22.900Z">
+<meta property="article:author" content="zhwa">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hackmd.io/_uploads/H1FmpFJgR.png">
+  
+  
+  
+  <title>Algorithm Ch8 Sort in linear time - inf-journey shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>inf-journey shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Algorithm Ch8 Sort in linear time"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-07 15:36" pubdate>
+          2024年4月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Algorithm Ch8 Sort in linear time</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Algorithm-Ch8-Sort-in-linear-time"><a href="#Algorithm-Ch8-Sort-in-linear-time" class="headerlink" title="Algorithm Ch8 Sort in linear time"></a>Algorithm Ch8 Sort in linear time</h1><h2 id="Lower-bounds-for-sorting"><a href="#Lower-bounds-for-sorting" class="headerlink" title="Lower bounds for sorting"></a>Lower bounds for sorting</h2><ul>
+<li>$\Omega(n)$ to examine all the input</li>
+<li>All sort lower bound are $\Omega(n,lg,n)$</li>
+<li>$\Omega(n,lg,n)$ is lower bound for comparison test</li>
+</ul>
+<h2 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h2><ul>
+<li>Abstration of any  comparison sort</li>
+<li>Represents comparison made by<ul>
+<li>specific sorting algorithm</li>
+<li>on input of a given size</li>
+</ul>
+</li>
+<li>Abstract away conotrol &amp; data movement, etc.<ul>
+<li>counting only comparison</li>
+</ul>
+</li>
+</ul>
+<h3 id="For-insertion-sort-on-3-elements"><a href="#For-insertion-sort-on-3-elements" class="headerlink" title="For insertion sort on 3 elements"></a>For insertion sort on 3 elements</h3><p><img src="https://hackmd.io/_uploads/H1FmpFJgR.png" srcset="/webHome/img/loading.gif" lazyload alt="image"></p>
+<ul>
+<li>internal node: indices of array elements from their original pos.</li>
+<li>leaf: permutation of orders that the algorithm determines</li>
+<li>leaf numbers &gt;&#x3D; n!</li>
+</ul>
+<h3 id="For-any-comparison-sort"><a href="#For-any-comparison-sort" class="headerlink" title="For any comparison sort"></a>For any comparison sort</h3><ul>
+<li>1 tree for each n</li>
+<li>view the tree: like algorithm splits in two at each node, base on the inf. is has determined up to that point</li>
+<li>tree models all possible execution tracs</li>
+</ul>
+<h3 id="length-of-the-longest-path-from-root-to-leaf"><a href="#length-of-the-longest-path-from-root-to-leaf" class="headerlink" title="length of the longest path from root to leaf"></a>length of the longest path from root to leaf</h3><p>depends on the algorithm</p>
+<ul>
+<li>Insertion Sort $\Theta(n^2)$</li>
+<li>Merge Sort $\Theta(n,lg,n)$</li>
+</ul>
+<h3 id="lemma"><a href="#lemma" class="headerlink" title="lemma:"></a>lemma:</h3><p>any binary tree of height h has &lt;&#x3D; $2^h$ leaves</p>
+<ul>
+<li>l &#x3D; # of leaves</li>
+<li>h &#x3D; height</li>
+<li>l &lt;&#x3D; $2^h$</li>
+</ul>
+<h3 id="The"><a href="#The" class="headerlink" title="The."></a>The.</h3><p>any decision tree that sorts n ele. has height $\Omega(n,lg,n)$</p>
+<ul>
+<li>Proof.<br>l &gt;&#x3D; n!<br>By lemma, $n! &lt;&#x3D; l &lt;&#x3D; 2^h$<br>Take logs, h &gt;&#x3D; lg(n!)<br>Use Stirling;s appor., $n! &gt; (n&#x2F;e)^n$<br>$h &gt;&#x3D; lg(n&#x2F;e)^n &#x3D; nlg(n&#x2F;e) &#x3D; nlgn - nlge &#x3D; \Omega(n,lg,n)</li>
+</ul>
+<h3 id="Corollary"><a href="#Corollary" class="headerlink" title="Corollary"></a>Corollary</h3><p>Heapsort, merge sort are asymptotically optimal comparison sort(最優排序)</p>
+<h2 id="Sorting-in-linear-time"><a href="#Sorting-in-linear-time" class="headerlink" title="Sorting in linear time"></a>Sorting in linear time</h2><h3 id="Counting-sort"><a href="#Counting-sort" class="headerlink" title="Counting sort"></a>Counting sort</h3><p>Depends on a key assumption: numbers &lt;- {0, 1, …, k}</p>
+<ul>
+<li>Input: A[1…n], where A[j] &lt;- {0, …, k} for all j</li>
+<li>Output: B[1…n], B should be already allocated</li>
+<li>Auxiliary Storage: C[0…k]</li>
+</ul>
+<p>pseudo code<br><img src="https://hackmd.io/_uploads/HyxSB51xC.png" srcset="/webHome/img/loading.gif" lazyload alt="image"><br><img src="https://hackmd.io/_uploads/SyYSL9kgR.png" srcset="/webHome/img/loading.gif" lazyload alt="image"></p>
+<p>property</p>
+<ul>
+<li>stable because of how the last loop works<ul>
+<li>keys with same value appear in same order</li>
+</ul>
+</li>
+</ul>
+<h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h4><p>$\Theta(n+k)$, which is $\Theta(n)$ if k &#x3D; $O(n)$<br>Is k practical?</p>
+<ul>
+<li>32-bit? No</li>
+<li>16-bit? probably not</li>
+<li>8-bit? Maybe, depending on n</li>
+<li>4-bit? Probably</li>
+<li>Counting sort used in radix sort</li>
+</ul>
+<h3 id="Radix-Sort"><a href="#Radix-Sort" class="headerlink" title="Radix Sort"></a>Radix Sort</h3><p>Sort least significant digits first<br>To sort d digits:<br><img src="https://hackmd.io/_uploads/rkv8x3Jg0.png" srcset="/webHome/img/loading.gif" lazyload alt="image"><br><img src="https://hackmd.io/_uploads/BJn9lnklC.png" srcset="/webHome/img/loading.gif" lazyload alt="image"></p>
+<h4 id="Correctness"><a href="#Correctness" class="headerlink" title="Correctness"></a>Correctness</h4><p>Assume digits 1, 2, …, i-1 is already sorted<br>for $i^{th}$ digit:</p>
+<ul>
+<li>if two digit are different -&gt; by counting sort</li>
+<li>if … are equal -&gt; count sort is stable, keep order before</li>
+</ul>
+<p>It shows why it’s important to use a stable sort for intermediate sort</p>
+<h4 id="Analyse"><a href="#Analyse" class="headerlink" title="Analyse"></a>Analyse</h4><p>Assume intermediate sort is counting sort</p>
+<ul>
+<li>$\Theta(n+k)$ per pass (digit in range 0, …, k)</li>
+<li>d pass</li>
+<li>$\Theta(d(n+k))$ total</li>
+<li>if k &#x3D; $O(n)$, time &#x3D; $\Theta(dn)$</li>
+</ul>
+<h4 id="Break-digit"><a href="#Break-digit" class="headerlink" title="Break digit"></a>Break digit</h4><ul>
+<li>n words</li>
+<li>b bits per word</li>
+<li>Break into r-bit digits. Have d &#x3D; [b&#x2F;r]</li>
+<li>Using counting sort, k &#x3D; $2^r$-1<ul>
+<li>EX. 32-bit words, 8-bits digits.</li>
+<li>b &#x3D; 32, r &#x3D; 8, d &#x3D; [32&#x2F;8] &#x3D; 4</li>
+<li>k &#x3D; $2^8$ - 1 &#x3D; 255</li>
+</ul>
+</li>
+<li>Time &#x3D; $\Theta(\frac{b}{r}(n+2^r))$</li>
+</ul>
+<h5 id="How-to-choose-r"><a href="#How-to-choose-r" class="headerlink" title="How to choose r?"></a>How to choose r?</h5><p>Balance $\frac{b}{r}$ and n + $2^r$, choosing r $\approx$ lg n</p>
+<p>give us  $\Theta(\frac{b}{lg,n}(n+n))$ &#x3D; $\Theta(bn&#x2F;lg,n)$</p>
+<ul>
+<li>if r &lt; lg n<ul>
+<li>$\frac{b}{r}$ &gt; $\frac{b}{lg,n}$</li>
+<li>n + $2^r$ do not improve, keep $\Theta(n)$</li>
+</ul>
+</li>
+<li>if r &gt; lg n<ul>
+<li>n + $2^r$ gets big</li>
+<li>Ex. r &#x3D; 2lg n $\Rightarrow$ $2^r$ &#x3D; $2^{2lg,n}$ &#x3D; $n^2$</li>
+</ul>
+</li>
+</ul>
+<p>So, to sort $2^{16}$ 32-bit numbers, use r &#x3D; lg $2^{16}$ &#x3D; 16 bit, which do 2 passes</p>
+<h3 id="Compare"><a href="#Compare" class="headerlink" title="Compare"></a>Compare</h3><ul>
+<li>1 million ($2^{20}$) 32-bit int.</li>
+<li>Radix sort: ceil(32&#x2F;20) &#x3D; 2 passes</li>
+<li>Merge sort&#x2F;quick sort: lg n &#x3D; 20 passes</li>
+<li>each passes in radix sort is really 2<ul>
+<li>one to take census</li>
+<li>one to move data</li>
+</ul>
+</li>
+</ul>
+<p>why radix can violate ground rule of comparison sort</p>
+<ul>
+<li>using counting sort allows us to gain inf. about key by means other than comparison</li>
+<li>used keys as array indices</li>
+</ul>
+<h2 id="Bucket-sort"><a href="#Bucket-sort" class="headerlink" title="Bucket sort"></a>Bucket sort</h2><p>Assume the input is generated by a random process that distributes ee&#x2F; uniformly over [0, 1)</p>
+<p>Idea:</p>
+<ul>
+<li>Divide [0, 1) into n equal-sized buckets</li>
+<li>Distribute the n input values into the bucket</li>
+<li>sort each bucket</li>
+<li>go through buckets in order, listing ele. in each one</li>
+</ul>
+<p>Input: A[1…n], where 0 &lt;&#x3D; A[i] &lt; 1 for all i<br>Auxiliary array: B[0…n-1] of linked lists, each list init. empty</p>
+<p><img src="https://hackmd.io/_uploads/HJG8j2yx0.png" srcset="/webHome/img/loading.gif" lazyload alt="image"></p>
+<h3 id="Correctness-1"><a href="#Correctness-1" class="headerlink" title="Correctness"></a>Correctness</h3><ul>
+<li>Consider A[i], A[j], WLOG, A[i] &lt;&#x3D; A[j]</li>
+<li>than floor(n<em>A[i]) &lt;&#x3D; floor(n</em>A[j])</li>
+<li>thus A[i], A[j]<ul>
+<li>in the same bucket, by insertion sort &#x3D;&gt; fixes up</li>
+<li>other wise, by concatenation in ordere &#x3D;&gt; fixes up</li>
+</ul>
+</li>
+</ul>
+<h3 id="Analyse-1"><a href="#Analyse-1" class="headerlink" title="Analyse"></a>Analyse</h3><ul>
+<li>relies on no buckets getting too many values</li>
+<li>All lines of algo. excpt inserting sort take $\Theta(n)$ altogether(除了插入排序，其他部分總共需要…)</li>
+<li>Intuitively, if each bucket gets a constant number of ele., it takes $O(1)$ time to sort each bucket<ul>
+<li>$O(n)$ for all bucket</li>
+</ul>
+</li>
+<li>except each bucket to have few ele., since the average is 1 ele. per bucket</li>
+</ul>
+<h3 id="careful-Analyse"><a href="#careful-Analyse" class="headerlink" title="careful Analyse"></a>careful Analyse</h3><p>Def. a RV.</p>
+<ul>
+<li>$n_i$ &#x3D; the number of ele. placd in bucket B[i]</li>
+</ul>
+<p>Because insertion sort run in quadratic time, bucket sort time is</p>
+<ul>
+<li>T(n) &#x3D; $\Theta(n)$ + $\sum^{n-1}<em>{i&#x3D;0}O(n</em>{i}^{2})$</li>
+</ul>
+<p>Take expectations,</p>
+<ul>
+<li>E[T(n)] &#x3D; E[$\Theta(n)$ + $\sum^{n-1}<em>{i&#x3D;0}O(n</em>{i}^{2})$] &#x3D; $\Theta(n)$ + $\sum^{n-1}<em>{i&#x3D;0}E(O(n</em>{i}^{2}))$ &#x3D; $\Theta(n)$ + $\sum^{n-1}<em>{i&#x3D;0}O(E(n</em>{i}^{2}))$</li>
+</ul>
+<p>Claim,<br>$E(n_{i}^{2})$ &#x3D; 2 - (1&#x2F;n) for i &#x3D; 0, …, n-1</p>
+<p>proof of claim,<br>Def. indicator RV.</p>
+<ul>
+<li>$X_{ij}$ &#x3D; I{A[j] falls in bucket i}</li>
+<li>Pr{A[j] falls in bucket i} &#x3D; 1&#x2F;n</li>
+<li>$n_i$ &#x3D; $\sum_{j&#x3D;1}^{n}X_{ij}$</li>
+</ul>
+<p>Then,<br>$E(n_i^2)$ &#x3D; $E((\sum_{j&#x3D;1}^{n}X_{ij})^2)$ &#x3D; $E(\sum_{j&#x3D;1}^{n}X_{ij}^2,+,2\sum_{j&#x3D;1}^{n-1}\sum_{k&#x3D;j+1}^{n}X_{ij}X_{ik})$ &#x3D; $\sum_{j&#x3D;1}^{n} E(X_{ij}^2) , + , 2 \sum_{j&#x3D;1}^{n-1} \sum_{k&#x3D;j+1}^{n} E(X_{ij}X_{ik})$</p>
+<p>$E(X_{ij}^2)$ &#x3D; $0^2$<em>Pr{A[j] do not fall in bucket i} + $1^2$<em>Pr{A[j] falls in bucket i} &#x3D; 0</em>(1 - $\frac{1}{n}$) + 1</em>$\frac{1}{n}$ &#x3D; $\frac{1}{n}$</p>
+<p>$E(X_{ij}X_{ik})$ for j$\not&#x3D;k$</p>
+<ul>
+<li>$X_{ij}$ and $X_{ik}$ are independent RV.</li>
+<li>than $E(X_{ij}X_{ik})$ is $E(X_{ij})E(X_{ik})$ &#x3D; $\frac{1}{n}\cdot\frac{1}{n}$ &#x3D; $\frac{1}{n^2}$</li>
+</ul>
+<p>Therefore<br>$E(n_i^2)$ &#x3D; $\sum_{j&#x3D;1}^{n} \frac{1}{n}$ + 2$\sum_{j&#x3D;1}^{n-1} \sum_{k&#x3D;j+1}^{n} \frac{1}{n^2}$ &#x3D; $n \cdot \frac{1}{n^2}$ + $2 \dbinom{n}{2} \frac{1}{n^2}$ &#x3D; 1 + $\frac{n-1}{n}$ &#x3D; 1+1-$\frac{1}{n}$ &#x3D; 2-$\frac{1}{n}$</p>
+<p>thus<br>E[T(n)] &#x3D; $\Theta(n)+\sum_{i&#x3D;0}^{n-1} O(2- \frac{1}{n})$ &#x3D; $\Theta(n)$ + $O(n)$ &#x3D; $\Theta(n)$</p>
+<h3 id="End-up"><a href="#End-up" class="headerlink" title="End up"></a>End up</h3><ul>
+<li>not a comparison sort</li>
+<li>probabilistic analysis</li>
+<li>different from a randomized algo., where we use randomization to impose a distribution</li>
+<li>With bucket sort, if the input isn’t drawn from a uniform distribution on [0,1), all bets are off (performance-wise, but the algorithm is still correct).</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Algorithm/" class="category-chain-item">Algorithm</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/webHome/tags/Math/" class="print-no-link">#Math</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Algorithm Ch8 Sort in linear time</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2024/04/07/Algorithm/Algorithm-Ch8-Sort-in-linear-time/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhwa</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2024年4月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/2023/10/22/app-develope/TWMA%E9%87%8D%E8%A3%BDby-AndoidStudio-with-kotlin/" title="TWMA重製by AndoidStudio with kotlin">
+                        <span class="hidden-mobile">TWMA重製by AndoidStudio with kotlin</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/2024/04/07/Algorithm/Algorithm-Ch8-Sort-in-linear-time/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/2024/04/07/Algorithm/Algorithm-Ch8-Sort-in-linear-time/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
