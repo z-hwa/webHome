@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-08%20141417.png">
 <meta property="article:published_time" content="2024-04-08T07:29:10.000Z">
-<meta property="article:modified_time" content="2024-04-08T07:52:20.597Z">
+<meta property="article:modified_time" content="2024-04-08T08:37:21.858Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
@@ -426,16 +426,26 @@ mjx-container[display="true"] + br {
 </ul>
 <p>Show how this knowledge to make arithmetic-intensive programs go mush faster</p>
 <h2 id="3-2-Addition-and-Substraction"><a href="#3-2-Addition-and-Substraction" class="headerlink" title="3.2 Addition and Substraction"></a>3.2 Addition and Substraction</h2><h3 id="Integer-Addition"><a href="#Integer-Addition" class="headerlink" title="Integer Addition"></a>Integer Addition</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-08%20131516.png" srcset="/webHome/img/loading.gif" lazyload>
-* Ex. 7+6
-* Overflow cannot occur
-    * when adding operands with diff. signs, since the sum must be no larger than one of the operands (if the operands fit in 32 bits)
-* Overflow occur if the result is out of range
-    * Adding +num, -num operands -&gt; no overflow
-    * Adding two +num operands
-        * overflow if result sign is 1
-    * ... two -num operands
-        * overflow if result sign is 0
 
+<ul>
+<li>Ex. 7+6</li>
+<li>Overflow cannot occur<ul>
+<li>when adding operands with diff. signs, since the sum must be no larger than one of the operands (if the operands fit in 32 bits)</li>
+</ul>
+</li>
+<li>Overflow occur if the result is out of range<ul>
+<li>Adding +num, -num operands -&gt; no overflow</li>
+<li>Adding two +num operands<ul>
+<li>overflow if result sign is 1</li>
+</ul>
+</li>
+<li>… two -num operands<ul>
+<li>overflow if result sign is 0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="Integer-Substraction"><a href="#Integer-Substraction" class="headerlink" title="Integer Substraction"></a>Integer Substraction</h3><p>Concept: negate the second operand, than add</p>
 <ul>
 <li>Ex. c-b = c+(-b)</li>
