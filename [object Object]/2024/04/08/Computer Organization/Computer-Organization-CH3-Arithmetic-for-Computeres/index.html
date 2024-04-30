@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-08%20141417.png">
 <meta property="article:published_time" content="2024-04-08T07:29:10.000Z">
-<meta property="article:modified_time" content="2024-04-17T22:50:21.858Z">
+<meta property="article:modified_time" content="2024-04-30T04:51:37.822Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
@@ -363,7 +363,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -374,7 +374,7 @@ mjx-container[display="true"] + br {
         
         
         
-          94 分鐘
+          99 分鐘
         
       </span>
     
@@ -937,6 +937,41 @@ mul rdl, rs1, rs2</code></pre></div>
 <p><strong>What is represented depends on the instruction that<br>operates on the bits in the word</strong><br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240414065626.png" srcset="/webHome/img/loading.gif" lazyload></p>
 <p>The major difference between<br><strong>computer numbers</strong> and <strong>numbers in the<br>real world</strong> is that computer numbers<br>have limited size and hence limited<br>precision</p>
 <p>Programmers must remember these<br>limits and write programs accordingly</p>
+<h2 id="3-6-subword-parallelism"><a href="#3-6-subword-parallelism" class="headerlink" title="3.6 subword parallelism"></a>3.6 subword parallelism</h2><h3 id="subword-parallelism"><a href="#subword-parallelism" class="headerlink" title="subword parallelism"></a>subword parallelism</h3><p>把128bit寬的register分割成兩個64bit space</p>
+<ul>
+<li>those 2 part of space could be used to compute two data at the same time</li>
+</ul>
+<p>SIMD concept</p>
+<ul>
+<li>single instruction multiple data</li>
+<li>運算的指令是一樣的，但資料是不同的</li>
+</ul>
+<p>可能存在資料轉移的成本</p>
+<h3 id="fallacy-right-shift-and-division"><a href="#fallacy-right-shift-and-division" class="headerlink" title="fallacy right shift and division"></a>fallacy right shift and division</h3><p>only under unsigned bit</p>
+<ul>
+<li>right shift the same as division</li>
+</ul>
+<p>pitfall</p>
+<ul>
+<li>floating-point addition is not associative</li>
+</ul>
+<p>sequence vs. parallel</p>
+<ul>
+<li>in sequence, order is fixed<ul>
+<li>result also</li>
+</ul>
+</li>
+<li>in parallel, order is not fixed<ul>
+<li>decide by CPU</li>
+<li>result might diff.</li>
+<li>caused problem in floating-point<ul>
+<li>which is not associative</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>there are always 誤差 in computer</p>
 
                 
               </div>

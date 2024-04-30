@@ -1,0 +1,1187 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Computer Network CH3 RoadmapPrinciples of reliable data transfer(RDT)Principles of reliable data transfer網路通道不能確定是否信賴 使用可信賴的protocal  複雜度取決於使用的unreliable channel  傳送端與接收端不知道彼此的狀態  除非接收端回覆  protocol in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Network CH3 Roadmap">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Roadmap/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Computer Network CH3 RoadmapPrinciples of reliable data transfer(RDT)Principles of reliable data transfer網路通道不能確定是否信賴 使用可信賴的protocal  複雜度取決於使用的unreliable channel  傳送端與接收端不知道彼此的狀態  除非接收端回覆  protocol in">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164221.png">
+<meta property="article:published_time" content="2024-04-30T04:56:02.000Z">
+<meta property="article:modified_time" content="2024-04-30T04:57:16.444Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164221.png">
+  
+  
+  
+  <title>Computer Network CH3 Roadmap - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Computer Network CH3 Roadmap"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-30 12:56" pubdate>
+          2024年4月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Computer Network CH3 Roadmap</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Computer-Network-CH3-Roadmap"><a href="#Computer-Network-CH3-Roadmap" class="headerlink" title="Computer Network CH3 Roadmap"></a>Computer Network CH3 Roadmap</h1><h2 id="Principles-of-reliable-data-transfer-RDT"><a href="#Principles-of-reliable-data-transfer-RDT" class="headerlink" title="Principles of reliable data transfer(RDT)"></a>Principles of reliable data transfer(RDT)</h2><p>Principles of reliable data transfer<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164221.png" srcset="/webHome/img/loading.gif" lazyload/><br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164247.png" srcset="/webHome/img/loading.gif" lazyload/><br>網路通道不能確定是否信賴</p>
+<p>使用可信賴的protocal</p>
+<ul>
+<li>複雜度取決於使用的unreliable channel</li>
+</ul>
+<p>傳送端與接收端不知道彼此的狀態</p>
+<ul>
+<li>除非接收端回覆<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164531.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<h3 id="protocol-interface"><a href="#protocol-interface" class="headerlink" title="protocol interface"></a>protocol interface</h3><p>sender:</p>
+<ul>
+<li>application layer呼叫rdt_send<br>*　transport layer呼叫udt_send</li>
+</ul>
+<p>receiver:</p>
+<ul>
+<li>封包進來呼叫rdt_rcv</li>
+<li>rdt_rcv呼叫deliver_data</li>
+</ul>
+<p>雙向頻道<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164941.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<h3 id="Getting-started-p3-47"><a href="#Getting-started-p3-47" class="headerlink" title="Getting started p3.47"></a>Getting started p3.47</h3><ul>
+<li>了解版本差異</li>
+<li>為什麼要發展下一個版本</li>
+</ul>
+<p>using FSM(finite state machine)</p>
+<ul>
+<li>上面是event</li>
+<li>下面是action</li>
+</ul>
+<h3 id="rdt1-0-不考-p3-48"><a href="#rdt1-0-不考-p3-48" class="headerlink" title="rdt1.0(不考) p3.48"></a>rdt1.0(不考) p3.48</h3><p>進行在underlying channel(正在進行的)</p>
+<p>underlying channel perfectly reliable</p>
+<ul>
+<li>no bit errors</li>
+<li>no loss of packet</li>
+</ul>
+<p>receiver wait for call from below(等待封包傳送到)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415165711.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<h3 id="rdt2-0-p3-49"><a href="#rdt2-0-p3-49" class="headerlink" title="rdt2.0 p3.49"></a>rdt2.0 p3.49</h3><p>存在bit error</p>
+<ul>
+<li>using checksum to detect bit error</li>
+</ul>
+<p>如何recover error?</p>
+<ul>
+<li>receiver 回覆<ul>
+<li>acknowledgements (ACKs) 接收端回覆是否收到封包</li>
+<li>NAKs 接收端回覆收到了，但訊息怪怪的</li>
+</ul>
+</li>
+<li>如果傳送端接收到NAKs -&gt; 重送<ul>
+<li>不管是什麼問題</li>
+<li>第二次以上傳送封包</li>
+</ul>
+</li>
+</ul>
+<p>上述過程稱之為stop and wait</p>
+<p>FSM</p>
+<ul>
+<li>2.0的特色要加入checksum</li>
+<li>sender 多一個狀態 wait for ACK or NAK</li>
+</ul>
+<p>因為需要通過ACK, NAK來了解接收端的狀態</p>
+<ul>
+<li>故需要protocol<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415171247.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>has a fatal error</p>
+<ul>
+<li>如果ACK, NAK也是corrupt?</li>
+<li>不能就一直重傳<ul>
+<li>可能造成duplicate</li>
+</ul>
+</li>
+</ul>
+<p>handling duplicate</p>
+<ul>
+<li>sender add sequenc number to each pkt</li>
+<li>收到重複就拋棄</li>
+<li>即rdt2.1</li>
+</ul>
+<h3 id="rdt2-1-p3-56"><a href="#rdt2-1-p3-56" class="headerlink" title="rdt2.1 p3.56"></a>rdt2.1 p3.56</h3><p>sender多傳送一個sequence number</p>
+<ul>
+<li>讓receiver知道這是pkt 0</li>
+</ul>
+<p>sender</p>
+<ul>
+<li>如果corrupt or NAK不斷重傳</li>
+<li>直到not corrupt and ACK</li>
+<li>才進入等待傳入下一個sequence number的狀態<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172114.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>receiver</p>
+<ul>
+<li>sndpkt包含ACK和checksum(2.0也有)</li>
+<li>ACK中會有sequence number<ul>
+<li>回傳給sender<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172724.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+</ul>
+<p>discussion</p>
+<ul>
+<li>sender<ul>
+<li>seq # added to pkt</li>
+<li>0, 1 is enough, if stop and wait<ul>
+<li>pipeline 就不行</li>
+</ul>
+</li>
+<li>必須記錄0, 1</li>
+</ul>
+</li>
+<li>receiver<ul>
+<li>check if duplicate</li>
+<li>can not known last ACK&#x2F;NAK received OK at sender</li>
+<li>thus 2.2 created</li>
+</ul>
+</li>
+</ul>
+<h3 id="rdt2-2-p3-59"><a href="#rdt2-2-p3-59" class="headerlink" title="rdt2.2 p3.59"></a>rdt2.2 p3.59</h3><p>using ACK only</p>
+<p>must explictly include seq # of pkt being ACKed</p>
+<p>duplicate ACK at sender &#x3D; NAKs</p>
+<ul>
+<li>retransmit</li>
+</ul>
+<p>receiver</p>
+<ul>
+<li>sequence # 放進ACK</li>
+<li>回傳ACK, checksum</li>
+</ul>
+<h3 id="rdt3-0-p3-61"><a href="#rdt3-0-p3-61" class="headerlink" title="rdt3.0 p3.61"></a>rdt3.0 p3.61</h3><p>new channel assumption</p>
+<ul>
+<li>lose packet(data, ACKs)<ul>
+<li>previous skill, but not enough</li>
+</ul>
+</li>
+<li>loss就什麼都收不到了</li>
+</ul>
+<p>Approach</p>
+<ul>
+<li>add timer<ul>
+<li>sender waits “reasonable” amount of time for ACK</li>
+<li>retransmit if no ACK</li>
+</ul>
+</li>
+<li>if pkt just delay?(just on the way)<ul>
+<li>duplicate is solved by seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415180725.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+</ul>
+<p><strong>多了一個計時器</strong></p>
+<p>如果ACK的seq # 不對，就不做事直到timeout</p>
+<p>In action</p>
+<ul>
+<li>no loss</li>
+<li>packet loss</li>
+<li><strong>ACK loss</strong><ul>
+<li>after sender resent, receiver detect duplicate</li>
+</ul>
+</li>
+<li><strong>premature timeout&#x2F;delayed ACK(太早)</strong><ul>
+<li>receive ACK the same -&gt; ignore<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181333.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+</ul>
+<h4 id="performance"><a href="#performance" class="headerlink" title="performance"></a>performance</h4><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181558.png" srcset="/webHome/img/loading.gif" lazyload/>
+
+<p>operation</p>
+<ul>
+<li>blue part is $\frac{L}{R}$<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181731.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>using many time to sent little bit data, caused big RTT</p>
+<ul>
+<li>$U_{sender}$ is too small<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181927.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<h4 id="using-pipeline"><a href="#using-pipeline" class="headerlink" title="using pipeline!"></a>using pipeline!</h4><p>sender allows multiple, “in-flight”, yet-to-be-acknowledge pkt</p>
+<ul>
+<li>range of seq # must be increased</li>
+<li>buffering at sender and&#x2F;or receiver</li>
+</ul>
+<p>increased utilization(看過就好)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415182240.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<h4 id="Go-Back-N-p-72"><a href="#Go-Back-N-p-72" class="headerlink" title="Go-Back-N: p.72"></a>Go-Back-N: p.72</h4><p>Sender</p>
+<ul>
+<li>sender window of up to N, consecuive transmitted but unACKed pkts<ul>
+<li>k-bit seq # in pkt header</li>
+<li>sender base</li>
+</ul>
+</li>
+<li>cumulative ACK:一次回應多個ACK</li>
+<li>timer從最早的pkt開始算</li>
+<li>如果沒收到，回到最前面的重傳<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225254.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>Reciver</p>
+<ul>
+<li>回傳ACK根據最高的seq # in order<ul>
+<li>only remember rcv_base</li>
+<li>may duplicate ACKs</li>
+</ul>
+</li>
+<li>out-of-order pkt<ul>
+<li>can discard or buffer</li>
+<li>re-ACK pkt with highest in-order seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225239.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+</ul>
+<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225603.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<ul>
+<li>太蠢了，因為一個loss重傳一大堆</li>
+</ul>
+<h4 id="Selective-repeat"><a href="#Selective-repeat" class="headerlink" title="Selective repeat"></a>Selective repeat</h4><p>維持timer for specific pkt</p>
+<ul>
+<li>重傳time out的那個</li>
+</ul>
+<p>reciver</p>
+<ul>
+<li>多了一個expected, not yet recived<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415230339.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>p3.77看過就好</p>
+<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231039.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<p>dilemma!</p>
+<ul>
+<li>if seq # is too close to window size</li>
+<li>會以為sender傳的0，是新的0<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231220.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="TCP-flow-control"><a href="#TCP-flow-control" class="headerlink" title="TCP flow control"></a>TCP flow control</h3><p>receiver 告訴sender 他已經不能再接收了</p>
+<ul>
+<li>希望best effort，傳送端盡量傳，交給接收端控制</li>
+</ul>
+<p>network layer會一直把資料傳輸上去<br>TCP 會把資料丟給application layer<br>application layer拆資料</p>
+<p>rcv window</p>
+<ul>
+<li>接收端使用free buffer在window的大小，告訴sender不要傳超過</li>
+<li>放在header中<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416153109.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<h3 id="TCP-connection-management-p3-101"><a href="#TCP-connection-management-p3-101" class="headerlink" title="TCP connection management p3.101"></a>TCP connection management p3.101</h3><p>TCP會做handshake(三項交握)</p>
+<ul>
+<li>目的是建立連線tcp connection</li>
+</ul>
+<p>header中包含</p>
+<ul>
+<li>receiver Seq #</li>
+<li>rcvBuffer size</li>
+</ul>
+<p>2-way handshake:</p>
+<ul>
+<li>沒有發生問題都ok</li>
+<li>如果timeout<ul>
+<li>sender不知道acc_conn是第一個還是第二個req_conn的回覆</li>
+<li>導致half connection，如圖<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416153939.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+<li>server以為client又開啟了一次<ul>
+<li>但client只是重傳</li>
+</ul>
+</li>
+</ul>
+<p>3-way handshake:</p>
+<ul>
+<li>client送了一個TCP SYN msg</li>
+<li>server回傳SYN ACK</li>
+<li>client回傳ACK(for SYN ACK)<ul>
+<li>client知道server存活，所以這個ACK可以帶資料</li>
+</ul>
+</li>
+<li>雙方都會初始化一個seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416154508.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>因為是ACK對方的ACKbit，所以回傳ACKnum &#x3D; x+1(多1bit)</li>
+</ul>
+<p>closing TCP connection(沒什麼特別的)</p>
+<ul>
+<li>send FIN bit &#x3D; 1</li>
+<li>雙方同時關閉</li>
+</ul>
+<h4 id="TEST-為什麼不做雙向交握"><a href="#TEST-為什麼不做雙向交握" class="headerlink" title="TEST:為什麼不做雙向交握?"></a>TEST:為什麼不做雙向交握?</h4><h2 id="Principe-of-congestion-control"><a href="#Principe-of-congestion-control" class="headerlink" title="Principe of congestion control"></a>Principe of congestion control</h2><p>congestion</p>
+<ul>
+<li>too many senders: sending too fast</li>
+<li>caused long delay(queueing in router buffers)<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416155725.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>flow control</p>
+<ul>
+<li>one sender: sneding too fast<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416155524.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>delay很難解決，比起through put</p>
+<h3 id="scenario-1-p3-111"><a href="#scenario-1-p3-111" class="headerlink" title="scenario 1 p3.111"></a>scenario 1 p3.111</h3><p>infinite buffer</p>
+<ul>
+<li>所有資料都可以暫存在router</li>
+<li>只會造成delay increasing, no loss</li>
+</ul>
+<p>$\lambda _{in}$ 線性於 $\lambda _{out}$</p>
+<p>沒有需要被重傳的pkt<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416162318.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<h3 id="scenario-2-會考-p3-112"><a href="#scenario-2-會考-p3-112" class="headerlink" title="scenario 2(會考) p3.112"></a>scenario 2(會考) p3.112</h3><p>finite buffer</p>
+<ul>
+<li><p>pkt drop or timeout</p>
+<ul>
+<li>transport layer 資料需要重傳, $\lambda _{in} &gt; \lambda _{out}$</li>
+<li>application layer的$\lambda$一樣<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416162748.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+<li><p>through put不能提升到上限($\frac{R}{2}$, 兩個人分配link capacity)</p>
+<ul>
+<li>因為檔案可能需要重傳caused by loss or timeout</li>
+<li>存在duplicate</li>
+</ul>
+</li>
+</ul>
+<h3 id="sceneario-3-p3-118"><a href="#sceneario-3-p3-118" class="headerlink" title="sceneario 3 p3.118"></a>sceneario 3 p3.118</h3><p>4 senders<br>multi-hop paths</p>
+<ul>
+<li>經過兩顆以上的router(兩個節點中的一個邊叫做one hot)</li>
+</ul>
+<p>先傳入的data(紅色)占滿了router(12點方向)的buffer<br>則藍色遇到bottle neck</p>
+<ul>
+<li>藍色的data在該router被丟掉了</li>
+<li>藍色的$\lambda _{in}$ 增加，但$\lambda _{out}$沒有增加多少<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416164633.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<h3 id="總結-p3-120"><a href="#總結-p3-120" class="headerlink" title="總結 p3.120"></a>總結 p3.120</h3><ul>
+<li>un-needed duplicates是因為time out<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416164941.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<h3 id="Approaches"><a href="#Approaches" class="headerlink" title="Approaches"></a>Approaches</h3><p>end-end congestion control(TCP using)</p>
+<ul>
+<li>不知道網路中發生甚麼<ul>
+<li>time out就重傳</li>
+</ul>
+</li>
+</ul>
+<p>network-assisted congestion control</p>
+<ul>
+<li>router通知hosts</li>
+</ul>
+<h3 id="TCP-congestion-control-AIMD-p3-124"><a href="#TCP-congestion-control-AIMD-p3-124" class="headerlink" title="TCP congestion control AIMD p3.124"></a>TCP congestion control AIMD p3.124</h3><p>網路還沒壅塞，盡可能增加傳輸效率</p>
+<p>一次增加一個maximum seg size<br>逐步增加直到loss detect再降低</p>
+<ul>
+<li>倍數降低multiplicative decrease<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416172309.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>why AIMD</p>
+<ul>
+<li>非同步的</li>
+</ul>
+<p>details</p>
+<ul>
+<li>last byte sent - last byte ACKed &lt;&#x3D; congestion window</li>
+<li>超過可能發生壅塞<ul>
+<li>不要超出自己的cwnd<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416172822.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+</ul>
+<p>TCP rate: p3.126</p>
+<h3 id="TCP-slow-start-p3-127"><a href="#TCP-slow-start-p3-127" class="headerlink" title="TCP slow start p3.127"></a>TCP slow start p3.127</h3><p>先發一個MSS，如果沒有congestion，double cwnd</p>
+<p>初始傳輸效率低，指數增加</p>
+<p>when should 變成線性增加?</p>
+<ul>
+<li>超過ssthresh(slow start threshold)</li>
+<li>ssthresh閾值<ul>
+<li>設置為$\frac{1}{2}$的cwnd</li>
+</ul>
+</li>
+</ul>
+<h3 id="summary-自己再看一下-p3-129"><a href="#summary-自己再看一下-p3-129" class="headerlink" title="summary(自己再看一下) p3.129"></a>summary(自己再看一下) p3.129</h3><p>Slow start<br>congestion avoidance(沒事 還是可以增加cwnd)<br>fast recovery</p>
+<ul>
+<li>沒人會考數值<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416173905.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<p>Slow start</p>
+<ul>
+<li>根據duplicate ACK判斷網路中的發生狀況</li>
+<li>收到new ACK, 增大cwnd<ul>
+<li>進入congestion avoidance</li>
+</ul>
+</li>
+</ul>
+<p>congestion avoidance</p>
+<ul>
+<li>如果timeout<ul>
+<li>回到slow start, 降低ssthresh</li>
+</ul>
+</li>
+<li>如果dupACK &#x3D;&#x3D; 3<ul>
+<li>進入fast recovery</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>timeout 就回到最初的起點<br>ssthresh &#x3D; cwnd &#x2F; 2<br>cwnd &#x3D; 1<br>dupACK &#x3D; 0</p>
+</blockquote>
+<h3 id="TCP-CUBIC-沒甚麼特別的，看過就好"><a href="#TCP-CUBIC-沒甚麼特別的，看過就好" class="headerlink" title="TCP CUBIC(沒甚麼特別的，看過就好)"></a>TCP CUBIC(沒甚麼特別的，看過就好)</h3><p>congestion state</p>
+<ul>
+<li>會壅塞的永遠都會壅塞</li>
+<li>傳統TCP AIMD<ul>
+<li>可以減半，也可以撿到剩1</li>
+</ul>
+</li>
+<li>現代TCP CUBIC<ul>
+<li>讓sending rate上升的更快<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423152130.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+</ul>
+<p>慢慢增加congestion window</p>
+<ul>
+<li>去找網路中最大的through put</li>
+</ul>
+<p>如果網路中存在bottle neck</p>
+<ul>
+<li>就會一直存在</li>
+</ul>
+<p>接近峰值(K)慢一點<br>不然就快一點</p>
+<ul>
+<li>K 類似於臨界點，即$w_max$</li>
+</ul>
+<h3 id="bottleneck-link-p3-132"><a href="#bottleneck-link-p3-132" class="headerlink" title="bottleneck link p3.132"></a>bottleneck link p3.132</h3><p>只會有一段</p>
+<ul>
+<li>TCP CUBIC就是在找這一整段路最大的through put</li>
+</ul>
+<p>塞住的router的buffer會一直保持幾乎是滿的狀態</p>
+<p>如果存在bottleneck link</p>
+<ul>
+<li>增加傳出速率，不會提高through put<ul>
+<li>反而RTT會變大，故藉此了解網路中是否發生壅塞</li>
+</ul>
+</li>
+</ul>
+<p><strong>Goal</strong>: “keep the end-end pipe just full, but not fuller”</p>
+<h3 id="Delay-based-TCP-congestion-control-p3-134"><a href="#Delay-based-TCP-congestion-control-p3-134" class="headerlink" title="Delay-based TCP congestion control p3.134"></a>Delay-based TCP congestion control p3.134</h3><p>比較RTT</p>
+<ul>
+<li>時間</li>
+</ul>
+<p>比較cwnd&#x2F;RTT</p>
+<ul>
+<li>through put</li>
+</ul>
+<h3 id="ECN"><a href="#ECN" class="headerlink" title="ECN"></a>ECN</h3><p>network-assisted</p>
+<ul>
+<li>router會修改IP header的ECN</li>
+<li>表示congestion</li>
+</ul>
+<p>還有一個欄位紀錄congestion</p>
+<ul>
+<li>ECE</li>
+<li>transport layer標記的<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423154305.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+<h3 id="Is-TCP-Fair"><a href="#Is-TCP-Fair" class="headerlink" title="Is TCP Fair?"></a>Is TCP Fair?</h3><p>原則上是公平的，在以下的假設情況下</p>
+<ul>
+<li>same RTT</li>
+<li>number of session is fixed</li>
+</ul>
+<p>如果是 parallel TCP 就會比較快</p>
+<h3 id="Evolving-transport-不重要-p3-141"><a href="#Evolving-transport-不重要-p3-141" class="headerlink" title="Evolving transport(不重要) p3.141"></a>Evolving transport(不重要) p3.141</h3><h3 id="QUIC-quic-UDP-internet-connections-看過就好-p3-143"><a href="#QUIC-quic-UDP-internet-connections-看過就好-p3-143" class="headerlink" title="QUIC: quic UDP internet connections(看過就好) p3.143"></a>QUIC: quic UDP internet connections(看過就好) p3.143</h3><p>傳統的TCP+TLS</p>
+<ul>
+<li>會有兩個連續的handshake</li>
+<li>存在HOL<ul>
+<li>head of line blocking</li>
+</ul>
+</li>
+</ul>
+<p>QUIC</p>
+<ul>
+<li>只有一個handshake</li>
+<li>parallelism<ul>
+<li>no HOL blocking<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423160154.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Computer-Network/" class="category-chain-item">Computer Network</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Computer Network CH3 Roadmap</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2024/04/30/Computer Network/Computer-Network-CH3-Roadmap/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2024年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/" title="Computer Network CH4 Network Layer Data plane">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Computer Network CH4 Network Layer Data plane</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/" title="Computer Organization CH4 The Processor">
+                        <span class="hidden-mobile">Computer Organization CH4 The Processor</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Roadmap/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/2024/04/30/Computer%20Network/Computer-Network-CH3-Roadmap/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

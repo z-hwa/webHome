@@ -16,24 +16,24 @@
   <meta name="author" content="crown tako">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="Unity_ml-agents補充資料Author Z-hwA  影片支援(最好能看一看):unity從零開始打基礎(學完你就能在Untiy隨心所欲了):https:&#x2F;&#x2F;youtube.com&#x2F;playlist?list&#x3D;PL_Pb2I110MfGAsoqtDs8-6kEU55wU8CnE 基本架構(最重要，純英文): How to use Machine Learning AI in Unity">
+    <meta name="description" content="Algorithm CH3 growth of functionAsymptotic notationO-notation    -notation   -notation   Theorem  waringinterpret # of anonymous function functio on left side o-notation  -notation  Comparison of fun.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unity-ML-agents material">
-<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2021/10/04/ai/Unity-ML-agents%20material/">
+<meta property="og:title" content="Algorithm CH3 Growth of Function">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Algorithm/Algorithm-CH3-Growth-of-Function/">
 <meta property="og:site_name" content="Crown Tako Shoka">
-<meta property="og:description" content="Unity_ml-agents補充資料Author Z-hwA  影片支援(最好能看一看):unity從零開始打基礎(學完你就能在Untiy隨心所欲了):https:&#x2F;&#x2F;youtube.com&#x2F;playlist?list&#x3D;PL_Pb2I110MfGAsoqtDs8-6kEU55wU8CnE 基本架構(最重要，純英文): How to use Machine Learning AI in Unity">
+<meta property="og:description" content="Algorithm CH3 growth of functionAsymptotic notationO-notation    -notation   -notation   Theorem  waringinterpret # of anonymous function functio on left side o-notation  -notation  Comparison of fun.">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/unity%20ml-agent.PNG">
-<meta property="article:published_time" content="2021-10-04T14:06:16.000Z">
-<meta property="article:modified_time" content="2023-08-09T05:18:01.651Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172447.png">
+<meta property="article:published_time" content="2024-04-30T04:49:08.000Z">
+<meta property="article:modified_time" content="2024-04-30T04:49:40.386Z">
 <meta property="article:author" content="crown tako">
-<meta property="article:tag" content="code, learning, life, shoka">
+<meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/unity%20ml-agent.PNG">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172447.png">
   
   
   
-  <title>Unity-ML-agents material - Crown Tako Shoka</title>
+  <title>Algorithm CH3 Growth of Function - Crown Tako Shoka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -113,7 +113,119 @@
 
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -228,7 +340,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Unity-ML-agents material"></span>
+            <span id="subtitle" data-typed-text="Algorithm CH3 Growth of Function"></span>
           
         </div>
 
@@ -239,8 +351,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-10-04 22:06" pubdate>
-          2021年10月4日 晚上
+        <time datetime="2024-04-30 12:49" pubdate>
+          2024年4月30日 下午
         </time>
       </span>
     
@@ -251,7 +363,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          238 字
         
       </span>
     
@@ -262,7 +374,7 @@
         
         
         
-          21 分鐘
+          2 分鐘
         
       </span>
     
@@ -299,22 +411,43 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Unity-ML-agents material</h1>
+            <h1 id="seo-header">Algorithm CH3 Growth of Function</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Unity-ml-agents補充資料"><a href="#Unity-ml-agents補充資料" class="headerlink" title="Unity_ml-agents補充資料"></a>Unity_ml-agents補充資料</h1><h2 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h2><ul>
-<li>Z-hwA</li>
-</ul>
-<h2 id="影片支援-最好能看一看"><a href="#影片支援-最好能看一看" class="headerlink" title="影片支援(最好能看一看):"></a>影片支援(最好能看一看):</h2><p>unity從零開始打基礎(學完你就能在Untiy隨心所欲了):<br><a target="_blank" rel="noopener" href="https://youtube.com/playlist?list=PL_Pb2I110MfGAsoqtDs8-6kEU55wU8CnE">https://youtube.com/playlist?list=PL_Pb2I110MfGAsoqtDs8-6kEU55wU8CnE</a></p>
-<p>基本架構(最重要，純英文):</p>
-<p>How to use Machine Learning AI in Unity! (ML-Agents)<br> <a target="_blank" rel="noopener" href="https://youtu.be/zPFU30tbyKs">https://youtu.be/zPFU30tbyKs</a><br>Teach your AI! Imitation Learning with Unity ML-Agents!<br><a target="_blank" rel="noopener" href="https://youtu.be/supqT7kqpEI">https://youtu.be/supqT7kqpEI</a></p>
-<p>額外補充AI知識(中文，AI訓練基本原理):</p>
-<p>機器學習簡介:<br><a target="_blank" rel="noopener" href="https://learndigital.withgoogle.com/digitalgarage-tw/course/machine-learning-basics/module/141">https://learndigital.withgoogle.com/digitalgarage-tw/course/machine-learning-basics/module/141</a><br>鴻海基金會_認識AI:<br><a target="_blank" rel="noopener" href="https://youtu.be/dTwsC6x79iY">https://youtu.be/dTwsC6x79iY</a><br>ASUS_AI邊緣運算:<br><a target="_blank" rel="noopener" href="https://youtu.be/SisTX-YG1ic">https://youtu.be/SisTX-YG1ic</a><br>鴻海_基本神經網路架構:<br><a target="_blank" rel="noopener" href="https://youtu.be/3BmuZHmA9lE">https://youtu.be/3BmuZHmA9lE</a><br>人工智慧與深度學習:<br><a target="_blank" rel="noopener" href="https://youtu.be/QRUxDNToALs">https://youtu.be/QRUxDNToALs</a></p>
-<h2 id="文件支援-想要更進一步，那就來挑戰吧"><a href="#文件支援-想要更進一步，那就來挑戰吧" class="headerlink" title="文件支援(想要更進一步，那就來挑戰吧):"></a>文件支援(想要更進一步，那就來挑戰吧):</h2><p>Unity關於ml_agents的文檔(核心中的核心，最硬的，全英文+專有名詞):<br><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/ml-agents/tree/main/docs">https://github.com/Unity-Technologies/ml-agents/tree/main/docs</a><br>Unity_Tensorboard用來記錄我們訓練數據的功能描述(全英文):<br><a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Using-Tensorboard.md">https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Using-Tensorboard.md</a><br>熙陽官方ml-agents案例示範(全中文，部分官方文檔解釋，新手入門的好選擇):<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12452360.html">https://www.cnblogs.com/gentlesunshine/p/12452360.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12507677.html">https://www.cnblogs.com/gentlesunshine/p/12507677.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12590516.html">https://www.cnblogs.com/gentlesunshine/p/12590516.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12602404.html">https://www.cnblogs.com/gentlesunshine/p/12602404.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12639136.html">https://www.cnblogs.com/gentlesunshine/p/12639136.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12681019.html">https://www.cnblogs.com/gentlesunshine/p/12681019.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12723175.html">https://www.cnblogs.com/gentlesunshine/p/12723175.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12790103.html">https://www.cnblogs.com/gentlesunshine/p/12790103.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/12838969.html">https://www.cnblogs.com/gentlesunshine/p/12838969.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gentlesunshine/p/13026842.html">https://www.cnblogs.com/gentlesunshine/p/13026842.html</a></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料:"></a>參考資料:</h2><p>(1) 賈森浩(2017)‧游戏人工智能中 A*算法的应用研究‧中國杭州:杭州電子科技大學。<br>(2) Jockey Ng (2019 年 2 月 20 日 ) ． 強 化 學 習 Reinforcement Learning ．取自 :<br><a target="_blank" rel="noopener" href="https://medium.com/@jockeyng/%E5%BC%B7%E5%8C%96%E5%AD%B8%E7%BF%92-">https://medium.com/@jockeyng/%E5%BC%B7%E5%8C%96%E5%AD%B8%E7%BF%92-</a><br>reinforcement-learning-487aef228c04。<br>(3) Arthur Juliani (201, March 15). ML-Agents Toolkit v0.3 Beta released: Imitation Learning,<br>feedback-driven features, and more. Unity Blog, from <a target="_blank" rel="noopener" href="https://blogs.unity3d.com/2018/03/15/ml%02agents-v0-3-beta-released-imitation-learning-feedback-driven-features-and%02more/?_ga=2.201113965.218827823.1616313306-576441710.1608305998">https://blogs.unity3d.com/2018/03/15/mlagents-v0-3-beta-released-imitation-learning-feedback-driven-features-andmore/?_ga=2.201113965.218827823.1616313306-576441710.1608305998</a><br>(4) Arthur Juliani (2017, December 8 ). Introducing ML-Agents Toolkit v0.2: Curriculum Learning,<br>new environments, and more. Unity Blog, from <a target="_blank" rel="noopener" href="https://blogs.unity3d.com/2017/12/08/">https://blogs.unity3d.com/2017/12/08/</a><br>introducing-ml-agents-v0-2-curriculum-learning-new-environments-andmore&#x2F;?_ga&#x3D;2.201113965.218827823.1616313306-576441710.1608305998<br>(5) Alessia Nigretti (2017, December 11). Using Machine Learning Agents Toolkit in a real game:<br>a beginner’s guide. Unity Blog, from <a target="_blank" rel="noopener" href="https://blogs.unity3d.com/2017/12/11/using-machine%02learning-agents-in-a-real-game-a-beginners-guide">https://blogs.unity3d.com/2017/12/11/using-machinelearning-agents-in-a-real-game-a-beginners-guide</a></p>
+                <h1 id="Algorithm-CH3-growth-of-function"><a href="#Algorithm-CH3-growth-of-function" class="headerlink" title="Algorithm CH3 growth of function"></a>Algorithm CH3 growth of function</h1><h2 id="Asymptotic-notation"><a href="#Asymptotic-notation" class="headerlink" title="Asymptotic notation"></a>Asymptotic notation</h2><h3 id="O-notation"><a href="#O-notation" class="headerlink" title="O-notation"></a>O-notation</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172447.png" srcset="/webHome/img/loading.gif" lazyload>
 
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172633.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="Omega-notation"><a href="#Omega-notation" class="headerlink" title="$\Omega$-notation"></a><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.633ex" height="1.593ex" role="img" focusable="false" viewBox="0 -704 722 704"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path></g></g></g></svg></mjx-container>-notation</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172649.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172721.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="Theta-notation"><a href="#Theta-notation" class="headerlink" title="$\Theta$-notation"></a><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 778 727"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="398" d="M56 340Q56 423 86 494T164 610T270 680T388 705Q521 705 621 601T722 341Q722 260 693 191T617 75T510 4T388 -22T267 3T160 74T85 189T56 340ZM610 339Q610 428 590 495T535 598T463 651T384 668Q332 668 289 638T221 566Q168 485 168 339Q168 274 176 235Q189 158 228 105T324 28Q356 16 388 16Q415 16 442 24T501 54T555 111T594 205T610 339ZM223 263V422H263V388H514V422H554V263H514V297H263V263H223Z"></path></g></g></g></svg></mjx-container>-notation</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172805.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172827.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422172855.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="waring"><a href="#waring" class="headerlink" title="waring"></a>waring</h3><p>interpret # of anonymous function<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173002.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>functio on left side<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173205.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<h3 id="o-notation"><a href="#o-notation" class="headerlink" title="o-notation"></a>o-notation</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173246.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="omega-notation"><a href="#omega-notation" class="headerlink" title="$\omega$-notation"></a><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.407ex" height="1.027ex" role="img" focusable="false" viewBox="0 -443 622 454"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D714" d="M495 384Q495 406 514 424T555 443Q574 443 589 425T604 364Q604 334 592 278T555 155T483 38T377 -11Q297 -11 267 66Q266 68 260 61Q201 -11 125 -11Q15 -11 15 139Q15 230 56 325T123 434Q135 441 147 436Q160 429 160 418Q160 406 140 379T94 306T62 208Q61 202 61 187Q61 124 85 100T143 76Q201 76 245 129L253 137V156Q258 297 317 297Q348 297 348 261Q348 243 338 213T318 158L308 135Q309 133 310 129T318 115T334 97T358 83T393 76Q456 76 501 148T546 274Q546 305 533 325T508 357T495 384Z"></path></g></g></g></svg></mjx-container>-notation</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173320.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h2 id="Comparison-of-fun"><a href="#Comparison-of-fun" class="headerlink" title="Comparison of fun."></a>Comparison of fun.</h2><p>各種性質<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173352.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173420.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173606.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>can not compare fun.<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173623.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>單調性<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173738.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<h3 id="指數"><a href="#指數" class="headerlink" title="指數"></a>指數</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422173812.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422174017.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422174040.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422174322.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="Factorials"><a href="#Factorials" class="headerlink" title="Factorials"></a>Factorials</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422174419.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="iterated-log-fun"><a href="#iterated-log-fun" class="headerlink" title="iterated log fun."></a>iterated log fun.</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422174623.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="Fibonacci-numbers"><a href="#Fibonacci-numbers" class="headerlink" title="Fibonacci numbers"></a>Fibonacci numbers</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240422174709.png" srcset="/webHome/img/loading.gif" lazyload>
                 
               </div>
             
@@ -332,7 +465,7 @@
     
       <span class="category-chain">
         
-  <a href="/webHome/categories/AI-about/" class="category-chain-item">AI-about</a>
+  <a href="/webHome/categories/Algorithm/" class="category-chain-item">Algorithm</a>
   
   
 
@@ -344,6 +477,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/webHome/tags/Math/" class="print-no-link">#Math</a>
+      
+    </div>
+  
 </div>
 
 
@@ -352,8 +492,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Unity-ML-agents material</div>
-      <div>https://z-hwa.github.io/webHome/[object Object]/2021/10/04/ai/Unity-ML-agents material/</div>
+      <div>Algorithm CH3 Growth of Function</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2024/04/30/Algorithm/Algorithm-CH3-Growth-of-Function/</div>
     </div>
     <div class="license-meta">
       
@@ -365,7 +505,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>發布於</div>
-          <div>2021年10月4日</div>
+          <div>2024年4月30日</div>
         </div>
       
       
@@ -409,9 +549,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/04/security/AIS3-projext-Stuxnet/" title="AIS3_projext-Stuxnet">
+                      <a href="/webHome/%5Bobject%20Object%5D/2024/04/30/Algorithm/Algorithm-CH2-Getting-Started/" title="Algorithm CH2 Getting Started">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AIS3_projext-Stuxnet</span>
+                        <span class="hidden-mobile">Algorithm CH2 Getting Started</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -419,8 +559,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/2021/10/03/ai/Unity_ML-agents%20basic/" title="Unity_ML-agents basic">
-                        <span class="hidden-mobile">Unity_ML-agents basic</span>
+                      <a href="/webHome/%5Bobject%20Object%5D/2024/04/30/Algorithm/Algorithm-CH4-Recurrences/" title="Algorithm CH4 Recurrences">
+                        <span class="hidden-mobile">Algorithm CH4 Recurrences</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -440,8 +580,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/2021/10/04/ai/Unity-ML-agents%20material/';
-          this.page.identifier = '/webHome/%5Bobject%20Object%5D/2021/10/04/ai/Unity-ML-agents%20material/';
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Algorithm/Algorithm-CH3-Growth-of-Function/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/2024/04/30/Algorithm/Algorithm-CH3-Growth-of-Function/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
