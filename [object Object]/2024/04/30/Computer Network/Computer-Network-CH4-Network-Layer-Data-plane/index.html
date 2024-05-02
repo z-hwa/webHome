@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423164755.png">
 <meta property="article:published_time" content="2024-04-30T04:57:41.000Z">
-<meta property="article:modified_time" content="2024-04-30T04:58:18.418Z">
+<meta property="article:modified_time" content="2024-04-30T09:52:32.686Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2.8k 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          10 分鐘
+          24 分鐘
         
       </span>
     
@@ -316,7 +316,7 @@
 <li>對於傳送端而言就是duplicate</li>
 <li>會進行重傳</li>
 </ul>
-<h2 id="network-layer"><a href="#network-layer" class="headerlink" title="network layer"></a>network layer</h2><p>sender:</p>
+<h2 id="network-layer-overview"><a href="#network-layer-overview" class="headerlink" title="network layer: overview"></a>network layer: overview</h2><p>sender:</p>
 <ul>
 <li>封裝segments變成datagram</li>
 </ul>
@@ -372,7 +372,7 @@
 <ul>
 <li>provisioning bandwith</li>
 </ul>
-<h2 id="data-plane-roadmap"><a href="#data-plane-roadmap" class="headerlink" title="data plane roadmap"></a>data plane roadmap</h2><p>each router has a routing processor<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423171510.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<h2 id="What’s-inside-a-router"><a href="#What’s-inside-a-router" class="headerlink" title="What’s inside a router?"></a>What’s inside a router?</h2><h3 id="router-architecture-overview"><a href="#router-architecture-overview" class="headerlink" title="router architecture overview"></a>router architecture overview</h3><p>each router has a routing processor<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423171510.png" srcset="/webHome/img/loading.gif" lazyload/></p>
 <h3 id="input-port-function-p4-16"><a href="#input-port-function-p4-16" class="headerlink" title="input port function p4.16"></a>input port function p4.16</h3><p>input port queueing</p>
 <ul>
 <li>datagram進入速度大於forwarding rate</li>
@@ -402,7 +402,171 @@
 </li>
 <li>speed up , via parallel</li>
 </ul>
-
+<h3 id="packet-scheduling-FCFS"><a href="#packet-scheduling-FCFS" class="headerlink" title="packet scheduling FCFS"></a>packet scheduling FCFS</h3><p>決定哪個封包接下來會被送向link</p>
+<p>FCFS</p>
+<ul>
+<li>first come, first served<br><img src="/webHome/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>priority sheduling</p>
+<ul>
+<li>封包有不同的優先權<ul>
+<li>根據優先權做分類<br><img src="/webHome/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>如果已經處理，就繼續執行<br>但如果有封包同時進來</p>
+<ul>
+<li>根據優先權排序</li>
+</ul>
+<p>Round Robin scheduling</p>
+<ul>
+<li>會輪流的傳遞不同優先度的封包</li>
+<li>weighted fair queueing<ul>
+<li>每個cycle分配給不同優先權封包的時間，基於各個優先權的權重</li>
+<li>$\frac{w_i}{\sum_{j} w_j}$</li>
+<li>minimum bandwith guarantee<br>  <img src="/webHome/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="sidebar-network-neutrality-看過就好-偏無聊"><a href="#sidebar-network-neutrality-看過就好-偏無聊" class="headerlink" title="sidebar: network neutrality(看過就好 偏無聊)"></a>sidebar: network neutrality(看過就好 偏無聊)</h3><p>網路中立性</p>
+<ul>
+<li>只要合法，ISP業者就應該中立</li>
+<li>不能歧視<br><img src="/webHome/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>不考這個小節的名詞解釋</p>
+<h3 id="ISP-不重要"><a href="#ISP-不重要" class="headerlink" title="ISP?(不重要)"></a>ISP?(不重要)</h3><p>ISP業者究竟是提供甚麼東西?</p>
+<h2 id="IP-the-internet-protocol"><a href="#IP-the-internet-protocol" class="headerlink" title="IP:the internet protocol"></a>IP:the internet protocol</h2><h3 id="network-layer"><a href="#network-layer" class="headerlink" title="network layer"></a>network layer</h3><p>path-selection algo.</p>
+<ul>
+<li>decide how packet go<ul>
+<li>put to forwarding table<br>  <img src="/webHome/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="IP-datagram-format"><a href="#IP-datagram-format" class="headerlink" title="IP datagram format"></a>IP datagram format</h3><p>IPV4</p>
+<ul>
+<li>IP address<ul>
+<li>32 bits<br><img src="/webHome/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>packet length最大長度是1500 bytes</p>
+<ul>
+<li>因為使用的是etherNet<ul>
+<li>這種網路中一個最大的傳送單位就是1500 bytes</li>
+</ul>
+</li>
+</ul>
+<p>overhead</p>
+<ul>
+<li>IP有五列總共5*4 &#x3D; 20 bytes</li>
+</ul>
+<h3 id="IP-addressing-introduction"><a href="#IP-addressing-introduction" class="headerlink" title="IP addressing: introduction"></a>IP addressing: introduction</h3><p>子網路的高bit會一樣</p>
+<ul>
+<li>223.1.1.1</li>
+<li>223.1.1.2<br><img src="/webHome/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>每一個host可以有多個interface</p>
+<ul>
+<li>connection between host&#x2F;router and physical link</li>
+<li>前提是有多張網卡</li>
+</ul>
+<h3 id="subnet"><a href="#subnet" class="headerlink" title="subnet"></a>subnet</h3><p>中間沒有其他中介的路由器</p>
+<ul>
+<li>有相同的high level class</li>
+</ul>
+<p>IP address structure</p>
+<ul>
+<li>subnet part<ul>
+<li>same high order bit</li>
+</ul>
+</li>
+<li>host part<ul>
+<li>low order bit<br>  <img src="/webHome/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li>223.1.3.0&#x2F;24<ul>
+<li>24代表前24個bits 是subnet part<br>  <img src="/webHome/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="CIDR"><a href="#CIDR" class="headerlink" title="CIDR"></a>CIDR</h3><p><img src="/webHome/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="how-to-get-one-ip"><a href="#how-to-get-one-ip" class="headerlink" title="how to get one ip"></a>how to get one ip</h3><p>host如何取得<br><img src="/webHome/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>DHCP<br><img src="/webHome/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>會服務這個subnet底下連接的裝置</li>
+<li>分配IP給這些裝置<br><img src="/webHome/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>可以知道發IP的router在哪裡</li>
+</ul>
+<p>DHCP EX.(沒甚麼好講的)<br><img src="/webHome/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>電信業者跟學校就是跟更上層的人要IP<br><img src="/webHome/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>ICANN</li>
+</ul>
+<h3 id="network-address-translation-IPv6"><a href="#network-address-translation-IPv6" class="headerlink" title="network address translation IPv6"></a>network address translation IPv6</h3><p>NAT: network address translation<br><img src="/webHome/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>source ip 要轉換成 NAT ip</p>
+<ul>
+<li>路由器要透過轉譯表(NAT ip + port)<ul>
+<li>轉換內網中正確的ip<br>  <img src="/webHome/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>transparent的問題?</p>
+<ul>
+<li>外網的host沒辦法找到內網的host<ul>
+<li>NAT traversal</li>
+</ul>
+</li>
+</ul>
+<h3 id="motivation"><a href="#motivation" class="headerlink" title="motivation"></a>motivation</h3><p>40 bytes fixed length header</p>
+<ul>
+<li>address become 128 bits</li>
+<li>flow label<br><img src="/webHome/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>transition</p>
+<ul>
+<li>v4 and v6 可以同時存在</li>
+<li>router可能不支援v6<ul>
+<li>可以把v6塞進v4裡面 &#x3D; tunneling<br>  <img src="/webHome/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br>  <img src="/webHome/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>IPv6</p>
+<ul>
+<li>太久了</li>
+</ul>
+<h2 id="Generalized-Forwarding-SDN"><a href="#Generalized-Forwarding-SDN" class="headerlink" title="Generalized Forwarding, SDN"></a>Generalized Forwarding, SDN</h2><p>match plus action</p>
+<ul>
+<li>traditional<ul>
+<li>basic forwarding table(aka flow table)</li>
+<li>destination based</li>
+</ul>
+</li>
+<li>generalized forwarding<ul>
+<li>any header field can determine action</li>
+<li>可以讀header中很多的資料</li>
+<li>有多種action</li>
+</ul>
+</li>
+</ul>
+<h3 id="Flow-table-abstraction"><a href="#Flow-table-abstraction" class="headerlink" title="Flow table abstraction"></a>Flow table abstraction</h3><p>總而言之，可以看很多欄位的資料</p>
+<ul>
+<li>執行很多不同的動作<br><img src="/webHome/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>link, network and transport layer header could be used</li>
+</ul>
+<p>可以藉此實現firewall<br><img src="/webHome/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>要使用上述的功能，要滿足下面的條件</p>
+<ul>
+<li>openflow</li>
+<li>generalized forwwarding</li>
+<li>硬體要支援</li>
+<li>可以有以下的功能<br><img src="/webHome/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Ex.(看過就好)<br><img src="/webHome/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>summary<br><img src="/webHome/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="middleboxes-沒什麼重點-不重要"><a href="#middleboxes-沒什麼重點-不重要" class="headerlink" title="middleboxes(沒什麼重點)(不重要)"></a>middleboxes(沒什麼重點)(不重要)</h3>
                 
               </div>
             

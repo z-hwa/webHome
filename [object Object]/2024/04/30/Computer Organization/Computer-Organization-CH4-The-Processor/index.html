@@ -23,11 +23,13 @@
 <meta property="og:site_name" content="Crown Tako Shoka">
 <meta property="og:description" content="Computer Organization CH4 The Processor4.1 introintro p3performance  ISA is diff. -&gt; instruction count diff. clock cycle and CPI diff. determined by processor    CH4  a more realistic pipeline vers">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/_posts/Computer%20Organization/image-4.png">
 <meta property="article:published_time" content="2024-04-30T04:52:01.000Z">
-<meta property="article:modified_time" content="2024-04-30T04:52:29.548Z">
+<meta property="article:modified_time" content="2024-05-02T02:44:14.622Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/_posts/Computer%20Organization/image-4.png">
   
   
   
@@ -361,7 +363,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          949 字
+          1.7k 字
         
       </span>
     
@@ -372,7 +374,7 @@ mjx-container[display="true"] + br {
         
         
         
-          8 分鐘
+          15 分鐘
         
       </span>
     
@@ -506,6 +508,86 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ul>
+<h2 id="4-4-A-simple-implementation-scheme"><a href="#4-4-A-simple-implementation-scheme" class="headerlink" title="4.4 A simple implementation scheme"></a>4.4 A simple implementation scheme</h2><h3 id="ISA-vs-Hardware-design"><a href="#ISA-vs-Hardware-design" class="headerlink" title="ISA vs. Hardware design"></a>ISA vs. Hardware design</h3><p>RISC-V</p>
+<ul>
+<li>指令的format比較複雜，但layout繼承下來<ul>
+<li>rd都在rd, rs都在rs</li>
+<li>簡化了hardware的path設計</li>
+</ul>
+</li>
+<li>相對MIPS<ul>
+<li>位置會做變化，需要多一個multiplexor做判斷<br>  <img src="/webHome/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Setting-of-the-Main-Control-Unit"><a href="#Setting-of-the-Main-Control-Unit" class="headerlink" title="Setting of the Main Control Unit"></a>Setting of the Main Control Unit</h3><p>大概就是上一節的內容</p>
+<ul>
+<li>opcode的長相<ul>
+<li>using flow map to compare</li>
+<li>圖很重要</li>
+</ul>
+</li>
+<li>focus on multiplexor<br><img src="/webHome/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="exxcution-flow-of-R-format-inst"><a href="#exxcution-flow-of-R-format-inst" class="headerlink" title="exxcution flow of R-format inst."></a>exxcution flow of R-format inst.</h3><div class="code-wrapper"><pre><code class="hljs llvm"><span class="hljs-keyword">add</span> <span class="hljs-keyword">x</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-keyword">x</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span> <span class="hljs-keyword">x</span><span class="hljs-number">3</span></code></pre></div>
+<ul>
+<li>假設指令已經被載入pc</li>
+<li>opcode會被送到main control<ul>
+<li>對所有控制訊號輸出</li>
+</ul>
+</li>
+<li>ALU op<ul>
+<li>10 r-type<ul>
+<li>00 加法</li>
+<li>01 減法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/webHome/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="execution-flow-of-I-format-inst"><a href="#execution-flow-of-I-format-inst" class="headerlink" title="execution flow of I-format inst."></a>execution flow of I-format inst.</h3><div class="code-wrapper"><pre><code class="hljs llvm">lw <span class="hljs-keyword">x</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span> offset(<span class="hljs-keyword">x</span><span class="hljs-number">2</span>)</code></pre></div>
+<ul>
+<li>ALU op<ul>
+<li>00 lw or sw<ul>
+<li>00 加法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多了第四個步驟<ul>
+<li>造成執行時間變長<br><img src="/webHome/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="execution-flow-of-branch-inst"><a href="#execution-flow-of-branch-inst" class="headerlink" title="execution flow of branch inst."></a>execution flow of branch inst.</h3><div class="code-wrapper"><pre><code class="hljs llvm">beq <span class="hljs-keyword">x</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-keyword">x</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span> offset</code></pre></div>
+<ul>
+<li>control &amp; result decide next PC<br><img src="/webHome/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="logic-of-the-control-unit"><a href="#logic-of-the-control-unit" class="headerlink" title="logic of the control unit"></a>logic of the control unit</h3><ul>
+<li><p>opcode 和 control unit的對比<br><img src="/webHome/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</li>
+<li><p>以執行時間最長的指令為一個clock period<br><img src="/webHome/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</li>
+</ul>
+<h2 id="4-6-an-overview-of-pipeline"><a href="#4-6-an-overview-of-pipeline" class="headerlink" title="4.6 an overview of pipeline"></a>4.6 an overview of pipeline</h2><h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><p>sequential laundry</p>
+<ul>
+<li>比較久<br>pipelined laundry</li>
+<li>最大效率使用各種資源</li>
+<li>沒有減少每個工作的時間<ul>
+<li>但盡量的使用了閒置的資源</li>
+<li>最快就是比seq.快4倍</li>
+</ul>
+</li>
+</ul>
+<h3 id="single-cycle-vs-pipeline-performance"><a href="#single-cycle-vs-pipeline-performance" class="headerlink" title="single cycle vs. pipeline performance"></a>single cycle vs. pipeline performance</h3><p><img src="/webHome/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>以最長的major function units為pipeline的cycle<ul>
+<li>沒有相依性的情況<br><img src="/webHome/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="insights-of-the-design-for-pipeline-execution"><a href="#insights-of-the-design-for-pipeline-execution" class="headerlink" title="insights of the design for pipeline execution"></a>insights of the design for pipeline execution</h3><p><img src="/webHome/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
 
                 
               </div>
