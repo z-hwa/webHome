@@ -304,14 +304,14 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Computer-Network-CH3-Roadmap"><a href="#Computer-Network-CH3-Roadmap" class="headerlink" title="Computer Network CH3 Roadmap"></a>Computer Network CH3 Roadmap</h1><h2 id="Principles-of-reliable-data-transfer-RDT"><a href="#Principles-of-reliable-data-transfer-RDT" class="headerlink" title="Principles of reliable data transfer(RDT)"></a>Principles of reliable data transfer(RDT)</h2><p>Principles of reliable data transfer<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164221.png" srcset="/webHome/img/loading.gif" lazyload/><br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164247.png" srcset="/webHome/img/loading.gif" lazyload/><br>網路通道不能確定是否信賴</p>
+                <h1 id="Computer-Network-CH3-Roadmap"><a href="#Computer-Network-CH3-Roadmap" class="headerlink" title="Computer Network CH3 Roadmap"></a>Computer Network CH3 Roadmap</h1><h2 id="Principles-of-reliable-data-transfer-RDT"><a href="#Principles-of-reliable-data-transfer-RDT" class="headerlink" title="Principles of reliable data transfer(RDT)"></a>Principles of reliable data transfer(RDT)</h2><p>Principles of reliable data transfer<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164221.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164247.png" srcset="/webHome/img/loading.gif" lazyload><br>網路通道不能確定是否信賴</p>
 <p>使用可信賴的protocal</p>
 <ul>
 <li>複雜度取決於使用的unreliable channel</li>
 </ul>
 <p>傳送端與接收端不知道彼此的狀態</p>
 <ul>
-<li>除非接收端回覆<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164531.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>除非接收端回覆<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164531.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <h3 id="protocol-interface"><a href="#protocol-interface" class="headerlink" title="protocol interface"></a>protocol interface</h3><p>sender:</p>
 <ul>
@@ -322,7 +322,7 @@
 <li>封包進來呼叫rdt_rcv</li>
 <li>rdt_rcv呼叫deliver_data</li>
 </ul>
-<p>雙向頻道<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164941.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<p>雙向頻道<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164941.png" srcset="/webHome/img/loading.gif" lazyload></p>
 <h3 id="Getting-started-p3-47"><a href="#Getting-started-p3-47" class="headerlink" title="Getting started p3.47"></a>Getting started p3.47</h3><ul>
 <li>了解版本差異</li>
 <li>為什麼要發展下一個版本</li>
@@ -338,7 +338,7 @@
 <li>no bit errors</li>
 <li>no loss of packet</li>
 </ul>
-<p>receiver wait for call from below(等待封包傳送到)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415165711.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<p>receiver wait for call from below(等待封包傳送到)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415165711.png" srcset="/webHome/img/loading.gif" lazyload></p>
 <h3 id="rdt2-0-p3-49"><a href="#rdt2-0-p3-49" class="headerlink" title="rdt2.0 p3.49"></a>rdt2.0 p3.49</h3><p>存在bit error</p>
 <ul>
 <li>using checksum to detect bit error</li>
@@ -364,7 +364,7 @@
 </ul>
 <p>因為需要通過ACK, NAK來了解接收端的狀態</p>
 <ul>
-<li>故需要protocol<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415171247.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>故需要protocol<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415171247.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>has a fatal error</p>
 <ul>
@@ -388,13 +388,13 @@
 <ul>
 <li>如果corrupt or NAK不斷重傳</li>
 <li>直到not corrupt and ACK</li>
-<li>才進入等待傳入下一個sequence number的狀態<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172114.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>才進入等待傳入下一個sequence number的狀態<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172114.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>receiver</p>
 <ul>
 <li>sndpkt包含ACK和checksum(2.0也有)</li>
 <li>ACK中會有sequence number<ul>
-<li>回傳給sender<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172724.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>回傳給sender<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172724.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
@@ -443,7 +443,7 @@
 </ul>
 </li>
 <li>if pkt just delay?(just on the way)<ul>
-<li>duplicate is solved by seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415180725.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>duplicate is solved by seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415180725.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
@@ -458,26 +458,26 @@
 </ul>
 </li>
 <li><strong>premature timeout&#x2F;delayed ACK(太早)</strong><ul>
-<li>receive ACK the same -&gt; ignore<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181333.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>receive ACK the same -&gt; ignore<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181333.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
-<h4 id="performance"><a href="#performance" class="headerlink" title="performance"></a>performance</h4><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181558.png" srcset="/webHome/img/loading.gif" lazyload/>
+<h4 id="performance"><a href="#performance" class="headerlink" title="performance"></a>performance</h4><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181558.png" srcset="/webHome/img/loading.gif" lazyload>
 
 <p>operation</p>
 <ul>
-<li>blue part is $\frac{L}{R}$<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181731.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>blue part is $\frac{L}{R}$<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181731.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>using many time to sent little bit data, caused big RTT</p>
 <ul>
-<li>$U_{sender}$ is too small<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181927.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>$U_{sender}$ is too small<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181927.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <h4 id="using-pipeline"><a href="#using-pipeline" class="headerlink" title="using pipeline!"></a>using pipeline!</h4><p>sender allows multiple, “in-flight”, yet-to-be-acknowledge pkt</p>
 <ul>
 <li>range of seq # must be increased</li>
 <li>buffering at sender and&#x2F;or receiver</li>
 </ul>
-<p>increased utilization(看過就好)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415182240.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<p>increased utilization(看過就好)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415182240.png" srcset="/webHome/img/loading.gif" lazyload></p>
 <h4 id="Go-Back-N-p-72"><a href="#Go-Back-N-p-72" class="headerlink" title="Go-Back-N: p.72"></a>Go-Back-N: p.72</h4><p>Sender</p>
 <ul>
 <li>sender window of up to N, consecuive transmitted but unACKed pkts<ul>
@@ -487,7 +487,7 @@
 </li>
 <li>cumulative ACK:一次回應多個ACK</li>
 <li>timer從最早的pkt開始算</li>
-<li>如果沒收到，回到最前面的重傳<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225254.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>如果沒收到，回到最前面的重傳<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225254.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>Reciver</p>
 <ul>
@@ -498,11 +498,11 @@
 </li>
 <li>out-of-order pkt<ul>
 <li>can discard or buffer</li>
-<li>re-ACK pkt with highest in-order seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225239.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>re-ACK pkt with highest in-order seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225239.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
-<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225603.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225603.png" srcset="/webHome/img/loading.gif" lazyload></p>
 <ul>
 <li>太蠢了，因為一個loss重傳一大堆</li>
 </ul>
@@ -512,14 +512,14 @@
 </ul>
 <p>reciver</p>
 <ul>
-<li>多了一個expected, not yet recived<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415230339.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>多了一個expected, not yet recived<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415230339.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>p3.77看過就好</p>
-<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231039.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231039.png" srcset="/webHome/img/loading.gif" lazyload></p>
 <p>dilemma!</p>
 <ul>
 <li>if seq # is too close to window size</li>
-<li>會以為sender傳的0，是新的0<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231220.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>會以為sender傳的0，是新的0<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231220.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="TCP-flow-control"><a href="#TCP-flow-control" class="headerlink" title="TCP flow control"></a>TCP flow control</h3><p>receiver 告訴sender 他已經不能再接收了</p>
 <ul>
@@ -529,7 +529,7 @@
 <p>rcv window</p>
 <ul>
 <li>接收端使用free buffer在window的大小，告訴sender不要傳超過</li>
-<li>放在header中<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416153109.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>放在header中<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416153109.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <h3 id="TCP-connection-management-p3-101"><a href="#TCP-connection-management-p3-101" class="headerlink" title="TCP connection management p3.101"></a>TCP connection management p3.101</h3><p>TCP會做handshake(三項交握)</p>
 <ul>
@@ -545,7 +545,7 @@
 <li>沒有發生問題都ok</li>
 <li>如果timeout<ul>
 <li>sender不知道acc_conn是第一個還是第二個req_conn的回覆</li>
-<li>導致half connection，如圖<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416153939.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>導致half connection，如圖<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416153939.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 <li>server以為client又開啟了一次<ul>
@@ -561,7 +561,7 @@
 <li>client知道server存活，所以這個ACK可以帶資料</li>
 </ul>
 </li>
-<li>雙方都會初始化一個seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416154508.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>雙方都會初始化一個seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416154508.png" srcset="/webHome/img/loading.gif" lazyload></li>
 <li>因為是ACK對方的ACKbit，所以回傳ACKnum &#x3D; x+1(多1bit)</li>
 </ul>
 <p>closing TCP connection(沒什麼特別的)</p>
@@ -572,11 +572,11 @@
 <h4 id="TEST-為什麼不做雙向交握"><a href="#TEST-為什麼不做雙向交握" class="headerlink" title="TEST:為什麼不做雙向交握?"></a>TEST:為什麼不做雙向交握?</h4><h2 id="Principe-of-congestion-control"><a href="#Principe-of-congestion-control" class="headerlink" title="Principe of congestion control"></a>Principe of congestion control</h2><p>congestion</p>
 <ul>
 <li>too many senders: sending too fast</li>
-<li>caused long delay(queueing in router buffers)<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416155725.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>caused long delay(queueing in router buffers)<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416155725.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>flow control</p>
 <ul>
-<li>one sender: sneding too fast<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416155524.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>one sender: sneding too fast<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416155524.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>delay很難解決，比起through put</p>
 <h3 id="scenario-1-p3-111"><a href="#scenario-1-p3-111" class="headerlink" title="scenario 1 p3.111"></a>scenario 1 p3.111</h3><p>infinite buffer</p>
@@ -585,13 +585,13 @@
 <li>只會造成delay increasing, no loss</li>
 </ul>
 <p>$\lambda _{in}$ 線性於 $\lambda _{out}$</p>
-<p>沒有需要被重傳的pkt<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416162318.png" srcset="/webHome/img/loading.gif" lazyload/></p>
+<p>沒有需要被重傳的pkt<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416162318.png" srcset="/webHome/img/loading.gif" lazyload></p>
 <h3 id="scenario-2-會考-p3-112"><a href="#scenario-2-會考-p3-112" class="headerlink" title="scenario 2(會考) p3.112"></a>scenario 2(會考) p3.112</h3><p>finite buffer</p>
 <ul>
 <li><p>pkt drop or timeout</p>
 <ul>
 <li>transport layer 資料需要重傳, $\lambda _{in} &gt; \lambda _{out}$</li>
-<li>application layer的$\lambda$一樣<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416162748.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>application layer的$\lambda$一樣<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416162748.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 <li><p>through put不能提升到上限($\frac{R}{2}$, 兩個人分配link capacity)</p>
@@ -608,10 +608,10 @@
 <p>先傳入的data(紅色)占滿了router(12點方向)的buffer<br>則藍色遇到bottle neck</p>
 <ul>
 <li>藍色的data在該router被丟掉了</li>
-<li>藍色的$\lambda _{in}$ 增加，但$\lambda _{out}$沒有增加多少<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416164633.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>藍色的$\lambda _{in}$ 增加，但$\lambda _{out}$沒有增加多少<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416164633.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <h3 id="總結-p3-120"><a href="#總結-p3-120" class="headerlink" title="總結 p3.120"></a>總結 p3.120</h3><ul>
-<li>un-needed duplicates是因為time out<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416164941.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>un-needed duplicates是因為time out<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416164941.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <h3 id="Approaches"><a href="#Approaches" class="headerlink" title="Approaches"></a>Approaches</h3><p>end-end congestion control(TCP using)</p>
 <ul>
@@ -627,7 +627,7 @@
 <h3 id="TCP-congestion-control-AIMD-p3-124"><a href="#TCP-congestion-control-AIMD-p3-124" class="headerlink" title="TCP congestion control AIMD p3.124"></a>TCP congestion control AIMD p3.124</h3><p>網路還沒壅塞，盡可能增加傳輸效率</p>
 <p>一次增加一個maximum seg size<br>逐步增加直到loss detect再降低</p>
 <ul>
-<li>倍數降低multiplicative decrease<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416172309.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>倍數降低multiplicative decrease<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416172309.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>why AIMD</p>
 <ul>
@@ -637,7 +637,7 @@
 <ul>
 <li>last byte sent - last byte ACKed &lt;&#x3D; congestion window</li>
 <li>超過可能發生壅塞<ul>
-<li>不要超出自己的cwnd<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416172822.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>不要超出自己的cwnd<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416172822.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
@@ -654,7 +654,7 @@
 </ul>
 <h3 id="summary-自己再看一下-p3-129"><a href="#summary-自己再看一下-p3-129" class="headerlink" title="summary(自己再看一下) p3.129"></a>summary(自己再看一下) p3.129</h3><p>Slow start<br>congestion avoidance(沒事 還是可以增加cwnd)<br>fast recovery</p>
 <ul>
-<li>沒人會考數值<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416173905.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>沒人會考數值<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416173905.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <p>Slow start</p>
 <ul>
@@ -686,7 +686,7 @@
 </ul>
 </li>
 <li>現代TCP CUBIC<ul>
-<li>讓sending rate上升的更快<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423152130.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>讓sending rate上升的更快<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423152130.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>
@@ -731,7 +731,7 @@
 <p>還有一個欄位紀錄congestion</p>
 <ul>
 <li>ECE</li>
-<li>transport layer標記的<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423154305.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>transport layer標記的<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423154305.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 <h3 id="Is-TCP-Fair"><a href="#Is-TCP-Fair" class="headerlink" title="Is TCP Fair?"></a>Is TCP Fair?</h3><p>原則上是公平的，在以下的假設情況下</p>
 <ul>
@@ -751,7 +751,7 @@
 <ul>
 <li>只有一個handshake</li>
 <li>parallelism<ul>
-<li>no HOL blocking<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423160154.png" srcset="/webHome/img/loading.gif" lazyload/></li>
+<li>no HOL blocking<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423160154.png" srcset="/webHome/img/loading.gif" lazyload></li>
 </ul>
 </li>
 </ul>

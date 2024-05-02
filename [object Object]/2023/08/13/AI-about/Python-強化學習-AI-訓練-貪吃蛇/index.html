@@ -307,7 +307,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Python-強化學習-AI-訓練-貪吃蛇"><a href="#Python-強化學習-AI-訓練-貪吃蛇" class="headerlink" title="Python 強化學習 AI 訓練-貪吃蛇"></a>Python 強化學習 AI 訓練-貪吃蛇</h1><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/snake%20game.PNG" srcset="/webHome/img/loading.gif" lazyload/>
+                <h1 id="Python-強化學習-AI-訓練-貪吃蛇"><a href="#Python-強化學習-AI-訓練-貪吃蛇" class="headerlink" title="Python 強化學習 AI 訓練-貪吃蛇"></a>Python 強化學習 AI 訓練-貪吃蛇</h1><img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/snake%20game.PNG" srcset="/webHome/img/loading.gif" lazyload>
 
 <h2 id="資料"><a href="#資料" class="headerlink" title="資料"></a>資料</h2><blockquote>
 <p>計算機概論 期末專題<br>作者：王冠章<br>學號：C14116132<br>Github 連結：<a target="_blank" rel="noopener" href="https://github.com/z-hwa/AITraining">https://github.com/z-hwa/AITraining</a></p>
@@ -362,13 +362,13 @@ target = pred.clone()  <span class="hljs-comment"># 複製前面的預測</span>
 <p>代碼中有一個數值叫做 gamma，實際上代表的是折扣率，介於 0~1 之間。用於讓 AI 能夠判斷是要更關注未來(數值高)還是現在的獎勵(數值低)。</p>
 <p>而在 AI 訓練時，最終的行動決策上，則取決於 epsilon 以及 random 的比較，來決定這一次的行動是隨機發生，或著是由 AI 模型的預測結果去進行。隨著訓練局數的增加，將降低隨機選擇動作的機率，來優化 AI 模型的精準度。</p>
 <h2 id="六、模型訓練成效："><a href="#六、模型訓練成效：" class="headerlink" title="六、模型訓練成效："></a>六、模型訓練成效：</h2><p>可以在recode_model_train中查看訓練的模型紀錄，並在model中找到對應的AI模型；figure中找到對應的訓練圖表。在更新舊模型訓練後，進行訓練的AI模型，可以在data中找到當時的訓練資料。</p>
-<h5 id="一-參考資料模型配置："><a href="#一-參考資料模型配置：" class="headerlink" title="(一)參考資料模型配置："></a>(一)參考資料模型配置：</h5> <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/250AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload/>
+<h5 id="一-參考資料模型配置："><a href="#一-參考資料模型配置：" class="headerlink" title="(一)參考資料模型配置："></a>(一)參考資料模型配置：</h5> <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/250AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload>
  
 <p>圖二、訓練250回左右的AI得分圖表</p>
- <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/500AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload/>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/500AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload>
  
 <p>圖三、訓練500回左右的AI得分圖表</p>
- <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/1300AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload/>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/1300AI%20Score.png" srcset="/webHome/img/loading.gif" lazyload>
  
 <p>圖四、訓練1300回左右的AI得分圖表</p>
 <p>以參考資料的訓練配置來看，比較訓練250回和500回之間的平均分(紅色曲線)，貪吃蛇AI在達到平均分22左右時，進步速度就不大明顯了。在經過更長時間(1300回)的訓練後，發現平均分有收斂於31左右的趨勢。推測原因是會出現身體長度過長，而將自己給圈住，導致遊戲失敗的情況。</p>
@@ -376,15 +376,15 @@ target = pred.clone()  <span class="hljs-comment"># 複製前面的預測</span>
 <p>在這裡的模型配置，以添加了10節身體的xy座標模型為例。因為前11個參數的大小介於0<del>1之間，這裡我也將xy座標除以遊戲視窗長寬，以確保所有參數都介於0</del>1之間。因此，這個模型的輸入有31層。</p>
 <p>而因為輸入層的增加，有必要提升epsilon的大小以確保，AI有足夠的時間從亂數中，學習到正確的行為模式。而新的epsilon設為7*輸入層數，目的是確保所有模型的epsilon和輸入層之間是接近正比。</p>
 <p>除此之外，我也設置了每個移動-0.01的懲罰，以避免AI在理解不能碰撞身體後，選擇不斷原地繞圈的行為。(根據訓練日誌中b~f的最終訓練成果)</p>
- <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/10%20body%20train.png" srcset="/webHome/img/loading.gif" lazyload/>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/10%20body%20train.png" srcset="/webHome/img/loading.gif" lazyload>
  
 <p>圖五、10節身體位置的訓練配置</p>
- <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/30body%20train.png" srcset="/webHome/img/loading.gif" lazyload/>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/30body%20train.png" srcset="/webHome/img/loading.gif" lazyload>
  
 <p>圖六、30節身體位置的訓練配置</p>
 <p>在經過更大量的訓練回數後，觀察到訓練圖表的平均分數收斂在20以及25左右。根據對AI實際行為的觀察，可以發現AI似乎沒有理解身體位置的數據。主要原因可能為AI的主要行為模式基於參考配置的11種輸入，都是一種方向上的相對概念。同時，AI所能做出的行動(轉動蛇頭方向)，也是方向相對概念的一種。因此要理解座標上的數據，相對困難。</p>
 <h5 id="三-射線檢測器"><a href="#三-射線檢測器" class="headerlink" title="(三)射線檢測器"></a>(三)射線檢測器</h5><p>基於上個訓練配置最終的推測，這次我在蛇頭放置射線檢測器，功能是延伸向四個方向，偵測是否有撞到自己的身體，以及這個距離是多長。預期的效果仍是，避免AI撞到自己的身體。<br>模型的輸入層增加8個，前四個代表是否偵測到身體；後四個為這個距離是多少個格子。Epsilon則依舊以正比增加。但這次不給予步數懲罰，原因是有的時候為了不把自己困住，可能會出現需要繞路的情況。(根據訓練日誌中f10, f30的訓練結果)</p>
- <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/line%20detector.png" srcset="/webHome/img/loading.gif" lazyload/>
+ <img src="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/line%20detector.png" srcset="/webHome/img/loading.gif" lazyload>
  
 <p>圖七、加入射線檢測器</p>
 <p>最終成果上，平均分數落在35左右，說明藉由射線檢測器的加入。的確能降低蛇被自己的身體困住的部分情況。而之所以無法得到更好的效果，可能因素為，存在部分情況是四面都有自己的身體，但死路是最長的情況。(假定蛇在該環境的行為模式為，選擇最長的方向走。原因是前期訓練中最長的方向，是死路的可能性低)。</p>
@@ -530,7 +530,7 @@ target = pred.clone()  <span class="hljs-comment"># 複製前面的預測</span>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/2023/08/08/testPage/" title="testPage">
+                      <a href="/webHome/%5Bobject%20Object%5D/2023/08/08/Others/testPage/" title="testPage">
                         <span class="hidden-mobile">testPage</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
