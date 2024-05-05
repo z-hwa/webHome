@@ -16,16 +16,16 @@
   <meta name="author" content="crown tako">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="Computer Network CH3 RoadmapPrinciples of reliable data transfer(RDT)Principles of reliable data transfer網路通道不能確定是否信賴 使用可信賴的protocal  複雜度取決於使用的unreliable channel  傳送端與接收端不知道彼此的狀態  除非接收端回覆  protocol in">
+    <meta name="description" content="Computer Network CH3 Transport LayerTransport Layer: OverviewGoal  understanding principle of transport layer servics multiplexing, demultiplexing reliable data transfer flow control congestion contro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Computer Network CH3 Roadmap">
-<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Roadmap/">
+<meta property="og:title" content="Computer Network CH3 Transport Layer">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/">
 <meta property="og:site_name" content="Crown Tako Shoka">
-<meta property="og:description" content="Computer Network CH3 RoadmapPrinciples of reliable data transfer(RDT)Principles of reliable data transfer網路通道不能確定是否信賴 使用可信賴的protocal  複雜度取決於使用的unreliable channel  傳送端與接收端不知道彼此的狀態  除非接收端回覆  protocol in">
+<meta property="og:description" content="Computer Network CH3 Transport LayerTransport Layer: OverviewGoal  understanding principle of transport layer servics multiplexing, demultiplexing reliable data transfer flow control congestion contro">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164221.png">
 <meta property="article:published_time" content="2024-04-30T04:56:02.000Z">
-<meta property="article:modified_time" content="2024-04-30T04:57:16.444Z">
+<meta property="article:modified_time" content="2024-05-05T11:46:10.028Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
   
   
   
-  <title>Computer Network CH3 Roadmap - Crown Tako Shoka</title>
+  <title>Computer Network CH3 Transport Layer - Crown Tako Shoka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Computer Network CH3 Roadmap"></span>
+            <span id="subtitle" data-typed-text="Computer Network CH3 Transport Layer"></span>
           
         </div>
 
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          10k 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          45 分鐘
+          85 分鐘
         
       </span>
     
@@ -299,31 +299,255 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Computer Network CH3 Roadmap</h1>
+            <h1 id="seo-header">Computer Network CH3 Transport Layer</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Computer-Network-CH3-Roadmap"><a href="#Computer-Network-CH3-Roadmap" class="headerlink" title="Computer Network CH3 Roadmap"></a>Computer Network CH3 Roadmap</h1><h2 id="Principles-of-reliable-data-transfer-RDT"><a href="#Principles-of-reliable-data-transfer-RDT" class="headerlink" title="Principles of reliable data transfer(RDT)"></a>Principles of reliable data transfer(RDT)</h2><p>Principles of reliable data transfer<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164221.png" srcset="/webHome/img/loading.gif" lazyload><br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164247.png" srcset="/webHome/img/loading.gif" lazyload><br>網路通道不能確定是否信賴</p>
+                <h1 id="Computer-Network-CH3-Transport-Layer"><a href="#Computer-Network-CH3-Transport-Layer" class="headerlink" title="Computer Network CH3 Transport Layer"></a>Computer Network CH3 Transport Layer</h1><h2 id="Transport-Layer-Overview"><a href="#Transport-Layer-Overview" class="headerlink" title="Transport Layer: Overview"></a>Transport Layer: Overview</h2><p>Goal</p>
+<ul>
+<li>understanding principle of transport layer servics<ul>
+<li>multiplexing, demultiplexing</li>
+<li>reliable data transfer</li>
+<li>flow control</li>
+<li>congestion control</li>
+</ul>
+</li>
+<li>learn about internet  transport layer protocols<ul>
+<li>UDP</li>
+<li>TCP</li>
+<li>TCP congestion control</li>
+</ul>
+</li>
+</ul>
+<h2 id="Transport-Layer-services"><a href="#Transport-Layer-services" class="headerlink" title="Transport-Layer services"></a>Transport-Layer services</h2><h3 id="Transport-services-and-protocols"><a href="#Transport-services-and-protocols" class="headerlink" title="Transport services and protocols"></a>Transport services and protocols</h3><ul>
+<li>provide logical communication between application processes running on different hosts</li>
+<li>transport protocols actions in end systems:<ul>
+<li>sender: application messages into segments, passes to  network layer</li>
+<li>receiver: reassembles segments into messages, passes to application layer<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Transport-vs-network-layer-services-and-protocols"><a href="#Transport-vs-network-layer-services-and-protocols" class="headerlink" title="Transport vs. network layer services and protocols"></a>Transport vs. network layer services and protocols</h3><p>transport layer: </p>
+<ul>
+<li>communication between processes <ul>
+<li>relies on, enhances, network layer services</li>
+</ul>
+</li>
+<li>process與process之間的溝通</li>
+</ul>
+<p>network layer: </p>
+<ul>
+<li>communication between hosts</li>
+<li>host與host之間的溝通</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h3><p>Sender<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br>Receiver<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Two-principal-Internet-transport-protocols"><a href="#Two-principal-Internet-transport-protocols" class="headerlink" title="Two principal Internet transport protocols"></a>Two principal Internet transport protocols</h3><p>TCP: Transmission Control Protocol</p>
+<ul>
+<li>reliable, in-order delivery</li>
+<li>congestion control </li>
+<li>flow control</li>
+<li>connection setup</li>
+</ul>
+<p>UDP: User Datagram Protocol</p>
+<ul>
+<li>unreliable, unordered delivery</li>
+<li>no-frills extension of “best-effort” IP</li>
+</ul>
+<p>services not available: </p>
+<ul>
+<li>delay guarantees</li>
+<li>bandwidth guarantees</li>
+</ul>
+<h2 id="Multiplexing-and-demultiplexing"><a href="#Multiplexing-and-demultiplexing" class="headerlink" title="Multiplexing and demultiplexing"></a>Multiplexing and demultiplexing</h2><p>sender</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>reciver</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="How-demultiplexing-works"><a href="#How-demultiplexing-works" class="headerlink" title="How demultiplexing works"></a>How demultiplexing works</h3><p>host receives IP datagrams</p>
+<ul>
+<li>each datagram has source IP address, destination IP address</li>
+<li>each datagram carries one transport-layer segment</li>
+</ul>
+<p>each segment has source, destination port number </p>
+<ul>
+<li>host uses IP addresses &amp; port numbers to direct segment to appropriate socket</li>
+</ul>
+<p>host uses <strong>IP addresses</strong> &amp; <strong>port numbers</strong> to direct segment to appropriate socket</p>
+<ul>
+<li>使用IP address和port numbers</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Connectionless-demultiplexing"><a href="#Connectionless-demultiplexing" class="headerlink" title="Connectionless demultiplexing"></a>Connectionless demultiplexing</h3><p>Recall:</p>
+<ul>
+<li>when creating socket, must specify host-local port #:<div class="code-wrapper"><pre><code class="hljs abnf">DatagramSocket mySocket1 <span class="hljs-operator">=</span> new DatagramSocket(<span class="hljs-number">12534</span>)<span class="hljs-comment">;</span></code></pre></div></li>
+</ul>
+<p>when creating datagram to send into UDP socket, must specify</p>
+<ul>
+<li>destination IP address</li>
+<li>destination port #</li>
+</ul>
+<p>when receiving host receives UDP segment:</p>
+<ul>
+<li>checks destination port # in segment</li>
+<li>directs UDP segment to socket with that port #</li>
+</ul>
+<p>只要目標port numbers一樣，不同來源的datagrams也會被送到同樣的socket</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Connection-oriented-demultiplexing"><a href="#Connection-oriented-demultiplexing" class="headerlink" title="Connection-oriented demultiplexing"></a>Connection-oriented demultiplexing</h3><p>TCP socket identified by 4-tuple: </p>
+<ul>
+<li>source IP address</li>
+<li>source port number</li>
+<li>dest IP address</li>
+<li>dest port number</li>
+</ul>
+<p>demux: receiver uses all four values (4-tuple) to direct segment to appropriate socket</p>
+<p>server may support many simultaneous TCP sockets:</p>
+<ul>
+<li>each socket identified by its own 4-tuple</li>
+<li>each socket associated with a different connecting client</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>不只是看des port, 考慮整個4-tuple的內容</li>
+</ul>
+<p>Summary</p>
+<ul>
+<li>Multiplexing, demultiplexing: based on segment, datagram header field values</li>
+<li>UDP: demultiplexing <strong>using destination port number (only)</strong></li>
+<li>TCP: demultiplexing <strong>using 4-tuple</strong><ul>
+<li>source and destination IP addresses</li>
+<li>… port numbers</li>
+</ul>
+</li>
+<li>Multiplexing&#x2F;demultiplexing happen at all layers</li>
+</ul>
+<h2 id="Connectionless-transport-UDP"><a href="#Connectionless-transport-UDP" class="headerlink" title="Connectionless transport: UDP"></a>Connectionless transport: UDP</h2><h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><ul>
+<li>“no frills,” “bare bones” Internet transport protocol</li>
+<li>“best effort” service, UDP segments may be:<ul>
+<li>lost</li>
+<li>delivered out-of-order to app</li>
+</ul>
+</li>
+<li>connectionless:<ul>
+<li>no handshaking between UDP sender, receiver</li>
+<li>each UDP segment handled independently of others</li>
+</ul>
+</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>UDP use:</p>
+<ul>
+<li>streaming multimedia apps (loss tolerant, rate sensitive)</li>
+<li>DNS</li>
+<li>SNMP</li>
+<li>HTTP&#x2F;3</li>
+</ul>
+<p>RFC 768</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>if reliable transfer needed over UDP (e.g., HTTP&#x2F;3): </p>
+<ul>
+<li>add needed reliability at application layer</li>
+<li>add congestion control at application layer</li>
+</ul>
+<h3 id="Actions-1"><a href="#Actions-1" class="headerlink" title="Actions"></a>Actions</h3><p>Sender</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>receiver</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="UDP-segment-header"><a href="#UDP-segment-header" class="headerlink" title="UDP segment header"></a>UDP segment header</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Checksum"><a href="#Checksum" class="headerlink" title="Checksum"></a>Checksum</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h4 id="Internet-checksum"><a href="#Internet-checksum" class="headerlink" title="Internet checksum"></a>Internet checksum</h4><p>sender:</p>
+<ul>
+<li>treat contents of UDP segment (including UDP header fields and IP addresses) as sequence of 16-bit integers</li>
+<li>checksum: addition (one’s complement sum) of segment content</li>
+<li>checksum value put into UDP checksum field</li>
+</ul>
+<p>receiver:</p>
+<ul>
+<li>compute checksum of received segment</li>
+<li>check if computed checksum equals checksum field value:<ul>
+<li>not equal - error detected</li>
+<li>equal - no error detected.<ul>
+<li>But maybe errors nonetheless? More later ….</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Ex"><a href="#Ex" class="headerlink" title="Ex."></a>Ex.</h4><p>檢查的例子</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>仍有可能發生錯誤</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>“no frills” protocol: </p>
+<ul>
+<li>segments may be lost, delivered out of order</li>
+<li>best effort service: “send and hope for the best”</li>
+</ul>
+<p>UDP has its plusses:</p>
+<ul>
+<li>no setup&#x2F;handshaking needed (no RTT incurred)</li>
+<li>can function when network service is compromised</li>
+<li>helps with reliability (checksum)</li>
+</ul>
+<p>build additional functionality on top of UDP in application layer (e.g., HTTP&#x2F;3)</p>
+<h2 id="Principles-of-reliable-data-transfer-RDT"><a href="#Principles-of-reliable-data-transfer-RDT" class="headerlink" title="Principles of reliable data transfer(RDT)"></a>Principles of reliable data transfer(RDT)</h2><p>Principles of reliable data transfer</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>網路通道不能確定是否信賴</li>
+</ul>
 <p>使用可信賴的protocal</p>
 <ul>
 <li>複雜度取決於使用的unreliable channel</li>
 </ul>
 <p>傳送端與接收端不知道彼此的狀態</p>
 <ul>
-<li>除非接收端回覆<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164531.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>除非接收端回覆</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <h3 id="protocol-interface"><a href="#protocol-interface" class="headerlink" title="protocol interface"></a>protocol interface</h3><p>sender:</p>
 <ul>
-<li>application layer呼叫rdt_send<br>*　transport layer呼叫udt_send</li>
+<li>application layer呼叫rdt_send<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>transport layer呼叫udt_send<ul>
+<li>將packet經過unreliable的通道給receiver</li>
+</ul>
+</li>
 </ul>
 <p>receiver:</p>
 <ul>
 <li>封包進來呼叫rdt_rcv</li>
 <li>rdt_rcv呼叫deliver_data</li>
 </ul>
-<p>雙向頻道<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415164941.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<h3 id="Getting-started-p3-47"><a href="#Getting-started-p3-47" class="headerlink" title="Getting started p3.47"></a>Getting started p3.47</h3><ul>
+<p>雙向頻道</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Reliable-data-transfer-getting-started"><a href="#Reliable-data-transfer-getting-started" class="headerlink" title="Reliable data transfer: getting started"></a>Reliable data transfer: getting started</h3><ul>
 <li>了解版本差異</li>
 <li>為什麼要發展下一個版本</li>
 </ul>
@@ -332,14 +556,17 @@
 <li>上面是event</li>
 <li>下面是action</li>
 </ul>
-<h3 id="rdt1-0-不考-p3-48"><a href="#rdt1-0-不考-p3-48" class="headerlink" title="rdt1.0(不考) p3.48"></a>rdt1.0(不考) p3.48</h3><p>進行在underlying channel(正在進行的)</p>
+<h3 id="rdt1-0-reliable-transfer-over-a-reliable-channel-不考"><a href="#rdt1-0-reliable-transfer-over-a-reliable-channel-不考" class="headerlink" title="rdt1.0: reliable transfer over a reliable channel(不考)"></a>rdt1.0: reliable transfer over a reliable channel(不考)</h3><p>進行在underlying channel(正在進行的)</p>
 <p>underlying channel perfectly reliable</p>
 <ul>
 <li>no bit errors</li>
 <li>no loss of packet</li>
 </ul>
-<p>receiver wait for call from below(等待封包傳送到)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415165711.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<h3 id="rdt2-0-p3-49"><a href="#rdt2-0-p3-49" class="headerlink" title="rdt2.0 p3.49"></a>rdt2.0 p3.49</h3><p>存在bit error</p>
+<p>receiver wait for call from below(等待封包傳送到)</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="rdt2-0-channel-with-bit-errors"><a href="#rdt2-0-channel-with-bit-errors" class="headerlink" title="rdt2.0: channel with bit errors"></a>rdt2.0: channel with bit errors</h3><p>存在bit error</p>
 <ul>
 <li>using checksum to detect bit error</li>
 </ul>
@@ -347,7 +574,10 @@
 <ul>
 <li>receiver 回覆<ul>
 <li>acknowledgements (ACKs) 接收端回覆是否收到封包</li>
-<li>NAKs 接收端回覆收到了，但訊息怪怪的</li>
+<li>NAKs 接收端回覆收到了，但訊息怪怪的<ul>
+<li>receiver explicitly tells sender that pkt had errors</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>如果傳送端接收到NAKs -&gt; 重送<ul>
@@ -355,8 +585,8 @@
 <li>第二次以上傳送封包</li>
 </ul>
 </li>
+<li>上述過程稱之為stop and wait</li>
 </ul>
-<p>上述過程稱之為stop and wait</p>
 <p>FSM</p>
 <ul>
 <li>2.0的特色要加入checksum</li>
@@ -364,7 +594,9 @@
 </ul>
 <p>因為需要通過ACK, NAK來了解接收端的狀態</p>
 <ul>
-<li>故需要protocol<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415171247.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>故需要protocol</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>has a fatal error</p>
 <ul>
@@ -376,11 +608,11 @@
 </ul>
 <p>handling duplicate</p>
 <ul>
-<li>sender add sequenc number to each pkt</li>
+<li>sender add sequence number to each pkt</li>
 <li>收到重複就拋棄</li>
 <li>即rdt2.1</li>
 </ul>
-<h3 id="rdt2-1-p3-56"><a href="#rdt2-1-p3-56" class="headerlink" title="rdt2.1 p3.56"></a>rdt2.1 p3.56</h3><p>sender多傳送一個sequence number</p>
+<h3 id="rdt2-1-sender-handling-garbled-ACK-NAKs"><a href="#rdt2-1-sender-handling-garbled-ACK-NAKs" class="headerlink" title="rdt2.1: sender, handling garbled ACK&#x2F;NAKs"></a>rdt2.1: sender, handling garbled ACK&#x2F;NAKs</h3><p>sender多傳送一個sequence number</p>
 <ul>
 <li>讓receiver知道這是pkt 0</li>
 </ul>
@@ -388,15 +620,16 @@
 <ul>
 <li>如果corrupt or NAK不斷重傳</li>
 <li>直到not corrupt and ACK</li>
-<li>才進入等待傳入下一個sequence number的狀態<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172114.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>receiver</p>
 <ul>
 <li>sndpkt包含ACK和checksum(2.0也有)</li>
 <li>ACK中會有sequence number<ul>
-<li>回傳給sender<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415172724.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>回傳給sender</li>
 </ul>
 </li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>discussion</p>
 <ul>
@@ -411,12 +644,12 @@
 </li>
 <li>receiver<ul>
 <li>check if duplicate</li>
-<li>can not known last ACK&#x2F;NAK received OK at sender</li>
+<li>can not known its last ACK&#x2F;NAK received OK at sender</li>
 <li>thus 2.2 created</li>
 </ul>
 </li>
 </ul>
-<h3 id="rdt2-2-p3-59"><a href="#rdt2-2-p3-59" class="headerlink" title="rdt2.2 p3.59"></a>rdt2.2 p3.59</h3><p>using ACK only</p>
+<h3 id="rdt2-2-a-NAK-free-protocol"><a href="#rdt2-2-a-NAK-free-protocol" class="headerlink" title="rdt2.2: a NAK-free protocol"></a>rdt2.2: a NAK-free protocol</h3><p>using ACK only</p>
 <p>must explictly include seq # of pkt being ACKed</p>
 <p>duplicate ACK at sender &#x3D; NAKs</p>
 <ul>
@@ -427,7 +660,9 @@
 <li>sequence # 放進ACK</li>
 <li>回傳ACK, checksum</li>
 </ul>
-<h3 id="rdt3-0-p3-61"><a href="#rdt3-0-p3-61" class="headerlink" title="rdt3.0 p3.61"></a>rdt3.0 p3.61</h3><p>new channel assumption</p>
+<p>As we will see, TCP uses this approach to be NAK-free</p>
+<p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="rdt3-0-channels-with-errors-and-loss"><a href="#rdt3-0-channels-with-errors-and-loss" class="headerlink" title="rdt3.0: channels with errors and loss"></a>rdt3.0: channels with errors and loss</h3><p>new channel assumption</p>
 <ul>
 <li>lose packet(data, ACKs)<ul>
 <li>previous skill, but not enough</li>
@@ -443,42 +678,61 @@
 </ul>
 </li>
 <li>if pkt just delay?(just on the way)<ul>
-<li>duplicate is solved by seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415180725.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>duplicate is solved by seq #</li>
 </ul>
 </li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p><strong>多了一個計時器</strong></p>
-<p>如果ACK的seq # 不對，就不做事直到timeout</p>
+<ul>
+<li>如果ACK的seq # 不對，就不做事直到timeout</li>
+</ul>
 <p>In action</p>
 <ul>
-<li>no loss</li>
-<li>packet loss</li>
+<li>no loss<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>packet loss<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
 <li><strong>ACK loss</strong><ul>
 <li>after sender resent, receiver detect duplicate</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 </li>
 <li><strong>premature timeout&#x2F;delayed ACK(太早)</strong><ul>
-<li>receive ACK the same -&gt; ignore<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181333.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>receive ACK the same -&gt; ignore</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 </li>
 </ul>
-<h4 id="performance"><a href="#performance" class="headerlink" title="performance"></a>performance</h4><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181558.png" srcset="/webHome/img/loading.gif" lazyload>
-
+<h3 id="performance"><a href="#performance" class="headerlink" title="performance"></a>performance</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
 <p>operation</p>
 <ul>
-<li>blue part is $\frac{L}{R}$<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181731.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>blue part is $\frac{L}{R}$</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>using many time to sent little bit data, caused big RTT</p>
 <ul>
-<li>$U_{sender}$ is too small<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415181927.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>$U_{sender}$ is too small</li>
+<li><ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
-<h4 id="using-pipeline"><a href="#using-pipeline" class="headerlink" title="using pipeline!"></a>using pipeline!</h4><p>sender allows multiple, “in-flight”, yet-to-be-acknowledge pkt</p>
+</li>
+</ul>
+<h3 id="using-pipeline"><a href="#using-pipeline" class="headerlink" title="using pipeline!"></a>using pipeline!</h3><p>sender allows multiple, “in-flight”, yet-to-be-acknowledge pkt</p>
 <ul>
 <li>range of seq # must be increased</li>
 <li>buffering at sender and&#x2F;or receiver</li>
 </ul>
-<p>increased utilization(看過就好)<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415182240.png" srcset="/webHome/img/loading.gif" lazyload></p>
-<h4 id="Go-Back-N-p-72"><a href="#Go-Back-N-p-72" class="headerlink" title="Go-Back-N: p.72"></a>Go-Back-N: p.72</h4><p>Sender</p>
+<p>increased utilization(看過就好)</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Go-Back-N-sender"><a href="#Go-Back-N-sender" class="headerlink" title="Go-Back-N: sender"></a>Go-Back-N: sender</h3><p>Sender</p>
 <ul>
 <li>sender window of up to N, consecuive transmitted but unACKed pkts<ul>
 <li>k-bit seq # in pkt header</li>
@@ -487,7 +741,8 @@
 </li>
 <li>cumulative ACK:一次回應多個ACK</li>
 <li>timer從最早的pkt開始算</li>
-<li>如果沒收到，回到最前面的重傳<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225254.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>如果沒收到，回到最前面的重傳</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>Reciver</p>
 <ul>
@@ -498,38 +753,139 @@
 </li>
 <li>out-of-order pkt<ul>
 <li>can discard or buffer</li>
-<li>re-ACK pkt with highest in-order seq #<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225239.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>re-ACK pkt with highest in-order seq #</li>
 </ul>
 </li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
-<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415225603.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>in action</p>
 <ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 <li>太蠢了，因為一個loss重傳一大堆</li>
 </ul>
-<h4 id="Selective-repeat"><a href="#Selective-repeat" class="headerlink" title="Selective repeat"></a>Selective repeat</h4><p>維持timer for specific pkt</p>
+<h3 id="Selective-repeat"><a href="#Selective-repeat" class="headerlink" title="Selective repeat"></a>Selective repeat</h3><p>維持timer for specific pkt</p>
 <ul>
 <li>重傳time out的那個</li>
 </ul>
+<p>sender</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
 <p>reciver</p>
 <ul>
-<li>多了一個expected, not yet recived<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415230339.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>多了一個expected, not yet recived</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>p3.77看過就好</p>
-<p>in action<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231039.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>in action</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>不連續的pkt會被buffer，等到補齊後一次deliver上去</li>
+</ul>
 <p>dilemma!</p>
 <ul>
 <li>if seq # is too close to window size</li>
-<li>會以為sender傳的0，是新的0<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240415231220.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
-<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="TCP-flow-control"><a href="#TCP-flow-control" class="headerlink" title="TCP flow control"></a>TCP flow control</h3><p>receiver 告訴sender 他已經不能再接收了</p>
+<h2 id="Connection-oriented-transport-TCP"><a href="#Connection-oriented-transport-TCP" class="headerlink" title="Connection-oriented transport: TCP"></a>Connection-oriented transport: TCP</h2><h3 id="overview"><a href="#overview" class="headerlink" title="overview"></a>overview</h3><p>point-to-point:</p>
+<ul>
+<li>one sender, one receiver</li>
+</ul>
+<p>reliable, in-order byte steam:</p>
+<ul>
+<li>no “message boundaries”</li>
+</ul>
+<p>full duplex data:</p>
+<ul>
+<li>bi-directional data flow in same connection</li>
+<li>MSS: maximum segment size</li>
+</ul>
+<p>cumulative ACKs</p>
+<p>pipelining:</p>
+<ul>
+<li>TCP congestion and flow control set window size</li>
+</ul>
+<p>connection-oriented: </p>
+<ul>
+<li>handshaking (exchange of control messages) initializes sender, receiver state before data exchange</li>
+</ul>
+<p>flow controlled:</p>
+<ul>
+<li>sender will not overwhelm receiver</li>
+</ul>
+<h3 id="TCP-segment-structure"><a href="#TCP-segment-structure" class="headerlink" title="TCP segment structure"></a>TCP segment structure</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h4 id="sequence-numbers-ACKs"><a href="#sequence-numbers-ACKs" class="headerlink" title="sequence numbers, ACKs"></a>sequence numbers, ACKs</h4><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>Ex.<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Round-trip-time-timeout"><a href="#Round-trip-time-timeout" class="headerlink" title="Round trip time, timeout"></a>Round trip time, timeout</h3><p>estimate RTT</p>
+<ul>
+<li>下面那個SampleRTT應該是estimateRTT<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>EWMA</p>
+<ul>
+<li>過去的RTT影響會指數遞減<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Real timeout interval</p>
+<ul>
+<li>會用estimateRTT + safety margin<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="TCP-Sender"><a href="#TCP-Sender" class="headerlink" title="TCP Sender"></a>TCP Sender</h3><p>event: data received from application</p>
+<ul>
+<li>create segment with seq #</li>
+<li>seq # is byte-stream number of first data byte in  segment</li>
+<li>start timer if not already running <ul>
+<li>think of timer as for oldest unACKed segment</li>
+<li>expiration interval: TimeOutInterval</li>
+</ul>
+</li>
+</ul>
+<p>event: timeout</p>
+<ul>
+<li>retransmit segment that caused timeout</li>
+<li>restart timer</li>
+</ul>
+<p>event: ACK received </p>
+<ul>
+<li>if ACK acknowledges previously unACKed segments<ul>
+<li>update what is known to be ACKed</li>
+<li>start timer if there are  still unACKed segments</li>
+</ul>
+</li>
+</ul>
+<h3 id="Receiver-ACK-Generation"><a href="#Receiver-ACK-Generation" class="headerlink" title="Receiver ACK Generation"></a>Receiver ACK Generation</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>retransmission scenarios</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-59.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>fast<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-60.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP-flow-control"><a href="#TCP-flow-control" class="headerlink" title="TCP flow control"></a>TCP flow control</h3><p>receiver 告訴sender 他已經不能再接收了</p>
 <ul>
 <li>希望best effort，傳送端盡量傳，交給接收端控制</li>
 </ul>
-<p>network layer會一直把資料傳輸上去<br>TCP 會把資料丟給application layer<br>application layer拆資料</p>
+<p>network layer會一直把資料傳輸上去</p>
+<ul>
+<li>TCP 會把資料丟給application layer</li>
+<li>application layer拆資料<ul>
+<li>如果拆得比傳輸得慢? 如下</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-61.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-62.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
 <p>rcv window</p>
 <ul>
 <li>接收端使用free buffer在window的大小，告訴sender不要傳超過</li>
-<li>放在header中<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240416153109.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>放在header中</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-63.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/image-64.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
 </ul>
 <h3 id="TCP-connection-management-p3-101"><a href="#TCP-connection-management-p3-101" class="headerlink" title="TCP connection management p3.101"></a>TCP connection management p3.101</h3><p>TCP會做handshake(三項交握)</p>
 <ul>
@@ -793,8 +1149,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Computer Network CH3 Roadmap</div>
-      <div>https://z-hwa.github.io/webHome/[object Object]/2024/04/30/Computer Network/Computer-Network-CH3-Roadmap/</div>
+      <div>Computer Network CH3 Transport Layer</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/2024/04/30/Computer Network/Computer-Network-CH3-Transport-Layer/</div>
     </div>
     <div class="license-meta">
       
@@ -881,8 +1237,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Roadmap/';
-          this.page.identifier = '/webHome/%5Bobject%20Object%5D/2024/04/30/Computer%20Network/Computer-Network-CH3-Roadmap/';
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/2024/04/30/Computer%20Network/Computer-Network-CH3-Transport-Layer/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
