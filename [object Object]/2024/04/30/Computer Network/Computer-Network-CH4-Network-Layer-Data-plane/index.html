@@ -16,16 +16,16 @@
   <meta name="author" content="crown tako">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="Computer Network CH4 network layer data planequestion:TCP receiver會延遲回復ACK  500ms，delay ack 之後一次回覆連續的ACK，避免網路中都是ACK的訊息    如果有封包沒收到，後續收到的封包都會回傳那個沒收到封包的series number  對於傳送端而言就是duplicate 會進行重傳  network l">
+    <meta name="description" content="Computer Network CH4 network layer data planeNetwork layer: our goalsunderstand principles behind network layer services, focusing on data plane:  network layer service models forwarding versus routin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Computer Network CH4 Network Layer Data plane">
 <meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/">
 <meta property="og:site_name" content="Crown Tako Shoka">
-<meta property="og:description" content="Computer Network CH4 network layer data planequestion:TCP receiver會延遲回復ACK  500ms，delay ack 之後一次回覆連續的ACK，避免網路中都是ACK的訊息    如果有封包沒收到，後續收到的封包都會回傳那個沒收到封包的series number  對於傳送端而言就是duplicate 會進行重傳  network l">
+<meta property="og:description" content="Computer Network CH4 network layer data planeNetwork layer: our goalsunderstand principles behind network layer services, focusing on data plane:  network layer service models forwarding versus routin">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423164755.png">
 <meta property="article:published_time" content="2024-04-30T04:57:41.000Z">
-<meta property="article:modified_time" content="2024-04-30T09:52:32.686Z">
+<meta property="article:modified_time" content="2024-05-06T10:00:17.955Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
@@ -113,7 +113,119 @@
 
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -251,7 +363,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          4.2k 字
         
       </span>
     
@@ -262,7 +374,7 @@
         
         
         
-          24 分鐘
+          36 分鐘
         
       </span>
     
@@ -304,7 +416,21 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Computer-Network-CH4-network-layer-data-plane"><a href="#Computer-Network-CH4-network-layer-data-plane" class="headerlink" title="Computer Network CH4 network layer data plane"></a>Computer Network CH4 network layer data plane</h1><h2 id="question-TCP-receiver"><a href="#question-TCP-receiver" class="headerlink" title="question:TCP receiver"></a>question:TCP receiver</h2><p>會延遲回復ACK</p>
+                <h1 id="Computer-Network-CH4-network-layer-data-plane"><a href="#Computer-Network-CH4-network-layer-data-plane" class="headerlink" title="Computer Network CH4 network layer data plane"></a>Computer Network CH4 network layer data plane</h1><h2 id="Network-layer-our-goals"><a href="#Network-layer-our-goals" class="headerlink" title="Network layer: our goals"></a>Network layer: our goals</h2><p>understand principles behind network layer services, focusing on data plane:</p>
+<ul>
+<li>network layer service models</li>
+<li>forwarding versus routing</li>
+<li>how a router works</li>
+<li>addressing</li>
+<li>generalized forwarding</li>
+<li>Internet architecture</li>
+</ul>
+<p>instantiation, implementation in the Internet</p>
+<ul>
+<li>IP protocol</li>
+<li>NAT, middleboxes</li>
+</ul>
+<h2 id="question-for-CH3-TCP-receiver"><a href="#question-for-CH3-TCP-receiver" class="headerlink" title="question for CH3:TCP receiver"></a>question for CH3:TCP receiver</h2><p>會延遲回復ACK</p>
 <ul>
 <li>500ms，delay ack<ul>
 <li>之後一次回覆連續的ACK，避免網路中都是ACK的訊息</li>
@@ -316,7 +442,7 @@
 <li>對於傳送端而言就是duplicate</li>
 <li>會進行重傳</li>
 </ul>
-<h2 id="network-layer-overview"><a href="#network-layer-overview" class="headerlink" title="network layer: overview"></a>network layer: overview</h2><p>sender:</p>
+<h2 id="network-layer-overview"><a href="#network-layer-overview" class="headerlink" title="network layer: overview"></a>network layer: overview</h2><h3 id="Network-layer-services-and-protocols"><a href="#Network-layer-services-and-protocols" class="headerlink" title="Network-layer  services and protocols"></a>Network-layer  services and protocols</h3><p>sender:</p>
 <ul>
 <li>封裝segments變成datagram</li>
 </ul>
@@ -326,6 +452,9 @@
 <li>Ip datagram解封裝</li>
 </ul>
 <p>internet的host每個都有network layer protocol</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
 <p>routers:</p>
 <ul>
 <li>check header fields of each datagram<ul>
@@ -343,16 +472,35 @@
 <li>決定從source 到 destination要走哪裡</li>
 </ul>
 </li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
-<h3 id="data-plane"><a href="#data-plane" class="headerlink" title="data plane"></a>data plane</h3><p>based source IP and destination IP from datagram to decide which port to go</p>
-<p>control plane(規劃整條路徑)</p>
+<h3 id="Network-layer-data-plane-control-plane"><a href="#Network-layer-data-plane-control-plane" class="headerlink" title="Network layer: data plane, control plane"></a>Network layer: data plane, control plane</h3><p>based source IP and destination IP from datagram to decide which port to go</p>
+<p>Data plane:</p>
 <ul>
-<li>traditional routing algo.<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423164755.png" srcset="/webHome/img/loading.gif" lazyload></li>
-<li>software-defined networking (SDN)<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423164816.png" srcset="/webHome/img/loading.gif" lazyload></li>
+<li>local, per-router function</li>
+<li>determines how datagram arriving on router input port is forwarded to router output port</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Control plane</p>
+<ul>
+<li>network-wide logic</li>
+<li>determines how datagram is routed among routers along end-end path from source host to destination host</li>
+</ul>
+<p>two control-plane approaches:</p>
+<ul>
+<li>規劃整個datagram的路徑</li>
+<li>traditional routing algorithms: implemented in routers<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>software-defined networking (SDN): implemented in (remote) servers<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
 </ul>
 <h3 id="network-service-model"><a href="#network-service-model" class="headerlink" title="network service model"></a>network service model</h3><p>Ex.</p>
 <ul>
-<li>individual<ul>
+<li>individual of datagram<ul>
 <li>guaranteed delivery</li>
 </ul>
 </li>
@@ -365,27 +513,43 @@
 </ul>
 <p>Best effort網際網路在使用的</p>
 <ul>
-<li>甚麼都沒有保證</li>
+<li>No guarantees on: <ul>
+<li>successful datagram delivery to destination</li>
+<li>timing or order of delivery</li>
+<li>bandwidth available to end-end flow</li>
+</ul>
+</li>
 </ul>
 <p>其他不會考(看過就好)</p>
 <h3 id="reflection-on-best-effort-service"><a href="#reflection-on-best-effort-service" class="headerlink" title="reflection on best-effort service"></a>reflection on best-effort service</h3><p>for most of the time</p>
 <ul>
 <li>provisioning bandwith</li>
 </ul>
-<h2 id="What’s-inside-a-router"><a href="#What’s-inside-a-router" class="headerlink" title="What’s inside a router?"></a>What’s inside a router?</h2><h3 id="router-architecture-overview"><a href="#router-architecture-overview" class="headerlink" title="router architecture overview"></a>router architecture overview</h3><p>each router has a routing processor<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423171510.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<h2 id="What’s-inside-a-router"><a href="#What’s-inside-a-router" class="headerlink" title="What’s inside a router?"></a>What’s inside a router?</h2><h3 id="router-architecture-overview"><a href="#router-architecture-overview" class="headerlink" title="router architecture overview"></a>router architecture overview</h3><p>each router has a routing processor</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
 <h3 id="input-port-function-p4-16"><a href="#input-port-function-p4-16" class="headerlink" title="input port function p4.16"></a>input port function p4.16</h3><p>input port queueing</p>
 <ul>
 <li>datagram進入速度大於forwarding rate</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
-<p>forwarding method<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423172552.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>forwarding method<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
 <h4 id="Destination-based"><a href="#Destination-based" class="headerlink" title="Destination-based"></a>Destination-based</h4><p>最長前綴匹配(這個方法不重要)</p>
-<h3 id="switching-fabrics"><a href="#switching-fabrics" class="headerlink" title="switching fabrics"></a>switching fabrics</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240423174002.png" srcset="/webHome/img/loading.gif" lazyload>
-
+<ul>
+<li>盡量匹配最長的情況</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="switching-fabrics"><a href="#switching-fabrics" class="headerlink" title="switching fabrics"></a>switching fabrics</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
 <p>via memory</p>
 <ul>
+<li>1st generation</li>
 <li>traditional</li>
+<li>speed depends on memory bandwith<ul>
 <li>2 bus crossing per datagram</li>
-<li>speed depends on memory bandwith</li>
+</ul>
+</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>via bus</p>
 <ul>
@@ -393,6 +557,7 @@
 <li>32Gps bus, Cisco 5600</li>
 </ul>
 </li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>via interconnection network</p>
 <ul>
@@ -401,7 +566,19 @@
 </ul>
 </li>
 <li>speed up , via parallel</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
+<h3 id="input-port-queueing"><a href="#input-port-queueing" class="headerlink" title="input port queueing"></a>input port queueing</h3><p>If switch fabric slower than input ports combined -&gt; queueing may occur at input queues </p>
+<ul>
+<li>queueing delay and loss due to input buffer overflow!</li>
+</ul>
+<p>Head-of-the-Line (HOL) blocking: queued datagram at front of queue prevents others in queue from moving forward</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="output-port-queueing"><a href="#output-port-queueing" class="headerlink" title="output port queueing"></a>output port queueing</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="How-much-buffering"><a href="#How-much-buffering" class="headerlink" title="How much buffering?"></a>How much buffering?</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Buffer-Management"><a href="#Buffer-Management" class="headerlink" title="Buffer Management"></a>Buffer Management</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
 <h3 id="packet-scheduling-FCFS"><a href="#packet-scheduling-FCFS" class="headerlink" title="packet scheduling FCFS"></a>packet scheduling FCFS</h3><p>決定哪個封包接下來會被送向link</p>
 <p>FCFS</p>
 <ul>
@@ -423,7 +600,7 @@
 <li>會輪流的傳遞不同優先度的封包</li>
 <li>weighted fair queueing<ul>
 <li>每個cycle分配給不同優先權封包的時間，基於各個優先權的權重</li>
-<li>$\frac{w_i}{\sum_{j} w_j}$</li>
+<li><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.525ex;" xmlns="http://www.w3.org/2000/svg" width="5.295ex" height="3.255ex" role="img" focusable="false" viewbox="0 -764.8 2340.2 1438.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="msub" transform="translate(801.4,451.6) scale(0.707)"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"/></g><g data-mml-node="mi" transform="translate(749,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g></g><g data-mml-node="mrow" transform="translate(220,-370.3) scale(0.707)"><g data-mml-node="munder"><g data-mml-node="mo"><path data-c="2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"/></g><g data-mml-node="TeXAtom" transform="translate(1089,-285.4) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"/></g></g></g><g data-mml-node="msub" transform="translate(1597,0)"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"/></g><g data-mml-node="mi" transform="translate(749,-150) scale(0.707)"><path data-c="1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"/></g></g></g><rect width="2100.2" height="60" x="120" y="220"/></g></g></g></svg></mjx-container></li>
 <li>minimum bandwith guarantee<br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 </li>
@@ -435,10 +612,13 @@
 </ul>
 <p>不考這個小節的名詞解釋</p>
 <h3 id="ISP-不重要"><a href="#ISP-不重要" class="headerlink" title="ISP?(不重要)"></a>ISP?(不重要)</h3><p>ISP業者究竟是提供甚麼東西?</p>
-<h2 id="IP-the-internet-protocol"><a href="#IP-the-internet-protocol" class="headerlink" title="IP:the internet protocol"></a>IP:the internet protocol</h2><h3 id="network-layer"><a href="#network-layer" class="headerlink" title="network layer"></a>network layer</h3><p>path-selection algo.</p>
+<h2 id="IP-the-internet-protocol"><a href="#IP-the-internet-protocol" class="headerlink" title="IP:the internet protocol"></a>IP:the internet protocol</h2><h3 id="network-layer"><a href="#network-layer" class="headerlink" title="network layer"></a>network layer</h3><p>Internet</p>
 <ul>
-<li>decide how packet go<ul>
-<li>put to forwarding table<br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>host, router network layer functions:</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>path-selection algo.<ul>
+<li>decide how packet go</li>
+<li>put to forwarding table</li>
 </ul>
 </li>
 </ul>
@@ -458,7 +638,7 @@
 </ul>
 <p>overhead</p>
 <ul>
-<li>IP有五列總共5*4 &#x3D; 20 bytes</li>
+<li>IP有五列總共5*4 = 20 bytes</li>
 </ul>
 <h3 id="IP-addressing-introduction"><a href="#IP-addressing-introduction" class="headerlink" title="IP addressing: introduction"></a>IP addressing: introduction</h3><p>子網路的高bit會一樣</p>
 <ul>
@@ -467,7 +647,7 @@
 </ul>
 <p>每一個host可以有多個interface</p>
 <ul>
-<li>connection between host&#x2F;router and physical link</li>
+<li>connection between host/router and physical link</li>
 <li>前提是有多張網卡</li>
 </ul>
 <h3 id="subnet"><a href="#subnet" class="headerlink" title="subnet"></a>subnet</h3><p>中間沒有其他中介的路由器</p>
@@ -485,9 +665,14 @@
 </ul>
 </li>
 </ul>
+<p>Recipe for defining subnets:</p>
+<ul>
+<li>detach each interface from its host or router, creating “islands” of isolated networks</li>
+<li>each isolated network is called a subnet</li>
+</ul>
 <p>Ex.</p>
 <ul>
-<li>223.1.3.0&#x2F;24<ul>
+<li>223.1.3.0/24<ul>
 <li>24代表前24個bits 是subnet part<br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 </li>
@@ -505,7 +690,12 @@
 <ul>
 <li>ICANN</li>
 </ul>
-<h3 id="network-address-translation-IPv6"><a href="#network-address-translation-IPv6" class="headerlink" title="network address translation IPv6"></a>network address translation IPv6</h3><p>NAT: network address translation<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="network-address-translation-IPv6"><a href="#network-address-translation-IPv6" class="headerlink" title="network address translation IPv6"></a>network address translation IPv6</h3><p>NAT: network address translation</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>可以不用告知外界便調整內網中的裝置IP</li>
+</ul>
 <p>source ip 要轉換成 NAT ip</p>
 <ul>
 <li>路由器要透過轉譯表(NAT ip + port)<ul>
@@ -513,14 +703,20 @@
 </ul>
 </li>
 </ul>
+<p>NAT has been controversial:</p>
+<ul>
+<li>routers “should” only process up to layer 3</li>
+<li>address “shortage” should be solved by IPv6</li>
+<li>violates end-to-end argument (port # manipulation by network-layer device)</li>
+</ul>
 <p>transparent的問題?</p>
 <ul>
-<li>外網的host沒辦法找到內網的host<ul>
-<li>NAT traversal</li>
+<li>NAT traversal<ul>
+<li>外網的host沒辦法找到內網的host</li>
 </ul>
 </li>
 </ul>
-<h3 id="motivation"><a href="#motivation" class="headerlink" title="motivation"></a>motivation</h3><p>40 bytes fixed length header</p>
+<h3 id="IPv6-motivation"><a href="#IPv6-motivation" class="headerlink" title="IPv6: motivation"></a>IPv6: motivation</h3><p>40 bytes fixed length header</p>
 <ul>
 <li>address become 128 bits</li>
 <li>flow label<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
@@ -529,16 +725,15 @@
 <ul>
 <li>v4 and v6 可以同時存在</li>
 <li>router可能不支援v6<ul>
-<li>可以把v6塞進v4裡面 &#x3D; tunneling<br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>可以把v6塞進v4裡面 = tunneling<br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 </li>
 </ul>
 <p>IPv6</p>
 <ul>
-<li>太久了</li>
+<li>發展太久了</li>
 </ul>
-<h2 id="Generalized-Forwarding-SDN"><a href="#Generalized-Forwarding-SDN" class="headerlink" title="Generalized Forwarding, SDN"></a>Generalized Forwarding, SDN</h2><p>match plus action</p>
-<ul>
+<h2 id="Generalized-Forwarding-SDN"><a href="#Generalized-Forwarding-SDN" class="headerlink" title="Generalized Forwarding, SDN"></a>Generalized Forwarding, SDN</h2><h3 id="match-plus-action"><a href="#match-plus-action" class="headerlink" title="match plus action"></a>match plus action</h3><ul>
 <li>traditional<ul>
 <li>basic forwarding table(aka flow table)</li>
 <li>destination based</li>
@@ -550,22 +745,35 @@
 <li>有多種action</li>
 </ul>
 </li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <h3 id="Flow-table-abstraction"><a href="#Flow-table-abstraction" class="headerlink" title="Flow table abstraction"></a>Flow table abstraction</h3><p>總而言之，可以看很多欄位的資料</p>
 <ul>
-<li>執行很多不同的動作<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>執行很多不同的動作<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
 <li>link, network and transport layer header could be used</li>
 </ul>
-<p>可以藉此實現firewall<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>可以藉此實現firewall(會考喔)</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
 <p>要使用上述的功能，要滿足下面的條件</p>
 <ul>
 <li>openflow</li>
-<li>generalized forwwarding</li>
+<li>generalized forwarding</li>
 <li>硬體要支援</li>
 <li>可以有以下的功能<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 <p>Ex.(看過就好)<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
-<p>summary<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>summary</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Network/Computer-Network-CH4-Network-Layer-Data-plane/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
 <h3 id="middleboxes-沒什麼重點-不重要"><a href="#middleboxes-沒什麼重點-不重要" class="headerlink" title="middleboxes(沒什麼重點)(不重要)"></a>middleboxes(沒什麼重點)(不重要)</h3>
                 
               </div>
