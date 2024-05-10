@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-4.png">
 <meta property="article:published_time" content="2024-04-30T04:52:01.000Z">
-<meta property="article:modified_time" content="2024-05-02T04:42:38.716Z">
+<meta property="article:modified_time" content="2024-05-09T04:00:31.321Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
@@ -363,7 +363,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          3.9k 字
         
       </span>
     
@@ -374,7 +374,7 @@ mjx-container[display="true"] + br {
         
         
         
-          18 分鐘
+          33 分鐘
         
       </span>
     
@@ -656,6 +656,266 @@ mjx-container[display="true"] + br {
 <li>branch 提早做<br>  <img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 </li>
+</ul>
+<h3 id="…"><a href="#…" class="headerlink" title="…"></a>…</h3><h2 id="4-7-pipelined-datapath-and-control"><a href="#4-7-pipelined-datapath-and-control" class="headerlink" title="4.7 pipelined datapath and control"></a>4.7 pipelined datapath and control</h2><h3 id="…-1"><a href="#…-1" class="headerlink" title="…"></a>…</h3><h3 id="Pipeline-control"><a href="#Pipeline-control" class="headerlink" title="Pipeline control"></a>Pipeline control</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="pipeline-control-on-five-stage-step-2"><a href="#pipeline-control-on-five-stage-step-2" class="headerlink" title="pipeline control on five stage (step 2)"></a>pipeline control on five stage (step 2)</h3><ol>
+<li>instruction fetch</li>
+<li>instruction decode/reister file read</li>
+<li>Execution/address calculation<ul>
+<li>ALUop and ALUsrc</li>
+</ul>
+</li>
+<li>memory accedd<ul>
+<li>control line set in this stage<ul>
+<li>Branch: 資料往後流</li>
+<li>MemRead</li>
+<li>MemWrite</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>write-back<ul>
+<li>資料往後流</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>比對上一張圖</li>
+</ul>
+</li>
+</ul>
+<h3 id="pipelined-control-on-each-stage-step-3"><a href="#pipelined-control-on-each-stage-step-3" class="headerlink" title="pipelined control on each stage (step 3)"></a>pipelined control on each stage (step 3)</h3><p>控制的指令也需要pipeline register</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="4-8-Data-Hazards-Forwarding-vs-Stalling"><a href="#4-8-Data-Hazards-Forwarding-vs-Stalling" class="headerlink" title="4.8 Data Hazards: Forwarding vs. Stalling"></a>4.8 Data Hazards: Forwarding vs. Stalling</h2><h3 id="Data-Hazard-in-ALU-inst"><a href="#Data-Hazard-in-ALU-inst" class="headerlink" title="Data Hazard in ALU inst."></a>Data Hazard in ALU inst.</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>後面四個指令都需要用到sub放進x2的資料</li>
+</ul>
+<p>The Dependencies in datapath</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>正常情況下(CC 5才計算出第一個指令的結果)<ul>
+<li>橘色的部分是不可能做的<ul>
+<li>不能時光回朔 -&gt; 結果是錯的</li>
+</ul>
+</li>
+<li>藍色是可以做的</li>
+<li>紅線是可以forwading的方式(可以解決問題)<ul>
+<li>計算出的結果會被放進pipeline register</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Notation</p>
+<ul>
+<li>如何判斷發生這種情況</li>
+<li>下一個cycle的rd = 上一個cycle的rs1 or rd2<ul>
+<li>存在dependencies</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>也就是比較不同stage的指令</li>
+</ul>
+</li>
+</ul>
+<p>cotrol unit to resolve the hazards</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>綠色是上一張圖的紅色</li>
+</ul>
+</li>
+<li>forwarding unit<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>Double data hazard</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>1 and 2, 2 and 3 has dependencies</li>
+<li>上一種forwarding logic會有問題</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>兩種forwarding同時match 10 and 01</li>
+</ul>
+</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>都發生的話</li>
+<li>確定EX/MEM沒有發生，才讓MEM/WB的forwarding進行(黃字)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-hazard-in-Load-use-inst"><a href="#data-hazard-in-Load-use-inst" class="headerlink" title="data hazard in Load-use inst."></a>data hazard in Load-use inst.</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>detect</p>
+<ul>
+<li>cc3 發現load的rd = 下一個指令的rs</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>sw sol. is to insert a NOP<ul>
+<li>如果處理器不能做這件事，compiler就會來做</li>
+</ul>
+</li>
+</ul>
+<p>硬體實作的方法</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="4-9-Control-hazards"><a href="#4-9-Control-hazards" class="headerlink" title="4.9 Control hazards"></a>4.9 Control hazards</h2><h3 id="control-hazard"><a href="#control-hazard" class="headerlink" title="control hazard"></a>control hazard</h3><p>branch 大概會在 MEM stage才知道要不要jump</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>基礎設計下，會有3個bubble</li>
+<li>有其他設計，目的是減少bubble</li>
+</ul>
+<h3 id="sol-1-Prediction"><a href="#sol-1-Prediction" class="headerlink" title="sol 1. Prediction"></a>sol 1. Prediction</h3><p>prediction覺得不用taken</p>
+<ul>
+<li>如果正確，繼續執行</li>
+<li>錯誤，flush掉前面的指令就可以了<br><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="sol-2-Reduce-Branch-Delay"><a href="#sol-2-Reduce-Branch-Delay" class="headerlink" title="sol 2. Reduce Branch Delay"></a>sol 2. Reduce Branch Delay</h3><p>盡量讓結果更早的算出來</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>1 計算結果可以在ID stage算出來</li>
+<li>2 可以在ID的後半部就得到</li>
+</ul>
+</li>
+</ul>
+<p>方法</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>stall 一個cycle就算得出來</li>
+</ul>
+<p>例子</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="sol-3-Dynamic-Branch-Prediction"><a href="#sol-3-Dynamic-Branch-Prediction" class="headerlink" title="sol 3. Dynamic Branch Prediction"></a>sol 3. Dynamic Branch Prediction</h3><p>根據程式執行的結果 決定要怎麼做</p>
+<ul>
+<li>實做一個 branch prediction buffer</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>計算prediction rate</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>2-bit branch predictor</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>錯誤兩次才更換branch prediction buffer</li>
+</ul>
+<h2 id="4-10-Exception"><a href="#4-10-Exception" class="headerlink" title="4.10 Exception"></a>4.10 Exception</h2><h3 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h3><p>RISC-V的分類</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Exception-handling"><a href="#Exception-handling" class="headerlink" title="Exception handling"></a>Exception handling</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>發生interrupt就會送到固定的位址<ul>
+<li>類似插入USB等等</li>
+</ul>
+</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>對應位置會有對應的軟體來處理該狀況</li>
+<li>做完之後，才會return回去</li>
+</ul>
+</li>
+</ul>
+<p>實作方法</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>把被打斷的指令放進spec<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h2 id="4-11-parallelism-via-instruction"><a href="#4-11-parallelism-via-instruction" class="headerlink" title="4.11 parallelism via instruction"></a>4.11 parallelism via instruction</h2><h3 id="instruction-level-parallelism"><a href="#instruction-level-parallelism" class="headerlink" title="instruction level parallelism"></a>instruction level parallelism</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>deeper pipeline<ul>
+<li>管線化的設計是一種Pipeline的展現</li>
+<li>pipeline的深度就是stage數量</li>
+<li>pipeline的深度越多<ul>
+<li>ILP平行度越高</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multiple issue<ul>
+<li>不用CPI來計算效能</li>
+</ul>
+</li>
+</ul>
+<h3 id="Multiple-issue-processor"><a href="#Multiple-issue-processor" class="headerlink" title="Multiple issue processor"></a>Multiple issue processor</h3><ul>
+<li>Dynamic<ul>
+<li>compiler和處理器決定</li>
+</ul>
+</li>
+<li>static<ul>
+<li>硬體不做</li>
+<li>compiler做事</li>
+</ul>
+</li>
+</ul>
+<h3 id="Speculation"><a href="#Speculation" class="headerlink" title="Speculation"></a>Speculation</h3><p>猜</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Static-Multiple-issue"><a href="#Static-Multiple-issue" class="headerlink" title="Static Multiple issue"></a>Static Multiple issue</h3><p><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-58.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>compiler負責找independent的指令</li>
+</ul>
+<p>HW design</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-59.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-60.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>現代基本上都是2 issue</li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-61.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-62.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>一個load 配一個 ALU</li>
+<li>用IPC計算<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-63.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>loop Ex.<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-64.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Dynamix-Multiple-issue"><a href="#Dynamix-Multiple-issue" class="headerlink" title="Dynamix Multiple issue"></a>Dynamix Multiple issue</h3><p>現代手機都是這種</p>
+<ul>
+<li>superscalar</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-65.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>部分是in order</li>
+</ul>
+</li>
+</ul>
+<h3 id="Dynamic-pipeline-scheduling"><a href="#Dynamic-pipeline-scheduling" class="headerlink" title="Dynamic pipeline scheduling"></a>Dynamic pipeline scheduling</h3><p>找沒有相依的指令</p>
+<ul>
+<li>用一個window去看後面的指令</li>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-66.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/2024/04/30/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-67.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
 </ul>
 
                 
