@@ -1,0 +1,1926 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Computer Organization CH2 Instructions: Language of the Computer2.1 IntroductionInstruction SetInstructions  command a computer’s hardware the words of a computer’s language  An Instruction set  vocab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Organization CH2 Instructions: Language of the Computer">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH2-Instructions-Language-of-the-Computer/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Computer Organization CH2 Instructions: Language of the Computer2.1 IntroductionInstruction SetInstructions  command a computer’s hardware the words of a computer’s language  An Instruction set  vocab">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-08%20165555.png">
+<meta property="article:published_time" content="2024-04-17T22:11:03.000Z">
+<meta property="article:modified_time" content="2024-04-17T22:13:45.389Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-08%20165555.png">
+  
+  
+  
+  <title>Computer Organization CH2 Instructions: Language of the Computer - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Computer Organization CH2 Instructions: Language of the Computer"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-18 06:11" pubdate>
+          2024年4月18日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          25k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          212 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Computer Organization CH2 Instructions: Language of the Computer</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Computer-Organization-CH2-Instructions-Language-of-the-Computer"><a href="#Computer-Organization-CH2-Instructions-Language-of-the-Computer" class="headerlink" title="Computer Organization CH2 Instructions: Language of the Computer"></a>Computer Organization CH2 Instructions: Language of the Computer</h1><h2 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1 Introduction"></a>2.1 Introduction</h2><h3 id="Instruction-Set"><a href="#Instruction-Set" class="headerlink" title="Instruction Set"></a>Instruction Set</h3><p>Instructions</p>
+<ul>
+<li>command a computer’s hardware</li>
+<li>the words of a computer’s language</li>
+</ul>
+<p>An Instruction set</p>
+<ul>
+<li>vocabulary of the language</li>
+<li>considered as the repertoire(劇目) of instructions of a computer</li>
+</ul>
+<p>Different computers have diff. instruction set</p>
+<ul>
+<li>with many aspect in common</li>
+<li>a few basic operations that all computer must provide(有些基礎的運算是通用的)</li>
+</ul>
+<p>Early computers had very simple instruction set</p>
+<ul>
+<li>many modern computers also</li>
+</ul>
+<h3 id="The-RISC-V-instruction-set"><a href="#The-RISC-V-instruction-set" class="headerlink" title="The RISC-V instruction set"></a>The RISC-V instruction set</h3><p>the example throughout this course<br>developed at UC Berkeley as open ISA in 2010</p>
+<ul>
+<li>Typical of many modern ISAs</li>
+<li>Similar ISAs have a large share of embedded core market<ul>
+<li>In consumer electronics, network/storage equipment, cameras, printers</li>
+</ul>
+</li>
+</ul>
+<h3 id="RV32-Instructions"><a href="#RV32-Instructions" class="headerlink" title="RV32 Instructions"></a>RV32 Instructions</h3><p>32 registers</p>
+<ul>
+<li><strong>x0~x31, x0=0</strong></li>
+<li><strong>32-bit words registers</strong></li>
+</ul>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-08%20165404.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<p>Addressing <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewbox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/></g></g></g></g></g></svg></mjx-container> words</p>
+<ul>
+<li><strong>byte addressable</strong>(位元組定位)</li>
+<li>Sequential word accesses differ by 4 <strong>(4 byte = 32 bit)</strong></li>
+<li>E.g., Mem[0], Mem[4], Mem[8], …</li>
+</ul>
+<p>Instruction can be divide into <strong>6</strong> group</p>
+<ul>
+<li>arithmetic</li>
+<li>data transfer</li>
+<li>logical</li>
+<li>shift</li>
+<li>conditional branch</li>
+<li>unconditional branch</li>
+</ul>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-08%20165555.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h2 id="2-2-Operation-of-the-Computer-Hardware"><a href="#2-2-Operation-of-the-Computer-Hardware" class="headerlink" title="2.2 Operation of the Computer Hardware"></a>2.2 Operation of the Computer Hardware</h2><h3 id="Arithmetic-Operation"><a href="#Arithmetic-Operation" class="headerlink" title="Arithmetic Operation"></a>Arithmetic Operation</h3><p>this instruction instructs a computer to add the two var. b and c to put their sum to a</p>
+<ul>
+<li>add a, b, c</li>
+</ul>
+<p>Instructions, <strong>add</strong> and <strong>substract</strong>, each has three operands</p>
+<ul>
+<li>two source</li>
+<li>one destination<ul>
+<li>兩個來源，一個目的地</li>
+</ul>
+</li>
+</ul>
+<p>Design Principle 1:<strong>Simplicity favors reqularity</strong>(簡單有利於規律性)</p>
+<ul>
+<li>Regularity makes imple. simpler(規律簡化實作)</li>
+<li>simplicity enables higher performance at lower cost(簡單能夠以低消耗，實現更高的表現)</li>
+</ul>
+<h2 id="2-3-Operand-of-the-Computer-Hardware"><a href="#2-3-Operand-of-the-Computer-Hardware" class="headerlink" title="2.3 Operand of the Computer Hardware"></a>2.3 Operand of the Computer Hardware</h2><h3 id="Compiling-a-C-statement-Example"><a href="#Compiling-a-C-statement-Example" class="headerlink" title="Compiling a C statement Example"></a>Compiling a C statement Example</h3><p>C code with the five var. f, g, h, i and j</p>
+<div class="code-wrapper"><pre><code class="hljs c">f = (g+h)-(i+j)</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c">add t0, g, h    <span class="hljs-comment">//temp t0 = g+h</span>
+add t1, i, j
+sub f, t0, t1    <span class="hljs-comment">//f = t0-t1</span></code></pre></div>
+
+<p>The single statement is braked into several instructions</p>
+<ul>
+<li>1 operation is performed per RISC-V instruction</li>
+<li>Temporary var. (t0 and t1) are used to keep the intermediate results</li>
+</ul>
+<h3 id="Register-Opearnds"><a href="#Register-Opearnds" class="headerlink" title="Register Opearnds"></a>Register Opearnds</h3><p>The <strong>operands</strong> of arithmetic instrction are kept in a limited number of special locations</p>
+<ul>
+<li>called register</li>
+</ul>
+<p>Registers are primitive(原語) used in hardware design</p>
+<ul>
+<li>Register are also visible to the programmer when the computer is completed</li>
+<li>think of register as the bricks of computer construction</li>
+</ul>
+<p>A 32-bit RISC-V computer has 32 register</p>
+<ul>
+<li>use for frequency accessed data</li>
+<li><strong>32-bit data is called a “word”</strong></li>
+<li>64-bit data is called a “double word”<ul>
+<li>for a 64-bit machine, there could be 32 * 64-bit general purpose register x0 to x31</li>
+<li>仍舊是32個暫存器，但每個暫存器的大小變成64 bit</li>
+</ul>
+</li>
+</ul>
+<p>Design Principle 2:<strong>Smaller is faster</strong>(小的速度更快)</p>
+<ul>
+<li>main memory: million of location, but slower</li>
+</ul>
+<p>Why 32 register?</p>
+<ul>
+<li>31 register may not be faster than 32<ul>
+<li>but designer have to balanc the clock cycle and more registers, and number of bits in the instruction format</li>
+</ul>
+</li>
+<li>A very large number of register may increase the clock cycle time<ul>
+<li>takes electronic signals longer when they must travel farther</li>
+<li>過ㄉㄚ會導致clock cycle time增加，因為需要電訊號需要跑更遠</li>
+</ul>
+</li>
+</ul>
+<h3 id="RISC-V-Register"><a href="#RISC-V-Register" class="headerlink" title="RISC-V Register"></a>RISC-V Register</h3><p>The common arrangement for x0~x31 registers</p>
+<ul>
+<li>x0: the constant value 0</li>
+<li>x1: return address</li>
+<li>x2: stack pointer</li>
+<li>x3: global pointer</li>
+<li>x4: thread pointer</li>
+</ul>
+<hr>
+<ul>
+<li>x5-x7, x28-x31:temporaties <strong>(not reserved)</strong></li>
+<li>x8: frame pointer</li>
+<li>x9, x18-x27: saved registers</li>
+<li>x10-x11: function arguments/results <strong>(not reserved)</strong></li>
+<li>x12-x17: function arguments <strong>(not reserved)</strong></li>
+</ul>
+<h3 id="Compiling-a-C-statement-Ex"><a href="#Compiling-a-C-statement-Ex" class="headerlink" title="Compiling a C statement Ex."></a>Compiling a C statement Ex.</h3><p>like previous part</p>
+<div class="code-wrapper"><pre><code class="hljs c">f=(g+h)-(i+j)</code></pre></div>
+
+<p>In fact, a compiler has to associate program var. with registers</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-comment">//f, g, h, i, j are in x19, x20, .., x23</span>
+add x5, x20, x21
+add x6, x22, x23
+sub x19, x5, x6 <span class="hljs-comment">//x5 and x6 are for temporary data</span></code></pre></div>
+
+<h3 id="Memory-Operands"><a href="#Memory-Operands" class="headerlink" title="Memory Operands"></a>Memory Operands</h3><p>Main memory used for composite data(主記憶體被用於複雜的資料)</p>
+<ul>
+<li>simple data ele.: int., float</li>
+<li>complex data structure: array, dynamic data</li>
+</ul>
+<p>Arithmetic operations occur only on register(運算操作只使用於暫存器上)</p>
+<ul>
+<li>data transfer instruction are required to<ul>
+<li><strong>load</strong> values from memory into register</li>
+<li><strong>store</strong> result from register to memory</li>
+</ul>
+</li>
+</ul>
+<p>memory is byte addressed</p>
+<ul>
+<li>memory is considered as a <strong>large single dimentional array</strong><ul>
+<li>address is the index to this array</li>
+</ul>
+</li>
+<li>each memory address identifies an 8-bit byte <strong>(8個bit，其實就是一個byte)</strong></li>
+</ul>
+<p>RISC-V does not require words to be aligned in memory</p>
+<ul>
+<li>unlike some ISAs</li>
+<li>不需要對齊，也就是不用每個字都必須要從0, 4, 8, 12, …的位置開始</li>
+<li>只需要每個字之間的間隔為4<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20155854.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20161006.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<p>RISV-C is Little Endian</p>
+<ul>
+<li>least-significant byte at least address of a word</li>
+<li>Big Endian<ul>
+<li>most-significant byte at least address<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20160822.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h3 id="Memory-Operand-Ex"><a href="#Memory-Operand-Ex" class="headerlink" title="Memory Operand Ex."></a>Memory Operand Ex.</h3><p>A is an array of 100 words</p>
+<ul>
+<li>compiler associates the var. g and h with the registers x20 and x21</li>
+<li>base address of A is in x22</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c">g = h+A[<span class="hljs-number">8</span>]</code></pre></div>
+
+<p>its RISC-V code</p>
+<div class="code-wrapper"><pre><code class="hljs c">lw x9 <span class="hljs-number">8</span>(x22)    <span class="hljs-comment">//transfer A[8] to register x9</span>
+add x20, x21, x9</code></pre></div>
+
+<h3 id="Memory-address"><a href="#Memory-address" class="headerlink" title="Memory address"></a>Memory address</h3><p>Compiler helps</p>
+<ul>
+<li>associate var. with registers</li>
+<li>allocate data structure<ul>
+<li>arrays and structures, to memory location</li>
+</ul>
+</li>
+</ul>
+<p>RISC-V is <strong>byte addressable</strong></p>
+<ul>
+<li>the address of a word matches the address of one of the 4 bytes within the word</li>
+<li>address of sequential words differ by four(連續字之間的位置差了4 byte)</li>
+<li>each array ele. is 4-byte data(其實就是一個<strong>word</strong>)</li>
+</ul>
+<p>Alignment restriction</p>
+<ul>
+<li>In many architectures, words musts start at addresses that are multiple of 4<ul>
+<li>for <strong>better accessing efficiency</strong></li>
+<li>e.g. MIPS</li>
+</ul>
+</li>
+</ul>
+<p>with the byte addressing concept<br>previous code become</p>
+<div class="code-wrapper"><pre><code class="hljs c">lw x9, <span class="hljs-number">32</span>(x22) <span class="hljs-comment">//32 = 8*4</span>
+add x20, x21, x9</code></pre></div>
+
+<p>A sw(<strong>store word</strong>) instruction is needed if the result should be stored into a memory location</p>
+<div class="code-wrapper"><pre><code class="hljs c">sw x20, <span class="hljs-number">48</span>(x22) <span class="hljs-comment">//48 = 12*4, A[12] = f</span></code></pre></div>
+
+<p>what is th offset when we handling the array in 32-bit machine?</p>
+<ul>
+<li>each ele. is word</li>
+</ul>
+<h3 id="Registers-vs-memory"><a href="#Registers-vs-memory" class="headerlink" title="Registers vs. memory"></a>Registers vs. memory</h3><p>Registers are faster tn access than memory</p>
+<ul>
+<li>assuming 32-bit data<ul>
+<li>register are roughly <strong>200 times faster</strong> (0.25 vs. 50 nano ec.)</li>
+<li><strong>10,000 times more energy effcient</strong> (0.1 vs. 1000 picoJoules0)</li>
+<li>than DRAM in 2020</li>
+</ul>
+</li>
+</ul>
+<p>Operating on memory data requires <strong>loads</strong> and <strong>stores</strong></p>
+<ul>
+<li>more instruction to be executed</li>
+</ul>
+<p>Many programs have more var. than computers registers</p>
+<ul>
+<li>compiler must use register for var. as much as possible</li>
+<li><strong>“Spilling register”</strong> is putting less frequency used var. into memory</li>
+<li>register optimization is important for execution performanc</li>
+</ul>
+<h3 id="Immediate-Operands"><a href="#Immediate-Operands" class="headerlink" title="Immediate Operands"></a>Immediate Operands</h3><p>Constant are often used in prog.</p>
+<ul>
+<li>increment an index(constant) to point to the next ele. of an array</li>
+<li>in fact, more than half of the RISC-V arithmetic instruction have a constant as an operand when running the SPEC CPU2006 benchmarks(一種CPU效能檢測的標準工具)</li>
+</ul>
+<p>add immediate(addi) instruction can be used to avoid the load instruction</p>
+<div class="code-wrapper"><pre><code class="hljs c">addi x22, x22, <span class="hljs-number">4</span>    <span class="hljs-comment">//x22 = x22+4</span></code></pre></div>
+
+<p>The constant <strong>zero</strong> has a special role</p>
+<ul>
+<li>which is to simplify instruction set by <strong>offering useful variations</strong><ul>
+<li><strong>can negate value</strong>, by using the sub instruction with zero for the first operand</li>
+<li>RISC-V dedicates register x0 to be hard-wired(硬連線) to the value zero</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-Signed-and-Unsigned-Numbers"><a href="#2-4-Signed-and-Unsigned-Numbers" class="headerlink" title="2.4 Signed and Unsigned Numbers"></a>2.4 Signed and Unsigned Numbers</h2><h3 id="Unsigned-numbers-bits"><a href="#Unsigned-numbers-bits" class="headerlink" title="Unsigned numbers(bits)"></a>Unsigned numbers(bits)</h3><h3 id="Two’s-complement"><a href="#Two’s-complement" class="headerlink" title="Two’s complement"></a>Two’s complement</h3><h3 id="Two’s-complement-signed-numbers"><a href="#Two’s-complement-signed-numbers" class="headerlink" title="Two’s complement signed numbers"></a>Two’s complement signed numbers</h3><h3 id="Negation-Shortcut"><a href="#Negation-Shortcut" class="headerlink" title="Negation Shortcut"></a>Negation Shortcut</h3><p>to negate a two’s complement number</p>
+<ul>
+<li><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="26.466ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 11697.9 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g><g data-mml-node="mo" transform="translate(794.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"/></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(1794.4,0)"><g data-mml-node="mover"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g><g data-mml-node="mo" transform="translate(313.8,3) translate(-250 0)"><path data-c="AF" d="M69 544V590H430V544H69Z"/></g></g></g><g data-mml-node="mo" transform="translate(2644.2,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="mo" transform="translate(3700,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mn" transform="translate(4478,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/></g><g data-mml-node="mo" transform="translate(4978,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mn" transform="translate(5367,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1000,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1500,0)"/></g><g data-mml-node="mo" transform="translate(7533.7,0)"><path data-c="2026" d="M78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60ZM525 60Q525 84 542 102T585 120Q609 120 627 104T646 61Q646 36 629 18T586 0T543 17T525 60ZM972 60Q972 84 989 102T1032 120Q1056 120 1074 104T1093 61Q1093 36 1076 18T1033 0T990 17T972 60Z"/></g><g data-mml-node="msub" transform="translate(8872.3,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1000,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1500,0)"/></g><g data-mml-node="mn" transform="translate(2033,-150) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(11308.9,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container>, <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="11.262ex" height="1.753ex" role="img" focusable="false" viewbox="0 -693 4978 775"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mover"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g><g data-mml-node="mo" transform="translate(313.8,3) translate(-250 0)"><path data-c="AF" d="M69 544V590H430V544H69Z"/></g></g></g><g data-mml-node="mo" transform="translate(794.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"/></g><g data-mml-node="mn" transform="translate(1794.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/></g><g data-mml-node="mo" transform="translate(2572.2,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="mo" transform="translate(3628,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mi" transform="translate(4406,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g></svg></mjx-container></li>
+<li>simply <strong>invert every 0 to 1 and every 1 to 0</strong><ul>
+<li>add one to the result</li>
+</ul>
+</li>
+</ul>
+<h3 id="sign-extension-shortcut"><a href="#sign-extension-shortcut" class="headerlink" title="sign extension shortcut"></a>sign extension shortcut</h3><p>simply copied most significant bit to fill the new bits</p>
+<ul>
+<li>copy sign bit</li>
+</ul>
+<p>Examples: extends an 8-bit number to 16-bit number</p>
+<ul>
+<li>+2: 0000 0010 =&gt; 0000 0000 0000 0010</li>
+<li>–2: 1111 1110 =&gt; 1111 1111 1111 1110</li>
+</ul>
+<p>In RISC-V</p>
+<ul>
+<li>lb: sign-extend loaded byte</li>
+<li><strong>lbu</strong>: zero-extend loaded byte<ul>
+<li>補0</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-5-Representing-Instructions-in-the-Computer"><a href="#2-5-Representing-Instructions-in-the-Computer" class="headerlink" title="2.5 Representing Instructions in the Computer"></a>2.5 Representing Instructions in the Computer</h2><h3 id="Representing-instruction"><a href="#Representing-instruction" class="headerlink" title="Representing instruction"></a>Representing instruction</h3><p>The way computers see instruction</p>
+<p>Machine language</p>
+<ul>
+<li>is the <strong>numeric version</strong> of instruction</li>
+<li><strong>binary representation</strong> used for communication within a computer system</li>
+</ul>
+<p>Machine code</p>
+<ul>
+<li>a sequenc of instruction encoded in binary numbers<ul>
+<li>translated from assembly code</li>
+</ul>
+</li>
+<li>to <strong>avoid reading/writing long</strong>, tiresome binary string<ul>
+<li>hexadecimal(<strong>base 16</strong>) numbers are often adopted</li>
+</ul>
+</li>
+<li>4 bit per hexadecimal(hex) digit<ul>
+<li>Ex. <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="60.602ex" height="1.971ex" role="img" focusable="false" viewbox="0 -677 26786 871"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"/></g><g data-mml-node="mi" transform="translate(466,0)"><path data-c="1D450" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"/></g><g data-mml-node="mi" transform="translate(899,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"/></g><g data-mml-node="mn" transform="translate(1428,0)"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"/></g><g data-mml-node="mo" transform="translate(1928,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="msub" transform="translate(2372.7,0)"><g data-mml-node="mn"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"/><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(500,0)"/><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="TeXAtom" transform="translate(2033,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"/></g><g data-mml-node="mi" transform="translate(576,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"/></g><g data-mml-node="mi" transform="translate(1042,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g><g data-mml-node="mo" transform="translate(5874.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="mn" transform="translate(6930.5,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="mo" transform="translate(8930.5,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(9375.2,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="mo" transform="translate(11375.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(11819.8,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="mo" transform="translate(13819.8,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(14264.5,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="mo" transform="translate(16264.5,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(16709.2,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="mn" transform="translate(18709.2,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="mo" transform="translate(20709.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(21153.8,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="mo" transform="translate(23153.8,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="msub" transform="translate(23598.5,0)"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="TeXAtom" transform="translate(2033,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"/></g><g data-mml-node="mi" transform="translate(361,0)"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"/></g><g data-mml-node="mi" transform="translate(1077,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"/></g></g></g></g></g></svg></mjx-container></li>
+</ul>
+</li>
+</ul>
+<p>RISC-V instructions</p>
+<ul>
+<li>encoded as 32-bit instruction words</li>
+<li>Regularity</li>
+<li>An instruction encodes<ul>
+<li>operation code</li>
+<li>register numbers, etc.</li>
+</ul>
+</li>
+</ul>
+<h3 id="RISC-V-R-format-instructions"><a href="#RISC-V-R-format-instructions" class="headerlink" title="RISC-V R-format instructions"></a>RISC-V R-format instructions</h3><p>Instruction fields</p>
+<ul>
+<li>opcode: operaton code, denotating the operation and format of an instruction</li>
+<li>rd: destination register number</li>
+<li>funct3: 3-bit fun. code(additional opcode)</li>
+<li>rs1: the first source register number</li>
+<li>rs2: the second source register number</li>
+<li>funct7: 7-bit function code(addition opcode)<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20165928.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20170203.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="I-format-instructions"><a href="#I-format-instructions" class="headerlink" title="I-format instructions"></a>I-format instructions</h3><p>An instruction will need <strong>longer fields</strong> than those shown above</p>
+<ul>
+<li>E.g., constant may be used to select ele. from arrays or data structure</li>
+<li>often needs to be much larger than 31<ul>
+<li>5-bit field is too small to useful</li>
+</ul>
+</li>
+<li>for <strong>addi</strong> or <strong>lw</strong> inst.<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20170326.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<p>Immediate arithmetic(addi) and load instructions(lw)</p>
+<ul>
+<li>rs1: source register or base address number</li>
+<li>immediate: constant operand, or offset added to base address(for load inst.)<ul>
+<li><strong>two’s-complement, sign extended numbers</strong></li>
+<li>region of <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="4.679ex" height="1.887ex" role="img" focusable="false" viewbox="0 -833.9 2068.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="B1" d="M56 320T56 333T70 353H369V502Q369 651 371 655Q376 666 388 666Q402 666 405 654T409 596V500V353H707Q722 345 722 333Q722 320 707 313H409V40H707Q722 32 722 20T707 0H70Q56 7 56 20T70 40H369V313H70Q56 320 56 333Z"/></g><g data-mml-node="msup" transform="translate(778,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z" transform="translate(500,0)"/></g></g></g></g></g></svg></mjx-container> or 2048 bytes(<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="3.879ex" height="1.887ex" role="img" focusable="false" viewbox="0 -833.9 1714.6 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="B1" d="M56 320T56 333T70 353H369V502Q369 651 371 655Q376 666 388 666Q402 666 405 654T409 596V500V353H707Q722 345 722 333Q722 320 707 313H409V40H707Q722 32 722 20T707 0H70Q56 7 56 20T70 40H369V313H70Q56 320 56 333Z"/></g><g data-mml-node="msup" transform="translate(778,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mn" transform="translate(533,363) scale(0.707)"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"/></g></g></g></g></svg></mjx-container> or 512 words)</li>
+</ul>
+</li>
+</ul>
+<p>Design Priciple 3:<strong>Good design demands good compromises</strong>(好的設計需要好的妥協)</p>
+<ul>
+<li>different formats compilcate decoding(不同的格式，會造成編碼上的困難)<ul>
+<li>but allow 32-bit instruction uniformly</li>
+</ul>
+</li>
+<li>keep format as simplier as possible</li>
+</ul>
+<h3 id="S-format-instructions"><a href="#S-format-instructions" class="headerlink" title="S-format instructions"></a>S-format instructions</h3><p>We also need a format for the <strong>store word inst.</strong></p>
+<ul>
+<li>sw, which needs two source registers<ul>
+<li>the base addr.</li>
+<li>store data</li>
+<li>an immediate for the addr. offset</li>
+</ul>
+</li>
+<li>a little different from R-type inst.<ul>
+<li>rd vs. imm</li>
+<li>same layout<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20171257.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<p>format</p>
+<ul>
+<li><strong>rs1: base addr. register number</strong></li>
+<li>rs2: sourc operand register number</li>
+<li>immediate: 12-bit immediate offset to base addr<ul>
+<li>split so that rs1 and rs2 fields always in the same pos.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Summary-of-R-I-S-format-inst"><a href="#Summary-of-R-I-S-format-inst" class="headerlink" title="Summary of R-, I-, S-format inst."></a>Summary of R-, I-, S-format inst.</h3><p>The format are <strong>distinguished by the val. in the opcode</strong> field</p>
+<ul>
+<li>each format is assigned a distinct set of opcode val. in the first field</li>
+<li>hardware knows how to treat the rest of the inst.<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20195920.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="The-“Stored-Program”-concept"><a href="#The-“Stored-Program”-concept" class="headerlink" title="The “Stored Program” concept"></a>The “Stored Program” concept</h3><ol>
+<li>Instructions <strong>represented in binary</strong>, just like data</li>
+<li>Instructions and data <strong>stored in memory</strong></li>
+</ol>
+<p>programs can operate on programs</p>
+<ul>
+<li>E.g., compilers, linkers, …</li>
+<li><strong>Binary compatibility</strong>(二進位相容性) allows compiled programs to work on different computers<ul>
+<li>Standardized ISAs<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20200320.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-6-Logical-Operations"><a href="#2-6-Logical-Operations" class="headerlink" title="2.6 Logical Operations"></a>2.6 Logical Operations</h2><h3 id="Logical-operations"><a href="#Logical-operations" class="headerlink" title="Logical operations"></a>Logical operations</h3><p>It is useful to operate on fields of bits within a <strong>word</strong> or even on <strong>individual bits</strong></p>
+<ul>
+<li>examining characters within a word, each of which is stored as 8 bits(每個字符儲存為8位元，就是一個位元組)</li>
+</ul>
+<p>These operations were added to programming languages<br>and <strong>instruction set architectures</strong></p>
+<ul>
+<li>simplify the packing &amp; unpacking of bits into words</li>
+<li>Useful for extracting and inserting groups of bits in a word<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20200801.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Shift-Operations"><a href="#Shift-Operations" class="headerlink" title="Shift Operations"></a>Shift Operations</h3><p>Shifts move all the bits in a word to the left or right, filling the emptied bits with 0s(用0填滿空位)</p>
+<ul>
+<li>immed: how many positions to shift<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20200847.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<p>Shift left logical immediate</p>
+<ul>
+<li>shift left</li>
+<li>fill with 0</li>
+<li><strong>slli by i bits, multiplies by <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.871ex" height="1.879ex" role="img" focusable="false" viewbox="0 -830.4 827 830.4"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g></g></g></g></svg></mjx-container></strong><div class="code-wrapper"><pre><code class="hljs c">slli x11, x19, <span class="hljs-number">4</span> <span class="hljs-comment">//reg x11 = reg 19 &lt;&lt; 4 bits</span></code></pre></div>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20201245.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<p>Shift right logical immediate</p>
+<ul>
+<li>shift right</li>
+<li>fill with 0</li>
+<li>srli by i bits divides by <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.871ex" height="1.879ex" role="img" focusable="false" viewbox="0 -830.4 827 830.4"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mi" transform="translate(533,363) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"/></g></g></g></g></svg></mjx-container> (unsigned only)</li>
+</ul>
+<h3 id="AND-op"><a href="#AND-op" class="headerlink" title="AND op."></a>AND op.</h3><p>To isolate fields via bit-by-bit operation</p>
+<ul>
+<li>Useful to <strong>mask</strong> bits in a word</li>
+<li>Select some bits, clear others to 0<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20201355.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="OR-and-XOR-op"><a href="#OR-and-XOR-op" class="headerlink" title="OR and XOR op."></a>OR and XOR op.</h3><p>Useful to <strong>include</strong> bits in a word<br><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20201530.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>Differencing operation</p>
+<ul>
+<li>It can be used to emulate <strong>NOT operation</strong></li>
+<li>That is, it calculates a 1 only if the values are different in the two operands<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20201756.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20201812.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="2-7-Instructions-for-making-Decisions"><a href="#2-7-Instructions-for-making-Decisions" class="headerlink" title="2.7 Instructions for making Decisions"></a>2.7 Instructions for making Decisions</h2><h3 id="Conditional-op"><a href="#Conditional-op" class="headerlink" title="Conditional op."></a>Conditional op.</h3><p>Decision making is commonly represented in programming languages </p>
+<ul>
+<li>using the <strong>if statement</strong>, sometimes combined with <strong>go to statements and labels</strong></li>
+</ul>
+<p>Two decision-making instructions (conditional<br>branches*) in RISC-V assembly language</p>
+<p><strong>beq</strong> (branch if equal)</p>
+<ul>
+<li>beq rs1, rs2, L1(<strong>最大的跳躍範圍就是32bit</strong>)</li>
+<li>This instruction means go to the statement labeled L1 if the value in register rs1 <strong>=</strong> the value in register rs2</li>
+</ul>
+<p><strong>bne</strong> (branch if not equal)</p>
+<ul>
+<li>bne rs1, rs2, L1</li>
+<li>It means go to the statement labeled L1 if the value in register rs1 does <strong>!=</strong> the value in register rs2</li>
+</ul>
+<blockquote>
+<p>*An instruction that tests a value and that allows for a subsequent transfer of control to a new address in the program based on the outcome of the test</p>
+</blockquote>
+<h3 id="A-higher-level-view-of-branches"><a href="#A-higher-level-view-of-branches" class="headerlink" title="A higher-level view of branches"></a>A higher-level view of branches</h3><p>Branch to a labeled instruction if a condition is true</p>
+<ul>
+<li>Otherwise, continue sequentially</li>
+</ul>
+<p>Decisions are important for <strong>if statements</strong> and <strong>for<br>loops</strong> (iterating a computation)</p>
+<h3 id="Compiling-if-state"><a href="#Compiling-if-state" class="headerlink" title="Compiling if state."></a>Compiling if state.</h3><p>C code</p>
+<div class="code-wrapper"><pre><code class="hljs C"><span class="hljs-keyword">if</span>(i==j)
+    f=g+h;
+<span class="hljs-keyword">else</span>
+    f=g-h;
+    
+<span class="hljs-comment">// note:f, g, ... in x19, x20, ...</span></code></pre></div>
+
+<p>Compiled RISC-V code</p>
+<ul>
+<li>Exit is assembler calculates address<div class="code-wrapper"><pre><code class="hljs c">    bne x22, x23, Else
+    add x19, x20, x21
+    beq x0, <span class="hljs-number">0</span>, Exit
+Else:
+    sub x19, x20, x21
+Exit:
+    ...</code></pre></div>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20203204.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="While-loop"><a href="#While-loop" class="headerlink" title="While loop"></a>While loop</h3><p>C code</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">while</span>(save[i] == k)
+    i+=<span class="hljs-number">1</span>;
+<span class="hljs-comment">// note: i in x22, k in x24, address of save in x25</span></code></pre></div>
+
+<p>Compiled RISC-V code</p>
+<div class="code-wrapper"><pre><code class="hljs c">Loop:
+    slli x10, x22, <span class="hljs-number">2</span> <span class="hljs-comment">//i代表index, 每個index是4個byte，所以i需要乘上4</span>
+    add x10, x10, x25
+    lw x9, <span class="hljs-number">0</span>(x10)
+    bne x9, x24, Exit
+    addi x22, x22, <span class="hljs-number">1</span>
+    beq x0, x0, Loop
+Exit:
+    ...</code></pre></div>
+
+<h3 id="Basic-Blocks"><a href="#Basic-Blocks" class="headerlink" title="Basic Blocks"></a>Basic Blocks</h3><p>A basic block is a sequence of instructions with</p>
+<ul>
+<li>No embedded branches (except at end)</li>
+<li>No branch targets (except at beginning)<blockquote>
+<p>基本區塊(basic block)是編譯程式執行最佳化的最基本單位，其定義為沒有分支與沒有分支目的的指令，若有分支也只能在區塊的最後一個指令，若有分支目的也只能在區塊的第一個指令。<br><a target="_blank" rel="noopener" href="https://hackmd.io/@HsuChiChen/computer_organization">https://hackmd.io/@HsuChiChen/computer_organization</a></p>
+</blockquote>
+</li>
+</ul>
+<p><strong>A compiler identifies basic blocks for optimization</strong></p>
+<p>An advanced processor can accelerate execution of basic blocks</p>
+<h2 id="2-8-Supporting-Procedures-in-Computer-Hardware"><a href="#2-8-Supporting-Procedures-in-Computer-Hardware" class="headerlink" title="2.8 Supporting Procedures in Computer Hardware"></a>2.8 Supporting Procedures in Computer Hardware</h2><h3 id="Procedures"><a href="#Procedures" class="headerlink" title="Procedures"></a>Procedures</h3><p>A <strong>procedure</strong> (or function)</p>
+<ul>
+<li>Is a stored subroutine that performs a specific task based on the parameters with which it is provided</li>
+<li>Is one <strong>tool</strong> programmers use to structure programs, <strong>both to make them easier to understand and to allow code to be reused</strong>(使程式易懂，以及可重複利用)</li>
+<li>Is one way to implement <strong>abstraction</strong> in software</li>
+</ul>
+<p>Six steps required for invoking a <strong>procedural call</strong></p>
+<ol>
+<li>Place parameters in registers x10 to x17<ul>
+<li>把非保留的暫存器中的資料，儲存進記憶體中</li>
+</ul>
+</li>
+<li>Transfer control to procedure (with branch inst.)<ul>
+<li>把控制交給procedure</li>
+</ul>
+</li>
+<li>Acquire storage for procedure (spill registers)<ul>
+<li>獲取procedure的儲存空間</li>
+</ul>
+</li>
+<li>Perform procedure’s operations</li>
+<li>Place result in register for caller (restore registers as well)<ul>
+<li>計算結果放進register</li>
+</ul>
+</li>
+<li>Return to place of call (return address in x1 and jump back)</li>
+</ol>
+<h3 id="Procedure-Calls"><a href="#Procedure-Calls" class="headerlink" title="Procedure Calls"></a>Procedure Calls</h3><p>RISC-V software follows the following procedure <strong>calling convention</strong> in allocating its 32 registers</p>
+<ul>
+<li>x10–x17: <strong>eight parameter registers</strong> in which to pass parameters or return values</li>
+<li>x1: one <strong>return address</strong> register to return to the point of origin</li>
+</ul>
+<p>RISC assembly language has the two instructions for procedures</p>
+<ul>
+<li>jal (jump-and-link): It branches to an address and simultaneously <strong>saves the address of the following instruction to the destination register rd (the “link” portion)</strong><ul>
+<li>把接下來指令的位址存到rd</li>
+</ul>
+</li>
+<li>jalr (jump-and-link register): it helps return from a procedure; branches to the <strong>address stored in the return register x1</strong>, which is just what we want<ul>
+<li>跳回r1中的位址</li>
+</ul>
+</li>
+</ul>
+<h3 id="Procedure-Calls-Cont’d"><a href="#Procedure-Calls-Cont’d" class="headerlink" title="Procedure Calls (Cont’d)"></a>Procedure Calls (Cont’d)</h3><p>Procedure call w/ jump and link<br>jal x1, ProcedureLabel</p>
+<ul>
+<li>Address of following instruction put in x1</li>
+<li>Jumps to target address</li>
+<li><strong>Caller</strong> is the program that instigates a procedure and provides the necessary parameter values</li>
+<li><strong>Program counter</strong> (PC) is a register to hold the address of the current instruction being executed<ul>
+<li>掌握現在使用執行中的指令的register</li>
+<li>PC can be seen as instruction address register</li>
+</ul>
+</li>
+<li>The jal instruction actually saves <strong>PC + 4</strong> in its designation register (usually x1) to link to the byte address of the following instruction to set up the procedure return<ul>
+<li>因為現在的指令在PC，下一個指令就要+4</li>
+</ul>
+</li>
+</ul>
+<p>Procedure return w/ jump and link register<br>jalr x0, 0(x1)</p>
+<ul>
+<li>Like jal, but jumps to 0 plus the address in x1</li>
+<li>Use x0 as rd (<strong>x0 cannot be changed</strong>)</li>
+<li>Can also be used for computed jumps<ul>
+<li>e.g., for case/switch statements</li>
+</ul>
+</li>
+<li><strong>Callee</strong> is a procedure (ProcedureLabel) that executes a series of stored instructions based on parameters provided by the caller and then returns control to the caller<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20205021.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Compiling-a-C-procdure"><a href="#Compiling-a-C-procdure" class="headerlink" title="Compiling a C procdure"></a>Compiling a C procdure</h3><p>C code</p>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">leaf_example</span><span class="hljs-params">(<span class="hljs-type">int</span> g, <span class="hljs-type">int</span> h, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> {
+    <span class="hljs-type">int</span> f;
+    f = (g+h)-(i+j);
+}
+
+<span class="hljs-comment">//argument g, ..., j in x10, ..., x13</span>
+<span class="hljs-comment">//f in x20</span>
+<span class="hljs-comment">//temp in x5, x6</span>
+<span class="hljs-comment">//needs to save x5, x6, x20 on stack</span></code></pre></div>
+
+<p>RISC-V code</p>
+<div class="code-wrapper"><pre><code class="hljs c">leaf_example:
+    addi sp, sp, <span class="hljs-number">-12</span>
+    sw x5, <span class="hljs-number">8</span>(sp)
+    sw x6, <span class="hljs-number">4</span>(sp)
+    sw x20, <span class="hljs-number">0</span>(sp)
+    add x5, x10, x11
+    add x6, x12, x13
+    sub x20, x5, x6
+    addi x10, x20, <span class="hljs-number">0</span>
+    lw x20, <span class="hljs-number">0</span>(sp)
+    lw x6, <span class="hljs-number">4</span>(sp)
+    lw x5, <span class="hljs-number">8</span>(sp)
+    addi sp, sp, <span class="hljs-number">12</span>
+    jalr x0, <span class="hljs-number">0</span>(x1)</code></pre></div>
+
+<h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h3><p>It is a data structure organized as a last-in-first-out queue for <strong>spilling registers</strong> (to preserve the data contents)</p>
+<ul>
+<li>Placing data onto the stack is called a push, and removing data from the stack is called a pop<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20210013.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Temporary-and-Preserved-Register"><a href="#Temporary-and-Preserved-Register" class="headerlink" title="Temporary and Preserved Register"></a>Temporary and Preserved Register</h3><p>RISC-V sw separates following 19 registers into <strong>two groups</strong></p>
+<ul>
+<li>to avoid saving/restoring a register whose value isn’t used</li>
+<li>which might happen with a temporary register</li>
+</ul>
+<ol>
+<li>x5−x7 and x28−x31: temporary registers that <strong>are not preserved by the callee (called procedure) on a procedure call</strong><ul>
+<li>這些register不需要被callee保留起來</li>
+<li>The caller does not expect registers x5 and x6 to be preserved across a procedure call (these registers are maintained by caller)</li>
+<li>The example in p. 49 does not follow this arrangement</li>
+</ul>
+</li>
+<li>x8−x9 and x18−x27: saved registers that must be preserved on a procedure call<ul>
+<li><strong>在callee中需要保護這些register</strong></li>
+<li>if used, the <strong>callee saves and restores them</strong></li>
+<li>These registers are <strong>maintained by callee</strong></li>
+</ul>
+</li>
+</ol>
+<h3 id="Nested-Procdures-Leaf-and-Non-leaf-Procedures"><a href="#Nested-Procdures-Leaf-and-Non-leaf-Procedures" class="headerlink" title="Nested Procdures: Leaf and Non-leaf Procedures"></a>Nested Procdures: Leaf and Non-leaf Procedures</h3><p>Leaf procedures are procedures that do not call other</p>
+<ul>
+<li>Only be callee (e.g., leaf_example)</li>
+</ul>
+<p><strong>Non-leaf procedures</strong> are procedures that do call others</p>
+<ul>
+<li><strong>Be both caller and callee</strong> (e.g., non_leaf)</li>
+</ul>
+<p>Without proper protection of registers, there will be conflicts on their contents</p>
+<ul>
+<li>E.g., since non_leaf hasn’t finished its task yet, there is a conflict over the use of registers (e.g., <strong>x0, x1, x10</strong>)</li>
+<li>上面的暫存器會被覆蓋</li>
+</ul>
+<p>For a nested call, caller needs to save on the stack</p>
+<ul>
+<li>Its <strong>return address</strong> (x1)</li>
+<li>Any <strong>arguments</strong> and <strong>temporaries</strong> needed after the call</li>
+<li>Restore from the stack after the call</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">root</span><span class="hljs-params">()</span> {
+    ...
+    non_leaf(<span class="hljs-number">10</span>); <span class="hljs-comment">//jal x1, non_leaf (x10=10)</span>
+    <span class="hljs-comment">// jalr x0, 0(x1)</span>
+    ...
+}
+
+<span class="hljs-type">void</span> <span class="hljs-title function_">non_leaf</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span>{
+    <span class="hljs-type">int</span> a=<span class="hljs-number">0</span>;
+    a = leaf_example(<span class="hljs-number">4</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>); <span class="hljs-comment">//jal x1, leaf_example(x10=4, x11=x, x12=2, x13=1)</span>
+    <span class="hljs-comment">//jalr x0, 0(x1)</span>
+}
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">leaf_example</span><span class="hljs-params">(<span class="hljs-type">int</span> g, <span class="hljs-type">int</span> h, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> {
+    <span class="hljs-type">int</span> f;
+    f=(g+h)-(i+j);
+    <span class="hljs-keyword">return</span> f;
+}</code></pre></div>
+
+<h3 id="A-Non-leaf-Example"><a href="#A-Non-leaf-Example" class="headerlink" title="A Non-leaf Example"></a>A Non-leaf Example</h3><p>C code</p>
+<div class="code-wrapper"><pre><code class="hljs C"><span class="hljs-type">int</span> <span class="hljs-title function_">fact</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> {
+    <span class="hljs-keyword">if</span>(n&lt;<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">return</span> f;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> n*fact(n<span class="hljs-number">-1</span>);
+}
+<span class="hljs-comment">//argument n in x10</span>
+<span class="hljs-comment">//result in x10</span></code></pre></div>
+
+<p>RISC-V code</p>
+<div class="code-wrapper"><pre><code class="hljs C">fact:
+    addi sp, sp, <span class="hljs-number">-8</span>
+    sw x1, <span class="hljs-number">4</span>(sp)
+    sw x10, <span class="hljs-number">0</span>(sp)
+    
+    <span class="hljs-comment">//if statement</span>
+    addi x5, x10, <span class="hljs-number">-1</span>    <span class="hljs-comment">//x5 = n-1</span>
+    bge x5, x0, L1    <span class="hljs-comment">//if n&gt;=1, go to L1</span>
+    
+    addi x10, x0, <span class="hljs-number">1</span>    <span class="hljs-comment">//else set return value to 1</span>
+    addi sp, sp, <span class="hljs-number">8</span>    <span class="hljs-comment">//pop stack</span>
+    jalr x0, <span class="hljs-number">0</span>(x1)    <span class="hljs-comment">//return to caller</span>
+L1:
+   addi x10, x10, <span class="hljs-number">-1</span>    <span class="hljs-comment">//n = n-1</span>
+   jal x1, fact    <span class="hljs-comment">//call fact(n-1)</span>
+   
+   addi x6, x10, <span class="hljs-number">0</span>    <span class="hljs-comment">//move result of fact(n-1) to x6</span>
+   lw x10, <span class="hljs-number">0</span>(sp)    <span class="hljs-comment">//restore caller's n</span>
+   lw x1, <span class="hljs-number">4</span>(sp)    <span class="hljs-comment">//restore caller's address</span>
+   addi sp, sp, <span class="hljs-number">8</span>    <span class="hljs-comment">//pop stack</span>
+   
+   mul x10, x10, x6    <span class="hljs-comment">//return n*fact(n-1)</span>
+   jalr x0, <span class="hljs-number">0</span>(x1)    <span class="hljs-comment">//return to caller</span></code></pre></div>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-09%20212302.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="Local-data-on-the-Stack"><a href="#Local-data-on-the-Stack" class="headerlink" title="Local data on the Stack"></a>Local data on the Stack</h3><p>The stack is also used to <strong>store variables</strong></p>
+<ul>
+<li>that are local to the procedure (and maintained by callee)</li>
+<li>but do not fit in registers</li>
+<li>E.g., local arrays, structures, C automatic variables</li>
+</ul>
+<p>The stack grows downwards at runtime</p>
+<ul>
+<li>SP value might change during the procedure</li>
+<li>so <strong>references to a local variable in memory might have different offsets</strong> depending on where they are in the procedure </li>
+<li>making the procedure harder to understand<ul>
+<li>變動的sp會導致procedure變得很難懂</li>
+</ul>
+</li>
+</ul>
+<p>Procedure frame (activation record) (程式框架)</p>
+<ul>
+<li>A stack segment contains a procedure’s saved registers and local variables</li>
+</ul>
+<p>A frame pointer <strong>fp</strong> (x8) points to the first word of the frame of a procedure</p>
+<ul>
+<li><p><strong>Solution</strong>: fp offers a stable base register for procedure <strong>frame for local variable accesses</strong></p>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20081615.png" srcset="/webHome/img/loading.gif" lazyload>
+</li>
+<li><p>if there are no local var. on the stack within a procedure</p>
+<ul>
+<li>the compiler will save time by not setting and restoring the fp</li>
+</ul>
+</li>
+<li><p>if using fp, it is init. using the address in sp on a call</p>
+<ul>
+<li>and sp is restored by fp</li>
+</ul>
+</li>
+</ul>
+<h3 id="Memory-Layout"><a href="#Memory-Layout" class="headerlink" title="Memory Layout"></a>Memory Layout</h3><p>In addition to local variables, global data in a program is also kept in the memory</p>
+<ul>
+<li>E.g., static variables and dynamic data structures in C programs</li>
+</ul>
+<p>The memory layout shown in figure shows</p>
+<ul>
+<li>the RISC-V convention for <strong>allocation of memory</strong> when running the Linux operating system</li>
+</ul>
+<p>Text seg.</p>
+<ul>
+<li>Starts at 0000 0000 0040 0000hex</li>
+<li><strong>The RISC-V program (machine) code</strong></li>
+</ul>
+<p>Static data seg.</p>
+<ul>
+<li>Starts at 0000 0000 1000 0000hex</li>
+<li><strong>Constants and other static variables</strong></li>
+<li><strong>Pointed by gp (global pointer)</strong></li>
+</ul>
+<p>Dynamic data (heap; grows upwards)</p>
+<ul>
+<li>Structures grow/shrink during their lifetimes, e.g., linked lists</li>
+<li>The C functions, <strong>malloc and free, manipulates the heap data</strong></li>
+</ul>
+<p>Stack (grows downwards)</p>
+<ul>
+<li>Automatic storage<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/20240417153146.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="2-9-Communicating-with-People"><a href="#2-9-Communicating-with-People" class="headerlink" title="2.9 Communicating with People"></a>2.9 Communicating with People</h2><h3 id="Representing-ASCII-Char"><a href="#Representing-ASCII-Char" class="headerlink" title="Representing ASCII Char."></a>Representing ASCII Char.</h3><p><strong>Byte</strong>-encoded character sets</p>
+<ul>
+<li>American Standard Code for Information Interchange (ASCII)</li>
+<li><strong>ASCII</strong>: 128 characters (95 graphic, 33 control)</li>
+<li><strong>Latin-1</strong>: 256 characters (ASCII, +96 more graphic characters)</li>
+</ul>
+<p>Unicode: 32-bit character set</p>
+<ul>
+<li>Used in Java, C++ wide characters, …</li>
+<li>Most of the world’s alphabets, plus symbols</li>
+<li>UTF-8, UTF-16: variable-length encodings<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20093551.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Load-Store-Data-in-Different-widths"><a href="#Load-Store-Data-in-Different-widths" class="headerlink" title="Load/Store Data in Different widths"></a>Load/Store Data in Different widths</h3><p>LOAD/STORE byte/halfword/word</p>
+<ul>
+<li>Load byte/halfword/word: <strong>Sign</strong> extend to bits in rd<ul>
+<li>lb rd, offset(rs1)</li>
+<li>lh rd, offset(rs1)</li>
+<li>lw rd, offset(rs1)</li>
+</ul>
+</li>
+<li>Load byte/halfword/word <strong>unsigned</strong>: Zero extend to bits in rd<ul>
+<li>lbu rd, offset(rs1)</li>
+<li>lhu rd, offset(rs1)</li>
+<li>lwu rd, offset(rs1)</li>
+</ul>
+</li>
+<li>Store byte/halfword/word: Store <strong>rightmost 8/16/32 bits</strong><ul>
+<li>sb rs2, offset(rs1)</li>
+<li>sh rs2, offset(rs1)</li>
+<li>sw rs2, offset(rs1)</li>
+</ul>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs C">lbu x12, <span class="hljs-number">0</span>(x10) <span class="hljs-comment">//read byte from source, placing it in the rightmost 8 bits in x12</span>
+
+sb x12, <span class="hljs-number">0</span>(x11) <span class="hljs-comment">//takes a byte from the rightmost 8 bits of x12 and writes the byte to x11[0]</span></code></pre></div>
+
+<h3 id="A-string-copy-ex"><a href="#A-string-copy-ex" class="headerlink" title="A string copy ex."></a>A string copy ex.</h3><p>C code</p>
+<div class="code-wrapper"><pre><code class="hljs C"><span class="hljs-type">void</span> <span class="hljs-title function_">strcpy</span><span class="hljs-params">(<span class="hljs-type">char</span> x[], <span class="hljs-type">char</span> y[])</span> {
+    <span class="hljs-type">size_t</span> i;
+    i = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>((x[i]=y[i])!=<span class="hljs-string">'\0'</span>)
+        i+<span class="hljs-number">1</span>;
+}
+
+\\Null-terminated <span class="hljs-built_in">string</span>
+\\assume the base addr. <span class="hljs-keyword">for</span> arrays x and y found in x10 and x11</code></pre></div>
+
+<p>RISC-V code</p>
+<div class="code-wrapper"><pre><code class="hljs C"><span class="hljs-built_in">strcpy</span>:
+    addi sp, sp, <span class="hljs-number">-4</span>
+    sw x10, <span class="hljs-number">0</span>(sp)
+    add x19, x0, x0
+L1:
+    add x5, x19, x10
+    lbu x6, <span class="hljs-number">0</span>(x5)
+    add x7, x9, x10
+    sb x6, <span class="hljs-number">0</span>(x7)
+    beq x6, x0, L2
+    addi x19, x19, <span class="hljs-number">1</span>
+    jal x0, L1
+L2:
+    lw x19, <span class="hljs-number">0</span>(sp)
+    addi sp, sp, <span class="hljs-number">4</span>
+    jalr x0, <span class="hljs-number">0</span>(x1)</code></pre></div>
+
+<h2 id="2-10-RISC-V-Addressing-for-Wide-Immediates-and-Addresses"><a href="#2-10-RISC-V-Addressing-for-Wide-Immediates-and-Addresses" class="headerlink" title="2.10 RISC-V Addressing for Wide Immediates and Addresses"></a>2.10 RISC-V Addressing for Wide Immediates and Addresses</h2><p>Most constants are small</p>
+<ul>
+<li>12-bit immediate is sufficient</li>
+<li>But, sometimes there are bigger immediates (constants)</li>
+<li>In this case, <strong>lui</strong> instruction can be used to set up a 32-bit immediate into a register for further use</li>
+</ul>
+<p>lui (load upper immediate)</p>
+<ul>
+<li>lui rd, constant<ul>
+<li>To copy a 20-bit constant to bits [31:12] of rd, and clear bits [11:0] of rd to 0</li>
+</ul>
+</li>
+<li>The example below loads a 32-bit immediate 0x003D 0500hex into x19 by using a lui and an addi instruction<ul>
+<li>如何<strong>製造表示32bit位置的register</strong><ul>
+<li>沒辦法直接add出來，slli也只能做出2的倍數</li>
+<li>透過lui設置[31:12]的bit，再使用addi即可</li>
+</ul>
+</li>
+<li>For 64-bit, it can extend bit 31 to bits [63:32]<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20094744.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h3 id="Branch-Addressing"><a href="#Branch-Addressing" class="headerlink" title="Branch Addressing"></a>Branch Addressing</h3><p>Branch instructions specify the contents</p>
+<ul>
+<li>Opcode, two registers, offset (to target address)</li>
+</ul>
+<p><strong>Most branch targets are near branch</strong></p>
+<ul>
+<li>Forward or backward relative to PC<ul>
+<li>→ <strong>PC-relative addressing (in byte)</strong></li>
+<li>Target address = PC + offset</li>
+<li>Target address = PC + <strong>immediate * 2</strong>(immediate代表half word)<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20095123.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li>branch instruction的offset的數字介於branch以及branch target是halfword，因為設計者希望支援2 bytes long</li>
+</ul>
+<p>SB format</p>
+<ul>
+<li>A 7-bit opcode, a 3-bit function code, two 5-bit register</li>
+<li>operands (rs1 and rs2), and a 12-bit address immediate</li>
+<li>bne x10, x11, <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.375ex;" xmlns="http://www.w3.org/2000/svg" width="6.312ex" height="1.881ex" role="img" focusable="false" viewbox="0 -666 2790.1 831.6"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="TeXAtom" transform="translate(2033,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/></g></g></g></g></g></svg></mjx-container><ul>
+<li>If x10 != x11, go to location <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.375ex;" xmlns="http://www.w3.org/2000/svg" width="6.312ex" height="1.881ex" role="img" focusable="false" viewbox="0 -666 2790.1 831.6"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="TeXAtom" transform="translate(2033,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/></g></g></g></g></g></svg></mjx-container> = 0111 1101 0000<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20095649.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h3 id="Jump-Addressing"><a href="#Jump-Addressing" class="headerlink" title="Jump Addressing"></a>Jump Addressing</h3><p>jal(unconditional jump and link)</p>
+<ul>
+<li>jal rd, immed</li>
+<li>uses 20-bit <strong>immediated</strong> for larger range</li>
+</ul>
+<p>UJ format</p>
+<ul>
+<li>A 7-bit opcode, a 5-bit destination register operand (rd), and a 20-bit address immediate</li>
+<li><strong>The link address, which is the address of the instruction following the jal, is written to rd</strong><ul>
+<li>跳躍回來的下一個指令放在rd</li>
+</ul>
+</li>
+<li>jal x0, <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.375ex;" xmlns="http://www.w3.org/2000/svg" width="6.312ex" height="1.881ex" role="img" focusable="false" viewbox="0 -666 2790.1 831.6"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="TeXAtom" transform="translate(2033,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/></g></g></g></g></g></svg></mjx-container></li>
+<li>*Go to location <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.375ex;" xmlns="http://www.w3.org/2000/svg" width="6.312ex" height="1.881ex" role="img" focusable="false" viewbox="0 -666 2790.1 831.6"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1000,0)"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(1500,0)"/></g><g data-mml-node="TeXAtom" transform="translate(2033,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/></g></g></g></g></g></svg></mjx-container> = 0111 1101 0000<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20100324.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Addressing-Mode-Summary"><a href="#Addressing-Mode-Summary" class="headerlink" title="Addressing Mode Summary"></a>Addressing Mode Summary</h3><p>Addressing mode</p>
+<ul>
+<li>One of several addressing regimes delimited by their varied use of operands and/or addresses(多個尋址之一 由其劃定的不同使用運算元和/或地址)</li>
+</ul>
+<ol>
+<li><strong>Immediate addressing</strong>, where the operand is a constant within the instruction itself</li>
+<li><strong>Register addressing</strong>, where the operand is a register</li>
+<li><strong>Base or displacement addressing</strong>, where the operand is at the memory location whose address is the sum of a register and a constant in the instruction <strong>PC = Reg + offset (in mem.)</strong></li>
+<li><strong>PC-relative addressing</strong>, where the branch address is the sum of the PC and a constant in the instruction<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20100956.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ol>
+<h3 id="Inst-Encoding"><a href="#Inst-Encoding" class="headerlink" title="Inst. Encoding"></a>Inst. Encoding</h3><p>find out the exact op. of a given inst.</p>
+<ul>
+<li>check the fields: opcode, func3, and (optional) funct7<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20101139.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20101158.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="2-11-Parallelism-and-Instructions-Synchronization"><a href="#2-11-Parallelism-and-Instructions-Synchronization" class="headerlink" title="2.11 Parallelism and Instructions: Synchronization"></a>2.11 Parallelism and Instructions: Synchronization</h2><h3 id="Parallel-Execution-and-Synchronization"><a href="#Parallel-Execution-and-Synchronization" class="headerlink" title="Parallel Execution and Synchronization"></a>Parallel Execution and Synchronization</h3><p><strong>Parallel execution is hard when tasks need to cooperate</strong></p>
+<ul>
+<li>E.g., some tasks are writing new values that others must read</li>
+</ul>
+<p><strong>Synchronization</strong> is used to know when a task is finished writing so that it is safe for another to read</p>
+<ul>
+<li>A data race would occur if they don’t synchronize</li>
+<li>where the results of the program can change depending on how events happen to occur</li>
+<li>同步，用於確認任務是否完成，接下來的讀取是否安全?</li>
+</ul>
+<p>Example</p>
+<ul>
+<li>Two processors sharing an area of memory</li>
+<li>P1 writes, then P2 reads</li>
+<li>A <strong>data race</strong> occurs if P1 and P2 don’t synchronize<ul>
+<li>Result depends on order of accesses</li>
+</ul>
+</li>
+</ul>
+<h3 id="Synchronization"><a href="#Synchronization" class="headerlink" title="Synchronization"></a>Synchronization</h3><p>Synchronization mechanisms are typically built with <strong>userlevel routines</strong> (e.g., lock and unlock)</p>
+<ul>
+<li>that rely on <em>hardware-supplied synchronization instructions</em></li>
+<li>Lock/unlock can be used straightforwardly to <strong>create regions</strong> where only a single processor can operate, called a <strong>mutual exclusion(互斥)</strong>,</li>
+<li>as well as to implement more complex synchronization mechanisms</li>
+</ul>
+<p>Hardware-supplied primitives for read/write memory atomically(原子記憶體的讀取)</p>
+<ul>
+<li>Nothing else can interpose itself between the read or the write of the memory location(沒有其他東西可以在記憶體讀取之間插入)</li>
+</ul>
+<p>Two possible implementation of the HW primitives</p>
+<ul>
+<li>A single instruction → e.g., atomic swap of register and memory</li>
+<li><strong>An atomic pair of instructions</strong> → the second instruction returns a value showing whether the pair of instructions was executed as if the pair was atomic</li>
+</ul>
+<h3 id="Synchronization-in-RISC-V"><a href="#Synchronization-in-RISC-V" class="headerlink" title="Synchronization in RISC-V"></a>Synchronization in RISC-V</h3><p>In RISC-V, <strong>this special pair of instructions</strong> include a special load (lr.w) and a special store (sc.w)</p>
+<ul>
+<li>if the contents of the memory location specified by the load-reserved are changed before the store-conditional to the same address occurs, then</li>
+<li>the store-conditional fails and does not write the value to memory</li>
+<li>Check Sec. 2.11, p. 128~131, in the textbook</li>
+</ul>
+<p>lr.w (load-reserved word)<br>lr.w rd,(rs1)</p>
+<ul>
+<li>Load from address in rs1 to rd</li>
+<li>Place reservation on memory address</li>
+</ul>
+<p>sc.w (store-conditional word)<br>sc.w rd,(rs1),rs2</p>
+<ol>
+<li>Store from rs2 to address in rs1</li>
+<li><ul>
+<li>Succeeds if location not changed since the lr.w<ul>
+<li>Write 0 in rd</li>
+</ul>
+</li>
+<li>Fails if location is changed<ul>
+<li>Write non-zero value in rd</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="Ex"><a href="#Ex" class="headerlink" title="Ex."></a>Ex.</h3><p>Example 1: Impl. atomic swap (to test/set lock variable)<br>Swap the contents between [x20] and x23</p>
+<div class="code-wrapper"><pre><code class="hljs c">again:
+    lr.w x10,(x20)
+    sc.w x11,(x20),x23 <span class="hljs-comment">// x11 = status (1 means failure)</span>
+    bne x11,x0,again <span class="hljs-comment">// branch if store failed</span>
+    addi x23,x10,<span class="hljs-number">0</span> <span class="hljs-comment">// X23 = loaded value</span></code></pre></div>
+
+<p>Example 2: Impl. lock acquire</p>
+<div class="code-wrapper"><pre><code class="hljs c">    addi x12,x0,<span class="hljs-number">1</span> <span class="hljs-comment">// copy locked value</span>
+again: 
+    lr.w x10,(x20) <span class="hljs-comment">// read lock</span>
+    bne x10,x0,again <span class="hljs-comment">// check if it is 0 yet</span>
+    sc.w x11,(x20),x12 <span class="hljs-comment">// attempt to store</span>
+    bne x11,x0,again <span class="hljs-comment">// branch if fails</span>
+Unlock:
+    sw x0,<span class="hljs-number">0</span>(x20) <span class="hljs-comment">// free lock</span></code></pre></div>
+
+<h2 id="2-12-Translating-and-Starting-a-Program"><a href="#2-12-Translating-and-Starting-a-Program" class="headerlink" title="2.12 Translating and Starting a Program"></a>2.12 Translating and Starting a Program</h2><h3 id="C-Program-Execution-Flow"><a href="#C-Program-Execution-Flow" class="headerlink" title="C Program Execution Flow"></a>C Program Execution Flow</h3><img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20111623.png" srcset="/webHome/img/loading.gif" lazyload>
+
+<h3 id="Compiler-and-Assembler"><a href="#Compiler-and-Assembler" class="headerlink" title="Compiler and Assembler"></a>Compiler and Assembler</h3><p>Compiler translates a high-level language program (e.g., C) into machine instructions</p>
+<p>Assembler further converts the instructions into machine code (binary)</p>
+<ul>
+<li>Handle <strong>pseudoinstructions</strong> that are not implemented by the target hardware but found in machine instructions</li>
+<li>li x9, 123 // load immediate value 123 into register x9<ul>
+<li>RISC-V assembler converts it into the following code (li is acceptable by assembler, but is not implemented in RISC-V machine language)</li>
+<li>addi x9, x0, 123 // register x9 gets register x0 + 123</li>
+</ul>
+</li>
+</ul>
+<h3 id="Assembler"><a href="#Assembler" class="headerlink" title="Assembler"></a>Assembler</h3><p>In fact, the assembler turns the assembly language program into an <strong>object</strong> file</p>
+<ul>
+<li>把組合語言的程式轉換成.o檔</li>
+<li>which is a combination of code, data, and information needed to place instructions properly in memory</li>
+<li>It must determine the <strong>addresses</strong> corresponding to all labels</li>
+<li>A <strong>symbol table</strong> helps assemblers keep track of labels used in branches and data transfer instructions</li>
+</ul>
+<p>An object file contains the six parts:</p>
+<ul>
+<li>Header: described contents of object module</li>
+<li>Text segment: translated instructions</li>
+<li>Static data segment: data allocated for the life of the program</li>
+<li>Relocation info: for contents that depend on absolute location of loaded program</li>
+<li>Symbol table: global definitions and external references</li>
+<li>Debug info: for associating with source code</li>
+</ul>
+<h3 id="Linker"><a href="#Linker" class="headerlink" title="Linker"></a>Linker</h3><p>It takes all the independently assembled machine<br>language programs and “stitches” them together</p>
+<p><strong>It produces an executable file running on a<br>computer</strong></p>
+<ol>
+<li><strong>Merges segments</strong></li>
+<li>Resolve labels (determine their addresses)</li>
+<li>Patch location-dependent and external references</li>
+</ol>
+<ul>
+<li>NOTE: It could leave location dependencies to be fixed by a relocating loader later(留下定位資訊 以方便後續追蹤位置)<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20112437.png" srcset="/webHome/img/loading.gif" lazyload>
+<img src="https://raw.githubusercontent.com/z-hwa/webHomeImage/main/image/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202024-04-10%20112548.png" srcset="/webHome/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h3><p>Loader is a system software</p>
+<ul>
+<li>that is called by the operating system</li>
+<li><strong>to place an object program in main memory so that it is ready to execute</strong></li>
+</ul>
+<p>In UNIX systems, the loader follows these steps:</p>
+<ol>
+<li><strong>Reads the executable file header</strong> to determine size of the text and data segments</li>
+<li><strong>Creates an address space large enough for the text and data</strong></li>
+<li><strong>Copies the instructions and data</strong> from the executable file into memory (also initialize the data)<ul>
+<li>Or set page table entries so they can be faulted in</li>
+</ul>
+</li>
+<li><strong>Copies the parameters</strong> (if any) to the main program onto the stack</li>
+<li><strong>Initializes the processor registers</strong> (including sp, fp, gp) and sets the stack pointer to the first free location</li>
+<li><strong>Branches to a start-up routine</strong> that copies the parameters into the argument registers and calls the main routine of the program<ul>
+<li>Copies arguments to x10, … and calls main</li>
+<li>When main returns, the start-up routine terminates the program with an exit syscall</li>
+</ul>
+</li>
+</ol>
+<h3 id="Static-vs-Dynamic-Linking"><a href="#Static-vs-Dynamic-Linking" class="headerlink" title="Static vs. Dynamic Linking"></a>Static vs. Dynamic Linking</h3><p>Two ways to link to external object files:</p>
+<p>Static link: Library routines that are linked to a program during linking</p>
+<ul>
+<li>External references are resolved during the linking stage</li>
+<li>Bad for upgrade and code size, since the library routines become part of<br>the executable code</li>
+</ul>
+<p>Dynamic link: Library routines that are linked to a program<br>during execution</p>
+<ul>
+<li>Only load and link library the procedure when it is called</li>
+<li>Require procedure code to be relocatable</li>
+<li>Avoid image bloat caused by static linking of all (transitively) referenced libraries (i.e., smaller size of the built executable)</li>
+<li>Automatically pick up new library versions</li>
+<li>Check Figure 2.21 for more information</li>
+</ul>
+<h2 id="2-13-A-C-Sort-Example-to-Put-It-All-Together"><a href="#2-13-A-C-Sort-Example-to-Put-It-All-Together" class="headerlink" title="2.13 A C Sort Example to Put It All Together"></a>2.13 A C Sort Example to Put It All Together</h2><p>Instruction count and CPI are not good performance<br>indicators in isolation</p>
+<p>Java/JIT compiled code is significantly faster than<br>JVM interpreted</p>
+<h1 id="2-22-fallacies-and-pitfall"><a href="#2-22-fallacies-and-pitfall" class="headerlink" title="2.22 fallacies and pitfall"></a>2.22 fallacies and pitfall</h1><p>Powerful instruction =&gt; higher performance</p>
+<ul>
+<li>Fewer instructions required</li>
+<li>But complex instructions are hard to implement<ul>
+<li>May slow down all instructions, including simple ones</li>
+</ul>
+</li>
+<li>Compilers are good at making fast code fromsimple instructions</li>
+</ul>
+<p>Use assembly code for high performance</p>
+<ul>
+<li>But modern compilers are better at dealing with<br>modern processors</li>
+<li>More lines of code  more errors and less<br>productivity</li>
+</ul>
+<p>Backward compatibility(向下相容性) =&gt; instruction set doesn’t<br>change</p>
+<ul>
+<li>But they do accrete more instructions</li>
+</ul>
+<p>Sequential words are not at sequential addresses</p>
+<ul>
+<li>Increment by 4 (for 32-bit architecture), not by 1 !!!</li>
+</ul>
+<p>Keeping a pointer to an automatic variable after procedure returns</p>
+<ul>
+<li>E.g., passing pointer back via an argument</li>
+<li>Pointer becomes invalid when stack popped</li>
+</ul>
+<h1 id="2-23-concluding-remark"><a href="#2-23-concluding-remark" class="headerlink" title="2.23 concluding remark"></a>2.23 concluding remark</h1><p>Design principles</p>
+<ol>
+<li>Simplicity favors regularity</li>
+<li>Smaller is faster</li>
+<li>Good design demands good compromises</li>
+</ol>
+<p>Make the common case fast </p>
+<p>Layers of software/hardware Compiler, assembler, hardware </p>
+<p>RISC-V: typical of RISC ISAs ➢c.f. x86</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Computer-Organization/" class="category-chain-item">Computer Organization</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Computer Organization CH2 Instructions: Language of the Computer</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Computer Organization/Computer-Organization-CH2-Instructions-Language-of-the-Computer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2024年4月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Computer%20Organization/Computer-Organization-CH1-Abstraction/" title="Computer Organization CH1 Abstraction">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Computer Organization CH1 Abstraction</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Computer%20Organization/Computer-Organization-CH3-Arithmetic-for-Computeres/" title="Computer Organization CH3 Arithmetic for Computeres">
+                        <span class="hidden-mobile">Computer Organization CH3 Arithmetic for Computeres</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH2-Instructions-Language-of-the-Computer/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Computer%20Organization/Computer-Organization-CH2-Instructions-Language-of-the-Computer/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

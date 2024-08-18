@@ -1,0 +1,779 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="基礎Unity-狐狸島:Author Z-hwA  github連結 點這裡  (一)	概要:剛學習Unity時的作品，是一款2D遊戲，主要實現的內容包括:腳色操作、Tilemap、敵人簡易AI、UI介面、音效、燈光以及場景。在實作的過程中，了解如何使用Unity，並且輸出遊戲檔。   (圖一)狐狸島遊戲截圖。 (二)	遊戲玩法透過WASD來操控腳色移動，收集場上的櫻桃。唯一的難點在於最高處的那顆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基礎Unity-狐狸島">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Game-develope/%E5%9F%BA%E7%A4%8EUnity-%E7%8B%90%E7%8B%B8%E5%B3%B6/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="基礎Unity-狐狸島:Author Z-hwA  github連結 點這裡  (一)	概要:剛學習Unity時的作品，是一款2D遊戲，主要實現的內容包括:腳色操作、Tilemap、敵人簡易AI、UI介面、音效、燈光以及場景。在實作的過程中，了解如何使用Unity，並且輸出遊戲檔。   (圖一)狐狸島遊戲截圖。 (二)	遊戲玩法透過WASD來操控腳色移動，收集場上的櫻桃。唯一的難點在於最高處的那顆">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/basic%20unity%20fox%20island.PNG">
+<meta property="article:published_time" content="2021-10-11T11:00:35.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:24:58.761Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/z-hwa/webHomeImage/image/basic%20unity%20fox%20island.PNG">
+  
+  
+  
+  <title>基礎Unity-狐狸島 - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="基礎Unity-狐狸島"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-11 19:00" pubdate>
+          2021年10月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">基礎Unity-狐狸島</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="基礎Unity-狐狸島"><a href="#基礎Unity-狐狸島" class="headerlink" title="基礎Unity-狐狸島:"></a>基礎Unity-狐狸島:</h1><h2 id="Author"><a href="#Author" class="headerlink" title="Author"></a>Author</h2><ul>
+<li>Z-hwA</li>
+</ul>
+<h2 id="github連結"><a href="#github連結" class="headerlink" title="github連結"></a>github連結</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/z-hwa/Unity_Game_About">點這裡</a></li>
+</ul>
+<h2 id="一-概要"><a href="#一-概要" class="headerlink" title="(一)	概要:"></a>(一)	概要:</h2><p>剛學習Unity時的作品，是一款2D遊戲，主要實現的內容包括:腳色操作、Tilemap、敵人簡易AI、UI介面、音效、燈光以及場景。在實作的過程中，了解如何使用Unity，並且輸出遊戲檔。</p>
+<p> <img src="https://i.imgur.com/Xg4hWa0.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖一)狐狸島遊戲截圖。</p>
+<h2 id="二-遊戲玩法"><a href="#二-遊戲玩法" class="headerlink" title="(二)	遊戲玩法"></a>(二)	遊戲玩法</h2><p>透過WASD來操控腳色移動，收集場上的櫻桃。唯一的難點在於最高處的那顆櫻桃，僅有一次機會可以得到它，最終目標是，走到最後的門，進入下一關。第二關並未製作完成。</p>
+<h2 id="三-腳色操作"><a href="#三-腳色操作" class="headerlink" title="(三)	腳色操作"></a>(三)	腳色操作</h2><p>透過給予剛體，提供力量，給予玩家的物件移動的力，從而達到移動的目的。此外，也撰寫一個動畫控制的方法，作為玩家物件面朝哪個方向、跳躍、趴下時的動畫控制。</p>
+<p>在跳躍上，設置一個檢測器，以確保玩家在地面，才可以進行跳躍，並限制為二段跳。而在碰觸到敵人時，設置一個擊退效果，以及受傷的動畫。此外，玩家死亡時，將場景重設，重新開始遊戲。</p>
+<p>而如果目前玩家動畫為跳躍完的下落，且碰觸到敵人時，則透過OnTriggerEnter2D，將敵人消滅。</p>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-number">1.</span>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Movement</span>()  </span>
+<span class="hljs-function">2.</span>	    &#123;  
+<span class="hljs-number">3.</span>	        <span class="hljs-built_in">float</span> horizontalMove = Input.GetAxisRaw(<span class="hljs-string">&quot;Horizontal&quot;</span>);  
+<span class="hljs-number">4.</span>	        <span class="hljs-built_in">float</span> facedircetion = Input.GetAxisRaw(<span class="hljs-string">&quot;Horizontal&quot;</span>);  
+<span class="hljs-number">5.</span>	        rb.velocity = <span class="hljs-keyword">new</span> Vector2(horizontalMove*speed, rb.velocity.y);  
+<span class="hljs-number">6.</span>	        anim.SetFloat(<span class="hljs-string">&quot;running&quot;</span>, Mathf.Abs(facedircetion));  
+<span class="hljs-number">7.</span>	  
+<span class="hljs-number">8.</span>	        <span class="hljs-comment">//腳色移動  </span>
+<span class="hljs-number">9.</span>	        <span class="hljs-keyword">if</span> (horizontalMove != <span class="hljs-number">0</span>)  
+<span class="hljs-number">10.</span>	        &#123;  
+<span class="hljs-number">11.</span>	            transform.localScale = <span class="hljs-keyword">new</span> Vector3(horizontalMove, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);  
+<span class="hljs-number">12.</span>	        &#125;  
+<span class="hljs-number">13.</span>	  
+<span class="hljs-number">14.</span>	        <span class="hljs-comment">//腳色跳躍    </span>
+<span class="hljs-number">15.</span>	        Crouch();  
+<span class="hljs-number">16.</span>	    &#125;</code></pre></div>
+<p>(圖二)基本腳色移動程式碼 ( Sunnyland\Assets\Scripts\Player_Controller.cs) (完整程式碼可在附錄的遊戲檔中取得。以下省略，僅保留程式碼路徑)。</p>
+<h2 id="四-Tilemap"><a href="#四-Tilemap" class="headerlink" title="(四)	Tilemap"></a>(四)	Tilemap</h2><p>透過Unity內建的Tilemap功能，可以輕鬆地建立一個2D像素化地圖，對於獨立遊戲開發者而言是非常有效益的選擇，因此我也使用了這樣的方式來創建我的地圖。此外，我亦給背景添加了不同的圖層，以達到豐富遊戲介面的效果。</p>
+<p> <img src="https://i.imgur.com/QLAdc7n.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖三)使用Tilemap繪製地圖。</p>
+<h2 id="五-敵人AI"><a href="#五-敵人AI" class="headerlink" title="(五)	敵人AI"></a>(五)	敵人AI</h2><p>在遊戲中，我給兩種敵人添加了不同的簡易AI。老鷹單純的添加上下移動的指令，至於青蛙則是透過動畫以及代碼的配合，做出了青蛙跳躍的感覺。兩種敵人身上都放有碰撞器，以作為實體，阻擋玩家的前進。而為了將這兩隻敵人限制在一定範圍內，我也放置了兩個空物件，作為他們移動的邊緣。<br> <img src="https://i.imgur.com/tBlNM16.png" srcset="/webHome/img/loading.gif" lazyload><br>(圖四)青蛙跳躍的效果。</p>
+<h2 id="六-UI介面"><a href="#六-UI介面" class="headerlink" title="(六)	UI介面"></a>(六)	UI介面</h2><p>在UI介面上，我添加了左上角的收集數量，以及暫停介面，按鈕的實作。此外，還有對話框的實現。其中的收集數量，則是透過代碼實現實時同步。至於暫停介面，亦添加了調整音效的滑桿。</p>
+<p> <img src="https://i.imgur.com/Ar6SCZK.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖五、六、七)UI介面展示。</p>
+<h2 id="七-音效系統"><a href="#七-音效系統" class="headerlink" title="(七)	音效系統"></a>(七)	音效系統</h2><p>透過掛載Audio Source在玩家物件上，並在程式碼中引用，可以視情況撥放不同的音效。例如:被擊中的音效、背景音樂等<br><img src="https://i.imgur.com/PcqzivW.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p> (圖八)Audio Source。</p>
+<h2 id="八-燈光效果"><a href="#八-燈光效果" class="headerlink" title="(八)	燈光效果"></a>(八)	燈光效果</h2><p>第二個關卡中，加入光的要素，在Unity中可以使用不同的光源，來為場景提供想要的光影效果，在這個遊戲中，我簡單的添加了幾個點光源，並學習如何在遊戲中使用光源，來增添遊戲的美感。<br> <img src="https://i.imgur.com/uiSKGYO.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p>(圖九)在玩家和火焰物件上的點光源。</p>
+<h2 id="九-場景"><a href="#九-場景" class="headerlink" title="(九)	場景"></a>(九)	場景</h2><p>一款遊戲中必須得有不同的場景，作為分別關卡的依據或介面等。在這款遊戲中，簡易的使用了三個場景，一個是遊戲開始介面，透過按鈕，使用已經編寫好的程式，進入第一關。而在第一關最後，則可以透過接觸到門，按下E從而進入第二關。其中包括場景的轉換等。<br><img src="https://i.imgur.com/Jx6e1OY.png" srcset="/webHome/img/loading.gif" lazyload></p>
+<p> (圖十)場景設定介面。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Game-develope/" class="category-chain-item">Game-develope</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>基礎Unity-狐狸島</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Game-develope/基礎Unity-狐狸島/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2021年10月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Game-develope/A-%E5%8F%8A%E5%B0%84%E7%B7%9A%E6%AA%A2%E6%B8%AC%E9%81%8B%E7%94%A8-%E6%BF%80%E5%85%89%E8%88%87%E5%AD%90%E5%BD%88/" title="A*及射線檢測運用-激光與子彈">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">A*及射線檢測運用-激光與子彈</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Game-develope/%E5%AE%8C%E6%95%B4%E9%81%8A%E6%88%B2%E9%96%8B%E7%99%BC%E5%8F%8A%E8%87%AA%E8%A3%BD%E7%B0%A1%E6%98%93Buff%E7%B3%BB%E7%B5%B1-%E7%84%A1%E9%99%90%E7%B9%BC%E6%89%BF-%E9%96%8B%E7%99%BC%E7%B8%BD%E7%B5%90/" title="完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結">
+                        <span class="hidden-mobile">完整遊戲開發及自製簡易Buff系統-無限繼承-開發總結</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Game-develope/%E5%9F%BA%E7%A4%8EUnity-%E7%8B%90%E7%8B%B8%E5%B3%B6/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Game-develope/%E5%9F%BA%E7%A4%8EUnity-%E7%8B%90%E7%8B%B8%E5%B3%B6/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

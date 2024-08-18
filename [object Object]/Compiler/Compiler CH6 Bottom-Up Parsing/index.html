@@ -1,0 +1,1040 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Compiler CH6 Bottom-Up ParsingOverview bottom-up parser started from parser tree’s leaves, move to its root traces a rightmost derivation in reverse replace rule’s RHS with its LHS   top-down parser s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiler CH6 Bottom-Up Parsing">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Compiler CH6 Bottom-Up ParsingOverview bottom-up parser started from parser tree’s leaves, move to its root traces a rightmost derivation in reverse replace rule’s RHS with its LHS   top-down parser s">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-1.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-2.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-3.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-4.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-5.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-6.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-7.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-8.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-10.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-11.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-9.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-12.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-13.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-14.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-15.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-16.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-17.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-24.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-18.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-19.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-20.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-21.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-22.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-23.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-25.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-26.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-27.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-28.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-29.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-30.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-31.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-32.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-33.png">
+<meta property="article:published_time" content="2024-05-02T14:50:13.000Z">
+<meta property="article:modified_time" content="2024-05-03T04:41:08.303Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image.png">
+  
+  
+  
+  <title>Compiler CH6 Bottom-Up Parsing - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Compiler CH6 Bottom-Up Parsing"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-02 22:50" pubdate>
+          2024年5月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Compiler CH6 Bottom-Up Parsing</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Compiler-CH6-Bottom-Up-Parsing"><a href="#Compiler-CH6-Bottom-Up-Parsing" class="headerlink" title="Compiler CH6 Bottom-Up Parsing"></a>Compiler CH6 Bottom-Up Parsing</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ul>
+<li>bottom-up parser<ul>
+<li>started from parser tree’s leaves, move to its root</li>
+<li>traces a rightmost derivation in reverse</li>
+<li>replace rule’s RHS with its LHS</li>
+</ul>
+</li>
+<li>top-down parser<ul>
+<li>started from parser tree’s root toward its leave</li>
+<li>trace a leftmost derivation</li>
+<li>replace rule’s LHS with its RHS</li>
+</ul>
+</li>
+</ul>
+<p>Ex.<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>LR parsing</p>
+<ul>
+<li>由左至右處理輸入字串</li>
+<li>並以最右邊優先衍生的推導順序<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>名詞解釋</p>
+<ul>
+<li>Bottom-up<ul>
+<li>因為parser從terminal symbol開始工作直到grammar’s goal symbol</li>
+</ul>
+</li>
+<li>shift-reduc<ul>
+<li>shift symbol onto the parse stack</li>
+<li>reduce 留在stack頂端的那些符號組成的字串 變成grammar’s non-terminal</li>
+</ul>
+</li>
+<li>LR(k)<ul>
+<li>如上</li>
+</ul>
+</li>
+</ul>
+<h2 id="handle-Pruning"><a href="#handle-Pruning" class="headerlink" title="handle Pruning"></a>handle Pruning</h2><p>informally, a substring</p>
+<ul>
+<li>matches the body of production</li>
+<li>whose reduction repre. 1 step along the reverse of a rightmost derivation</li>
+</ul>
+<p>Ex.<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>formally</p>
+<ul>
+<li>用production來作為handle，簡化表示</li>
+<li>如果grammar unambiguous，所有的right-sentential form 都只有一個handle<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>handle pruning<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h2 id="Shift-Reduce-Parsing"><a href="#Shift-Reduce-Parsing" class="headerlink" title="Shift-Reduce Parsing"></a>Shift-Reduce Parsing</h2><p>4 action</p>
+<ul>
+<li>shift: 將下一個input symbol移至stack top</li>
+<li>reduce: 從stack頂端向下，相當於將字串由右而左的縮減回nonterminal</li>
+<li>accept: 表示是否成功</li>
+<li>error: 發現syntax error 並呼叫error recovery routine</li>
+</ul>
+<p>stack imple.<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>ex.<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>ex2.<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h2 id="LR-0-table-construction"><a href="#LR-0-table-construction" class="headerlink" title="LR(0) table construction"></a>LR(0) table construction</h2><h3 id="shift"><a href="#shift" class="headerlink" title="shift"></a>shift</h3><ul>
+<li>對每個production，用dot標示辨識到的字串</li>
+<li>找出closure<ul>
+<li>如果production的第一個symbol是nonterminal    </li>
+<li>把這個nonterminal的production也加入closure<br>  <img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>名詞定義<ul>
+<li>kernal items</li>
+<li>nonkernal items</li>
+<li><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>GOTO<ul>
+<li>去找item，把dot往X方向移動</li>
+<li>決定有限狀態機轉換的模式<br>  <img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>Ex.</p>
+<ol>
+<li>對一個狀態，找出closure</li>
+<li>dot向右移動，定義下一個狀態<ul>
+<li>可以reduce的狀態，用雙框框刮起來(就是dot在做右邊)<br> <img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>得到shift的table<br> <img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ol>
+<h3 id="CFSM"><a href="#CFSM" class="headerlink" title="CFSM"></a>CFSM</h3><ul>
+<li>最右優先匹配</li>
+</ul>
+<h3 id="completing-LR-0"><a href="#completing-LR-0" class="headerlink" title="completing LR(0)"></a>completing LR(0)</h3><p>state 2, 4, 6 reduced</p>
+<ul>
+<li>因為是LR(0)就不用看下一個狀態，直接reduce<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li>pop出多少個symbol，就要回退多少狀態<ul>
+<li>其實就是看reduced的production有多少個symbol</li>
+</ul>
+</li>
+<li>龍書<ul>
+<li>accept在action，要看狀態和$</li>
+</ul>
+</li>
+<li>綠書<ul>
+<li>accept在goto</li>
+</ul>
+</li>
+<li>symbol其實可以用state來代替<ul>
+<li>所以可以省略<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="conflict"><a href="#conflict" class="headerlink" title="conflict"></a>conflict</h3><p>存在同時shift和reduce的情況<br>有兩個東西可以同時reduce<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>if grammar ambiguous</p>
+<ul>
+<li>編譯器沒辦法處理<br>if compiler的問題</li>
+<li>lookahead</li>
+</ul>
+<h4 id="ambiguous-grammar"><a href="#ambiguous-grammar" class="headerlink" title="ambiguous grammar"></a>ambiguous grammar</h4><ul>
+<li><p>state 5</p>
+<ul>
+<li>reduction like left-associateve</li>
+<li>shift like right-associative<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li><p>可以reduced到兩個東西</p>
+<ul>
+<li>5, 7</li>
+<li>讓scanner處理<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li><p>有兩個走向</p>
+<ul>
+<li>Exprs -&gt; E a | F b</li>
+<li>需要看最後一個symbol是甚麼<ul>
+<li>a or b</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h2 id="SLR-k-table-construction"><a href="#SLR-k-table-construction" class="headerlink" title="SLR(k) table construction"></a>SLR(k) table construction</h2><p>避免先加減後乘除</p>
+<ul>
+<li>如果是LR(0)，遇到符合的直接reduced，但下一個是times優先權應該比較高<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>SLR(k)<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>檢查symbol有沒有對應到production左式的follow set</p>
+<ul>
+<li>再reduced<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="LALR-k-table-construction"><a href="#LALR-k-table-construction" class="headerlink" title="LALR(k) table construction"></a>LALR(k) table construction</h2><p>看item走的路徑決定follow<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>可以由LR(0), LR(1)建構出來</p>
+<ul>
+<li>LR(0)比較好做<ul>
+<li>用一個圖記錄狀態轉移的過程，如上</li>
+</ul>
+</li>
+</ul>
+<h3 id="Propagation-Graph"><a href="#Propagation-Graph" class="headerlink" title="Propagation Graph"></a>Propagation Graph</h3><p>點是一個item</p>
+<ul>
+<li>建構出所有vertex，follow為空<ul>
+<li><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>起始production的follow，放$</li>
+<li>建出所有的邊，根據LR(0)<ul>
+<li>只看目前狀態內的follow<ul>
+<li><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>就根據follow的規則走</li>
+<li>如果可以推導到empty 就加一個邊<ul>
+<li><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Ex.<br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Compiler CH6 Bottom-Up Parsing</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Compiler/Compiler CH6 Bottom-Up Parsing/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2024年5月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Probability%20And%20Statics/Probability-And-Statics/" title="Probability And Statics">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Probability And Statics</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Computer%20Organization/RISC-V%20ISA%20Vector%20Extension/" title="RISC-V ISA Vector Extension">
+                        <span class="hidden-mobile">RISC-V ISA Vector Extension</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Compiler/Compiler%20CH6%20Bottom-Up%20Parsing/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>

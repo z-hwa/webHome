@@ -1,0 +1,1349 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Computer Organization CH4 The Processor4.1 introintro p3performance  ISA is diff. -&gt; instruction count diff. clock cycle and CPI diff. determined by processor    CH4  a more realistic pipeline vers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Organization CH4 The Processor">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Computer Organization CH4 The Processor4.1 introintro p3performance  ISA is diff. -&gt; instruction count diff. clock cycle and CPI diff. determined by processor    CH4  a more realistic pipeline vers">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-4.png">
+<meta property="article:published_time" content="2024-04-30T04:52:01.000Z">
+<meta property="article:modified_time" content="2024-05-09T04:00:31.321Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-4.png">
+  
+  
+  
+  <title>Computer Organization CH4 The Processor - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Computer Organization CH4 The Processor"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-30 12:52" pubdate>
+          2024年4月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Computer Organization CH4 The Processor</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Computer-Organization-CH4-The-Processor"><a href="#Computer-Organization-CH4-The-Processor" class="headerlink" title="Computer Organization CH4 The Processor"></a>Computer Organization CH4 The Processor</h1><h2 id="4-1-intro"><a href="#4-1-intro" class="headerlink" title="4.1 intro"></a>4.1 intro</h2><h3 id="intro-p3"><a href="#intro-p3" class="headerlink" title="intro p3"></a>intro p3</h3><p>performance</p>
+<ul>
+<li>ISA is diff. -&gt; instruction count diff.<ul>
+<li>clock cycle and CPI diff.</li>
+<li>determined by processor</li>
+</ul>
+</li>
+</ul>
+<p>CH4</p>
+<ul>
+<li>a more realistic pipeline versio</li>
+</ul>
+<h3 id="instruction-execution-overview-p4"><a href="#instruction-execution-overview-p4" class="headerlink" title="instruction execution overview p4"></a>instruction execution overview p4</h3><ol>
+<li>started from program counter(PC)<ul>
+<li>讀取程式的第一條指令的位置</li>
+<li>in modern architecture, L1 cache</li>
+</ul>
+</li>
+<li>read 1 or 2 registers</li>
+<li>use ALU after reading the register<ul>
+<li>find next inst. in memory address<ul>
+<li>arithmetic-logical inst.</li>
+<li>memory addr. calculation</li>
+<li>conditional branches</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>diff. by inst. classes<ul>
+<li>read p5</li>
+</ul>
+</li>
+</ol>
+<p>前兩步驟一樣</p>
+<ul>
+<li>simplicity and regularity of RISC-V inst. set <ul>
+<li>simplify implementation</li>
+</ul>
+</li>
+</ul>
+<p>instruction execution flow</p>
+<ul>
+<li>資料會被複製，給多個東西看</li>
+<li>p6</li>
+</ul>
+<p>cont’d</p>
+<ul>
+<li>少了multiplexors</li>
+<li>control unit</li>
+<li>p7</li>
+</ul>
+<h2 id="4-2-logic-design-conventions"><a href="#4-2-logic-design-conventions" class="headerlink" title="4.2 logic design conventions"></a>4.2 logic design conventions</h2><h3 id="Logic-design-basics-p10"><a href="#Logic-design-basics-p10" class="headerlink" title="Logic design basics p10"></a>Logic design basics p10</h3><p>state or not state</p>
+<ul>
+<li>output depend only on the current input -&gt; not state</li>
+<li>output is related to state &amp; input</li>
+</ul>
+<p>edge trigger</p>
+<ul>
+<li>will do something</li>
+</ul>
+<h2 id="4-3-building-datapath"><a href="#4-3-building-datapath" class="headerlink" title="4.3 building datapath"></a>4.3 building datapath</h2><h3 id="datapath"><a href="#datapath" class="headerlink" title="datapath"></a>datapath</h3><p>除了32個register，還有其他奇奇怪怪的register</p>
+<p>p15</p>
+<p>R-format ALU</p>
+<ul>
+<li>p16</li>
+</ul>
+<p>Load/Store</p>
+<ul>
+<li>p17</li>
+<li>immediate會先進去<ul>
+<li>之後再執行inst.</li>
+<li>p18</li>
+</ul>
+</li>
+</ul>
+<p>branch</p>
+<ul>
+<li>PC relative addres<ul>
+<li>half word</li>
+</ul>
+</li>
+<li>p21</li>
+</ul>
+<h3 id="compose-the-ele"><a href="#compose-the-ele" class="headerlink" title="compose the ele."></a>compose the ele.</h3><p>use multiplexers</p>
+<ul>
+<li>p24</li>
+<li>p25<ul>
+<li>多了ALU control</li>
+<li>condition branch used</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-4-A-simple-implementation-scheme"><a href="#4-4-A-simple-implementation-scheme" class="headerlink" title="4.4 A simple implementation scheme"></a>4.4 A simple implementation scheme</h2><h3 id="ISA-vs-Hardware-design"><a href="#ISA-vs-Hardware-design" class="headerlink" title="ISA vs. Hardware design"></a>ISA vs. Hardware design</h3><p>RISC-V</p>
+<ul>
+<li>指令的format比較複雜，但layout繼承下來<ul>
+<li>rd都在rd, rs都在rs</li>
+<li>簡化了hardware的path設計</li>
+</ul>
+</li>
+<li>相對MIPS<ul>
+<li>位置會做變化，需要多一個multiplexor做判斷<br>  <img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Setting-of-the-Main-Control-Unit"><a href="#Setting-of-the-Main-Control-Unit" class="headerlink" title="Setting of the Main Control Unit"></a>Setting of the Main Control Unit</h3><p>大概就是上一節的內容</p>
+<ul>
+<li>opcode的長相<ul>
+<li>using flow map to compare</li>
+<li>圖很重要</li>
+</ul>
+</li>
+<li>focus on multiplexor<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="exxcution-flow-of-R-format-inst"><a href="#exxcution-flow-of-R-format-inst" class="headerlink" title="exxcution flow of R-format inst."></a>exxcution flow of R-format inst.</h3><div class="code-wrapper"><pre><code class="hljs llvm"><span class="hljs-keyword">add</span> <span class="hljs-keyword">x</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-keyword">x</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span> <span class="hljs-keyword">x</span><span class="hljs-number">3</span></code></pre></div>
+<ul>
+<li>假設指令已經被載入pc</li>
+<li>opcode會被送到main control<ul>
+<li>對所有控制訊號輸出</li>
+</ul>
+</li>
+<li>ALU op<ul>
+<li>10 r-type<ul>
+<li>00 加法</li>
+<li>01 減法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="execution-flow-of-I-format-inst"><a href="#execution-flow-of-I-format-inst" class="headerlink" title="execution flow of I-format inst."></a>execution flow of I-format inst.</h3><div class="code-wrapper"><pre><code class="hljs llvm">lw <span class="hljs-keyword">x</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span> offset(<span class="hljs-keyword">x</span><span class="hljs-number">2</span>)</code></pre></div>
+<ul>
+<li>ALU op<ul>
+<li>00 lw or sw<ul>
+<li>00 加法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多了第四個步驟<ul>
+<li>造成執行時間變長<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="execution-flow-of-branch-inst"><a href="#execution-flow-of-branch-inst" class="headerlink" title="execution flow of branch inst."></a>execution flow of branch inst.</h3><div class="code-wrapper"><pre><code class="hljs llvm">beq <span class="hljs-keyword">x</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-keyword">x</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span> offset</code></pre></div>
+<ul>
+<li>control &amp; result decide next PC<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="logic-of-the-control-unit"><a href="#logic-of-the-control-unit" class="headerlink" title="logic of the control unit"></a>logic of the control unit</h3><ul>
+<li><p>opcode 和 control unit的對比<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</li>
+<li><p>以執行時間最長的指令為一個clock period<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</li>
+</ul>
+<h2 id="4-6-an-overview-of-pipeline"><a href="#4-6-an-overview-of-pipeline" class="headerlink" title="4.6 an overview of pipeline"></a>4.6 an overview of pipeline</h2><h3 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h3><p>sequential laundry</p>
+<ul>
+<li>比較久<br>pipelined laundry</li>
+<li>最大效率使用各種資源</li>
+<li>沒有減少每個工作的時間<ul>
+<li>但盡量的使用了閒置的資源</li>
+<li>最快就是比seq.快4倍</li>
+</ul>
+</li>
+</ul>
+<h3 id="single-cycle-vs-pipeline-performance"><a href="#single-cycle-vs-pipeline-performance" class="headerlink" title="single cycle vs. pipeline performance"></a>single cycle vs. pipeline performance</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>以最長的major function units為pipeline的cycle<ul>
+<li>沒有相依性的情況<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="insights-of-the-design-for-pipeline-execution"><a href="#insights-of-the-design-for-pipeline-execution" class="headerlink" title="insights of the design for pipeline execution"></a>insights of the design for pipeline execution</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Hazards"><a href="#Hazards" class="headerlink" title="Hazards"></a>Hazards</h3><ul>
+<li>structure<ul>
+<li>增加硬體資源可以解決</li>
+</ul>
+</li>
+<li>data<ul>
+<li>pipeline會被stalled</li>
+</ul>
+</li>
+<li>control<ul>
+<li>存在branch</li>
+<li>不知道要執行branch後的，還是PC+4<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="structure-Hazard"><a href="#structure-Hazard" class="headerlink" title="structure Hazard"></a>structure Hazard</h3><ul>
+<li>假設只有1個memory，1個port<ul>
+<li>只能有一個人對memory存取<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="graphical-repre-of-the-pipeline"><a href="#graphical-repre-of-the-pipeline" class="headerlink" title="graphical repre. of the pipeline"></a>graphical repre. of the pipeline</h3><ul>
+<li>黑色在右邊<ul>
+<li>讀取</li>
+</ul>
+</li>
+<li>黑色在左邊<ul>
+<li>寫入<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="data-hazard"><a href="#data-hazard" class="headerlink" title="data hazard"></a>data hazard</h3><ul>
+<li>一個指令寫入的結果，是另外一個指令的來源<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>sol.</p>
+<ul>
+<li>forwarding<ul>
+<li>利用硬體的方式 bypassing</li>
+<li>把結果直接傳給下一個指令<br>  <img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>load-use data hazard<ul>
+<li>需要額外使用bubble<br>  <img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Code scheduling<ul>
+<li>調整指令執行的順序<br>  <img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Control-Hazard"><a href="#Control-Hazard" class="headerlink" title="Control Hazard"></a>Control Hazard</h3><p>sol.</p>
+<ul>
+<li>stall<ul>
+<li>沒有硬體資源<ul>
+<li>應該需要2次stall<br>  <img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>prediction<ul>
+<li>用猜的</li>
+<li>static vs. dynamic<br>  <img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>delayed branch<ul>
+<li>branch 提早做<br>  <img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="…"><a href="#…" class="headerlink" title="…"></a>…</h3><h2 id="4-7-pipelined-datapath-and-control"><a href="#4-7-pipelined-datapath-and-control" class="headerlink" title="4.7 pipelined datapath and control"></a>4.7 pipelined datapath and control</h2><h3 id="…-1"><a href="#…-1" class="headerlink" title="…"></a>…</h3><h3 id="Pipeline-control"><a href="#Pipeline-control" class="headerlink" title="Pipeline control"></a>Pipeline control</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="pipeline-control-on-five-stage-step-2"><a href="#pipeline-control-on-five-stage-step-2" class="headerlink" title="pipeline control on five stage (step 2)"></a>pipeline control on five stage (step 2)</h3><ol>
+<li>instruction fetch</li>
+<li>instruction decode/reister file read</li>
+<li>Execution/address calculation<ul>
+<li>ALUop and ALUsrc</li>
+</ul>
+</li>
+<li>memory accedd<ul>
+<li>control line set in this stage<ul>
+<li>Branch: 資料往後流</li>
+<li>MemRead</li>
+<li>MemWrite</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>write-back<ul>
+<li>資料往後流</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>比對上一張圖</li>
+</ul>
+</li>
+</ul>
+<h3 id="pipelined-control-on-each-stage-step-3"><a href="#pipelined-control-on-each-stage-step-3" class="headerlink" title="pipelined control on each stage (step 3)"></a>pipelined control on each stage (step 3)</h3><p>控制的指令也需要pipeline register</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="4-8-Data-Hazards-Forwarding-vs-Stalling"><a href="#4-8-Data-Hazards-Forwarding-vs-Stalling" class="headerlink" title="4.8 Data Hazards: Forwarding vs. Stalling"></a>4.8 Data Hazards: Forwarding vs. Stalling</h2><h3 id="Data-Hazard-in-ALU-inst"><a href="#Data-Hazard-in-ALU-inst" class="headerlink" title="Data Hazard in ALU inst."></a>Data Hazard in ALU inst.</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>後面四個指令都需要用到sub放進x2的資料</li>
+</ul>
+<p>The Dependencies in datapath</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>正常情況下(CC 5才計算出第一個指令的結果)<ul>
+<li>橘色的部分是不可能做的<ul>
+<li>不能時光回朔 -&gt; 結果是錯的</li>
+</ul>
+</li>
+<li>藍色是可以做的</li>
+<li>紅線是可以forwading的方式(可以解決問題)<ul>
+<li>計算出的結果會被放進pipeline register</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Notation</p>
+<ul>
+<li>如何判斷發生這種情況</li>
+<li>下一個cycle的rd = 上一個cycle的rs1 or rd2<ul>
+<li>存在dependencies</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>也就是比較不同stage的指令</li>
+</ul>
+</li>
+</ul>
+<p>cotrol unit to resolve the hazards</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>綠色是上一張圖的紅色</li>
+</ul>
+</li>
+<li>forwarding unit<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>Double data hazard</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>1 and 2, 2 and 3 has dependencies</li>
+<li>上一種forwarding logic會有問題</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>兩種forwarding同時match 10 and 01</li>
+</ul>
+</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>都發生的話</li>
+<li>確定EX/MEM沒有發生，才讓MEM/WB的forwarding進行(黃字)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-hazard-in-Load-use-inst"><a href="#data-hazard-in-Load-use-inst" class="headerlink" title="data hazard in Load-use inst."></a>data hazard in Load-use inst.</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>detect</p>
+<ul>
+<li>cc3 發現load的rd = 下一個指令的rs</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li>sw sol. is to insert a NOP<ul>
+<li>如果處理器不能做這件事，compiler就會來做</li>
+</ul>
+</li>
+</ul>
+<p>硬體實作的方法</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="4-9-Control-hazards"><a href="#4-9-Control-hazards" class="headerlink" title="4.9 Control hazards"></a>4.9 Control hazards</h2><h3 id="control-hazard"><a href="#control-hazard" class="headerlink" title="control hazard"></a>control hazard</h3><p>branch 大概會在 MEM stage才知道要不要jump</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>基礎設計下，會有3個bubble</li>
+<li>有其他設計，目的是減少bubble</li>
+</ul>
+<h3 id="sol-1-Prediction"><a href="#sol-1-Prediction" class="headerlink" title="sol 1. Prediction"></a>sol 1. Prediction</h3><p>prediction覺得不用taken</p>
+<ul>
+<li>如果正確，繼續執行</li>
+<li>錯誤，flush掉前面的指令就可以了<br><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="sol-2-Reduce-Branch-Delay"><a href="#sol-2-Reduce-Branch-Delay" class="headerlink" title="sol 2. Reduce Branch Delay"></a>sol 2. Reduce Branch Delay</h3><p>盡量讓結果更早的算出來</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>1 計算結果可以在ID stage算出來</li>
+<li>2 可以在ID的後半部就得到</li>
+</ul>
+</li>
+</ul>
+<p>方法</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>stall 一個cycle就算得出來</li>
+</ul>
+<p>例子</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="sol-3-Dynamic-Branch-Prediction"><a href="#sol-3-Dynamic-Branch-Prediction" class="headerlink" title="sol 3. Dynamic Branch Prediction"></a>sol 3. Dynamic Branch Prediction</h3><p>根據程式執行的結果 決定要怎麼做</p>
+<ul>
+<li>實做一個 branch prediction buffer</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>計算prediction rate</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<p>2-bit branch predictor</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>錯誤兩次才更換branch prediction buffer</li>
+</ul>
+<h2 id="4-10-Exception"><a href="#4-10-Exception" class="headerlink" title="4.10 Exception"></a>4.10 Exception</h2><h3 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h3><p>RISC-V的分類</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Exception-handling"><a href="#Exception-handling" class="headerlink" title="Exception handling"></a>Exception handling</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>發生interrupt就會送到固定的位址<ul>
+<li>類似插入USB等等</li>
+</ul>
+</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>對應位置會有對應的軟體來處理該狀況</li>
+<li>做完之後，才會return回去</li>
+</ul>
+</li>
+</ul>
+<p>實作方法</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>把被打斷的指令放進spec<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h2 id="4-11-parallelism-via-instruction"><a href="#4-11-parallelism-via-instruction" class="headerlink" title="4.11 parallelism via instruction"></a>4.11 parallelism via instruction</h2><h3 id="instruction-level-parallelism"><a href="#instruction-level-parallelism" class="headerlink" title="instruction level parallelism"></a>instruction level parallelism</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>deeper pipeline<ul>
+<li>管線化的設計是一種Pipeline的展現</li>
+<li>pipeline的深度就是stage數量</li>
+<li>pipeline的深度越多<ul>
+<li>ILP平行度越高</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multiple issue<ul>
+<li>不用CPI來計算效能</li>
+</ul>
+</li>
+</ul>
+<h3 id="Multiple-issue-processor"><a href="#Multiple-issue-processor" class="headerlink" title="Multiple issue processor"></a>Multiple issue processor</h3><ul>
+<li>Dynamic<ul>
+<li>compiler和處理器決定</li>
+</ul>
+</li>
+<li>static<ul>
+<li>硬體不做</li>
+<li>compiler做事</li>
+</ul>
+</li>
+</ul>
+<h3 id="Speculation"><a href="#Speculation" class="headerlink" title="Speculation"></a>Speculation</h3><p>猜</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Static-Multiple-issue"><a href="#Static-Multiple-issue" class="headerlink" title="Static Multiple issue"></a>Static Multiple issue</h3><p><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-58.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>compiler負責找independent的指令</li>
+</ul>
+<p>HW design</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-59.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-60.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li>現代基本上都是2 issue</li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-61.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-62.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>一個load 配一個 ALU</li>
+<li>用IPC計算<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-63.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>loop Ex.<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-64.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Dynamix-Multiple-issue"><a href="#Dynamix-Multiple-issue" class="headerlink" title="Dynamix Multiple issue"></a>Dynamix Multiple issue</h3><p>現代手機都是這種</p>
+<ul>
+<li>superscalar</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-65.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li>部分是in order</li>
+</ul>
+</li>
+</ul>
+<h3 id="Dynamic-pipeline-scheduling"><a href="#Dynamic-pipeline-scheduling" class="headerlink" title="Dynamic pipeline scheduling"></a>Dynamic pipeline scheduling</h3><p>找沒有相依的指令</p>
+<ul>
+<li>用一個window去看後面的指令</li>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-66.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Ex.</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/image-67.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Computer-Organization/" class="category-chain-item">Computer Organization</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Computer Organization CH4 The Processor</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Computer Organization/Computer-Organization-CH4-The-Processor/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2024年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Computer%20Network/Computer-Network-CH3-Transport-Layer/" title="Computer Network CH3 Transport Layer">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Computer Network CH3 Transport Layer</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Algorithm/Algorithm-CH2-Getting-Started/" title="Algorithm CH2 Getting Started">
+                        <span class="hidden-mobile">Algorithm CH2 Getting Started</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Computer%20Organization/Computer-Organization-CH4-The-Processor/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Computer%20Organization/Computer-Organization-CH4-The-Processor/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
