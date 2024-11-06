@@ -16,18 +16,20 @@
   <meta name="author" content="crown tako">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="learning record for my life">
+    <meta name="description" content="Chapter 4 Threads &amp; ConcurrencyOverview single vs. multi thread    motivation Intro     For RPC&#x2F;OS    Benefits Programming    Concurrency vs. Parallelism    Types of Parallelism    Amdahl’s Law">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chapter 4 Threads &amp; Concurrency">
 <meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/">
 <meta property="og:site_name" content="Crown Tako Shoka">
-<meta property="og:description" content="learning record for my life">
+<meta property="og:description" content="Chapter 4 Threads &amp; ConcurrencyOverview single vs. multi thread    motivation Intro     For RPC&#x2F;OS    Benefits Programming    Concurrency vs. Parallelism    Types of Parallelism    Amdahl’s Law">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Operation%20Systems/Chapter-4-Threads-Concurrency/image-1.png">
 <meta property="article:published_time" content="2024-11-05T12:14:02.000Z">
-<meta property="article:modified_time" content="2024-11-05T12:14:14.379Z">
+<meta property="article:modified_time" content="2024-11-06T03:30:40.875Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Operation%20Systems/Chapter-4-Threads-Concurrency/image-1.png">
   
   
   
@@ -361,7 +363,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          521 字
         
       </span>
     
@@ -372,7 +374,7 @@ mjx-container[display="true"] + br {
         
         
         
-          1 分鐘
+          5 分鐘
         
       </span>
     
@@ -414,7 +416,135 @@ mjx-container[display="true"] + br {
             
               <div class="markdown-body">
                 
-                
+                <h1 id="Chapter-4-Threads-Concurrency"><a href="#Chapter-4-Threads-Concurrency" class="headerlink" title="Chapter 4 Threads & Concurrency"></a>Chapter 4 Threads &amp; Concurrency</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>single vs. multi thread</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="motivation"><a href="#motivation" class="headerlink" title="motivation"></a>motivation</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>Intro</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>For RPC/OS</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Concurrency vs. Parallelism</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Types of Parallelism</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Amdahl’s Law</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Thread-types"><a href="#Thread-types" class="headerlink" title="Thread types"></a>Thread types</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>User Thread</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="Multithreading-Models"><a href="#Multithreading-Models" class="headerlink" title="Multithreading Models"></a>Multithreading Models</h2><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Many-to-one"><a href="#Many-to-one" class="headerlink" title="Many to one"></a>Many to one</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="One-to-One"><a href="#One-to-One" class="headerlink" title="One to One"></a>One to One</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Many-to-Many"><a href="#Many-to-Many" class="headerlink" title="Many to Many"></a>Many to Many</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Two-level"><a href="#Two-level" class="headerlink" title="Two level"></a>Two level</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="Thread-Libraries"><a href="#Thread-Libraries" class="headerlink" title="Thread Libraries"></a>Thread Libraries</h2><p>Introduction</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Common library</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Pthread"><a href="#Pthread" class="headerlink" title="Pthread"></a>Pthread</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>Example</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>Important</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Windows-Thread"><a href="#Windows-Thread" class="headerlink" title="Windows Thread"></a>Windows Thread</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>Example</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Java-Thread"><a href="#Java-Thread" class="headerlink" title="Java Thread"></a>Java Thread</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Implicit-Threating"><a href="#Implicit-Threating" class="headerlink" title="Implicit Threating"></a>Implicit Threating</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"> </p>
+<p>OpenMP</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="Threading-Issues"><a href="#Threading-Issues" class="headerlink" title="Threading Issues"></a>Threading Issues</h2><h3 id="Semantics-of-fork-and-exec-system-calls"><a href="#Semantics-of-fork-and-exec-system-calls" class="headerlink" title="Semantics of fork() and exec() system calls"></a>Semantics of fork() and exec() system calls</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Thread-cancellation"><a href="#Thread-cancellation" class="headerlink" title="Thread cancellation"></a>Thread cancellation</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Signal-handling-dest-is-process"><a href="#Signal-handling-dest-is-process" class="headerlink" title="Signal handling(dest. is process)"></a>Signal handling(dest. is process)</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Thread-pools"><a href="#Thread-pools" class="headerlink" title="Thread pools"></a>Thread pools</h3><p>Intro</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Thread-specific-data"><a href="#Thread-specific-data" class="headerlink" title="Thread specific data"></a>Thread specific data</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h2 id="Operating-System-Examples"><a href="#Operating-System-Examples" class="headerlink" title="Operating-System Examples"></a>Operating-System Examples</h2><h3 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-58.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-59.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-4-Threads-Concurrency/image-60.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+
                 
               </div>
             
