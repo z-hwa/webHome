@@ -1,0 +1,1305 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Chapter 14 Probabilistic Reasoning over TimeTime and Uncertainty 靜態假設     動態情況     血糖指數會動態改變    States and observations time slice 以及符號定義     下雨天的例子   集合符號的定義     本單元假設time slice 是固定的長度 可以用整數表示    Tra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 14 Probabilistic Reasoning over Time">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Chapter 14 Probabilistic Reasoning over TimeTime and Uncertainty 靜態假設     動態情況     血糖指數會動態改變    States and observations time slice 以及符號定義     下雨天的例子   集合符號的定義     本單元假設time slice 是固定的長度 可以用整數表示    Tra">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-84.png">
+<meta property="article:published_time" content="2024-12-03T05:01:21.000Z">
+<meta property="article:modified_time" content="2024-12-03T11:55:33.537Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-84.png">
+  
+  
+  
+  <title>Chapter 14 Probabilistic Reasoning over Time - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Chapter 14 Probabilistic Reasoning over Time"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-03 13:01" pubdate>
+          2024年12月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Chapter 14 Probabilistic Reasoning over Time</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Chapter-14-Probabilistic-Reasoning-over-Time"><a href="#Chapter-14-Probabilistic-Reasoning-over-Time" class="headerlink" title="Chapter 14 Probabilistic Reasoning over Time"></a>Chapter 14 Probabilistic Reasoning over Time</h1><h2 id="Time-and-Uncertainty"><a href="#Time-and-Uncertainty" class="headerlink" title="Time and Uncertainty"></a>Time and Uncertainty</h2><ul>
+<li><p>靜態假設</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>動態情況</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>血糖指數會動態改變</li>
+</ul>
+</li>
+</ul>
+<h2 id="States-and-observations"><a href="#States-and-observations" class="headerlink" title="States and observations"></a>States and observations</h2><ul>
+<li><p>time slice 以及符號定義</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>下雨天的例子</li>
+</ul>
+</li>
+<li><p>集合符號的定義</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>本單元假設time slice 是固定的長度 可以用整數表示</li>
+</ul>
+</li>
+</ul>
+<h2 id="Transition-and-sensor-models"><a href="#Transition-and-sensor-models" class="headerlink" title="Transition and sensor models"></a>Transition and sensor models</h2><ul>
+<li><p>Markov assumption</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>假設當前狀態只與 前k個有限數量的狀態有關</li>
+</ul>
+</li>
+<li><p>first oreder, second order Markov assumption =&gt; transition model</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>相當於條件機率<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>雖然是動態世界 但世界狀態改變的法則是固定的</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>機率是固定的 只是時間會變化</li>
+</ul>
+</li>
+<li><p>sensor model</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>圖像化</li>
+</ul>
+</li>
+<li><p>整個形式</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>initial state model</li>
+<li>transition model</li>
+<li>sensor model</li>
+</ul>
+</li>
+<li><p>假設正確與否 取決於該domain</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>提高準確度的方法: 增加order 或是 添加更多變數</li>
+</ul>
+</li>
+</ul>
+<h2 id="Inference-in-Temporal-Models"><a href="#Inference-in-Temporal-Models" class="headerlink" title="Inference in Temporal Models"></a>Inference in Temporal Models</h2><ul>
+<li><p>濾波</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>以過去到現在的狀態 找出跟當前有關的資料 推論現在的狀態</li>
+</ul>
+</li>
+<li><p>預測</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>以過去到現在的資料 預測未來數個時間點的狀態</li>
+</ul>
+</li>
+<li><p>平滑</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>以過去到現在的資料 推論過去的狀態</li>
+</ul>
+</li>
+<li><p>最大可能解釋</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>找出一串環境狀態 能夠最大的去解釋 evidence</li>
+</ul>
+</li>
+<li><p>學習</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>使用 EM algorithm</li>
+</ul>
+</li>
+</ul>
+<h2 id="Filtering-and-prediction"><a href="#Filtering-and-prediction" class="headerlink" title="Filtering and prediction"></a>Filtering and prediction</h2><ul>
+<li><p>透過函數更新當前狀態 減少回去找歷史資料的情況</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>稱之為 recursive estimation<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>藉由 conditioning 現在的狀態 繼續拆開等式 =&gt; 藉由當前的狀態 預測下一個狀態的機率分布<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>將機率寫成 message的形式</li>
+</ul>
+</li>
+<li><p>雨天的例子 預測兩天</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>Prediction</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>其實就是Filtering 延伸到+k</li>
+<li>沒有證據版本的 =&gt; 所以只有 transition model</li>
+</ul>
+</li>
+</ul>
+<h2 id="Smoothing"><a href="#Smoothing" class="headerlink" title="Smoothing"></a>Smoothing</h2><ul>
+<li><p>平滑的做法</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>backward message</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>反覆的transition 並藉由狀態預測evidence<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>第一和第三個factor 都是model本身就有的</li>
+<li>第二個factor 就是recursive call</li>
+</ul>
+</li>
+<li><p>故得知f, b都可以靠 recirsive求得</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>雨天計算的例子</li>
+</ul>
+</li>
+<li><p>Smooth 的計算複雜度</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>forward-backward algorithm</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>forward 由前往後</li>
+<li>backward 由後往前</li>
+<li>並用表紀錄計算出來的值 減少計算複雜度<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Finding-the-most-likely-sequence"><a href="#Finding-the-most-likely-sequence" class="headerlink" title="Finding the most likely sequence"></a>Finding the most likely sequence</h2><ul>
+<li><p>MLE</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>用smooth 去找出後驗機率分佈<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>像在走圖<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>選擇機率最高的 邊走邊smooth</li>
+</ul>
+</li>
+<li><p>當前的最可能路徑 與過去最可能路徑 以及當下證據有關</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>基本上就是說明上面會對的核心思路是什麼</li>
+</ul>
+</li>
+<li><p>跟forward 的差別就只是message的不同</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>形式是類似的<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>所以本質上就是filtering</li>
+</ul>
+</li>
+<li><p>Viterbi algorithm</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>因為message的差別 跟filtering的時間複雜度一樣 但空間複雜度不同</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hidden-Markov-Models"><a href="#Hidden-Markov-Models" class="headerlink" title="Hidden Markov Models"></a>Hidden Markov Models</h2><ul>
+<li>intro HMM<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>解決離散問題</li>
+</ul>
+</li>
+</ul>
+<h2 id="HMM-example-Localization"><a href="#HMM-example-Localization" class="headerlink" title="HMM example: Localization"></a>HMM example: Localization</h2><ul>
+<li><p>吸塵器的例子</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>transition matrix的大小<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>為收集數據建立機率分佈模型</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>用sommthing 知道某個時間agent在哪裡 用viterbit algorithm 知道最有可能的路徑</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>廣泛的說 能具備高等級的定位 以及準確路徑 即使是存在error的情況下</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Kalman-Filters"><a href="#Kalman-Filters" class="headerlink" title="Kalman Filters"></a>Kalman Filters</h2><ul>
+<li><p>解決連續的問題</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>使用高斯建模</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>Bayesian network</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Updating-Gaussian-distributions"><a href="#Updating-Gaussian-distributions" class="headerlink" title="Updating Gaussian distributions"></a>Updating Gaussian distributions</h2><ul>
+<li><p>線性高斯之間 運算的封閉性</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>寫成forward的形式</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="A-simple-one-dimensional-example"><a href="#A-simple-one-dimensional-example" class="headerlink" title="A simple one-dimensional example"></a>A simple one-dimensional example</h2><ul>
+<li><p>一維的例子</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>二次方程式能夠配方 因此補正項會獨立出來</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-58.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>配方項則是e從負無限積到正無限 相當於1</li>
+</ul>
+</li>
+<li><p>Bayer’s rule</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-59.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>得出狀態的更新結果</li>
+</ul>
+</li>
+<li><p>結論</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-60.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-61.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>更新解釋</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-62.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>平均值的更新 受到不確定性影響(變異數)</li>
+<li><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.057ex" height="1.332ex" role="img" focusable="false" viewbox="0 -431 909.3 588.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D70E" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"/></g><g data-mml-node="mi" transform="translate(604,-150) scale(0.707)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"/></g></g></g></g></svg></mjx-container> : 過去平均的不確定性</li>
+<li><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.395ex" height="1.332ex" role="img" focusable="false" viewbox="0 -431 1058.5 588.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D70E" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"/></g><g data-mml-node="mi" transform="translate(604,-150) scale(0.707)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g></g></svg></mjx-container> : 轉移過程的不確定性</li>
+<li><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.224ex" height="1.332ex" role="img" focusable="false" viewbox="0 -431 982.8 588.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D70E" d="M184 -11Q116 -11 74 34T31 147Q31 247 104 333T274 430Q275 431 414 431H552Q553 430 555 429T559 427T562 425T565 422T567 420T569 416T570 412T571 407T572 401Q572 357 507 357Q500 357 490 357T476 358H416L421 348Q439 310 439 263Q439 153 359 71T184 -11ZM361 278Q361 358 276 358Q152 358 115 184Q114 180 114 178Q106 141 106 117Q106 67 131 47T188 26Q242 26 287 73Q316 103 334 153T356 233T361 278Z"/></g><g data-mml-node="mi" transform="translate(604,-150) scale(0.707)"><path data-c="1D467" d="M347 338Q337 338 294 349T231 360Q211 360 197 356T174 346T162 335T155 324L153 320Q150 317 138 317Q117 317 117 325Q117 330 120 339Q133 378 163 406T229 440Q241 442 246 442Q271 442 291 425T329 392T367 375Q389 375 411 408T434 441Q435 442 449 442H462Q468 436 468 434Q468 430 463 420T449 399T432 377T418 358L411 349Q368 298 275 214T160 106L148 94L163 93Q185 93 227 82T290 71Q328 71 360 90T402 140Q406 149 409 151T424 153Q443 153 443 143Q443 138 442 134Q425 72 376 31T278 -11Q252 -11 232 6T193 40T155 57Q111 57 76 -3Q70 -11 59 -11H54H41Q35 -5 35 -2Q35 13 93 84Q132 129 225 214T340 322Q352 338 347 338Z"/></g></g></g></g></svg></mjx-container> : 觀察的不確定性<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-63.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>方差的更新和 觀測值獨立 =&gt; 一種固定模式 可以提早計算</li>
+<li>方差會收斂 =&gt; 穩定衰減到固定值</li>
+</ul>
+</li>
+</ul>
+<h2 id="The-general-case"><a href="#The-general-case" class="headerlink" title="The general case"></a>The general case</h2><ul>
+<li><p>對多元素向量 也是同理</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-64.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>定義transition model and sensor model</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-65.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-66.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>如何更新 mean</li>
+<li>K 代表要如何考慮觀測值的影響 (置信度 高or低)</li>
+</ul>
+</li>
+<li><p>例子</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-67.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-68.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-69.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>smoothing的公式 也可以推導</li>
+</ul>
+</li>
+</ul>
+<h2 id="Applicability-of-Kalman-filtering"><a href="#Applicability-of-Kalman-filtering" class="headerlink" title="Applicability of Kalman filtering"></a>Applicability of Kalman filtering</h2><ul>
+<li>應用範圍 任何連續的都可以吧<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-70.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Keeping-Track-of-Many-Objects"><a href="#Keeping-Track-of-Many-Objects" class="headerlink" title="Keeping Track of Many Objects"></a>Keeping Track of Many Objects</h2><ul>
+<li><p>多物體給出的觀察</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-71.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>不確定性：我們無法確定每條觀測數據是由哪個物體產生的。</li>
+<li>可能性增加：每個觀測值都可能來自於任意一個物體，導致需要考慮多種數據分配情況。</li>
+</ul>
+</li>
+<li><p>空難的例子</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-72.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-73.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-74.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>整理形式後</li>
+</ul>
+</li>
+<li><p>無法分辨觀測來源的話 問題會極度複雜</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-75.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-76.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>一對一映射 來簡化問題<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-77.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>簡化</li>
+</ul>
+</li>
+<li><p>對這個問題 可惜還沒有有效的算法可以解決</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-78.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>估計方法</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-79.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>每個時間戳 選一個最好的</li>
+<li>nearest-neighbor filter<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-81.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>最大化 joint probaility</li>
+<li>Hungarian algorithm</li>
+<li>n! 種選擇<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-82.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>particle filtering</li>
+<li>維護很大的 可能選擇的集合<blockquote>
+<p><img src="/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/image-83.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>MCMC (Markov chain Monte Carlo)</li>
+<li>探索分配的歷史空間 隨機抽樣這些可能的分配</li>
+<li>而且可以在探索中隨機轉移分配狀態</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Introduction-to-AI/" class="category-chain-item">Introduction to AI</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/webHome/tags/AI/" class="print-no-link">#AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Chapter 14 Probabilistic Reasoning over Time</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Introduction to Artificial Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2024年12月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Introduction%20to%20Artificial%20Intelligence/Chapter-13-Probabilistic-Reasoning/" title="Chapter 13 Probabilistic Reasoning">
+                        <span class="hidden-mobile">Chapter 13 Probabilistic Reasoning</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Introduction%20to%20Artificial%20Intelligence/Chapter-14-Probabilistic-Reasoning-over-Time/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
