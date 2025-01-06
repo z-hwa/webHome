@@ -1,0 +1,1042 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Nondeterministic Pushdown AutomataNondeterministic Pushdown Automata 自動機 長相     最初的stack   下推自動機的定義     轉移函數的定義     邊上的定義    也可以推string   Example    Stack是空的 不允許任何轉移      Non-determinism     什麼樣的strin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nondeterministic Pushdown Automata">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Nondeterministic Pushdown AutomataNondeterministic Pushdown Automata 自動機 長相     最初的stack   下推自動機的定義     轉移函數的定義     邊上的定義    也可以推string   Example    Stack是空的 不允許任何轉移      Non-determinism     什麼樣的strin">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-58.png">
+<meta property="article:published_time" content="2025-01-06T03:48:47.000Z">
+<meta property="article:modified_time" content="2025-01-06T09:08:20.596Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-58.png">
+  
+  
+  
+  <title>Nondeterministic Pushdown Automata - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Nondeterministic Pushdown Automata"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-06 11:48" pubdate>
+          2025年1月6日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          547 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Nondeterministic Pushdown Automata</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Nondeterministic-Pushdown-Automata"><a href="#Nondeterministic-Pushdown-Automata" class="headerlink" title="Nondeterministic Pushdown Automata"></a>Nondeterministic Pushdown Automata</h1><h2 id="Nondeterministic-Pushdown-Automata-1"><a href="#Nondeterministic-Pushdown-Automata-1" class="headerlink" title="Nondeterministic Pushdown Automata"></a>Nondeterministic Pushdown Automata</h2><ul>
+<li><p>自動機 長相</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>最初的stack</li>
+</ul>
+</li>
+<li><p>下推自動機的定義</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>轉移函數的定義</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>邊上的定義<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>也可以推string</li>
+</ul>
+</li>
+<li>Example<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>Stack是空的 不允許任何轉移<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Non-determinism</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>什麼樣的string是被accept的</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>一個例子<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>如何描述狀態機</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>轉移<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>完整過程</li>
+</ul>
+</li>
+<li><p>正式定義</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>Example</p>
+<ul>
+<li>a的數量跟 b的一樣<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>什麼樣的string不被接受</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Pushdown-Automata-and-Context-Free-Languages"><a href="#Pushdown-Automata-and-Context-Free-Languages" class="headerlink" title="Pushdown Automata and Context-Free Languages"></a>Pushdown Automata and Context-Free Languages</h2><ul>
+<li><p>被NPDA接受的語言 相當於CFG</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>step 1: 證明 CFG 屬於被NPDA接受的語言</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>方法<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>以例子簡單說明<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>因此<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>step 2: 證明 被NPDA接受的語言 屬於CFG</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>grammar本質上是機器的狀態移動</li>
+<li>前置需求<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>清空Stack<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>任何移動 要嘛減少或增加stack content</li>
+<li>作法<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>實際作法省略 …</li>
+</ul>
+</li>
+</ul>
+<h2 id="Deterministic-Pushdown-Automata-and-Deterministic-CFLs"><a href="#Deterministic-Pushdown-Automata-and-Deterministic-CFLs" class="headerlink" title="Deterministic Pushdown Automata and Deterministic CFLs"></a>Deterministic Pushdown Automata and Deterministic CFLs</h2><ul>
+<li><p>接受的轉移</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>不接受的轉移</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>PDA</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>Example<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>定義 一個語言是deterministic context-free</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>NPDA 比 DPA更加強大   </p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>證明</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>例子<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>假設存在DPDA接受它<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>需要用到一些fact 先來講fact…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>fact</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li><p>繼續證明</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>產生矛盾<blockquote>
+<p><img src="/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Theory-of-Computation/" class="category-chain-item">Theory of Computation</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Nondeterministic Pushdown Automata</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Theory of Computation/Nondeterministic-Pushdown-Automata/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2025年1月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Theory%20of%20Computation/Context-Free-Language-2/" title="Context Free Language 2">
+                        <span class="hidden-mobile">Context Free Language 2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Theory%20of%20Computation/Nondeterministic-Pushdown-Automata/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
