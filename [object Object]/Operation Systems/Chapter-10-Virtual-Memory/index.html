@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Chapter 10 Virtual MemoryBackground   如果能執行部分載入的程式，會帶來什麼好處？   虛擬記憶體：邏輯與物理記憶體的分離   虛擬記憶體的實現方式   虛擬記憶體大於物理記憶體   虛擬地址空間 (Virtual Address Space, VAS) 的稀疏性   共享library   Demand Paging    Transferring Pages">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 10 Virtual Memory">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Chapter 10 Virtual MemoryBackground   如果能執行部分載入的程式，會帶來什麼好處？   虛擬記憶體：邏輯與物理記憶體的分離   虛擬記憶體的實現方式   虛擬記憶體大於物理記憶體   虛擬地址空間 (Virtual Address Space, VAS) 的稀疏性   共享library   Demand Paging    Transferring Pages">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Operation%20Systems/Chapter-10-Virtual-Memory/image-131.png">
+<meta property="article:published_time" content="2025-01-09T10:34:29.000Z">
+<meta property="article:modified_time" content="2025-01-09T14:15:34.935Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Operation%20Systems/Chapter-10-Virtual-Memory/image-131.png">
+  
+  
+  
+  <title>Chapter 10 Virtual Memory - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Chapter 10 Virtual Memory"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-09 18:34" pubdate>
+          2025年1月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          698 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Chapter 10 Virtual Memory</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Chapter-10-Virtual-Memory"><a href="#Chapter-10-Virtual-Memory" class="headerlink" title="Chapter 10 Virtual Memory"></a>Chapter 10 Virtual Memory</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="如果能執行部分載入的程式，會帶來什麼好處？"><a href="#如果能執行部分載入的程式，會帶來什麼好處？" class="headerlink" title="如果能執行部分載入的程式，會帶來什麼好處？"></a>如果能執行部分載入的程式，會帶來什麼好處？</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="虛擬記憶體：邏輯與物理記憶體的分離"><a href="#虛擬記憶體：邏輯與物理記憶體的分離" class="headerlink" title="虛擬記憶體：邏輯與物理記憶體的分離"></a>虛擬記憶體：邏輯與物理記憶體的分離</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="虛擬記憶體的實現方式"><a href="#虛擬記憶體的實現方式" class="headerlink" title="虛擬記憶體的實現方式"></a>虛擬記憶體的實現方式</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="虛擬記憶體大於物理記憶體"><a href="#虛擬記憶體大於物理記憶體" class="headerlink" title="虛擬記憶體大於物理記憶體"></a>虛擬記憶體大於物理記憶體</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="虛擬地址空間-Virtual-Address-Space-VAS-的稀疏性"><a href="#虛擬地址空間-Virtual-Address-Space-VAS-的稀疏性" class="headerlink" title="虛擬地址空間 (Virtual Address Space, VAS) 的稀疏性"></a>虛擬地址空間 (Virtual Address Space, VAS) 的稀疏性</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-17.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="共享library"><a href="#共享library" class="headerlink" title="共享library"></a>共享library</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h2 id="Demand-Paging"><a href="#Demand-Paging" class="headerlink" title="Demand Paging"></a>Demand Paging</h2><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>Transferring Pages between Memory and Disk <blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+<li>Not-in-Memory Pages<blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="處理頁面錯誤的步驟"><a href="#處理頁面錯誤的步驟" class="headerlink" title="處理頁面錯誤的步驟"></a>處理頁面錯誤的步驟</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="頁面錯誤處理的詳細步驟"><a href="#頁面錯誤處理的詳細步驟" class="headerlink" title="頁面錯誤處理的詳細步驟"></a>頁面錯誤處理的詳細步驟</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="需求分頁的效能"><a href="#需求分頁的效能" class="headerlink" title="需求分頁的效能"></a>需求分頁的效能</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>Example<blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="需求分頁的各個面向"><a href="#需求分頁的各個面向" class="headerlink" title="需求分頁的各個面向"></a>需求分頁的各個面向</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h2 id="Copy-on-Write"><a href="#Copy-on-Write" class="headerlink" title="Copy-on-Write"></a>Copy-on-Write</h2><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="vFork"><a href="#vFork" class="headerlink" title="vFork"></a>vFork</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="Copy-on-Write-1"><a href="#Copy-on-Write-1" class="headerlink" title="Copy-on-Write"></a>Copy-on-Write</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h2 id="Page-Replacement"><a href="#Page-Replacement" class="headerlink" title="Page Replacement"></a>Page Replacement</h2><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-58.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-59.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="基本的頁面置換流程"><a href="#基本的頁面置換流程" class="headerlink" title="基本的頁面置換流程"></a>基本的頁面置換流程</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-60.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-61.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-62.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-63.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>用dirty bit 紀錄被改動過的page 這種才需要寫回磁碟<blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-64.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="FIFO-頁面置換示例"><a href="#FIFO-頁面置換示例" class="headerlink" title="FIFO 頁面置換示例"></a>FIFO 頁面置換示例</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-65.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-66.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-67.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<ul>
+<li>anomaly<blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-68.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="堆疊演算法"><a href="#堆疊演算法" class="headerlink" title="堆疊演算法"></a>堆疊演算法</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-69.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-70.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-71.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="最佳頁面置換算法-Optimal-Page-Replacement"><a href="#最佳頁面置換算法-Optimal-Page-Replacement" class="headerlink" title="最佳頁面置換算法 (Optimal Page Replacement)"></a>最佳頁面置換算法 (Optimal Page Replacement)</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-72.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-73.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-74.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="LRU-Least-Recently-Used-最近最少使用"><a href="#LRU-Least-Recently-Used-最近最少使用" class="headerlink" title="LRU (Least Recently Used) 最近最少使用"></a>LRU (Least Recently Used) 最近最少使用</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-75.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-76.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-78.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="基於計時器的-LRU-實現"><a href="#基於計時器的-LRU-實現" class="headerlink" title="基於計時器的 LRU 實現"></a>基於計時器的 LRU 實現</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-77.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-79.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-80.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="基於堆疊的-LRU-實現"><a href="#基於堆疊的-LRU-實現" class="headerlink" title="基於堆疊的 LRU 實現"></a>基於堆疊的 LRU 實現</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-81.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-82.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-83.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="LRU-實現的效能問題與解決方案"><a href="#LRU-實現的效能問題與解決方案" class="headerlink" title="LRU 實現的效能問題與解決方案"></a>LRU 實現的效能問題與解決方案</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-84.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-85.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-86.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="LRU-近似算法：參考位算法"><a href="#LRU-近似算法：參考位算法" class="headerlink" title="LRU 近似算法：參考位算法"></a>LRU 近似算法：參考位算法</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-87.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-88.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-89.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="LRU-近似算法：額外的參考位算法"><a href="#LRU-近似算法：額外的參考位算法" class="headerlink" title="LRU 近似算法：額外的參考位算法"></a>LRU 近似算法：額外的參考位算法</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-90.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-91.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="LRU-近似算法：第二次機會算法（時鐘算法）"><a href="#LRU-近似算法：第二次機會算法（時鐘算法）" class="headerlink" title="LRU 近似算法：第二次機會算法（時鐘算法）"></a>LRU 近似算法：第二次機會算法（時鐘算法）</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-92.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-93.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-94.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-95.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="增強型第二次機會算法"><a href="#增強型第二次機會算法" class="headerlink" title="增強型第二次機會算法"></a>增強型第二次機會算法</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-96.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-97.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-98.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="計數型算法"><a href="#計數型算法" class="headerlink" title="計數型算法"></a>計數型算法</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-99.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-100.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-101.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-102.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="頁面緩衝算法"><a href="#頁面緩衝算法" class="headerlink" title="頁面緩衝算法"></a>頁面緩衝算法</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-103.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-104.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-105.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-106.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-107.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h2 id="Allocation-of-Frames"><a href="#Allocation-of-Frames" class="headerlink" title="Allocation of Frames"></a>Allocation of Frames</h2><h3 id="頁框分配"><a href="#頁框分配" class="headerlink" title="頁框分配"></a>頁框分配</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-108.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-109.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-110.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="頁框分配：超越最小需求的分配策略"><a href="#頁框分配：超越最小需求的分配策略" class="headerlink" title="頁框分配：超越最小需求的分配策略"></a>頁框分配：超越最小需求的分配策略</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-111.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-112.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="全域置換-vs-局部置換"><a href="#全域置換-vs-局部置換" class="headerlink" title="全域置換 vs. 局部置換"></a>全域置換 vs. 局部置換</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-113.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-114.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-115.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h2 id="Thrashing"><a href="#Thrashing" class="headerlink" title="Thrashing"></a>Thrashing</h2><h3 id="抖動-Thrashing"><a href="#抖動-Thrashing" class="headerlink" title="抖動 (Thrashing)"></a>抖動 (Thrashing)</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-116.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-117.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-118.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="局部性"><a href="#局部性" class="headerlink" title="局部性"></a>局部性</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-119.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-120.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-121.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-122.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="工作集模型"><a href="#工作集模型" class="headerlink" title="工作集模型"></a>工作集模型</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-123.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-124.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-125.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="工作集模型圖解與實作"><a href="#工作集模型圖解與實作" class="headerlink" title="工作集模型圖解與實作"></a>工作集模型圖解與實作</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-126.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-127.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-128.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h3 id="頁面錯誤頻率方案"><a href="#頁面錯誤頻率方案" class="headerlink" title="頁面錯誤頻率方案"></a>頁面錯誤頻率方案</h3><blockquote>
+<p><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-129.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><br><img src="/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/image-130.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<h2 id="Memory-Mapped-Files"><a href="#Memory-Mapped-Files" class="headerlink" title="Memory-Mapped Files"></a>Memory-Mapped Files</h2><h2 id="Allocation-Kernel-Memory"><a href="#Allocation-Kernel-Memory" class="headerlink" title="Allocation Kernel Memory"></a>Allocation Kernel Memory</h2><h2 id="Other-Considerations"><a href="#Other-Considerations" class="headerlink" title="Other Considerations"></a>Other Considerations</h2><h2 id="Operating-System-Examples"><a href="#Operating-System-Examples" class="headerlink" title="Operating System Examples"></a>Operating System Examples</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Operation-Systems/" class="category-chain-item">Operation Systems</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Chapter 10 Virtual Memory</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Operation Systems/Chapter-10-Virtual-Memory/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2025年1月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Operation%20Systems/Chapter-9-Main-Memory/" title="Chapter 9 Main Memory">
+                        <span class="hidden-mobile">Chapter 9 Main Memory</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Operation%20Systems/Chapter-10-Virtual-Memory/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Operation%20Systems/Chapter-10-Virtual-Memory/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
