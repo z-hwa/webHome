@@ -1,0 +1,1152 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="S6–Chap6–Supplementary-Speech Precessing-2025Outline Introduction  Speech Production Speech Signal Representation  Speech Coding Speech Synthesis Automatic Speech Recognition  Introduction發聲 (Articula">
+<meta property="og:type" content="article">
+<meta property="og:title" content="S6--Chap6--Supplementary-Speech Precessing-2025">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="S6–Chap6–Supplementary-Speech Precessing-2025Outline Introduction  Speech Production Speech Signal Representation  Speech Coding Speech Synthesis Automatic Speech Recognition  Introduction發聲 (Articula">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-1.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-2.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-4.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-5.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-7.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-8.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-9.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-10.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-3.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-11.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-12.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-13.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-14.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-15.png">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-16.png">
+<meta property="article:published_time" content="2025-03-27T03:50:30.000Z">
+<meta property="article:modified_time" content="2025-04-12T07:03:58.174Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image.png">
+  
+  
+  
+  <title>S6--Chap6--Supplementary-Speech Precessing-2025 - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="S6--Chap6--Supplementary-Speech Precessing-2025"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-27 11:50" pubdate>
+          2025年3月27日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          68 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">S6--Chap6--Supplementary-Speech Precessing-2025</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="S6–Chap6–Supplementary-Speech-Precessing-2025"><a href="#S6–Chap6–Supplementary-Speech-Precessing-2025" class="headerlink" title="S6–Chap6–Supplementary-Speech Precessing-2025"></a>S6–Chap6–Supplementary-Speech Precessing-2025</h1><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ul>
+<li>Introduction </li>
+<li>Speech Production</li>
+<li>Speech Signal Representation </li>
+<li>Speech Coding</li>
+<li>Speech Synthesis</li>
+<li>Automatic Speech Recognition</li>
+</ul>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="發聲-Articulation"><a href="#發聲-Articulation" class="headerlink" title="發聲 (Articulation):"></a>發聲 (Articulation):</h3><p>圖的左邊部分展示了人類的發聲器官，像是聲帶和嘴巴。當我們說話時，這些器官會振動並產生聲波。圖中也顯示了這些聲波的波形。</p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>聲音傳入耳朵 (Sound Waves Conveyed to the Ear): 中間的圖是耳朵的結構。</p>
+<ul>
+<li>聲波會先進入耳道 (Ear Canal)。</li>
+<li>聲波撞擊耳膜 (Eardrum)，使耳膜振動。</li>
+<li>耳膜的振動會傳遞到中耳聽小骨 (Middle Ear Ossicles)，這些小骨會放大振動。</li>
+<li>放大的振動會傳遞到充滿液體的耳蝸 (Cochlea)。</li>
+</ul>
+<p>大腦處理聲音 (Brain Processing): 圖的右下方顯示了聲音信號如何從耳朵傳到大腦。</p>
+<ul>
+<li>耳蝸內的毛細胞會將這些振動轉換成神經信號。</li>
+<li>這些信號會通過聽覺神經 (Auditory Nerve)傳送到腦幹的一些結構，像是耳蝸神經核 (Cochlear Nucleus)和上橄欖核 (Superior Olive)。</li>
+<li>信號接著會傳遞到下丘 (Inferior Colliculus)和內側膝狀體 (Medial Geniculate Body)。</li>
+<li>最後，這些信號會到達大腦的聽覺皮層 (Auditory Cortex)，在這裡，大腦會處理這些信號，讓我們能夠理解聲音的內容，像是語言。</li>
+</ul>
+<hr>
+<h3 id="語音辨識-Speech-Recognition-的過程"><a href="#語音辨識-Speech-Recognition-的過程" class="headerlink" title="語音辨識 (Speech Recognition) 的過程"></a>語音辨識 (Speech Recognition) 的過程</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ol>
+<li>數位化 (Digitization):</li>
+</ol>
+<p>圖片的左上方顯示了一個聲波波形 (Acoustic Waveform)，這是人類說話時產生的聲音的物理表示。<br>旁邊的麥克風 (Microphone) 代表電腦如何接收這個聲波並將其轉換成聲學訊號 (Acoustic Signal)。<br>數位化 這個步驟指的是將這個連續的類比聲學訊號轉換成電腦可以處理的離散的數字訊號。這通常涉及到以一定的頻率對聲波的振幅進行採樣，並將這些採樣值量化成數字。</p>
+<ol start="2">
+<li>語音訊號的聲學分析 (Acoustic analysis of the speech signal):</li>
+</ol>
+<p>圖片的中間部分展示了對聲學訊號進行分析的結果。下方類似頻譜圖的影像顯示了不同時間點聲音的頻率成分和強度。<br>這個步驟的目的是從數位化的聲學訊號中提取有意義的聲學特徵 (Acoustic Features)。這些特徵可以代表語音中的基本聲音單元，例如音素 (phonemes)。常用的聲學特徵包括梅爾頻率倒譜係數 (MFCCs) 等。</p>
+<ol start="3">
+<li>語言學理解 (Linguistic interpretation):</li>
+</ol>
+<p>圖片的右下方顯示了語音辨識 (Speech Recognition) 的結果。上方是原始的聲波波形，下方則是電腦辨識出的文字：「MY NUMBER IS THREE ZERO SEVEN ZERO FOUR」。<br>這個步驟利用語言模型 (Language Model) 和聲學模型 (Acoustic Model) 來將提取出的聲學特徵序列轉換成文字序列。<br>聲學模型 負責將聲學特徵與可能的音素或音節對應起來。<br>語言模型 則考慮詞語之間的統計關係和語法規則，以提高辨識的準確性，例如，”my number is” 後面更可能出現數字而不是其他詞語。<br>圖中還顯示了一些更底層的分析，例如音素的切分和詞性的標註 (例如 NP 代表名詞短語，VP 代表動詞短語)，這表明更複雜的語言學處理可能參與其中，以幫助理解語音的意義。</p>
+<hr>
+<h3 id="語音鏈"><a href="#語音鏈" class="headerlink" title="語音鏈"></a>語音鏈</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<blockquote>
+<p>上半部：語音產生 (Speech Production)</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs">Message Formulation (訊息形成):
+這是說話的起點。說話者首先在大腦中構思想要傳達的訊息和想法，以文字 (text) 的形式存在。
+
+Language Code (語言編碼):
+接著，這個文字訊息會被轉換成語言的編碼，包括音素 (phonemes，語音中最小的發音單位) 和韻律 (prosody，語調、語氣等)。這是一個將抽象的想法轉化為具體的語言符號的過程，輸出是離散的 (discrete) 語言單位。
+圖中標示的資訊速率約為 200 bps (bits per second)。
+
+Neuro-Muscular Controls (神經肌肉控制):
+大腦發出指令，控制發聲器官 (如聲帶、舌頭、嘴唇等) 的肌肉運動 (articulatory motions)。這個階段將離散的語言編碼轉化為連續的 (continuous) 肌肉運動指令。
+圖中標示的資訊速率約為 2000 bps。
+
+Vocal Tract System (聲道系統):
+受到神經肌肉的控制，發聲器官產生聲波。聲帶的振動產生聲源 (excitation)，而聲道的形狀和共鳴特性會塑造聲音的頻率成分，形成共振峰 (formants)。
+最終產生的是聲學波形 (acoustic waveform)，這是可以被聽到的聲音信號。
+
+Transmission Channel (傳輸通道):
+聲學波形通過空氣或其他介質傳播到聽者的耳朵。
+圖中標示的資訊速率很高，約為 64-700 kbps。
+</code></pre></div>
+<blockquote>
+<p>下半部：語音感知 (Speech Perception)</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs">Acoustic Waveform (聲學波形):
+這是聽者耳朵接收到的聲音信號，與語音產生端發出的聲學波形相同。
+
+Basilar Membrane Motion (基底膜運動):
+聲音進入耳朵後，會引起內耳耳蝸中的基底膜產生振動 (motion)。基底膜的不同部位對不同頻率的聲音產生最大的響應，這是一個將聲學信號轉換為神經信號的過程，輸出是連續的。
+
+Neural Transduction (神經轉換):
+基底膜的振動會刺激聽覺神經纖維，將機械振動轉換為神經脈衝 (feature extraction，特徵提取)。大腦開始提取聲音中的重要特徵。
+
+Language Translation (語言翻譯):
+大腦對提取出的語音特徵進行分析，將其與儲存的語言知識 (包括音素、詞彙、語法、句子結構等) 進行匹配，從而識別出音素、詞語和句子 (phonemes, words, sentences)。這是一個將連續的神經信號轉化為離散的語言單位的過程，輸出是離散的。
+
+Message Understanding (訊息理解):
+最後，聽者理解接收到的語言訊息的含義 (semantics)，完成了語音溝通的閉環。
+</code></pre></div>
+<blockquote>
+<p>整體概念:</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs">語音鏈強調了語音溝通是一個涉及說話者和聽者的複雜過程。
+它展示了訊息從說話者的大腦中的概念，經過語言編碼、生理發聲、物理傳播，再到聽者的耳朵接收、神經處理，最終被理解的完整流程。
+圖中也標示了在不同階段的信息速率，可以看出信息在編碼和傳輸過程中經歷了不同的形式和速率。
+</code></pre></div>
+<h2 id="Part-1-Speech-Production"><a href="#Part-1-Speech-Production" class="headerlink" title="Part 1- Speech Production"></a>Part 1- Speech Production</h2><h3 id="語音產生的基本機制"><a href="#語音產生的基本機制" class="headerlink" title="語音產生的基本機制"></a>語音產生的基本機制</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ol>
+<li><p>氣流 (air flow): 圖的下方顯示了向上的箭頭，表示空氣從肺部向上流動。這是產生語音的基礎。</p>
+</li>
+<li><p>聲源 (Sound source):</p>
+<p> 圖的中間部分著重在喉部。這裡有一個方框標示著聲帶 (雖然圖中沒有詳細繪製)。<br> 方框旁邊的文字說明了聲源的兩種主要形式：</p>
+<div class="code-wrapper"><pre><code class="hljs"> 有聲 (Voiced): 脈衝 (pulse)：當空氣通過振動的聲帶時，會產生一系列快速的氣流脈衝，形成有聲語音，例如母音和一些子音（如 /b/, /d/, /g/, /v/, /z/ 等）。右邊的波形示意圖也顯示了這種規律的脈衝狀特性。
+
+ 無聲 (Unvoiced): 噪音 (noise)：當空氣通過張開的聲帶，並在口腔或咽喉的某個部位產生摩擦或阻塞時，會產生湍流，形成無聲語音，例如 /s/, /f/, /ʃ/, /θ/ 等。右邊的波形示意圖會呈現出更不規則的噪音狀特性。
+</code></pre></div>
+</li>
+<li><p>調制載波 (Modulation of carrier wave by speech information): 圖的左邊部分說明了聲帶產生的基本聲音（可以想像成一個「載波」）是如何被進一步塑造成不同的語音的。這個過程涉及到：</p>
+<p> 頻率傳遞特性 (Frequency transfer characteristics): 這指的是聲道（包括咽喉、口腔和鼻腔）的形狀和大小會對通過的聲音的不同頻率產生不同的共振和衰減作用。改變聲道的形狀（例如通過移動舌頭、嘴唇和下巴）可以塑造出不同的母音和子音。</p>
+<p> 幅度起始和結束 (Magnitude start-end): 這指的是語音的音量和持續時間。我們可以控制發聲的強弱以及每個音素的長短。</p>
+<p> 基頻 (Fundamental frequency): 這主要是由聲帶振動的頻率決定的，它決定了我們聲音的音高。我們可以通過控制聲帶的鬆緊來改變基頻，產生語調的變化。</p>
+</li>
+<li><p>語音 (Speech): 圖的右上方顯示了最終產生的語音波形，它是經過聲帶振動產生基本聲音，然後再經過聲道調制形成的複雜聲波。</p>
+</li>
+</ol>
+<hr>
+<h3 id="更簡化的語音產生模型-Model-of-speech-production"><a href="#更簡化的語音產生模型-Model-of-speech-production" class="headerlink" title="更簡化的語音產生模型 (Model of speech production)"></a>更簡化的語音產生模型 (Model of speech production)</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>這張圖的核心概念是：</p>
+<div class="code-wrapper"><pre><code class="hljs">語音的產生始於肺部提供的氣流。
+氣流通過聲帶振動（或不振動）產生基本的聲音。
+這個基本的聲音通過聲道 (vocal tract)，包括咽腔、口腔和鼻腔，這些腔體的形狀和連接方式受到發聲器官（如舌頭、嘴唇、軟顎）的控制。
+聲道的共鳴特性會對原始聲音進行塑形和過濾，產生各種不同的語音。
+</code></pre></div>
+<p>模型的重要性：</p>
+<div class="code-wrapper"><pre><code class="hljs">圖片的上方文字說明了這個語音產生模型的重要性：
+
+理解語音訊號結構 (understanding speech signal structure): 通過了解語音是如何產生的，我們可以更好地理解語音訊號的物理特性，例如頻率成分、共振峰 (formants) 等。這些特性與發聲器官的運動和聲道的形狀密切相關。
+
+設計語音處理演算法 (design of speech processing algorithms): 對語音產生過程的理解可以指導我們設計更好的語音處理演算法，例如：
+
+語音辨識 (Speech Recognition): 了解語音的聲學特性如何對應到發音單元（音素）可以幫助我們建立更準確的聲學模型。
+
+語音合成 (Speech Synthesis): 模擬人類的發聲過程可以產生更自然、更像人類的合成語音。
+語音編碼 (Speech Coding): 了解語音訊號的冗餘和重要成分可以幫助我們更有效地壓縮語音資料。
+</code></pre></div>
+<hr>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>這個模型的目的是：</p>
+<div class="code-wrapper"><pre><code class="hljs">解釋聲帶如何基於來自肺部的氣流和自身的物理特性產生振動。 機械模型試圖用物理原理來描述這個過程。
+
+使用電路類比來簡化和分析聲帶的振動特性。 電路分析的工具可以用於研究聲帶振動的頻率、幅度等特性。
+為語音合成和語音分析提供數學基礎。 
+
+通過建立聲帶振動的數學模型，可以更好地模擬和理解語音的產生過程。
+</code></pre></div>
+<p>總而言之，這張圖片深入探討了語音產生的激勵源，也就是聲帶的振動。它結合了高速攝影的實驗觀察、簡化的氣流和聲道示意圖，以及嘗試用機械模型和電路類比來描述聲帶振動的物理機制。這對於理解語音訊號的fundamental特性至關重要。</p>
+<hr>
+<h3 id="語音產生的線性源-濾波器模型"><a href="#語音產生的線性源-濾波器模型" class="headerlink" title="語音產生的線性源-濾波器模型"></a>語音產生的線性源-濾波器模型</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>總結來說，這張圖用頻譜的概念清晰地展示了語音產生的線性源-濾波器模型 (Linear Source-Filter Model of Speech Production)：</p>
+<div class="code-wrapper"><pre><code class="hljs">聲帶振動產生一個包含基頻和諧波的原始聲源 (Source)。
+
+聲道作為一個具有特定共振特性的濾波器 (Filter)。
+
+原始聲源通過聲道這個濾波器後，其頻譜被塑形，形成最終的語音訊號 (Output)。 語音訊號的頻譜特徵（例如共振峰的位置和幅度）反映了發聲時聲道的形狀，而聲道的形狀是由發音器官的運動控制的，這就產生了不同的語音。
+</code></pre></div>
+<p>這個模型是語音學和語音處理領域中一個非常重要的概念，它幫助我們理解語音的聲學特性是如何產生的，並為語音分析、合成和辨識等技術提供了理論基礎。</p>
+<hr>
+<h3 id="數位語音產生模型-Complete-Digital-Model"><a href="#數位語音產生模型-Complete-Digital-Model" class="headerlink" title="數位語音產生模型 (Complete Digital Model)"></a>數位語音產生模型 (Complete Digital Model)</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>這張圖片展示了一個更完整的數位語音產生模型 (Complete Digital Model)。它將之前討論的聲源-濾波器模型轉化為一個數位訊號處理的流程圖，更貼近電腦如何模擬和處理語音。</p>
+<p>讓我們逐步解析這個模型：</p>
+<p>激勵源 (Excitation Source): 模型的最左邊有兩個主要的激勵源，對應於有聲語音和無聲語音：</p>
+<div class="code-wrapper"><pre><code class="hljs">脈衝串產生器 I(z) (Impulse Train Generator I(z)):
+在有聲語音 (Voiced) 的情況下，聲帶的振動產生週期性的脈衝。這個產生器模擬的就是這樣一個脈衝序列，脈衝之間的間隔是基音週期 (Pitch Period, 1/F₀)，其中 F₀ 是基頻。
+上方的橢圓框示意了時域的脈衝串和其頻域的表示。在頻域，它表現為在基頻及其諧波處有能量峰值，整體幅度隨著頻率升高而衰減（大約 -12 dB/oct）。
+
+隨機雜訊產生器 N(z) (Random Noise Generator N(z)):
+在無聲語音 (Unvoiced) 的情況下，聲帶不振動，而是產生湍流噪音。這個產生器模擬的就是一個隨機雜訊訊號。
+下方的橢圓框示意了時域的隨機雜訊和其頻域的表示。在頻域，它具有更平坦的頻譜，能量在較寬的頻率範圍內分佈。
+</code></pre></div>
+<p>聲源模型 G(z) (Glottal Pulse Model G(z)):</p>
+<blockquote>
+<p>來自脈衝串或雜訊的激勵訊號會通過聲門脈衝模型。這個模型試圖更精確地模擬聲帶振動產生的氣流脈衝的形狀，而不僅僅是理想的脈衝串。它可能包含一些濾波特性，以使激勵訊號的頻譜更接近真實的聲門脈衝。</p>
+</blockquote>
+<blockquote>
+<p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.375ex;" xmlns="http://www.w3.org/2000/svg" width="3.115ex" height="1.994ex" role="img" focusable="false" viewbox="0 -716 1376.8 881.6"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"/></g><g data-mml-node="mi" transform="translate(783,-150) scale(0.707)"><path data-c="1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"/></g></g></g></g></svg></mjx-container>和<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.339ex;" xmlns="http://www.w3.org/2000/svg" width="3.305ex" height="1.959ex" role="img" focusable="false" viewbox="0 -716 1460.9 866"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"/></g><g data-mml-node="mi" transform="translate(783,-150) scale(0.707)"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g></g></g></g></svg></mjx-container>​ 分別是有聲和無聲激勵的幅度控制。</p>
+</blockquote>
+<blockquote>
+<p>Voiced/Unvoiced Switch (有聲/無聲切換): 這個開關決定了在某個時間點使用哪種激勵源，這取決於當前發出的音素是有聲還是無聲。</p>
+</blockquote>
+<p>聲道模型 V(z) (Vocal Tract Model V(z)):</p>
+<blockquote>
+<p>經過聲源模型處理後的激勵訊號會進入聲道模型。這個模型用一個數位濾波器來表示聲道的共振特性。</p>
+</blockquote>
+<blockquote>
+<p>圖中給出了一個常見的聲道模型的數學表示：<br><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text">​<br>這是一個全極點 (all-pole) 的線性時不變 (LTI) 濾波器，其中 G 是增益，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.469ex" height="1.357ex" role="img" focusable="false" viewbox="0 -442 1091.4 599.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D6FC" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"/></g><g data-mml-node="mi" transform="translate(673,-150) scale(0.707)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"/></g></g></g></g></svg></mjx-container>是預測係數，它們決定了濾波器的共振頻率和帶寬，從而模擬聲道的共振峰。N 是模型的階數，通常取決於需要模擬的共振峰數量。<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.471ex;" xmlns="http://www.w3.org/2000/svg" width="3.318ex" height="1.471ex" role="img" focusable="false" viewbox="0 -442 1466.5 650"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D467" d="M347 338Q337 338 294 349T231 360Q211 360 197 356T174 346T162 335T155 324L153 320Q150 317 138 317Q117 317 117 325Q117 330 120 339Q133 378 163 406T229 440Q241 442 246 442Q271 442 291 425T329 392T367 375Q389 375 411 408T434 441Q435 442 449 442H462Q468 436 468 434Q468 430 463 420T449 399T432 377T418 358L411 349Q368 298 275 214T160 106L148 94L163 93Q185 93 227 82T290 71Q328 71 360 90T402 140Q406 149 409 151T424 153Q443 153 443 143Q443 138 442 134Q425 72 376 31T278 -11Q252 -11 232 6T193 40T155 57Q111 57 76 -3Q70 -11 59 -11H54H41Q35 -5 35 -2Q35 13 93 84Q132 129 225 214T340 322Q352 338 347 338Z"/></g><g data-mml-node="TeXAtom" transform="translate(498,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"/></g></g></g></g></g></svg></mjx-container>  表示延遲單元。</p>
+</blockquote>
+<blockquote>
+<p>上方的頻譜 ∣V(F)∣ 示意了聲道模型的頻率響應，顯示了幾個共振峰（能量峰值）。</p>
+</blockquote>
+<p>輻射模型 R(z) (Radiation Model R(z)):</p>
+<div class="code-wrapper"><pre><code class="hljs">聲音從嘴唇和鼻孔輻射出去時，其頻譜也會發生變化。輻射模型 用來模擬這種效應。
+
+一個簡化的輻射模型通常近似為一個高通濾波器，它會增強高頻成分，頻率響應大約是 +6 dB/oct。
+
+上方的頻譜 ∣R(F)∣ 示意了輻射模型的頻率響應，顯示幅度隨著頻率升高而增加。
+</code></pre></div>
+<p>輸出語音 p(n) (Output Speech p(n)):</p>
+<div class="code-wrapper"><pre><code class="hljs">最終，經過激勵、聲道濾波和輻射效應處理後，就得到了合成的數位語音訊號 p(n)。
+</code></pre></div>
+<p>這個數位模型的意義在於：</p>
+<blockquote>
+<p>它提供了一個在電腦上合成語音的框架。 通過控制激勵源的參數（如基頻、幅度）和聲道模型的係數（<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.469ex" height="1.357ex" role="img" focusable="false" viewbox="0 -442 1091.4 599.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D6FC" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"/></g><g data-mml-node="mi" transform="translate(673,-150) scale(0.707)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"/></g></g></g></g></svg></mjx-container>），可以合成出不同的語音。</p>
+</blockquote>
+<blockquote>
+<p>它有助於理解語音訊號的產生過程，並將其分解為不同的組成部分（激勵、聲道、輻射）。</p>
+</blockquote>
+<blockquote>
+<p>這個模型是許多語音處理技術的基礎，例如參數語音合成 (parametric speech synthesis) 和語音分析。 通過分析真實語音訊號，可以估計出這個模型中的參數，從而提取語音的特徵。</p>
+</blockquote>
+<p>總之，這個「完整的數位模型」將人類語音產生的物理過程抽象為一個數位訊號處理系統，為在電腦上進行語音的模擬和處理提供了理論和實踐基礎。</p>
+<hr>
+<h2 id="Part2-Speech-Signal-Representation"><a href="#Part2-Speech-Signal-Representation" class="headerlink" title="Part2 Speech Signal Representation"></a>Part2 Speech Signal Representation</h2><h3 id="語音訊號表示的重要性"><a href="#語音訊號表示的重要性" class="headerlink" title="語音訊號表示的重要性"></a>語音訊號表示的重要性</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>總而言之，這張圖片是第二部分的引言，它強調了語音訊號表示的重要性，並預告了接下來的內容將會討論如何從語音訊號中提取出其核心的產生要素：激勵源和聲道濾波器。 這是語音訊號分析的關鍵步驟，為後續的語音編碼、合成和辨識等應用奠定了基礎。</p>
+<hr>
+<h3 id="時域分析"><a href="#時域分析" class="headerlink" title="時域分析"></a>時域分析</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>這張圖片介紹了語音訊號的 時域分析 (Time Domain Analysis)，並提出了一個重要的假設：</p>
+<p>假設 (Assumption): 語音訊號的特性隨時間變化相對緩慢，因此可以使用 “短時 (Short-Time)” 處理。</p>
+<p>短時處理 (Short-Time Processing): 由於語音特性在短時間內近似穩定，我們可以將語音訊號分成許多短小的時間片段（幀），然後對每一幀進行分析。</p>
+<p>公式: 圖中給出了一個通用的短時處理公式：</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<blockquote>
+<p>這個公式表示，對於語音訊號 x(m) 的某種變換 T[x(m)]，我們使用一個窗函數 (window function) w(n−m) 來選取以時間點 n 為中心的短時片段，並對其進行求和，得到短時處理的結果 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="2.937ex" height="2.032ex" role="img" focusable="false" viewbox="0 -704 1298.3 898"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D444" d="M399 -80Q399 -47 400 -30T402 -11V-7L387 -11Q341 -22 303 -22Q208 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435Q740 255 592 107Q529 47 461 16L444 8V3Q444 2 449 -24T470 -66T516 -82Q551 -82 583 -60T625 -3Q631 11 638 11Q647 11 649 2Q649 -6 639 -34T611 -100T557 -165T481 -194Q399 -194 399 -87V-80ZM636 468Q636 523 621 564T580 625T530 655T477 665Q429 665 379 640Q277 591 215 464T153 216Q153 110 207 59Q231 38 236 38V46Q236 86 269 120T347 155Q372 155 390 144T417 114T429 82T435 55L448 64Q512 108 557 185T619 334T636 468ZM314 18Q362 18 404 39L403 49Q399 104 366 115Q354 117 347 117Q344 117 341 117T337 118Q317 118 296 98T274 52Q274 18 314 18Z"/></g><g data-mml-node="mi" transform="translate(824,-150) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g></g></g></svg></mjx-container>​。窗函數 w(n−m) 在 n−m 接近 0 時有較大的值，遠離 0 時值趨近於 0，從而實現了對局部訊號的加權。</p>
+</blockquote>
+<p>方框圖: 下方的方框圖展示了一個可能的短時分析流程：</p>
+<blockquote>
+<p>語音訊號 (SPEECH SIGNAL): 輸入的待分析語音訊號。</p>
+</blockquote>
+<blockquote>
+<p>(可選) 線性濾波器 (LINEAR FILTER): 在進行短時分析之前，可能對語音訊號進行預處理，例如預加重 (pre-emphasis)。</p>
+</blockquote>
+<blockquote>
+<p>窗函數處理 T[ ] (T[ ]): 這一步示意了將語音訊號 x(n) 乘以窗函數 w(n−m) 的過程，即選取短時片段。T[x(n)] 可以是直接截取 x(n) 或對其進行某種變換。</p>
+</blockquote>
+<blockquote>
+<p>低通濾波器 (LOWPASS FILTER): 對窗函數處理後的訊號進行低通濾波，以平滑短時分析的結果，得到緩慢變化的時域特徵 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="2.937ex" height="2.032ex" role="img" focusable="false" viewbox="0 -704 1298.3 898"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D444" d="M399 -80Q399 -47 400 -30T402 -11V-7L387 -11Q341 -22 303 -22Q208 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435Q740 255 592 107Q529 47 461 16L444 8V3Q444 2 449 -24T470 -66T516 -82Q551 -82 583 -60T625 -3Q631 11 638 11Q647 11 649 2Q649 -6 639 -34T611 -100T557 -165T481 -194Q399 -194 399 -87V-80ZM636 468Q636 523 621 564T580 625T530 655T477 665Q429 665 379 640Q277 591 215 464T153 216Q153 110 207 59Q231 38 236 38V46Q236 86 269 120T347 155Q372 155 390 144T417 114T429 82T435 55L448 64Q512 108 557 185T619 334T636 468ZM314 18Q362 18 404 39L403 49Q399 104 366 115Q354 117 347 117Q344 117 341 117T337 118Q317 118 296 98T274 52Q274 18 314 18Z"/></g><g data-mml-node="mi" transform="translate(824,-150) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g></g></g></svg></mjx-container> 。</p>
+</blockquote>
+<p>簡而言之，時域分析基於語音訊號在短時間內特性穩定的假設，通過對語音訊號的短時片段進行處理，提取隨時間變化的特徵。窗函數是實現短時分析的關鍵工具。</p>
+<hr>
+<h3 id="“短時-Short-Time-”-處理"><a href="#“短時-Short-Time-”-處理" class="headerlink" title="“短時 (Short-Time)” 處理"></a>“短時 (Short-Time)” 處理</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>好的，這張圖片更直觀地解釋了 “短時 (Short-Time)” 處理 的概念。</p>
+<p>圖中：</p>
+<blockquote>
+<p>x(n): 代表原始的語音訊號，它是一個隨時間 n 變化的波形。</p>
+</blockquote>
+<blockquote>
+<p>w(q-n): 代表窗函數，圖中是一個以 q 為中心（當前分析的時間點）的加權函數，通常具有中間高、兩端低的形狀（例如高斯窗）。</p>
+</blockquote>
+<blockquote>
+<p>x_K(n, q): 代表加窗後的短時語音片段。它是原始語音訊號 x(n) 與窗函數 w(q−n) 在時間上相乘的結果。可以看到，只有在窗函數不為零的區域內的語音訊號被保留下來，並根據窗函數的形狀進行加權。</p>
+</blockquote>
+<blockquote>
+<p>K: 表示窗的長度，決定了每次分析的時間範圍。</p>
+</blockquote>
+<blockquote>
+<p>箭頭和虛線: 展示了隨著時間 q 的推移，窗函數在語音訊號上滑動，選取出不同的短時片段進行分析。</p>
+</blockquote>
+<p>簡而言之，短時處理就是用一個移動的「窗戶」觀察語音訊號，每次只分析窗戶內的一小段訊號。這樣做的目的是因為語音的特性在一個短時間範圍內可以近似認為是穩定的，方便我們提取隨時間變化的語音特徵。</p>
+<hr>
+<h3 id="短時能量-Short-Time-Energy-和-平均幅度-Average-Magnitude-。"><a href="#短時能量-Short-Time-Energy-和-平均幅度-Average-Magnitude-。" class="headerlink" title="短時能量 (Short-Time Energy) 和 平均幅度 (Average Magnitude)。"></a>短時能量 (Short-Time Energy) 和 平均幅度 (Average Magnitude)。</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>這張圖片介紹了兩個常用的短時時域特徵 (Short-Time Time Domain Features)：</p>
+<h4 id="1-短時能量-Short-Time-Energy"><a href="#1-短時能量-Short-Time-Energy" class="headerlink" title="1. 短時能量 (Short-Time Energy):"></a>1. 短時能量 (Short-Time Energy):</h4><p>公式:</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<blockquote>
+<p>這個公式表示，對於語音訊號 x(m)，首先用窗函數 w(n−m) 選取以時間點 n 為中心的短時片段，然後對該片段內所有取樣點的平方值進行求和，得到在時間 n 的短時能量 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.817ex" height="1.895ex" role="img" focusable="false" viewbox="0 -680 1245.3 837.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D438" d="M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z"/></g><g data-mml-node="mi" transform="translate(771,-150) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g></g></g></svg></mjx-container>。能量反映了訊號的強度。</p>
+</blockquote>
+<p>方框圖:</p>
+<blockquote>
+<p>x(n): 輸入的語音訊號。</p>
+</blockquote>
+<blockquote>
+<p>( )²: 對語音訊號的每個取樣點進行平方運算，得到 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.399ex" height="2.452ex" role="img" focusable="false" viewbox="0 -833.9 2386.6 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g><g data-mml-node="mn" transform="translate(605,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(1008.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(1397.6,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(1997.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container>。</p>
+</blockquote>
+<blockquote>
+<p>h(n): 代表窗函數 w(n)。這裡用 h(n) 可能只是為了表示一個線性系統（窗函數可以看作是一個有限長度的脈衝響應）。實際上，應該是乘以窗函數 w(n−m) 並求和。</p>
+</blockquote>
+<blockquote>
+<p>E_n: 輸出的短時能量。</p>
+</blockquote>
+<p>簡而言之，短時能量通過計算短時片段內訊號平方和來衡量該片段的能量大小。它可以用於區分語音中的清音段和濁音段，因為濁音段通常具有更高的能量。</p>
+<h4 id="2-平均幅度-Average-Magnitude"><a href="#2-平均幅度-Average-Magnitude" class="headerlink" title="2. 平均幅度 (Average Magnitude):"></a>2. 平均幅度 (Average Magnitude):</h4><p>公式:</p>
+<blockquote>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+</blockquote>
+<blockquote>
+<p>這個公式表示，對於語音訊號 x(m)，首先用窗函數 w(n−m) 選取以時間點 n 為中心的短時片段，然後對該片段內所有取樣點的絕對值進行求和，得到在時間 n 的平均幅度 <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="3.342ex" height="1.902ex" role="img" focusable="false" viewbox="0 -683 1477.3 840.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D440" d="M289 629Q289 635 232 637Q208 637 201 638T194 648Q194 649 196 659Q197 662 198 666T199 671T201 676T203 679T207 681T212 683T220 683T232 684Q238 684 262 684T307 683Q386 683 398 683T414 678Q415 674 451 396L487 117L510 154Q534 190 574 254T662 394Q837 673 839 675Q840 676 842 678T846 681L852 683H948Q965 683 988 683T1017 684Q1051 684 1051 673Q1051 668 1048 656T1045 643Q1041 637 1008 637Q968 636 957 634T939 623Q936 618 867 340T797 59Q797 55 798 54T805 50T822 48T855 46H886Q892 37 892 35Q892 19 885 5Q880 0 869 0Q864 0 828 1T736 2Q675 2 644 2T609 1Q592 1 592 11Q592 13 594 25Q598 41 602 43T625 46Q652 46 685 49Q699 52 704 61Q706 65 742 207T813 490T848 631L654 322Q458 10 453 5Q451 4 449 3Q444 0 433 0Q418 0 415 7Q413 11 374 317L335 624L267 354Q200 88 200 79Q206 46 272 46H282Q288 41 289 37T286 19Q282 3 278 1Q274 0 267 0Q265 0 255 0T221 1T157 2Q127 2 95 1T58 0Q43 0 39 2T35 11Q35 13 38 25T43 40Q45 46 65 46Q135 46 154 86Q158 92 223 354T289 629Z"/></g><g data-mml-node="mi" transform="translate(1003,-150) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g></g></g></svg></mjx-container>。平均幅度也是衡量訊號強度的一種方式。</p>
+</blockquote>
+<p>方框圖:</p>
+<blockquote>
+<p>x(n): 輸入的語音訊號。</p>
+</blockquote>
+<blockquote>
+<p>| |: 對語音訊號的每個取樣點取絕對值，得到 ∣x(n)∣。</p>
+</blockquote>
+<blockquote>
+<p>w(n): 代表窗函數 w(n)。同樣，實際操作是乘以窗函數 w(n−m) 並求和。</p>
+</blockquote>
+<blockquote>
+<p>M_n: 輸出的平均幅度。</p>
+</blockquote>
+<p>簡而言之，平均幅度通過計算短時片段內訊號絕對值之和來衡量該片段的平均強度。它與短時能量類似，但計算量較小，在某些應用中也很有用</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Multimedia-Systems-and-Applications/" class="category-chain-item">Multimedia Systems and Applications</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>S6--Chap6--Supplementary-Speech Precessing-2025</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Multimedia Systems and Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2025年3月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Operation%20Systems/Chapter-13-File-System-Interface/" title="Chapter 13 File-System Interface">
+                        <span class="hidden-mobile">Chapter 13 File-System Interface</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
