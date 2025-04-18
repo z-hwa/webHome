@@ -1,0 +1,1250 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/webHome/img/fluid.png">
+  <link rel="icon" href="/webHome/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="crown tako">
+  <meta name="keywords" content="code, learning, life, shoka">
+  
+    <meta name="description" content="Basics of Digital Audio6.1  Digitization of Sound聲音是什麼 (What is Sound?)  聲音是一種像光一樣的波動現象，但它是宏觀的，涉及空氣分子的壓縮和膨脹。 例如，音響系統中的揚聲器前後振動，產生我們感知為聲音的縱向壓力波。 由於聲音是壓力波，它具有連續值，而不是數位化的離散值    即使聲音是縱向壓力波，它仍然具有普通的波動特性和行為，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="S6-Chap6-Basics of Digital Audio-2025">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/">
+<meta property="og:site_name" content="Crown Tako Shoka">
+<meta property="og:description" content="Basics of Digital Audio6.1  Digitization of Sound聲音是什麼 (What is Sound?)  聲音是一種像光一樣的波動現象，但它是宏觀的，涉及空氣分子的壓縮和膨脹。 例如，音響系統中的揚聲器前後振動，產生我們感知為聲音的縱向壓力波。 由於聲音是壓力波，它具有連續值，而不是數位化的離散值    即使聲音是縱向壓力波，它仍然具有普通的波動特性和行為，">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-108.png">
+<meta property="article:published_time" content="2025-04-15T08:11:34.000Z">
+<meta property="article:modified_time" content="2025-04-18T03:13:18.965Z">
+<meta property="article:author" content="crown tako">
+<meta property="article:tag" content="code, learning, life, shoka">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-108.png">
+  
+  
+  
+  <title>S6-Chap6-Basics of Digital Audio-2025 - Crown Tako Shoka</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/webHome/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/webHome/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/webHome/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"z-hwa.github.io","root":"/webHome/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"XgGibLAigQON3ddmP7jiuLXe-MdYXbMMI","app_key":"X9AfJKTBolm7x2TvBdDqCIfV","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/webHome/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/webHome/js/utils.js" ></script>
+  <script  src="/webHome/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/webHome/">
+      <strong>Crown Tako Shoka</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首頁</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>歸檔</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分類</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>標籤</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webHome/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>關於</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/webHome/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="S6-Chap6-Basics of Digital Audio-2025"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-15 16:11" pubdate>
+          2025年4月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分鐘
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">S6-Chap6-Basics of Digital Audio-2025</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Basics-of-Digital-Audio"><a href="#Basics-of-Digital-Audio" class="headerlink" title="Basics of Digital Audio"></a>Basics of Digital Audio</h1><h2 id="6-1-Digitization-of-Sound"><a href="#6-1-Digitization-of-Sound" class="headerlink" title="6.1  Digitization of Sound"></a>6.1  Digitization of Sound</h2><h3 id="聲音是什麼-What-is-Sound"><a href="#聲音是什麼-What-is-Sound" class="headerlink" title="聲音是什麼 (What is Sound?)"></a>聲音是什麼 (What is Sound?)</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>聲音是一種像光一樣的波動現象，但它是宏觀的，涉及空氣分子的壓縮和膨脹。</li>
+<li>例如，音響系統中的揚聲器前後振動，產生我們感知為聲音的縱向壓力波。</li>
+<li>由於聲音是壓力波，它具有連續值，而不是數位化的離散值</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-1.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>即使聲音是縱向壓力波，它仍然具有普通的波動特性和行為，例如反射（反彈）、折射（進入不同密度的介質時改變角度）和繞射（繞過障礙物彎曲）。</li>
+<li>如果我們希望使用聲音波形的數位版本，我們必須形成音訊資訊的數位化表示。</li>
+<li>訊號可以分解為正弦波的總和。圖 6.1 展示了加權正弦波如何構成相當複雜的訊號。</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-2.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<hr>
+<h3 id="音高、頻率、八度和諧波的概念"><a href="#音高、頻率、八度和諧波的概念" class="headerlink" title="音高、頻率、八度和諧波的概念"></a>音高、頻率、八度和諧波的概念</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-3.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>頻率是一個絕對的度量，而音高 (pitch) 通常是相對的 - 一種對聲音的主觀感知品質。</p>
+<ul>
+<li>(a) 音高和頻率 相關，例如中央 C 上方的 A 音被設定為精確的 440 Hz。</li>
+<li>(b) 八度 (octave) 是頻率翻倍的音程。比 440 Hz 的 A 高一個八度是 880 Hz。</li>
+<li>(c) 諧波 (harmonics) 是頻率為基音頻率整數倍的一系列樂音。</li>
+<li>(d) 如果允許非整數倍的基頻，就會有更多的泛音，聲音也會更複雜。</li>
+</ul>
+<p>下方展示了一個鋼琴鍵盤，標註了從 A0 到 C8 的不同音符。</p>
+<hr>
+<h2 id="6-1-2-Digitization"><a href="#6-1-2-Digitization" class="headerlink" title="6.1.2  Digitization"></a>6.1.2  Digitization</h2><ul>
+<li>數位化 (Digitization) 意味著轉換為數字流，並且為了效率，這些數字最好是整數。</li>
+<li>圖 6.2 顯示了聲音的一維特性：振幅值取決於一個一維變數，即時間。（注意，圖像的數值取決於二維變數，x 和 y）。</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-4.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<hr>
+<h3 id="數位化的過程"><a href="#數位化的過程" class="headerlink" title="數位化的過程"></a>數位化的過程</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-5.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>包括取樣和量化：</p>
+<p>為了數位化訊號，必須在每個維度上進行取樣 (sampled)：時間和振幅。</p>
+<ul>
+<li>(a) 取樣 (Sampling) 意味著以通常均勻間隔測量我們感興趣的量。</li>
+<li>(b) 時間取樣 只是在均勻的時間間隔進行測量，其速率稱為取樣頻率 (sampling frequency)。</li>
+<li>(c) 音訊的典型取樣率 從 8 kHz 到 48 kHz。這個範圍由之後討論的奈奎斯特定理決定。</li>
+<li>(d) 振幅或電壓維度的取樣 稱為量化 (quantization)。</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-6.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>這張圖片展示了取樣和量化 (Sampling and Quantization)：</p>
+<ul>
+<li><p>(a) 時間取樣 (Sampling the analog signal in the time dimension): 圖 (a) 顯示了在時間維度上對類比訊號進行取樣。藍色的垂直虛線表示以均勻的時間間隔對連續的類比訊號（黑線）進行測量。</p>
+</li>
+<li><p>(b) 量化 (Quantization is sampling the analog signal in the amplitude dimension): 圖 (b) 顯示了在振幅維度上對類比訊號進行量化。紅色的水平虛線表示將連續的振幅值近似到離散的量化級別。類比訊號（黑線）的振幅被映射到最接近的紅色水平線。</p>
+</li>
+</ul>
+<hr>
+<h3 id="如何數位化音訊數據需要回答的問題"><a href="#如何數位化音訊數據需要回答的問題" class="headerlink" title="如何數位化音訊數據需要回答的問題"></a>如何數位化音訊數據需要回答的問題</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-7.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>取樣率是多少？ (What is the sampling rate?)</li>
+<li>數據的量化精細度如何？量化是均勻的嗎？ (How finely is the data to be quantized, and is quantization uniform?)</li>
+<li>音訊數據如何格式化？（檔案格式） (How is audio data formatted? (file format))</li>
+</ul>
+<hr>
+<h2 id="6-1-3-Nyquist-Theorem"><a href="#6-1-3-Nyquist-Theorem" class="headerlink" title="6.1.3 Nyquist Theorem"></a>6.1.3 Nyquist Theorem</h2><h3 id="奈奎斯特定理-Nyquist-theorem"><a href="#奈奎斯特定理-Nyquist-theorem" class="headerlink" title="奈奎斯特定理 (Nyquist theorem)"></a>奈奎斯特定理 (Nyquist theorem)</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-8.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>奈奎斯特定理 (Nyquist theorem) 和取樣率對訊號重建的影響：</p>
+<ul>
+<li>奈奎斯特定理 指出為了能夠恢復原始聲音，我們必須以多高的頻率在時間上進行取樣。</li>
+<li>(a) 圖 6.4(a) 顯示了一個單一的正弦波：它是一個單一的、純粹的頻率（只有電子樂器才能產生這樣的聲音）。</li>
+<li>(b) 如果取樣率恰好等於實際頻率，圖 6.4(b) 顯示檢測到一個錯誤的訊號：它只是一個常數，頻率為零。</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-9.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li>(a) 如果以實際頻率的 1.5 倍進行取樣，圖 6.4(c) 顯示我們得到一個錯誤的（混疊）頻率，它比正確的頻率低——它是正確頻率的一半（波長是實際訊號的兩倍）。</li>
+<li>(b) 因此，為了正確取樣，我們必須使用至少等於訊號中最高頻率成分兩倍的取樣率。這個速率稱為奈奎斯特速率 (Nyquist rate)。</li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-10.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<hr>
+<h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-11.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>奈奎斯特定理和相關概念</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-12.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="正弦波的顯現頻率-apparent-frequency-以及頻率摺疊-frequency-folding"><a href="#正弦波的顯現頻率-apparent-frequency-以及頻率摺疊-frequency-folding" class="headerlink" title="正弦波的顯現頻率 (apparent frequency) 以及頻率摺疊 (frequency folding)"></a>正弦波的顯現頻率 (apparent frequency) 以及頻率摺疊 (frequency folding)</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-13.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><p>一般來說，正弦波的顯現頻率是具有與輸入正弦波完全相同的樣本的最低頻率的正弦波。圖 6.5 顯示了顯現頻率與輸入頻率的關係。</p>
+</li>
+<li><p>圖 6.5：以 8,000 Hz 取樣的正弦波頻率的摺疊。摺疊頻率（以虛線表示）為 4,000 Hz。</p>
+</li>
+<li><p>圖表顯示，當真實頻率從 0 Hz 增加到取樣頻率的一半（即奈奎斯特頻率，此處為 4,000 Hz）時，顯現頻率也線性增加。然而，當真實頻率超過奈奎斯特頻率時，顯現頻率會開始下降。當真實頻率達到取樣頻率時（8,000 Hz），顯現頻率又變回 0 Hz。之後，顯現頻率再次開始增加。這種現象稱為頻率摺疊，奈奎斯特頻率（取樣頻率的一半）也稱為摺疊頻率 (folding frequency)。</p>
+</li>
+</ul>
+<p>簡單來說，顯現頻率 就是我們實際聽到的頻率，它可能和原始聲音的真實頻率不一樣，特別是在數位化取樣的過程中。</p>
+<p>頻率摺疊 就像一面鏡子，以奈奎斯特頻率（取樣頻率的一半）為中心。</p>
+<ul>
+<li>當原始聲音的真實頻率 低於這個中心點時，我們數位化後聽到的 顯現頻率 和原始頻率是一樣的。</li>
+<li>但是，當原始聲音的真實頻率 高於這個中心點時，數位化後聽到的 顯現頻率 就會「摺疊」回來，變成一個較低的頻率。而且原始頻率越高，摺疊回來的顯現頻率就越低，然後又開始升高。</li>
+</ul>
+<p>圖表的意思是：</p>
+<p>假設我們的數位化取樣率是 8000 Hz。那麼，摺疊頻率（中心點）就是 4000 Hz。</p>
+<ul>
+<li>如果原始聲音的頻率是 1000 Hz，那麼我們聽到的也是 1000 Hz。</li>
+<li>如果原始聲音的頻率是 3000 Hz，那麼我們聽到的也是 3000 Hz。</li>
+<li>但是，如果原始聲音的頻率是 5000 Hz（高於 4000 Hz），那麼我們聽到的就會是 |8000 - 5000| = 3000 Hz。</li>
+<li>如果原始聲音的頻率是 7000 Hz，那麼我們聽到的就會是 |8000 - 7000| = 1000 Hz。</li>
+<li>如果原始聲音的頻率是 9000 Hz，那麼我們聽到的就會是 |8000 - 9000| = 1000 Hz。</li>
+</ul>
+<p>這就是為什麼在數位化聲音時，如果取樣率不夠高，高頻的聲音就會被錯誤地表示成低頻的聲音，產生失真，也就是所謂的混疊 (aliasing)。這也是為什麼奈奎斯特定理要求取樣率至少是原始訊號最高頻率的兩倍，以避免這種頻率摺疊現象的發生。</p>
+<h2 id="6-1-4-Signal-to-Noise-Ratio-SNR"><a href="#6-1-4-Signal-to-Noise-Ratio-SNR" class="headerlink" title="6.1.4  Signal to Noise Ratio (SNR)"></a>6.1.4  Signal to Noise Ratio (SNR)</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-14.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>訊號雜訊比 (Signal to Noise Ratio, SNR)</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-15.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="訊號雜訊比-SNR-的範例"><a href="#訊號雜訊比-SNR-的範例" class="headerlink" title="訊號雜訊比 (SNR) 的範例"></a>訊號雜訊比 (SNR) 的範例</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-18.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>訊號雜訊比 (SNR) 的範例</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-16.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p>周圍常見聲音的音量等級，以分貝 (dB) 為單位，並將其與人類聽覺的閾值進行比較：<br>我們周圍聽到的常見聲音的音量通常用分貝來描述，它是相對於我們能夠聽到的最安靜的聲音的比率。表 6.1 顯示了這些聲音的大約音量等級。</p>
+<p>表 6.1：常見聲音的音量等級，以分貝為單位</p>
+<table>
+<thead>
+<tr>
+<th>聲音</th>
+<th>分貝 (dB)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>聽覺閾值</td>
+<td>0</td>
+</tr>
+<tr>
+<td>樹葉的沙沙聲</td>
+<td>10</td>
+</tr>
+<tr>
+<td>非常安靜的房間</td>
+<td>20</td>
+</tr>
+<tr>
+<td>一般的房間</td>
+<td>40</td>
+</tr>
+<tr>
+<td>對話</td>
+<td>60</td>
+</tr>
+<tr>
+<td>繁忙的街道</td>
+<td>70</td>
+</tr>
+<tr>
+<td>大聲的收音機</td>
+<td>80</td>
+</tr>
+<tr>
+<td>火車通過車站</td>
+<td>90</td>
+</tr>
+<tr>
+<td>鉚釘槍</td>
+<td>100</td>
+</tr>
+<tr>
+<td>不適閾值</td>
+<td>120</td>
+</tr>
+<tr>
+<td>疼痛閾值</td>
+<td>140</td>
+</tr>
+<tr>
+<td>損害耳膜</td>
+<td>160</td>
+</tr>
+</tbody></table>
+<p>這個表格展示了不同環境和聲音的相對響度，從幾乎聽不見的聲音到可能引起不適或損害聽力的聲音。</p>
+<hr>
+<h2 id="6-1-5-Signal-to-Quantization-Noise-Ratio-SQNR"><a href="#6-1-5-Signal-to-Quantization-Noise-Ratio-SQNR" class="headerlink" title="6.1.5  Signal to Quantization Noise Ratio (SQNR)"></a>6.1.5  Signal to Quantization Noise Ratio (SQNR)</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-19.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>量化雜訊 (quantization noise)</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-20.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="訊號對量化雜訊比-Signal-to-Quantization-Noise-Ratio-SQNR"><a href="#訊號對量化雜訊比-Signal-to-Quantization-Noise-Ratio-SQNR" class="headerlink" title="訊號對量化雜訊比 (Signal to Quantization Noise Ratio, SQNR)"></a>訊號對量化雜訊比 (Signal to Quantization Noise Ratio, SQNR)</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-21.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-22.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-24.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-23.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-25.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-26.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-27.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-28.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h2 id="6-1-6-Linear-and-Non-linear-Quantization"><a href="#6-1-6-Linear-and-Non-linear-Quantization" class="headerlink" title="6.1.6  Linear and Non-linear Quantization"></a>6.1.6  Linear and Non-linear Quantization</h2><h3 id="線性格式和非均勻量化的概念"><a href="#線性格式和非均勻量化的概念" class="headerlink" title="線性格式和非均勻量化的概念"></a>線性格式和非均勻量化的概念</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-29.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-30.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="解"><a href="#解" class="headerlink" title="解"></a>解</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-31.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-32.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-33.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-34.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-35.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="μ-law-的位元分配-Bit-allocation-策略"><a href="#μ-law-的位元分配-Bit-allocation-策略" class="headerlink" title="μ-law 的位元分配 (Bit allocation) 策略"></a>μ-law 的位元分配 (Bit allocation) 策略</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-36.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-37.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-38.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>μ-law 在接收端的解碼過程，以及最終的位元擴展</p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-39.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h2 id="6-1-7-Audio-Filtering"><a href="#6-1-7-Audio-Filtering" class="headerlink" title="6.1.7  Audio Filtering"></a>6.1.7  Audio Filtering</h2><h3 id="濾波-filtering-處理"><a href="#濾波-filtering-處理" class="headerlink" title="濾波 (filtering) 處理"></a>濾波 (filtering) 處理</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-40.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-41.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h2 id="6-1-8-Audio-Quality-vs-Data-Rate"><a href="#6-1-8-Audio-Quality-vs-Data-Rate" class="headerlink" title="6.1.8  Audio Quality vs. Data Rate"></a>6.1.8  Audio Quality vs. Data Rate</h2><h3 id="數位音訊傳輸的數據速率和頻寬需求"><a href="#數位音訊傳輸的數據速率和頻寬需求" class="headerlink" title="數位音訊傳輸的數據速率和頻寬需求"></a>數位音訊傳輸的數據速率和頻寬需求</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-42.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p>為了傳輸數位音訊訊號，隨著量化使用的位元數增加，未壓縮的數據速率也會增加。立體聲 (Stereo) 傳輸則需要雙倍的頻寬，因為需要傳輸兩個獨立的聲道。</p>
+<p>表 6.2：常見音訊應用中的位元率和頻寬</p>
+<table>
+<thead>
+<tr>
+<th>品質</th>
+<th>取樣率 (kHz)</th>
+<th>每樣本位元數</th>
+<th>單聲道/立體聲</th>
+<th>位元率 (未壓縮) (kB/sec)</th>
+<th>訊號頻寬 (Hz)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>電話</td>
+<td>8</td>
+<td>8</td>
+<td>單聲道</td>
+<td>8</td>
+<td>200-3,400</td>
+</tr>
+<tr>
+<td>AM 收音機</td>
+<td>11.025</td>
+<td>8</td>
+<td>單聲道</td>
+<td>11.0</td>
+<td>100-5,500</td>
+</tr>
+<tr>
+<td>FM 收音機</td>
+<td>22.05</td>
+<td>16</td>
+<td>立體聲</td>
+<td>88.2</td>
+<td>20-11,000</td>
+</tr>
+<tr>
+<td>CD</td>
+<td>44.1</td>
+<td>16</td>
+<td>立體聲</td>
+<td>176.4</td>
+<td>5-20,000</td>
+</tr>
+<tr>
+<td>DVD 音訊</td>
+<td>192 (最大)</td>
+<td>24 (最大)</td>
+<td>高達 6 聲道</td>
+<td>1,200.0 (最大)</td>
+<td>0-96,000 (最大)</td>
+</tr>
+</tbody></table>
+<p>這個表格展示了不同音訊品質的應用所需的取樣率、量化位元數、聲道數以及由此產生的未壓縮位元率和訊號頻寬。可以看出，更高品質的音訊需要更高的取樣率和位元深度，從而導致更高的數據速率和頻寬需求。立體聲傳輸的位元率是單聲道的兩倍。</p>
+<hr>
+<h2 id="6-3-Quantization-and-Transmission-of-Audio"><a href="#6-3-Quantization-and-Transmission-of-Audio" class="headerlink" title="6.3  Quantization and Transmission of Audio"></a>6.3  Quantization and Transmission of Audio</h2><h3 id="音訊編碼-Coding-of-Audio"><a href="#音訊編碼-Coding-of-Audio" class="headerlink" title="音訊編碼 (Coding of Audio)"></a>音訊編碼 (Coding of Audio)</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-43.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-44.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-45.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-46.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h2 id="6-3-2-Pulse-Code-Modulation"><a href="#6-3-2-Pulse-Code-Modulation" class="headerlink" title="6.3.2  Pulse Code Modulation"></a>6.3.2  Pulse Code Modulation</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-47.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-48.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-49.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-50.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-51.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="每個壓縮方案-compression-scheme-通常包含的三個階段"><a href="#每個壓縮方案-compression-scheme-通常包含的三個階段" class="headerlink" title="每個壓縮方案 (compression scheme) 通常包含的三個階段"></a>每個壓縮方案 (compression scheme) 通常包含的三個階段</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-52.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-53.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-54.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-55.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="PCM-in-Speech-Compression"><a href="#PCM-in-Speech-Compression" class="headerlink" title="PCM in Speech Compression"></a>PCM in Speech Compression</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-56.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-57.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="需要處理的兩個細節"><a href="#需要處理的兩個細節" class="headerlink" title="需要處理的兩個細節"></a>需要處理的兩個細節</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-58.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-59.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-60.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-61.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-62.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="轉換流程圖"><a href="#轉換流程圖" class="headerlink" title="轉換流程圖"></a>轉換流程圖</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-63.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<hr>
+<h2 id="6-3-3-Differential-Coding-of-Audio"><a href="#6-3-3-Differential-Coding-of-Audio" class="headerlink" title="6.3.3  Differential Coding of Audio"></a>6.3.3  Differential Coding of Audio</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-64.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-65.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-67.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-66.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h2 id="6-3-4-Lossless-Predictive-Coding"><a href="#6-3-4-Lossless-Predictive-Coding" class="headerlink" title="6.3.4  Lossless Predictive Coding"></a>6.3.4  Lossless Predictive Coding</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-69.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-68.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-70.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-71.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="形成差異以提高壓縮效率的原理"><a href="#形成差異以提高壓縮效率的原理" class="headerlink" title="形成差異以提高壓縮效率的原理"></a>形成差異以提高壓縮效率的原理</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-72.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-73.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-74.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="差分編碼可能帶來的一個問題以及一種解決方案"><a href="#差分編碼可能帶來的一個問題以及一種解決方案" class="headerlink" title="差分編碼可能帶來的一個問題以及一種解決方案"></a>差分編碼可能帶來的一個問題以及一種解決方案</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-75.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-76.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="簡單的預測器範例"><a href="#簡單的預測器範例" class="headerlink" title="簡單的預測器範例"></a>簡單的預測器範例</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-77.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-78.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-79.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-80.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-81.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-82.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-83.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h2 id="6-3-5-DPCM"><a href="#6-3-5-DPCM" class="headerlink" title="6.3.5  DPCM"></a>6.3.5  DPCM</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-84.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-85.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-86.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-87.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="自適應量化-adaptive-quantization-的概念"><a href="#自適應量化-adaptive-quantization-的概念" class="headerlink" title="自適應量化 (adaptive quantization) 的概念"></a>自適應量化 (adaptive quantization) 的概念</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-88.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-89.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-90.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"><ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-91.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+</li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-92.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-93.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="DPCM-系統中量化器的具體實現"><a href="#DPCM-系統中量化器的具體實現" class="headerlink" title="DPCM 系統中量化器的具體實現"></a>DPCM 系統中量化器的具體實現</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-94.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-95.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-96.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h3 id="DPCM-範例"><a href="#DPCM-範例" class="headerlink" title="DPCM 範例"></a>DPCM 範例</h3><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-97.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<ul>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-98.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+<li><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-99.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></li>
+</ul>
+<hr>
+<h2 id="6-3-6-DM"><a href="#6-3-6-DM" class="headerlink" title="6.3.6  DM"></a>6.3.6  DM</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-100.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-101.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-102.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<hr>
+<h2 id="6-3-7-ADPCM"><a href="#6-3-7-ADPCM" class="headerlink" title="6.3.7  ADPCM"></a>6.3.7  ADPCM</h2><p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-103.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-104.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-105.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-106.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+<p><img src="/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/image-107.png" srcset="/webHome/img/loading.gif" lazyload alt="alt text"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Multimedia-Systems-and-Applications/" class="category-chain-item">Multimedia Systems and Applications</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>S6-Chap6-Basics of Digital Audio-2025</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Multimedia Systems and Applications/S6-Chap6-Basics-of-Digital-Audio-2025/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>crown tako</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>發布於</div>
+          <div>2025年4月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>許可協議</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商業性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S6-Chap6-Supplementary-Speech-Precessing-2025/" title="S6--Chap6--Supplementary-Speech Precessing-2025">
+                        <span class="hidden-mobile">S6--Chap6--Supplementary-Speech Precessing-2025</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S6-Chap6-Basics-of-Digital-Audio-2025/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'z-hwa' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目錄</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜尋</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">關鍵字</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        總訪問量
+        <span id="leancloud-site-pv"></span>
+        次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        總訪客數
+        <span id="leancloud-site-uv"></span>
+        人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/webHome/js/events.js" ></script>
+<script  src="/webHome/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/webHome/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/webHome/js/leancloud.js" ></script>
+
+  <script  src="/webHome/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/webHome/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允許 JavaScript 運行的環境下瀏覽效果更佳</div>
+  </noscript>
+</body>
+</html>
