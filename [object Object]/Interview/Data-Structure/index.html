@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/image.png">
 <meta property="article:published_time" content="2026-01-17T12:36:59.000Z">
-<meta property="article:modified_time" content="2026-01-17T13:01:34.332Z">
+<meta property="article:modified_time" content="2026-01-17T15:14:03.335Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
@@ -363,7 +363,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          928 字
+          1.6k 字
         
       </span>
     
@@ -374,7 +374,7 @@ mjx-container[display="true"] + br {
         
         
         
-          8 分鐘
+          14 分鐘
         
       </span>
     
@@ -444,13 +444,13 @@ mjx-container[display="true"] + br {
         node = cache_map[key]
         // move this node to the head
         RemoveNode(node)
-        AddTOHead(node)
+        AddToHead(node)
 
         RETURN node.value
     END FUNCTION
 
     FUNCTION Put(key, image)
-        IF key IN cache_map THEN
+        IF cache_map CONTAINS key THEN
             node = cache_map[key]
             node.value = image
             
@@ -464,13 +464,62 @@ mjx-container[display="true"] + br {
                 RemoveNode(tail)
             END IF
 
-            AdddToHead(new_node)
+            AddToHead(new_node)
             cache_map.ADD(key, new_node)
         END IF
     END FUNCTION
 
     //helpler function
-END CALSS</code></pre></div>
+END CLASS</code></pre></div>
+
+<div class="code-wrapper"><pre><div class="caption"><span>code</span></div><code class="hljs pseudo">// The Node Structure of double linked list
+CLASS Node
+    PROPERTY key: String
+    PROPERTY value: Image
+    PROPERTY next: Node
+    PROPERTY prev: Node
+END CLASS
+
+// Helper Function
+/*
+Function: AddToHead
+Description: Add the node to the head of double link list.
+*/
+FUNCTION AddToHead(node)
+    node.prev = NULL
+    node.next = head
+
+    // If the list is not empty
+    IF head IS NOT NULL THEN
+        head.prev = node
+    END IF
+
+    head = node
+
+    // If the list is empty
+    IF tail IS NULL THEN
+        tail = head
+    END IF
+END FUNCTION
+
+FUNCTION RemoveNode(node)
+    IF node.prev IS NULL THEN
+        head = node.next
+    ELSE
+        prev_node = node.prev
+        prev_node.next = node.next
+    END IF
+
+    IF node.next IS NULL THEN
+        tail = node.prev
+    ELSE
+        next_node = node.next
+        next_node.prev = node.prev
+    END IF
+
+    node.prev = NULL
+    node.next = NULL
+END FUNCTION</code></pre></div>
                 
               </div>
             

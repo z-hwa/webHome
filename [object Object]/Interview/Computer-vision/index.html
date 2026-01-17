@@ -16,24 +16,22 @@
   <meta name="author" content="crown tako">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="Server CommunicationQ1 處理長耗時的 AI 生成請求題目描述： 使用者點擊「生成圖片」按鈕。請寫一段 Pseudocode，發送請求給 Server，並等待任務完成。Server 不會馬上回傳圖片，而是回傳一個 job_id。你需要定期檢查該 job_id 的狀態，直到狀態變為 COMPLETED。 Keypoint策略： AI 生成通常需要幾秒鐘甚至更久，App 不可能一直">
+    <meta name="description" content="Computer visionQ1 圖片水平翻轉 (Image Horizontal Flip)出題機率：★★★★★ 原因： 這是影像處理最入門的題目，考驗你對二維陣列（2D Array）座標的理解，以及「交換數值 (Swap)」的基本邏輯。 情境： App 有一個「鏡像」功能，使用者點擊後，自拍照片要左右相反。 A1codeFUNCTION FlipImageHorizontal(     wi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Server Communication">
-<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Interview/Server-Communication/">
+<meta property="og:title" content="Computer vision">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Interview/Computer-vision/">
 <meta property="og:site_name" content="Crown Tako Shoka">
-<meta property="og:description" content="Server CommunicationQ1 處理長耗時的 AI 生成請求題目描述： 使用者點擊「生成圖片」按鈕。請寫一段 Pseudocode，發送請求給 Server，並等待任務完成。Server 不會馬上回傳圖片，而是回傳一個 job_id。你需要定期檢查該 job_id 的狀態，直到狀態變為 COMPLETED。 Keypoint策略： AI 生成通常需要幾秒鐘甚至更久，App 不可能一直">
+<meta property="og:description" content="Computer visionQ1 圖片水平翻轉 (Image Horizontal Flip)出題機率：★★★★★ 原因： 這是影像處理最入門的題目，考驗你對二維陣列（2D Array）座標的理解，以及「交換數值 (Swap)」的基本邏輯。 情境： App 有一個「鏡像」功能，使用者點擊後，自拍照片要左右相反。 A1codeFUNCTION FlipImageHorizontal(     wi">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Interview/Server-Communication/image.png">
-<meta property="article:published_time" content="2026-01-17T13:20:29.000Z">
-<meta property="article:modified_time" content="2026-01-17T14:52:27.320Z">
+<meta property="article:published_time" content="2026-01-17T15:41:50.000Z">
+<meta property="article:modified_time" content="2026-01-17T16:37:22.738Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Interview/Server-Communication/image.png">
   
   
   
-  <title>Server Communication - Crown Tako Shoka</title>
+  <title>Computer vision - Crown Tako Shoka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -340,7 +338,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Server Communication"></span>
+            <span id="subtitle" data-typed-text="Computer vision"></span>
           
         </div>
 
@@ -351,7 +349,7 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-17 21:20" pubdate>
+        <time datetime="2026-01-17 23:41" pubdate>
           2026年1月17日 晚上
         </time>
       </span>
@@ -363,7 +361,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          1.8k 字
         
       </span>
     
@@ -374,7 +372,7 @@ mjx-container[display="true"] + br {
         
         
         
-          9 分鐘
+          16 分鐘
         
       </span>
     
@@ -411,58 +409,122 @@ mjx-container[display="true"] + br {
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Server Communication</h1>
+            <h1 id="seo-header">Computer vision</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Server-Communication"><a href="#Server-Communication" class="headerlink" title="Server Communication"></a>Server Communication</h1><h2 id="Q1-處理長耗時的-AI-生成請求"><a href="#Q1-處理長耗時的-AI-生成請求" class="headerlink" title="Q1 處理長耗時的 AI 生成請求"></a>Q1 處理長耗時的 AI 生成請求</h2><p>題目描述： 使用者點擊「生成圖片」按鈕。請寫一段 Pseudocode，發送請求給 Server，並等待任務完成。Server 不會馬上回傳圖片，而是回傳一個 job_id。你需要定期檢查該 job_id 的狀態，直到狀態變為 COMPLETED。</p>
-<h3 id="Keypoint"><a href="#Keypoint" class="headerlink" title="Keypoint"></a>Keypoint</h3><p>策略： AI 生成通常需要幾秒鐘甚至更久，App 不可能一直開著連線等 (Timeout)。</p>
-<p>核心模式： Polling (輪詢)。</p>
-<p>流程： Client 請求生成 -&gt; Server 回傳 Job ID -&gt; Client 每隔 2 秒問一次 Job ID 完成沒 -&gt; Server 回傳完成 + 圖片。</p>
-<p>關鍵字： Async/Await、Sleep、Retry Limit (避免無限迴圈)。</p>
-<h3 id="A1"><a href="#A1" class="headerlink" title="A1"></a>A1</h3><div class="code-wrapper"><pre><code class="hljs stylus">FUNCTION <span class="hljs-built_in">GenerateImageAsync</span>(prompt_text)
-    <span class="hljs-comment">// 1. start the job</span>
-    api_url = <span class="hljs-string">"/api/generate"</span>
-    payload = {<span class="hljs-string">"prompt"</span>: prompt_text}
-    response = <span class="hljs-built_in">HTTP_POST</span>(api_url, payload)
+                <h1 id="Computer-vision"><a href="#Computer-vision" class="headerlink" title="Computer vision"></a>Computer vision</h1><h2 id="Q1-圖片水平翻轉-Image-Horizontal-Flip"><a href="#Q1-圖片水平翻轉-Image-Horizontal-Flip" class="headerlink" title="Q1 圖片水平翻轉 (Image Horizontal Flip)"></a>Q1 圖片水平翻轉 (Image Horizontal Flip)</h2><p>出題機率：★★★★★ 原因： 這是影像處理最入門的題目，考驗你對二維陣列（2D Array）座標的理解，以及「交換數值 (Swap)」的基本邏輯。</p>
+<p>情境： App 有一個「鏡像」功能，使用者點擊後，自拍照片要左右相反。</p>
+<h3 id="A1"><a href="#A1" class="headerlink" title="A1"></a>A1</h3><div class="code-wrapper"><pre><div class="caption"><span>code</span></div><code class="hljs pseudo">FUNCTION FlipImageHorizontal(
+    width: Integer,
+    height: Integer,
+    pixel: 2D Array
+) -&gt; OUTPUT: 2D Array
 
-    IF response<span class="hljs-selector-class">.status_code</span> != <span class="hljs-number">200</span> THEN
-        RETURN <span class="hljs-built_in">ERROR</span>(<span class="hljs-string">"Start Failed"</span>)
-    END IF
+    FOR y FROM 0 TO height-1 DO
+        FOR x FROM 0 TO (width/2) - 1 DO
+            left_pixel = pixel[y][x]
+            right_pixel = pixel[y][width - 1 - x]
 
-    job_id = response<span class="hljs-selector-class">.body</span><span class="hljs-selector-class">.job_id</span>
-    status = <span class="hljs-string">"Pending"</span>
-    retry_count = <span class="hljs-number">0</span>
-    max_retries = <span class="hljs-number">30</span> <span class="hljs-comment">// every 2 second try again, total 1 second</span>
+            pixel[y][x] = right_pixel
+            pixel[y][width - 1 - x] = left pixel
+        END FOR
+    END FOR
 
-    <span class="hljs-comment">// 2. Polling Loop</span>
-    WHILE status != <span class="hljs-string">"Complete"</span> AND retry_count &lt;= max_retries DO
-        <span class="hljs-comment">//  wait 2 second before request</span>
-        <span class="hljs-built_in">WAIT</span>(<span class="hljs-number">2</span> second)
-
-        <span class="hljs-comment">//check status</span>
-        status_response = <span class="hljs-built_in">HTTP_GET</span>(<span class="hljs-string">"/api/jobs"</span> + job_id)
-        status = status_response<span class="hljs-selector-class">.body</span><span class="hljs-selector-class">.job_id</span>
-
-        IF status == <span class="hljs-string">"Complete"</span> THEN
-            RETURN status_response<span class="hljs-selector-class">.body</span><span class="hljs-selector-class">.image_url</span>
-        ELSE IF status == <span class="hljs-string">"Failed"</span> THEN
-            RETURN <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Generation failed"</span>)
-        END IF
-
-        retry_count += <span class="hljs-number">1</span>
-    END WHILE 
-    
-    RETURN <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Timeout: Generation took too long"</span>)
+    RETURN pixel
 
 END FUNCTION</code></pre></div>
+
+<h2 id="Q2-Top-K-相似圖片搜尋-Top-K-Similarity-Search"><a href="#Q2-Top-K-相似圖片搜尋-Top-K-Similarity-Search" class="headerlink" title="Q2 Top-K 相似圖片搜尋 (Top-K Similarity Search)"></a>Q2 Top-K 相似圖片搜尋 (Top-K Similarity Search)</h2><p>對應 JD： 圖片搜尋、利用雲端…優化演算法效能 核心考點： 高維向量計算、資料結構 (Min-Heap / Priority Queue)、複雜度優化。</p>
+<p>情境： App 有一個功能是「找相似貼圖」。每張圖片都已經被 AI 轉換成一個 128 維的特徵向量 (Feature Vector)。 請實作一個函式，從資料庫的 100 萬個向量中，找出與 query_vector 最像的 K 個結果。 (請使用 Cosine Similarity 計算相似度，並用 Min-Heap 優化排序過程，不要直接 Sort 整個陣列)。</p>
+<div class="code-wrapper"><pre><div class="caption"><span>code</span></div><code class="hljs pseudo">FUNCTION FindTopKSimilarImages(
+    k: Integer,
+    query_vector: Array of Float,
+    database_vector: Map&lt;ID, Array of Float&gt;
+) -&gt; OUTPUT: List of IDs
+
+    // 1. create min heap
+    min_heap = NEW MinHeap()
+
+    // 2. precalculate magnitude of query vector
+    query_mag = CALCULATE_MAGNITUDE(query_vector)
+
+    // 3. Iterate through all vector in database
+    FOR EACH id, db_vector IN database_vector DO
+
+        // calculate cosine similarity
+        // (A . B) / (|A| * |B|)
+        dot_product = DOT_PRODUCT(query_vector, db_vector)
+        db_mag = CALCULATE_MAGNITUDE(db_vector)
+
+        IF db_mag == 0 OR query_mag == 0 THEN
+            similarity = 0
+        ELSE
+            similarity = dot_product / (db_mag * query_mag)
+        END IF
+        
+        // 4. Heap logic for top-k
+        IF min_heap.size &lt; k THEN
+            min_heap.PUSH({
+                id: id,
+                score: similarity
+            })
+        ELSE
+            lowest_score = min_heap.PEEK().score
+            IF similarity &gt; lowest_score THEN
+                min_heap.POP()
+                min_heap.PUSH({id: id, score: similarity})
+            END IF
+        END IF
+    END FOR
+
+    // 5. extract result and sort
+    result_list = min_heap.TO_LIST()
+    SORT result_list by score DESCENDING
+
+    RETURN result _list
+END FUNCTION
+
+// calculate euclidean magnitude
+FUNCTION CALCULATE_MAGNITUDE(vector: Array of Float)
+    sum_square = 0
+    FOR val IN vector DO
+        sum_square = sum_square + (val * val)
+    END FOR
+
+    RETURN SQRT(sum_square)
+END FUNCTION</code></pre></div>
+
+<p>insert, delete both O(log K)<br>Thus total time complexity is O(N log K)</p>
+
                 
               </div>
             
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/webHome/categories/Interview/" class="category-chain-item">Interview</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -473,8 +535,8 @@ END FUNCTION</code></pre></div>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Server Communication</div>
-      <div>https://z-hwa.github.io/webHome/[object Object]/Interview/Server-Communication/</div>
+      <div>Computer vision</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Interview/Computer-vision/</div>
     </div>
     <div class="license-meta">
       
@@ -530,18 +592,12 @@ END FUNCTION</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/Interview/Computer-vision/" title="Computer vision">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Computer vision</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/" title="Data Structure">
-                        <span class="hidden-mobile">Data Structure</span>
+                      <a href="/webHome/%5Bobject%20Object%5D/Interview/Server-Communication/" title="Server Communication">
+                        <span class="hidden-mobile">Server Communication</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -561,8 +617,8 @@ END FUNCTION</code></pre></div>
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Interview/Server-Communication/';
-          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Interview/Server-Communication/';
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Interview/Computer-vision/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Interview/Computer-vision/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
