@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Server Communication</title>
+    <link href="/webHome/%5Bobject%20Object%5D/Interview/Server-Communication/"/>
+    <url>/webHome/%5Bobject%20Object%5D/Interview/Server-Communication/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Server-Communication"><a href="#Server-Communication" class="headerlink" title="Server Communication"></a>Server Communication</h1><h2 id="Q1-處理長耗時的-AI-生成請求"><a href="#Q1-處理長耗時的-AI-生成請求" class="headerlink" title="Q1 處理長耗時的 AI 生成請求"></a>Q1 處理長耗時的 AI 生成請求</h2><p>題目描述： 使用者點擊「生成圖片」按鈕。請寫一段 Pseudocode，發送請求給 Server，並等待任務完成。Server 不會馬上回傳圖片，而是回傳一個 job_id。你需要定期檢查該 job_id 的狀態，直到狀態變為 COMPLETED。</p><h3 id="Keypoint"><a href="#Keypoint" class="headerlink" title="Keypoint"></a>Keypoint</h3><p>策略： AI 生成通常需要幾秒鐘甚至更久，App 不可能一直開著連線等 (Timeout)。</p><p>核心模式： Polling (輪詢)。</p><p>流程： Client 請求生成 -&gt; Server 回傳 Job ID -&gt; Client 每隔 2 秒問一次 Job ID 完成沒 -&gt; Server 回傳完成 + 圖片。</p><p>關鍵字： Async/Await、Sleep、Retry Limit (避免無限迴圈)。</p><h3 id="A1"><a href="#A1" class="headerlink" title="A1"></a>A1</h3><div class="code-wrapper"><pre><code class="hljs stylus">FUNCTION <span class="hljs-built_in">GenerateImageAsync</span>(prompt_text)    <span class="hljs-comment">// 1. start the job</span>    api_url = <span class="hljs-string">"/api/generate"</span>    payload = {<span class="hljs-string">"prompt"</span>: prompt_text}    response = <span class="hljs-built_in">HTTP_POST</span>(api_url, payload)    IF response<span class="hljs-selector-class">.status_code</span> != <span class="hljs-number">200</span> THEN        RETURN <span class="hljs-built_in">ERROR</span>(<span class="hljs-string">"Start Failed"</span>)    END IF    job_id = response<span class="hljs-selector-class">.body</span><span class="hljs-selector-class">.job_id</span>    status = <span class="hljs-string">"Pending"</span>    retry_count = <span class="hljs-number">0</span>    max_retries = <span class="hljs-number">30</span> <span class="hljs-comment">// every 2 second try again, total 1 second</span>    <span class="hljs-comment">// 2. Polling Loop</span>    WHILE status != <span class="hljs-string">"Complete"</span> AND retry_count &lt;= max_retries DO        <span class="hljs-comment">//  wait 2 second before request</span>        <span class="hljs-built_in">WAIT</span>(<span class="hljs-number">2</span> second)        <span class="hljs-comment">//check status</span>        status_response = <span class="hljs-built_in">HTTP_GET</span>(<span class="hljs-string">"/api/jobs"</span> + job_id)        status = status_response<span class="hljs-selector-class">.body</span><span class="hljs-selector-class">.job_id</span>        IF status == <span class="hljs-string">"Complete"</span> THEN            RETURN status_response<span class="hljs-selector-class">.body</span><span class="hljs-selector-class">.image_url</span>        ELSE IF status == <span class="hljs-string">"Failed"</span> THEN            RETURN <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Generation failed"</span>)        END IF        retry_count += <span class="hljs-number">1</span>    END WHILE         RETURN <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Timeout: Generation took too long"</span>)END FUNCTION</code></pre></div>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Data Structure</title>
     <link href="/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/"/>
     <url>/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/</url>
