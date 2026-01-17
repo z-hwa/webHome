@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>API Reading</title>
+    <link href="/webHome/%5Bobject%20Object%5D/Interview/API-Reading/"/>
+    <url>/webHome/%5Bobject%20Object%5D/Interview/API-Reading/</url>
+    
+    <content type="html"><![CDATA[<h1 id="API-Reading"><a href="#API-Reading" class="headerlink" title="API Reading"></a>API Reading</h1><h2 id="keypoint"><a href="#keypoint" class="headerlink" title="keypoint"></a>keypoint</h2><ul><li>Authentication(How to use the header?)</li><li>Content type(JSON or Multipart)</li><li>Required or Optional parameter</li></ul><h2 id="status-code"><a href="#status-code" class="headerlink" title="status code"></a>status code</h2><p>429(too many request)<br>500</p><h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><p>題目描述： 請閱讀以下 API 文件摘要，寫一段 Pseudocode 函式 RemoveBackground(image_data)，回傳去背後的圖片網址。若失敗請回傳 Error。</p><p>API Endpoint: POST <a href="https://api.vivipic.com/v1/remove-bg">https://api.vivipic.com/v1/remove-bg</a> </p><p>Headers:</p><ul><li>Authorization: Bearer <your_api_key></your_api_key></li><li>Content-Type: multipart/form-data Body</li></ul><p>Parameters:</p><ul><li>file: The image file (Binary). (Required)</li><li>output_format: “png” or “webp”. Default is “png”. (Optional)</li></ul><p>Response (JSON):</p><ul><li>Success (200): { “status”: “success”, “url”: “https://…” }</li><li>Error (4xx/5xx): { “status”: “error”, “message”: “Invalid file” }</li></ul><h3 id="A1"><a href="#A1" class="headerlink" title="A1"></a>A1</h3><div class="code-wrapper"><pre><div class="caption"><span>code</span></div><code class="hljs pseudo">FUNCTION RemoveBackGround(image_binary)    // 1. Setup configuration    api_url = https://api.vivipic.com/v1/remove-bg    api_key = GET_ENV("VIVIPIC_API_KEY")    // 2. prepare header    header = {        "Authorization": "Bear" + api_key,        "Content-Type": "multipart/form-data Body"    }    // 3. prepare payload    payload = {        "file": image_binary,        "output_format": "png" //explicitly setting optional parameter    }    // 4. request    response = HTTP(api_url, header, payload)    // 5. handling status code    status_code = response.status_code    IF status_code == 200 THEN        json_body = PARSE_JSON(response.body)        RETURN json_body.url    ELSE IF status_code == 402 THEN        RETURN ERROR("Unauthorized: check API Key")    ELSE IF status_code == 500 THEN        RETURN ERROR("Server Error: please try again later")    ELSE        //capture generic error        json_body = PARSE_JSON(response.body)        RETURN ERROR("API Failed" + json_body.message)    END IFEND FUNCTION</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>Interview</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>S7-Chap7-Lossless Compression Algorithms-2025</title>
     <link href="/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S7-Chap7-Lossless%20Compression%20Algorithms-2025/"/>
     <url>/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S7-Chap7-Lossless%20Compression%20Algorithms-2025/</url>
