@@ -16,22 +16,24 @@
   <meta name="author" content="crown tako">
   <meta name="keywords" content="code, learning, life, shoka">
   
-    <meta name="description" content="API ReadingKeypoint Authentication(How to use the header?) Content type(JSON or Multipart) Required or Optional parameter  status code429(too many request)500 Q1 RemoveBackground題目描述： 請閱讀以下 API 文件摘要，寫">
+    <meta name="description" content="Data StructureKeypointTime complexity  HashMap: O(1)  Q1 Least Recently Cache(LRC)題目描述： App 需要一個快取機制來存儲下載過的貼圖。記憶體最多只能存 N 張圖。當快取滿了，必須移除「最久沒被使用」的那張圖。請用 Pseudocode 實作 Get(key) 和 Put(key, value)。 參考解答 (Ps">
 <meta property="og:type" content="article">
-<meta property="og:title" content="API Reading">
-<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Interview/API-Reading/">
+<meta property="og:title" content="Data Structure">
+<meta property="og:url" content="https://z-hwa.github.io/webHome/[object%20Object]/Interview/Data-Structure/">
 <meta property="og:site_name" content="Crown Tako Shoka">
-<meta property="og:description" content="API ReadingKeypoint Authentication(How to use the header?) Content type(JSON or Multipart) Required or Optional parameter  status code429(too many request)500 Q1 RemoveBackground題目描述： 請閱讀以下 API 文件摘要，寫">
+<meta property="og:description" content="Data StructureKeypointTime complexity  HashMap: O(1)  Q1 Least Recently Cache(LRC)題目描述： App 需要一個快取機制來存儲下載過的貼圖。記憶體最多只能存 N 張圖。當快取滿了，必須移除「最久沒被使用」的那張圖。請用 Pseudocode 實作 Get(key) 和 Put(key, value)。 參考解答 (Ps">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2026-01-17T12:08:10.000Z">
-<meta property="article:modified_time" content="2026-01-17T12:38:25.858Z">
+<meta property="og:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/Data-Structure/image.png">
+<meta property="article:published_time" content="2026-01-17T12:36:59.000Z">
+<meta property="article:modified_time" content="2026-01-17T12:54:40.152Z">
 <meta property="article:author" content="crown tako">
 <meta property="article:tag" content="code, learning, life, shoka">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z-hwa.github.io/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/Data-Structure/image.png">
   
   
   
-  <title>API Reading - Crown Tako Shoka</title>
+  <title>Data Structure - Crown Tako Shoka</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -338,7 +340,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="API Reading"></span>
+            <span id="subtitle" data-typed-text="Data Structure"></span>
           
         </div>
 
@@ -349,7 +351,7 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-01-17 20:08" pubdate>
+        <time datetime="2026-01-17 20:36" pubdate>
           2026年1月17日 晚上
         </time>
       </span>
@@ -361,7 +363,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          928 字
         
       </span>
     
@@ -372,7 +374,7 @@ mjx-container[display="true"] + br {
         
         
         
-          12 分鐘
+          8 分鐘
         
       </span>
     
@@ -409,69 +411,66 @@ mjx-container[display="true"] + br {
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">API Reading</h1>
+            <h1 id="seo-header">Data Structure</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="API-Reading"><a href="#API-Reading" class="headerlink" title="API Reading"></a>API Reading</h1><h2 id="Keypoint"><a href="#Keypoint" class="headerlink" title="Keypoint"></a>Keypoint</h2><ul>
-<li>Authentication(How to use the header?)</li>
-<li>Content type(JSON or Multipart)</li>
-<li>Required or Optional parameter</li>
-</ul>
-<h3 id="status-code"><a href="#status-code" class="headerlink" title="status code"></a>status code</h3><p>429(too many request)<br>500</p>
-<h2 id="Q1-RemoveBackground"><a href="#Q1-RemoveBackground" class="headerlink" title="Q1 RemoveBackground"></a>Q1 RemoveBackground</h2><p>題目描述： 請閱讀以下 API 文件摘要，寫一段 Pseudocode 函式 RemoveBackground(image_data)，回傳去背後的圖片網址。若失敗請回傳 Error。</p>
-<p>API Endpoint: POST <a target="_blank" rel="noopener" href="https://api.vivipic.com/v1/remove-bg">https://api.vivipic.com/v1/remove-bg</a> </p>
-<p>Headers:</p>
+                <h1 id="Data-Structure"><a href="#Data-Structure" class="headerlink" title="Data Structure"></a>Data Structure</h1><h2 id="Keypoint"><a href="#Keypoint" class="headerlink" title="Keypoint"></a>Keypoint</h2><p>Time complexity</p>
 <ul>
-<li>Authorization: Bearer <your_api_key></your_api_key></li>
-<li>Content-Type: multipart/form-data Body</li>
+<li>HashMap: O(1)</li>
 </ul>
-<p>Parameters:</p>
-<ul>
-<li>file: The image file (Binary). (Required)</li>
-<li>output_format: “png” or “webp”. Default is “png”. (Optional)</li>
-</ul>
-<p>Response (JSON):</p>
-<ul>
-<li>Success (200): { “status”: “success”, “url”: “https://…” }</li>
-<li>Error (4xx/5xx): { “status”: “error”, “message”: “Invalid file” }</li>
-</ul>
-<h3 id="A1"><a href="#A1" class="headerlink" title="A1"></a>A1</h3><div class="code-wrapper"><pre><div class="caption"><span>code</span></div><code class="hljs pseudo">FUNCTION RemoveBackGround(image_binary)
-    // 1. Setup configuration
-    api_url = https://api.vivipic.com/v1/remove-bg
-    api_key = GET_ENV("VIVIPIC_API_KEY")
+<h2 id="Q1-Least-Recently-Cache-LRC"><a href="#Q1-Least-Recently-Cache-LRC" class="headerlink" title="Q1 Least Recently Cache(LRC)"></a>Q1 Least Recently Cache(LRC)</h2><p>題目描述： App 需要一個快取機制來存儲下載過的貼圖。記憶體最多只能存 N 張圖。當快取滿了，必須移除「最久沒被使用」的那張圖。請用 Pseudocode 實作 Get(key) 和 Put(key, value)。</p>
+<p>參考解答 (Pseudocode)： 解題亮點：這題如果只用 Array 會拿低分。標準解法是 Hash Map + Doubly Linked List。</p>
+<h3 id="A1"><a href="#A1" class="headerlink" title="A1"></a>A1</h3><div class="code-wrapper"><pre><div class="caption"><span>code</span></div><code class="hljs pseudo">CLASS ImageCache
+    PROPERTY capacity: Integer
+    PROPERTY cache_map: HashMap&lt;key, Node&gt;
+    PROPERTY head: Node
+    PROPERTY tail: Node
 
-    // 2. prepare header
-    header = {
-        "Authorization": "Bear" + api_key,
-        "Content-Type": "multipart/form-data Body"
-    }
+    // init function
+    FUNCTION Init(max_size)
+        capacity = max_size
+        cache_map = NEW HashMap()
+        head = NULL
+        tail = NULL
+    END FUNCTION
 
-    // 3. prepare payload
-    payload = {
-        "file": image_binary,
-        "output_format": "png" //explicitly setting optional parameter
-    }
+    FUNCTION Get(key)
+        IF  key DOES NOT IN cache_map THEN
+            RETURN NULL
+        END IF
 
-    // 4. request
-    response = HTTP(api_url, header, payload)
+        node = cache_map[key]
+        // move this node to the head
+        RemoveNode(node)
+        AddTOHead(node)
 
-    // 5. handling status code
-    status_code = response.status_code
-    IF status_code == 200 THEN
-        json_body = PARSE_JSON(response.body)
-        RETURN json_body.url
-    ELSE IF status_code == 402 THEN
-        RETURN ERROR("Unauthorized: check API Key")
-    ELSE IF status_code == 500 THEN
-        RETURN ERROR("Server Error: please try again later")
-    ELSE
-        //capture generic error
-        json_body = PARSE_JSON(response.body)
-        RETURN ERROR("API Failed" + json_body.message)
-    END IF
-END FUNCTION</code></pre></div>
+        RETURN node.value
+    END FUNCTION
+
+    FUNCTION Put(key, image)
+        IF key IN cache_map THEN
+            node = cache_map[key]
+            node.value = image
+            
+            RemoveNode(node)
+            AddToHead(node)
+        ELSE
+            new_node = NEW Node(key, image)
+
+            IF cache_map.size &gt;= capacity THEN
+                cache_map.REMOVE(tail.key)
+                RemoveNode(tail)
+            END IF
+
+            AdddToHead(new_node)
+            cache_map.ADD(key, new_node)
+        END IF
+    END FUNCTION
+
+    //helpler function
+END CALSS</code></pre></div>
                 
               </div>
             
@@ -509,8 +508,8 @@ END FUNCTION</code></pre></div>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>API Reading</div>
-      <div>https://z-hwa.github.io/webHome/[object Object]/Interview/API-Reading/</div>
+      <div>Data Structure</div>
+      <div>https://z-hwa.github.io/webHome/[object Object]/Interview/Data-Structure/</div>
     </div>
     <div class="license-meta">
       
@@ -566,18 +565,12 @@ END FUNCTION</code></pre></div>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/" title="Data Structure">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Data Structure</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/webHome/%5Bobject%20Object%5D/Multimedia%20Systems%20and%20Applications/S7-Chap7-Lossless%20Compression%20Algorithms-2025/" title="S7-Chap7-Lossless Compression Algorithms-2025">
-                        <span class="hidden-mobile">S7-Chap7-Lossless Compression Algorithms-2025</span>
+                      <a href="/webHome/%5Bobject%20Object%5D/Interview/API-Reading/" title="API Reading">
+                        <span class="hidden-mobile">API Reading</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -597,8 +590,8 @@ END FUNCTION</code></pre></div>
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Interview/API-Reading/';
-          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Interview/API-Reading/';
+          this.page.url = 'https://z-hwa.github.io/webHome/[object%20Object]/Interview/Data-Structure/';
+          this.page.identifier = '/webHome/%5Bobject%20Object%5D/Interview/Data-Structure/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
